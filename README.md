@@ -13,6 +13,7 @@
 - [Inventaire des maquettes et visuels 01–50](design/mockups/INVENTAIRE_VISUELS.md)
 - [Liste des visuels à récupérer ou créer](design/mockups/VISUELS_MANQUANTS.md)
 - [Prototype visuel de référence](design/prototypes/index.html)
+- [Maquettes des 33 écrans (application + Admin)](design/prototypes/ecrans.html)
 - [Plan de réalisation](docs/planning/ROADMAP.md)
 - [Directives des agents IA](AGENTS.md)
 
