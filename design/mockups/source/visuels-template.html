@@ -1,0 +1,1379 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
+<style>
+/* ================= ÉCRANS ================= */
+:root{--g:#168A4E;--gs:#E6F5EC;--bs:#E8F3FB;--rs:#FFECEB;--ln:#E3EBF3;--mu:#6C7F95;background:linear-gradient(180deg,#F5FAFE,#FFFFFF 400px)}
+svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.bars,.mapline{stroke:none}
+.mapline{stroke:none;color:#8DB9DD}
+.mapline path{stroke:currentColor}
+.groups{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}
+.groups a{display:inline-flex;gap:8px;align-items:center;text-decoration:none;color:var(--night);font-weight:600;font-size:13px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;background:var(--white)}
+.groups a b{font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums}
+.groups a:hover,.groups a:focus-visible{border-color:var(--blue);outline:none}
+.gtitle{font-family:var(--f-display);font-size:20px;margin:40px 0 16px;padding-top:4px;border-top:2px solid var(--night);display:inline-block}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:28px 22px}
+.gallery.wide{grid-template-columns:1fr}
+.scr{margin:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.scr figcaption{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;align-items:baseline;padding:0 4px}
+.scr figcaption .num{font-family:var(--f-display);font-weight:700;color:var(--red);font-size:15px;font-variant-numeric:tabular-nums;grid-row:span 2}
+.scr figcaption b{font-size:14.5px}
+.scr figcaption small{color:var(--muted);font-size:12.5px;line-height:1.45}
+
+/* Téléphone */
+.ph{position:relative;width:100%;max-width:300px;margin:0 auto;height:620px;border:8px solid #13253F;border-radius:38px;background:#fff;box-shadow:0 24px 50px rgba(16,33,61,.18),0 6px 12px rgba(16,33,61,.10);overflow:hidden;display:flex;flex-direction:column;color:var(--night);font:12px/1.4 var(--f-body)}
+.ph::before{content:"9:41";display:block;flex:none;height:30px;padding:8px 22px 0;font-weight:700;font-size:11.5px;background:inherit}
+.ph::after{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#13253F;border-radius:0 0 14px 14px}
+.pv{flex:1;overflow-y:auto;overflow-x:hidden;padding:4px 16px 16px;display:flex;flex-direction:column;gap:8px;scrollbar-width:thin}
+.pv-tab{padding-bottom:72px}
+.pv-center{align-items:center;text-align:center;justify-content:center;gap:12px}
+.hd{display:flex;align-items:center;gap:10px;padding:2px 14px 10px;flex:none;border-bottom:1px solid var(--ln);margin-bottom:6px}
+.hd h4{margin:0;font-size:14px;font-weight:700;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hd h4.hd-l{font-size:18px;font-family:var(--f-display)}
+.bk{width:30px;height:30px;border-radius:10px;background:var(--mist);display:grid;place-items:center;font-size:16px;flex:none}
+.hd-r{margin-left:auto;display:inline-flex;align-items:center;gap:4px;font-size:16px;color:var(--night)}
+.hd-r.link{font-size:12px;color:var(--blue);font-weight:600}
+.hd .search{flex:1}
+.hd-who{flex:1;display:flex;flex-direction:column}
+.hd-who b{font-size:13px}.hd-who small{color:var(--mu);font-size:10.5px;display:flex;align-items:center;gap:5px}
+.on-dot{width:7px;height:7px;border-radius:50%;background:var(--g);display:inline-block}
+
+/* Icônes « 3D » */
+.ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;flex:none;color:var(--blue);font-size:19px;background:linear-gradient(150deg,#F2F9FE 0%,#C7E4F8 100%);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(0,119,200,.12),0 6px 12px rgba(0,119,200,.18)}
+.ic-red{color:var(--red);background:linear-gradient(150deg,#FFF5F4 0%,#FFD1CE 100%);box-shadow:inset 0 1px 0 #fff,inset 0 -2px 4px rgba(242,26,22,.12),0 6px 12px rgba(242,26,22,.16)}
+.ic-lg{width:76px;height:76px;border-radius:22px;font-size:36px}
+.ic-sm{width:36px;height:36px;border-radius:11px;font-size:17px}
+.ic-xs{width:32px;height:32px;border-radius:10px;font-size:15px}
+.mx{margin:6px auto 0}
+
+/* Typo */
+.logo-xl,.logo-md,.logo-sm{font-family:var(--f-display);font-weight:700;letter-spacing:-.04em;color:var(--blue)}
+.logo-xl em,.logo-md em,.logo-sm em{font-style:normal;color:var(--red)}
+.logo-xl{font-size:30px}.logo-md{font-size:22px;margin:16px 0 6px}.logo-sm{font-size:17px}
+.big{margin:0;font-size:19px;line-height:1.2;font-weight:800;letter-spacing:-.02em;text-wrap:balance}
+.big.left{text-align:left}
+.sub{margin:0;color:var(--mu);font-size:12.5px}
+.sub.left{text-align:left}
+.muted{margin:0;color:var(--mu);font-size:11px}
+.muted.center,.center{text-align:center}
+.right{text-align:right}
+.link{color:var(--blue);font-weight:600;margin:0;font-size:11.5px}
+.foot{margin:0;text-align:center;color:var(--mu);font-size:11.5px}.foot b{color:var(--blue)}
+.day{margin:6px 0 0;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mu)}
+.hello{margin:6px 0 0;font-size:16px;font-weight:800}
+
+/* Éléments */
+.btn{display:flex;align-items:center;justify-content:center;gap:7px;background:var(--blue);color:#fff;font-weight:700;font-size:13px;border-radius:13px;padding:12px 14px;box-shadow:0 6px 14px rgba(0,119,200,.25);width:100%;margin-top:4px}
+.btn-ghost{background:#fff;color:var(--blue);border:1.5px solid #BFDCF2;box-shadow:none}
+.btn-ghost.red{color:var(--red);border-color:#FFC9C6}
+.btn-w{background:#fff;color:var(--blue);box-shadow:none;width:auto}
+.btn.sm{padding:9px 12px;font-size:12px}
+.stack{display:flex;flex-direction:column;gap:6px;width:100%}
+.lb{display:block;font-size:11px;font-weight:600;color:#3B4F68;margin:2px 0 -4px}
+.lb i{font-weight:500;color:var(--mu)}
+.in{border:1.5px solid var(--ln);border-radius:11px;padding:9px 11px;font-size:12.5px;background:#fff;display:flex;align-items:center;gap:8px;min-width:0}
+.in svg{color:var(--mu);font-size:15px}
+.in-sel{justify-content:space-between}
+.in-pw{justify-content:space-between}
+.in-ico svg:first-child{color:var(--blue)}
+.in-area{min-height:52px;align-items:flex-start;line-height:1.45}
+.in-area.tall{min-height:80px}
+.in-ref{border-color:#FFB3AF;background:#FFF8F7;font-weight:700;letter-spacing:.05em;color:var(--red)}
+.in-row{display:flex;gap:6px}.in-row .in:last-child{flex:1}
+.in-pre{flex:none;font-weight:600}
+.trunc{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.hint{font-size:10px;font-weight:700;padding:2px 7px;border-radius:999px}
+.hint.ok{background:var(--gs);color:var(--g)}
+.seg{display:flex;background:var(--mist);border-radius:11px;padding:3px;gap:3px;margin:2px 0}
+.seg span{flex:1;text-align:center;padding:7px 4px;border-radius:9px;font-weight:600;font-size:11.5px;color:var(--mu)}
+.seg span.on{background:#fff;color:var(--night);box-shadow:0 2px 6px rgba(16,33,61,.08)}
+.ref{display:flex;gap:10px;align-items:flex-end;background:#FFF8F7;border:1px dashed #FFC2BE;border-radius:13px;padding:10px}
+.ref>div:last-child{flex:1;display:flex;flex-direction:column;gap:8px;min-width:0}
+.checkline{display:flex;gap:8px;align-items:flex-start;font-size:10.5px;color:var(--mu);line-height:1.4}
+.cb{width:16px;height:16px;border-radius:5px;border:1.5px solid var(--ln);display:grid;place-items:center;flex:none;font-size:11px}
+.cb.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.otp{display:flex;gap:7px}
+.otp span{width:34px;height:42px;border:1.5px solid var(--ln);border-radius:10px;display:grid;place-items:center;font-size:18px;font-weight:800}
+.otp span.cur{border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,119,200,.15)}
+.or{display:flex;align-items:center;gap:8px;color:var(--mu);font-size:11px}
+.or::before,.or::after{content:"";flex:1;height:1px;background:var(--ln)}
+.steps{display:flex;gap:6px}
+.steps span{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;font-weight:800;font-size:11px;color:var(--mu)}
+.steps span::before{content:"";height:4px;width:100%;border-radius:4px;background:var(--ln)}
+.steps span.on{color:var(--blue)}.steps span.on::before{background:var(--blue)}
+.steps i{font-style:normal;font-weight:600;font-size:10px}
+.note-s{display:flex;gap:8px;align-items:flex-start;background:var(--bs);color:#1D4466;border-radius:11px;padding:9px 10px;font-size:10.5px;line-height:1.45}
+.note-s svg{color:var(--blue);font-size:14px;margin-top:1px}
+.note-s.red{background:var(--rs);color:#8E1F1C}.note-s.red svg{color:var(--red)}
+.tip{display:flex;gap:7px;align-items:center;font-size:11px;color:var(--mu);justify-content:center;padding:6px}
+.tip svg{color:var(--blue)}.tip b{color:var(--blue)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips.center{justify-content:center}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:6px 10px;border-radius:999px;border:1px solid var(--ln);background:#fff;font-size:11px;font-weight:600;color:#3B4F68}
+.chip.on{background:var(--night);border-color:var(--night);color:#fff}
+.lang{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--mu);font-weight:600}
+.orbit{position:relative;width:170px;height:130px;display:grid;place-items:center}
+.orbit .o1{position:absolute;left:6px;top:14px}.orbit .o2{position:absolute;right:4px;top:6px}.orbit .o3{position:absolute;left:18px;bottom:2px}.orbit .o4{position:absolute;right:14px;bottom:8px}
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:999px;font-size:10px;font-weight:700;white-space:nowrap;width:max-content}
+.badge svg{font-size:10px;stroke-width:2.6}
+.b-blue{background:var(--bs);color:var(--blue)}
+.b-red{background:var(--rs);color:var(--red)}
+.b-night{background:var(--night);color:#fff}
+.b-grey{background:var(--mist);color:#4C607A}
+.b-green{background:var(--gs);color:var(--g)}
+.top{display:flex;align-items:center;justify-content:space-between}
+.bell{position:relative;font-size:19px;width:34px;height:34px;border-radius:11px;background:var(--mist);display:grid;place-items:center}
+.bell i{position:absolute;top:7px;right:8px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #fff}
+.search{display:flex;align-items:center;gap:8px;border:1.5px solid var(--ln);border-radius:12px;padding:9px 11px;color:var(--mu);font-size:11.5px;min-width:0}
+.search svg{color:var(--blue);font-size:15px}
+.search .r{margin-left:auto}
+.search span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.search .val{color:var(--night);font-weight:600}
+.search.sm{padding:7px 10px}
+.banner{background:linear-gradient(120deg,#0077C8,#0B3B78 75%,#10213D);color:#fff;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:6px;position:relative;overflow:hidden}
+.banner::after{content:"";position:absolute;right:-30px;top:-40px;width:110px;height:110px;border-radius:50%;border:18px solid rgba(255,255,255,.12)}
+.banner small{font-size:9.5px;font-weight:800;letter-spacing:.1em;color:#BFE3FF}
+.banner b{font-size:14px;line-height:1.25;max-width:200px}
+.banner .btn-w{padding:7px 12px;font-size:11px;margin-top:2px}
+.sec{display:flex;justify-content:space-between;align-items:baseline;margin-top:4px}
+.sec b{font-size:13px}.sec span{font-size:11px;color:var(--blue);font-weight:600}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.cats span{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:10px;font-weight:600;text-align:center}
+.prods{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.prod{border:1px solid var(--ln);border-radius:13px;padding:8px;display:flex;flex-direction:column;gap:2px}
+.prod b{font-size:11.5px;line-height:1.25}.prod small{color:var(--mu);font-size:10px}.prod em{font-style:normal;color:var(--blue);font-weight:800;font-size:12px}
+.pimg{height:64px;border-radius:10px;background:linear-gradient(150deg,#F2F9FE,#D5EBFA);display:grid;place-items:center;color:var(--blue);font-size:28px;margin-bottom:4px}
+.pimg.red{background:linear-gradient(150deg,#FFF5F4,#FFDCD9);color:var(--red)}
+.fab{position:absolute;right:14px;bottom:76px;width:46px;height:46px;border-radius:50%;background:var(--red);color:#fff;display:grid;place-items:center;font-size:20px;box-shadow:0 8px 18px rgba(242,26,22,.35);z-index:2}
+.tb{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--ln);display:grid;grid-template-columns:repeat(5,1fr);padding:7px 2px 12px;z-index:1}
+.tb span{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:9.5px;color:#8597AC;font-weight:600}
+.tb span svg{font-size:19px}
+.tb span.on{color:var(--blue)}
+.tb span.on svg{stroke-width:2.3}
+.res,.citem{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--ln);border-radius:13px;padding:8px}
+.res .pimg,.citem .pimg,.detect .pimg,.ohead .pimg{width:58px;height:58px;flex:none;margin:0;font-size:24px}
+.rt{flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}
+.rt b{font-size:11.5px;line-height:1.3}.rt small{color:var(--mu);font-size:10px}
+.price{font-weight:800;color:var(--blue);font-size:12.5px}.price i{font-style:normal;font-weight:500;color:var(--mu);font-size:10px}
+.hrt{font-size:16px;color:#A5B4C5}.hrt.on{color:var(--red)}.hrt.on svg{fill:currentColor}
+.sup{border:1px solid var(--ln);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.sup-h{display:flex;gap:9px;align-items:center}
+.sup-h>div:nth-child(2){flex:1;min-width:0;display:flex;flex-direction:column}
+.sup-h b{font-size:12px}.sup-h small{color:var(--mu);font-size:10px;display:flex;align-items:center;gap:3px}
+.av{width:36px;height:36px;border-radius:11px;background:var(--night);color:#fff;font-weight:800;font-size:12px;display:grid;place-items:center;flex:none}
+.av.red{background:var(--red)}
+.av.sm{width:30px;height:30px;border-radius:50%;font-size:10.5px;background:var(--blue)}
+.av.lg{width:52px;height:52px;border-radius:16px;font-size:17px;background:linear-gradient(140deg,#0077C8,#10213D)}
+.tags{display:flex;gap:5px;flex-wrap:wrap}
+.tags span{font-size:10px;background:var(--mist);padding:3px 8px;border-radius:6px;color:#4C607A;font-weight:600}
+.kv3{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.kv3 span{display:flex;flex-direction:column;font-size:9.5px;color:var(--mu)}
+.kv3 b{font-size:12px;color:var(--night)}
+.kv3.boxed{border:1px solid var(--ln);border-radius:13px;padding:10px;text-align:center}
+.kv3.boxed b{font-size:18px;font-family:var(--f-display)}
+.mode{display:flex;gap:11px;align-items:center;border:1.5px solid var(--ln);border-radius:15px;padding:11px}
+.mode.on{border-color:var(--blue);background:#F6FBFF}
+.mode>div:nth-child(2){flex:1;display:flex;flex-direction:column;gap:2px}
+.mode b{font-size:12.5px}.mode small{color:var(--mu);font-size:10.5px;line-height:1.35}
+.ch{color:#A5B4C5;font-size:14px}
+.row,.pkg,.tx,.pay,.carrier{display:flex;gap:10px;align-items:center;border:1px solid var(--ln);border-radius:13px;padding:9px 10px}
+.row>div:nth-child(2),.pkg>div:nth-child(2),.tx>div:nth-child(2),.pay>div:nth-child(2),.carrier>div:nth-child(2){flex:1;display:flex;flex-direction:column;gap:1px;min-width:0}
+.row b,.pkg b,.tx b,.pay b,.carrier b{font-size:11.5px}
+.row small,.pkg small,.tx small,.pay small,.carrier small{color:var(--mu);font-size:10px;line-height:1.35}
+.tx .badge{margin-top:3px}
+.detect{display:flex;gap:10px;align-items:center;background:#F6FBFF;border:1px solid #CFE5F6;border-radius:13px;padding:8px}
+.detect>div{display:flex;flex-direction:column;gap:1px;min-width:0}
+.detect b{font-size:12px}.detect small{font-size:10px;color:var(--mu)}
+.ok-t{color:var(--g)!important;font-weight:700;display:flex;align-items:center;gap:3px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end}
+.two>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.stepper{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--ln);border-radius:11px;padding:5px}
+.stepper span{width:26px;height:26px;border-radius:8px;background:var(--mist);display:grid;place-items:center;font-size:13px;color:var(--blue)}
+.stepper b{font-size:13px}
+.stepper.xs{gap:6px;padding:3px;align-self:center}.stepper.xs span{width:22px;height:22px}
+.up{display:flex;gap:8px}
+.up .th{width:62px;height:62px;border-radius:12px;background:linear-gradient(150deg,#F2F9FE,#D5EBFA);display:grid;place-items:center;color:var(--blue);font-size:24px}
+.up .add{width:62px;height:62px;border-radius:12px;border:1.5px dashed #9FC8E8;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--blue);font-size:10px;font-weight:600}
+.up .add svg{font-size:17px}
+.agent{display:flex;gap:10px;align-items:center;background:var(--mist);border-radius:13px;padding:9px}
+.agent>div:nth-child(2){flex:1;display:flex;flex-direction:column}
+.agent b{font-size:12px}.agent small{color:var(--mu);font-size:10px}
+.tl{list-style:none;margin:2px 0;padding:0 0 0 4px;display:flex;flex-direction:column}
+.tl li{position:relative;padding:0 0 12px 22px;display:flex;flex-direction:column}
+.tl li::before{content:"";position:absolute;left:0;top:2px;width:12px;height:12px;border-radius:50%;border:2px solid #C3D2E0;background:#fff;box-sizing:border-box}
+.tl li::after{content:"";position:absolute;left:5px;top:15px;bottom:0;width:2px;background:#E3EBF3}
+.tl li:last-child::after{display:none}
+.tl li.done::before{background:var(--blue);border-color:var(--blue)}
+.tl li.done::after{background:var(--blue)}
+.tl li.cur::before{border-color:var(--red);box-shadow:0 0 0 4px rgba(242,26,22,.15)}
+.tl b{font-size:11.5px}.tl small{color:var(--mu);font-size:10px}
+.tl li:not(.done):not(.cur) b{color:#93A3B5;font-weight:600}
+.tl.dense li{padding-bottom:8px}
+.offer{position:relative;border:1.5px solid var(--ln);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.offer.on{border-color:var(--blue);background:#F6FBFF}
+.of-h{display:flex;gap:6px;align-items:center;padding-right:24px;flex-wrap:wrap}
+.of-h b{font-size:12px}
+.offer .radio{position:absolute;top:10px;right:10px}
+.radio{width:18px;height:18px;border-radius:50%;border:2px solid #B9C9D8;flex:none;box-sizing:border-box}
+.radio.on{border:5px solid var(--blue)}
+.sum{display:flex;justify-content:space-between;font-size:12px;padding:4px 2px}
+.sum b{font-size:14px}
+.recap{background:var(--mist);border-radius:13px;padding:10px 12px;display:flex;flex-direction:column;gap:6px}
+.recap p{margin:0;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px}
+.recap p span{color:#4C607A}.recap p i{color:var(--mu);font-size:10.5px}
+.recap .tot{border-top:1px solid #D7E2EC;padding-top:7px;font-size:12.5px}
+.recap .tot span{color:var(--night);font-weight:700}.recap .tot b{color:var(--blue);font-size:14px}
+.recap.sm{gap:4px}
+.pay.on,.carrier.on{border-color:var(--blue);background:#F6FBFF}
+.carrier em{font-style:normal;font-weight:800;color:var(--blue);font-size:11.5px;white-space:nowrap}
+.carrier.off{opacity:.55;background:var(--mist)}
+.carrier i{font-style:normal;font-size:10px;font-weight:700;color:var(--mu)}
+.ord{border:1px solid var(--ln);border-radius:13px;padding:10px;display:flex;flex-direction:column;gap:3px}
+.o-h{display:flex;justify-content:space-between;align-items:center;gap:6px}
+.o-h b{font-size:12px}
+.ord p{margin:0;font-size:11.5px}.ord small{color:var(--mu);font-size:10px}
+.ohead{display:flex;gap:10px;align-items:center}
+.ohead>div:nth-child(2){display:flex;flex-direction:column}
+.ohead b{font-size:12.5px}.ohead small{color:var(--mu);font-size:10.5px}
+.addr{background:linear-gradient(120deg,#0B3B78,#10213D);color:#fff;border-radius:15px;padding:12px;display:flex;flex-direction:column;gap:3px;position:relative}
+.addr small{font-size:9px;letter-spacing:.1em;font-weight:800;color:#9FD0F5}
+.addr b{font-size:13px}.addr>span{font-size:10.5px;color:#C9D6E6;padding-right:60px}
+.addr .cp{position:absolute;right:10px;bottom:10px;background:rgba(255,255,255,.14);padding:5px 8px;border-radius:8px;font-size:10px;font-weight:700;display:flex;gap:4px;align-items:center;color:#fff}
+.cnt{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.cnt span{border:1px solid var(--ln);border-radius:11px;padding:7px 2px;text-align:center;font-size:9.5px;color:var(--mu);display:flex;flex-direction:column}
+.cnt b{font-size:16px;color:var(--night);font-family:var(--f-display)}
+.cnt span.on{border-color:var(--blue);background:#F6FBFF}.cnt span.on b{color:var(--blue)}
+.photo{height:112px;border-radius:14px;background:linear-gradient(160deg,#E9DCC8,#CDB693);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#6B5232;font-size:44px}
+.photo span{font-size:10px;font-weight:600;background:rgba(255,255,255,.7);padding:2px 8px;border-radius:6px;color:#4A3A22}
+.kv4{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.kv4 span{border:1px solid var(--ln);border-radius:11px;padding:7px 3px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:9px;color:var(--mu)}
+.kv4 svg{color:var(--blue);font-size:15px}
+.kv4 b{font-size:10.5px;color:var(--night)}
+.svc{display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:11px;border:1px solid var(--ln);font-size:11.5px}
+.svc span{flex:1}
+.svc.on{border-color:#BFE3CC;background:var(--gs)}.svc.on svg{color:var(--g)}.svc.on b{color:var(--g);font-size:10.5px}
+.svc.off{background:var(--mist);color:#93A3B5}
+.svc.off i{font-style:normal;font-size:9.5px;font-weight:700;background:#fff;padding:2px 7px;border-radius:999px;color:var(--mu)}
+.route{display:flex;align-items:center;gap:8px;background:var(--mist);border-radius:13px;padding:10px 12px}
+.route>div{display:flex;flex-direction:column}
+.route .r{text-align:right;margin-left:auto}
+.route small{font-size:9.5px;color:var(--mu)}.route b{font-size:13px}
+.route>svg{color:var(--blue);font-size:18px;margin:0 auto}
+.tgl{width:34px;height:20px;border-radius:999px;background:#C9D5E1;position:relative;flex:none;display:inline-block}
+.tgl::after{content:"";position:absolute;left:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tgl.on{background:var(--blue)}.tgl.on::after{left:16px}
+.in-ic{vertical-align:-2px;margin-right:3px;color:var(--blue)}
+.map{position:relative;height:118px;border-radius:14px;background:radial-gradient(circle at 30% 70%,#DCEEFB,transparent 50%),radial-gradient(circle at 80% 30%,#E5F2FC,transparent 45%),#F2F8FD;overflow:hidden}
+.mapline{position:absolute;inset:4px;width:calc(100% - 8px)!important;height:calc(100% - 8px)!important}
+.map>span{position:absolute;font-size:9.5px;font-weight:700;color:var(--night);background:#fff;padding:2px 6px;border-radius:6px;box-shadow:0 2px 5px rgba(16,33,61,.1)}
+.m1{right:8px;top:6px}.m2{left:44%;top:6px}.m3{left:8px;bottom:8px}
+.mplane{left:44%!important;top:42px!important;background:var(--blue)!important;color:#fff!important;padding:4px!important;border-radius:50%!important;font-size:13px!important;display:grid}
+.trk{display:flex;justify-content:space-between;align-items:center}
+.trk>div{display:flex;flex-direction:column}.trk small{font-size:9.5px;color:var(--mu)}.trk b{font-size:12px;letter-spacing:.02em}
+.wcard{background:linear-gradient(125deg,#0077C8,#0B3B78 70%,#10213D);color:#fff;border-radius:17px;padding:16px;display:flex;flex-direction:column;gap:4px;position:relative;overflow:hidden}
+.wcard::after{content:"";position:absolute;right:-26px;bottom:-40px;width:120px;height:120px;border-radius:50%;border:20px solid rgba(255,255,255,.1)}
+.wcard small{color:#BFE3FF;font-size:10.5px}.wcard b{font-size:23px;font-family:var(--f-display);letter-spacing:-.02em}.wcard span{font-size:10px;color:#C9D6E6}
+.acts{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.acts span{display:flex;flex-direction:column;align-items:center;gap:5px;font-size:10px;font-weight:600}
+.tx em{font-style:normal;font-weight:800;font-size:11.5px;white-space:nowrap}
+.tx em.plus{color:var(--g)}.tx em.pend{color:var(--mu)}
+.amount{font-family:var(--f-display);font-size:30px;font-weight:700;text-align:center;padding:10px;border-bottom:2px solid var(--blue)}
+.amount i{font-style:normal;font-size:13px;color:var(--mu)}
+.prof{display:flex;gap:12px;align-items:center}
+.prof>div:nth-child(2){display:flex;flex-direction:column;gap:3px}
+.prof b{font-size:14px}.prof small{color:var(--mu);font-size:10.5px}
+.refban{display:flex;gap:10px;align-items:center;background:#FFF8F7;border:1px solid #FFD6D3;border-radius:13px;padding:9px}
+.refban>div:nth-child(2){flex:1;display:flex;flex-direction:column}
+.refban b{font-size:12px}.refban small{font-size:10.5px;color:var(--red);font-weight:700;letter-spacing:.03em}
+.menu{display:flex;flex-direction:column}
+.menu span{display:flex;align-items:center;gap:11px;padding:10px 2px;border-bottom:1px solid var(--ln);font-size:12.5px;font-weight:500}
+.menu span svg:first-child{color:var(--blue);font-size:16px}
+.menu span .ch{margin-left:auto}
+.menu span.red{color:var(--red);border-bottom:0}.menu span.red svg{color:var(--red)}
+.refcard{background:linear-gradient(125deg,#F21A16,#B3120F);color:#fff;border-radius:17px;padding:14px;display:flex;flex-direction:column;gap:6px;text-align:center}
+.refcard small{font-size:10.5px;color:#FFD9D7}
+.refcard b{font-family:var(--f-display);font-size:26px;letter-spacing:.08em}
+.refcard .btn-w{color:var(--red);width:100%}
+.how{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:11.5px}
+.nt{display:flex;gap:10px;align-items:flex-start;padding:9px 8px;border-radius:12px}
+.nt.new{background:#F3F9FE}
+.nt>div:nth-child(2){flex:1;display:flex;flex-direction:column;gap:1px;position:relative;padding-right:30px}
+.nt b{font-size:11.5px}.nt small{color:var(--mu);font-size:10.5px;line-height:1.35}
+.nt i{position:absolute;right:0;top:0;font-style:normal;font-size:9.5px;color:var(--mu)}
+.pv-chat{background:#F5F8FB;gap:8px;padding-bottom:60px;margin-top:-6px;padding-top:10px}
+.faq{display:flex;gap:7px;align-items:center;background:#fff;border:1px solid var(--ln);border-radius:11px;padding:8px 10px;font-size:11.5px;font-weight:600}
+.faq svg:first-child{color:var(--blue)}.faq .ch{margin-left:auto}
+.msg{max-width:82%;background:#fff;border-radius:14px 14px 14px 4px;padding:8px 10px;font-size:11.5px;line-height:1.4;box-shadow:0 1px 3px rgba(16,33,61,.06);display:flex;flex-direction:column;gap:6px}
+.msg.me{align-self:flex-end;background:var(--blue);color:#fff;border-radius:14px 14px 4px 14px}
+.att{display:flex;gap:6px;align-items:center;background:var(--bs);color:var(--blue);font-weight:700;font-size:10.5px;padding:6px 8px;border-radius:8px}
+.quick{display:flex;gap:5px;flex-wrap:wrap}
+.quick span{font-size:10.5px;font-weight:600;color:var(--blue);border:1px solid #BFDCF2;background:#fff;padding:5px 9px;border-radius:999px}
+.composer{position:absolute;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--ln);display:flex;align-items:center;gap:9px;padding:9px 12px 13px;color:var(--mu);font-size:11.5px}
+.composer svg{font-size:17px;color:var(--blue)}
+.composer span{flex:1;background:var(--mist);border-radius:999px;padding:8px 12px}
+.composer .send{width:34px;height:34px;border-radius:50%;background:var(--blue);display:grid;place-items:center;font-style:normal}
+.composer .send svg{color:#fff;font-size:15px}
+.opts{display:flex;flex-wrap:wrap;gap:6px}
+.opts span{padding:7px 11px;border-radius:10px;border:1.5px solid var(--ln);font-size:11.5px;font-weight:600}
+.opts span.on{border-color:var(--blue);color:var(--blue);background:#F6FBFF}
+.opts.sm span{padding:6px 10px;font-size:11px}
+.set{display:flex;justify-content:space-between;align-items:center;padding:9px 2px;border-bottom:1px solid var(--ln);font-size:12px}
+.set i{color:var(--mu);font-size:10.5px}
+.set b{display:flex;align-items:center;gap:4px;font-weight:600;color:var(--mu);font-size:11.5px}
+.set.red{color:var(--red);border-bottom:0}
+
+/* Admin (bureau) */
+.desk{display:grid;grid-template-columns:190px minmax(0,1fr);border:1px solid #CAD8E6;border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 20px 44px rgba(16,33,61,.12);font:12.5px/1.45 var(--f-body);color:var(--night);min-height:430px}
+.side{background:var(--night);color:#C9D6E6;padding:16px 10px;display:flex;flex-direction:column;gap:2px}
+.side .logo-sm{padding:0 8px}.side .logo-sm span{color:#3FA4EA}
+.side>small{font-size:9.5px;letter-spacing:.14em;font-weight:800;color:#7F93AD;padding:2px 8px 10px}
+.side>span{display:flex;align-items:center;gap:9px;padding:8px;border-radius:9px;font-size:12px;font-weight:500}
+.side>span svg{font-size:15px}
+.side>span.on{background:var(--blue);color:#fff;font-weight:700}
+.dmain{padding:18px 20px;display:flex;flex-direction:column;gap:14px;min-width:0;background:#F7FAFD}
+.dtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dtop h4{margin:0;font-family:var(--f-display);font-size:19px;margin-right:auto}
+.dtop .search{background:#fff;min-width:200px}
+.who{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.kpis>div{background:#fff;border:1px solid var(--ln);border-radius:13px;padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.kpis small{color:var(--mu);font-size:11px}
+.kpis b{font-family:var(--f-display);font-size:26px;font-variant-numeric:tabular-nums}
+.kpis i{font-style:normal;font-size:10.5px;color:var(--mu)}
+.kpis i.up{color:var(--g);font-weight:700}
+.kpis .alert{border-color:#FFC9C6;background:#FFF8F7}.kpis .alert b{color:var(--red)}
+.dcols{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:10px}
+.dcard{background:#fff;border:1px solid var(--ln);border-radius:13px;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.dcard>b{font-size:13px}
+.bars{width:100%;height:auto;max-height:170px}
+.al{margin:0;display:flex;gap:8px;align-items:center;font-size:12px;padding:6px 0;border-bottom:1px solid var(--ln)}
+.al:last-child{border-bottom:0}
+.tablewrap{overflow-x:auto;background:#fff;border:1px solid var(--ln);border-radius:13px}
+.dt{width:100%;border-collapse:collapse;font-size:12px;min-width:620px}
+.dt th{text-align:left;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mu);font-weight:700;padding:10px 12px;border-bottom:1px solid var(--ln);background:#FBFDFF}
+.dt td{padding:10px 12px;border-bottom:1px solid var(--ln);white-space:nowrap}
+.dt tr:last-child td{border-bottom:0}
+.dt td:first-child{font-weight:700}
+.dt .n{text-align:right;font-variant-numeric:tabular-nums}
+.form2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px;background:#fff;border:1px solid var(--ln);border-radius:13px;padding:14px}
+.form2>div{display:flex;flex-direction:column;gap:8px;min-width:0}
+.form2 .full{grid-column:1/-1}
+.dact{display:flex;justify-content:flex-end;gap:8px}
+.dact .btn{width:auto}
+@media (max-width:760px){
+  .desk{grid-template-columns:1fr}
+  .side{flex-direction:row;flex-wrap:wrap;gap:4px;padding:12px}
+  .side .logo-sm{width:100%;padding:0 4px 4px}.side>small{display:none}
+  .side>span{padding:6px 8px;font-size:11px}
+  .kpis{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .dcols,.form2{grid-template-columns:1fr}
+  .dact{flex-direction:column}.dact .btn{width:100%}
+}
+
+:root{--blue:#0077C8;--red:#F21A16;--night:#10213D;--white:#FFFFFF;--mist:#F4F6F8;--line:#DDE7F0;--muted:#51647B;
+--f-display:"Space Grotesk",system-ui,sans-serif;--f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+--g:#168A4E;--gs:#E6F5EC;--bs:#E8F3FB;--rs:#FFECEB;--ln:#E3EBF3;--mu:#6C7F95}
+*{box-sizing:border-box}
+html,body{margin:0;background:#fff}
+#lib{display:none}
+/* extras */
+.promo{background:linear-gradient(120deg,#F21A16,#A80F0C);color:#fff;border-radius:15px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+.promo small{font-size:9px;font-weight:800;letter-spacing:.1em;color:#FFD3D1}.promo b{font-size:13.5px}.promo span{font-size:10.5px;color:#FFE1DF}
+.okbig{width:84px;height:84px;border-radius:26px;display:grid;place-items:center;font-size:44px;color:#fff;background:linear-gradient(150deg,#2FB36C,#127A43);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 12px 24px rgba(22,138,78,.35)}
+.okbig svg{stroke-width:2.6}
+.amount-s{margin:0;font-family:var(--f-display);font-size:24px;font-weight:700;color:var(--blue)}
+.recap.wide{width:100%;text-align:left}
+.dl{width:30px;height:30px;border-radius:9px;background:var(--bs);color:var(--blue);display:grid;place-items:center;font-size:14px}
+.pdf{border:1px solid var(--ln);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:7px;background:#FBFDFF}
+.pdf-h{display:flex;justify-content:space-between;align-items:baseline}.pdf-h b{color:var(--blue);font-family:var(--f-display);font-size:13px}.pdf-h small{font-size:10px;color:var(--mu)}
+.pdf i{height:7px;border-radius:4px;background:#E3EBF3;display:block}.pdf i.s{width:60%}
+.pdf-t{display:flex;justify-content:space-between;border-top:1px solid var(--ln);padding-top:7px;font-size:11px}.pdf-t b{color:var(--blue)}
+.stars{display:flex;gap:6px;font-size:26px;color:#C9D5E1}
+.stars svg.on{color:var(--blue);fill:var(--blue)}
+.opts.col{flex-direction:column}.opts.col span{font-weight:500}
+.pkg.col{flex-direction:column;align-items:stretch;gap:7px}
+.pk-h{display:flex;gap:10px;align-items:center}.pk-h>div:nth-child(2){flex:1;display:flex;flex-direction:column}
+.mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.mini span{height:5px;border-radius:4px;background:#E3EBF3}.mini span.on{background:var(--blue)}
+.photo.tall{height:200px;font-size:72px}
+.up .th.brown{background:linear-gradient(160deg,#E9DCC8,#CDB693);color:#6B5232}
+.cube{position:relative;height:150px;display:grid;place-items:center;background:var(--mist);border-radius:14px}
+.cube3{width:96px;height:96px;border-radius:18px;display:grid;place-items:center;font-size:58px;color:#6B5232;background:linear-gradient(160deg,#F0E4D2,#CDB693);box-shadow:0 14px 24px rgba(107,82,50,.25);transform:perspective(300px) rotateX(10deg) rotateY(-14deg)}
+.cl{position:absolute;font-size:10.5px;font-weight:700;background:#fff;color:var(--blue);padding:2px 7px;border-radius:6px;box-shadow:0 2px 5px rgba(16,33,61,.1)}
+.cl.l{bottom:12px;left:50%;transform:translateX(-50%)}.cl.w{right:28px;top:50%}.cl.h{left:28px;top:44%}
+.stat{display:flex;gap:10px;align-items:center;border-radius:14px;padding:11px;background:var(--bs)}
+.stat.red{background:var(--rs)}
+.stat>div:nth-child(2){display:flex;flex-direction:column}.stat b{font-size:13px}.stat small{font-size:10.5px;color:var(--mu)}
+.sup-h.big b{font-size:15px}
+.world{position:relative;height:120px;border-radius:14px;background:radial-gradient(circle at 20% 80%,#DCEEFB,transparent 50%),#F2F8FD;overflow:hidden;color:#8DB9DD}
+.wl{position:absolute;inset:0;width:100%;height:100%}
+.wp{position:absolute;font-size:9.5px;font-weight:700;background:var(--red);color:#fff;padding:2px 6px;border-radius:6px}
+.wp.b{background:var(--blue)}
+.offcard{align-self:stretch;background:#fff;border:1.5px solid var(--blue);border-radius:14px;padding:11px;display:flex;flex-direction:column;gap:4px}
+.offcard small{font-size:9px;font-weight:800;letter-spacing:.08em;color:var(--red)}.offcard b{font-family:var(--f-display);font-size:19px;color:var(--blue)}.offcard>span{font-size:10.5px;color:var(--mu)}
+.prod.fav{position:relative}.prod.fav i{position:absolute;top:12px;right:12px;color:var(--red);font-size:14px}.prod.fav i svg{fill:currentColor}
+
+/* ===== Visuel 1080 × 1920 ===== */
+.v{position:relative;width:1080px;height:1920px;overflow:hidden;background:#fff;font-family:var(--f-body);color:var(--night)}
+.v::before{content:"";position:absolute;inset:0;background:radial-gradient(900px 700px at 12% 34%,rgba(0,119,200,.10),transparent 60%),radial-gradient(800px 700px at 92% 70%,rgba(0,119,200,.09),transparent 60%),radial-gradient(500px 400px at 85% 18%,rgba(242,26,22,.05),transparent 60%)}
+.v::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(16,33,61,.07) 1.4px,transparent 1.5px);background-size:34px 34px;mask-image:linear-gradient(180deg,transparent 0,#000 25%,#000 75%,transparent 100%)}
+.ring{position:absolute;left:50%;top:1010px;width:900px;height:900px;margin:-450px 0 0 -450px;border-radius:50%;border:2px solid rgba(0,119,200,.10);z-index:0}
+.ring.r2{width:680px;height:680px;margin:-340px 0 0 -340px;border-color:rgba(0,119,200,.14)}
+.vh{position:absolute;left:64px;right:64px;top:64px;display:flex;justify-content:space-between;align-items:center;z-index:3}
+.vh .lg{font-family:var(--f-display);font-weight:700;font-size:44px;letter-spacing:-.04em;color:var(--blue)}.vh .lg em{font-style:normal;color:var(--red)}
+.vh .stp{font-weight:800;font-size:22px;letter-spacing:.08em;color:var(--blue);border:2px solid #BFDCF2;background:#fff;border-radius:999px;padding:10px 22px;font-variant-numeric:tabular-nums}
+.vt{position:absolute;left:64px;right:64px;top:160px;z-index:3;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px}
+.vt .eb{font-weight:800;font-size:22px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.vt h1{margin:0;font-family:var(--f-display);font-weight:700;font-size:74px;line-height:1.02;letter-spacing:-.035em;text-wrap:balance;max-width:940px}
+.vt h1 b{color:var(--blue);font-weight:700}
+.vt p{margin:0;font-size:30px;line-height:1.35;color:var(--muted);max-width:860px;text-wrap:balance}
+.stage{position:absolute;left:390px;top:500px;width:300px;height:700px;z-index:2;transform-origin:50% 0;transform:perspective(2400px) scale(1.56) rotateY(-11deg) rotateX(3deg)}
+.stage .ph{max-width:none;width:300px;box-shadow:-14px 0 0 -6px #0A1830,0 60px 90px rgba(16,33,61,.32),0 18px 30px rgba(16,33,61,.18)}
+.shadow{position:absolute;left:290px;width:520px;top:1585px;height:60px;border-radius:50%;background:radial-gradient(closest-side,rgba(16,33,61,.28),transparent);z-index:1}
+.cards{position:absolute;inset:0;z-index:4;pointer-events:none}
+.cd{position:absolute;width:318px;background:rgba(255,255,255,.96);border:1px solid #E1EAF3;border-radius:30px;padding:24px 24px 26px;box-shadow:0 24px 50px rgba(16,33,61,.14),0 4px 10px rgba(16,33,61,.06);display:flex;flex-direction:column;gap:10px}
+.cd .ti{width:78px;height:78px;border-radius:24px;display:grid;place-items:center;color:var(--blue);font-size:40px;background:linear-gradient(150deg,#F5FBFF 0%,#BFE0F8 100%);box-shadow:inset 0 2px 0 #fff,inset 0 -5px 10px rgba(0,119,200,.18),0 12px 22px rgba(0,119,200,.26)}
+.cd .ti.r{color:var(--red);background:linear-gradient(150deg,#FFF6F5 0%,#FFC9C5 100%);box-shadow:inset 0 2px 0 #fff,inset 0 -5px 10px rgba(242,26,22,.16),0 12px 22px rgba(242,26,22,.22)}
+.cd .ti svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.cd b{font-size:28px;line-height:1.15;letter-spacing:-.01em}
+.cd span{font-size:21px;line-height:1.38;color:var(--muted)}
+.c1{left:40px;top:640px}.c2{left:40px;top:1110px}.c3{right:40px;top:820px}.c4{right:40px;top:1290px}
+.band{position:absolute;left:56px;right:56px;bottom:84px;z-index:5;background:var(--night);border-radius:36px;padding:30px 34px;display:flex;align-items:center;gap:10px;box-shadow:0 24px 50px rgba(16,33,61,.28)}
+.band .st{flex:1;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;color:#AFC2D9;font-size:20px;font-weight:600;line-height:1.2}
+.band .st i{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:22px;background:#1D3457;color:#fff}
+.band .st.on{color:#fff}.band .st.on i{background:var(--red);box-shadow:0 0 0 7px rgba(242,26,22,.25)}
+.band .st.dn i{background:var(--blue)}
+.band .ar{color:#4B6385;font-size:28px;font-weight:700;margin-top:-30px}
+.vf{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-size:18px;color:#8EA0B5;z-index:5;letter-spacing:.04em}
+/* bureau */
+.v.desk-v .stage{left:50%;top:560px;width:960px;height:auto;transform:translateX(-50%) perspective(2400px) rotateX(4deg)}
+.laptop{background:#13253F;border-radius:26px 26px 0 0;padding:16px 16px 0}
+.laptop .desk{border-radius:12px 12px 0 0;min-height:560px;box-shadow:none;border:0;font-size:12.5px}
+.lbase{height:26px;margin:0 -50px;background:linear-gradient(180deg,#CBD6E2,#9EAEC0);border-radius:0 0 30px 30px;box-shadow:0 40px 70px rgba(16,33,61,.3)}
+.v.desk-v .c1{left:56px;top:1270px}.v.desk-v .c2{left:56px;top:1270px;transform:translateX(250px)}
+.v.desk-v .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;left:56px;right:56px;top:1250px;bottom:auto;inset:auto 56px auto 56px;position:absolute;top:1230px}
+.v.desk-v .cd{position:static;width:auto;padding:20px}
+.v.desk-v .cd b{font-size:24px}.v.desk-v .cd span{font-size:19px}
+.v.desk-v .cd .ti{width:66px;height:66px;font-size:34px}
+/* écosystème */
+.v.eco .stage{display:none}
+.eco-wrap{position:absolute;left:0;right:0;top:470px;height:1100px;z-index:2}
+.eco-wrap .lap{position:absolute;left:50%;top:40px;width:900px;transform:translateX(-50%) scale(.86);transform-origin:50% 0}
+.eco-wrap .p{position:absolute;top:470px;width:300px;height:700px;transform-origin:50% 0}
+.eco-wrap .p .ph{max-width:none;width:300px;box-shadow:0 40px 70px rgba(16,33,61,.3)}
+.eco-wrap .p1{left:50px;transform:perspective(2000px) scale(.92) rotateY(16deg)}
+.eco-wrap .p2{left:390px;top:430px;transform:scale(1.0)}
+.eco-wrap .p3{right:50px;transform:perspective(2000px) scale(.92) rotateY(-16deg)}
+.v.eco .cards{display:none}
+.v.eco .vf{bottom:30px}
+/* bureau : cartes en grille 2 × 2 sous l'ordinateur (remplace les règles précédentes) */
+.v.desk-v .cards{position:absolute;inset:auto;left:56px;right:56px;top:1250px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.v.desk-v .cd{position:static;transform:none;width:auto;flex-direction:row;align-items:center;gap:18px;padding:20px 22px}
+.v.desk-v .cd>div{display:flex;flex-direction:column;gap:4px}
+.eco-lbl{position:absolute;z-index:4;background:#fff;border:1px solid #E1EAF3;border-radius:999px;padding:10px 20px;font-weight:700;font-size:22px;box-shadow:0 12px 24px rgba(16,33,61,.12);display:flex;gap:10px;align-items:center}
+.eco-lbl svg{width:26px;height:26px;fill:none;stroke:var(--blue);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.eco-part{position:absolute;z-index:4;display:flex;flex-direction:column;align-items:center;gap:8px;font-size:19px;font-weight:700;color:var(--night);width:180px;text-align:center}
+.eco-part .ti{width:70px;height:70px;border-radius:22px;display:grid;place-items:center;color:var(--blue);font-size:34px;background:linear-gradient(150deg,#F5FBFF 0%,#BFE0F8 100%);box-shadow:inset 0 2px 0 #fff,inset 0 -5px 10px rgba(0,119,200,.18),0 12px 22px rgba(0,119,200,.26)}
+.eco-part .ti.r{color:var(--red);background:linear-gradient(150deg,#FFF6F5 0%,#FFC9C5 100%)}
+.eco-part .ti svg{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ph{height:700px}.pv>*{flex-shrink:0}.stage-wrap{position:absolute;inset:0;z-index:2;isolation:isolate;pointer-events:none}
+.eco-wrap{isolation:isolate}
+.eco-wrap .p{top:430px}
+.eco-wrap .p1{transform:perspective(2000px) scale(.86) rotateY(16deg)}
+.eco-wrap .p3{transform:perspective(2000px) scale(.86) rotateY(-16deg)}
+.eco-wrap .p2{top:400px;transform:scale(.92)}
+.eco-row{position:absolute;left:40px;right:40px;top:1560px;z-index:4;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+.eco-row .eco-lbl{position:static}</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<defs>
+<symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
+<symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11L21 7H6.2"/></symbol>
+<symbol id="i-box" viewBox="0 0 24 24"><path d="M21 8l-9-5-9 5v8l9 5 9-5z"/><path d="M3 8l9 5 9-5M12 13v8"/></symbol>
+<symbol id="i-wallet" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M3 10h18M16 15h2M6 6l9-3 1 3"/></symbol>
+<symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></symbol>
+<symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+<symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></symbol>
+<symbol id="i-camera" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M8 7l2-3h4l2 3"/></symbol>
+<symbol id="i-deal" viewBox="0 0 24 24"><path d="M2 11l4-4 4 2 4-2 4 2 4 4"/><path d="M6 7v6l5 5 2-1 4-4M10 15l2-2M12 17l2-2"/></symbol>
+<symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+<symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+<symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></symbol>
+<symbol id="i-chat" viewBox="0 0 24 24"><path d="M4 5h16v11H9l-5 4z"/><path d="M8 9h8M8 12h5"/></symbol>
+<symbol id="i-gift" viewBox="0 0 24 24"><rect x="3" y="9" width="18" height="12" rx="1"/><path d="M3 13h18M12 9v12M12 9C10 5 6 5 6 8s6 1 6 1 6 2 6-1-4-3-6 1"/></symbol>
+<symbol id="i-truck" viewBox="0 0 24 24"><path d="M2 6h12v10H2zM14 10h4l3 3v3h-7"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></symbol>
+<symbol id="i-plane" viewBox="0 0 24 24"><path d="M10.5 13.5L3 10l18-7-7 18-3.5-7.5z"/></symbol>
+<symbol id="i-ship" viewBox="0 0 24 24"><path d="M3 17l2 3h14l2-3z"/><path d="M5 17v-6h14v6M9 11V6h6v5"/></symbol>
+<symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></symbol>
+<symbol id="i-card" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol>
+<symbol id="i-mobile" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></symbol>
+<symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+<symbol id="i-lock" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></symbol>
+<symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></symbol>
+<symbol id="i-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9L7 7M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1"/></symbol>
+<symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+<symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+<symbol id="i-pin" viewBox="0 0 24 24"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></symbol>
+<symbol id="i-file" viewBox="0 0 24 24"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6M9 13h8M9 17h6"/></symbol>
+<symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/></symbol>
+<symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c.5-3.5 3-5.5 7-5.5s6.5 2 7 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c2 .6 3.5 2.3 4 5.2"/></symbol>
+<symbol id="i-scale" viewBox="0 0 24 24"><path d="M5 8h14l2 12H3z"/><circle cx="12" cy="5" r="2"/></symbol>
+<symbol id="i-ruler" viewBox="0 0 24 24"><path d="M3 17L17 3l4 4L7 21z"/><path d="M7 13l2 2M10 10l2 2M13 7l2 2"/></symbol>
+<symbol id="i-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><path d="M14 14h3v3h-3zM18 18h3v3"/></symbol>
+<symbol id="i-copy" viewBox="0 0 24 24"><rect x="8" y="8" width="13" height="13" rx="2"/><path d="M5 16H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1"/></symbol>
+<symbol id="i-share" viewBox="0 0 24 24"><circle cx="18" cy="5" r="2.5"/><circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="19" r="2.5"/><path d="M8.2 10.8l7.6-4.4M8.2 13.2l7.6 4.4"/></symbol>
+<symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></symbol>
+<symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></symbol>
+<symbol id="i-store" viewBox="0 0 24 24"><path d="M3 9l2-5h14l2 5M4 9v11h16V9M3 9h18M9 20v-6h6v6"/></symbol>
+<symbol id="i-filter" viewBox="0 0 24 24"><path d="M3 5h18l-7 8v6l-4 2v-8z"/></symbol>
+<symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></symbol>
+<symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.5"/></symbol>
+<symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/></symbol>
+<symbol id="i-warehouse" viewBox="0 0 24 24"><path d="M2 21V9l10-6 10 6v12"/><path d="M6 21v-8h12v8M6 17h12"/></symbol>
+<symbol id="i-send" viewBox="0 0 24 24"><path d="M3 11l18-8-8 18-2-8z"/></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24"><path d="M5 3h4l2 5-3 2a11 11 0 0 0 6 6l2-3 5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 3 5a2 2 0 0 1 2-2z"/></symbol>
+<symbol id="i-cpu" viewBox="0 0 24 24"><rect x="5" y="5" width="14" height="14" rx="2"/><rect x="9" y="9" width="6" height="6"/><path d="M9 2v3M15 2v3M9 19v3M15 19v3M2 9h3M2 15h3M19 9h3M19 15h3"/></symbol>
+<symbol id="i-game" viewBox="0 0 24 24"><path d="M6 8h12a4 4 0 0 1 4 4l-1 5a2.5 2.5 0 0 1-4.5 1L15 16H9l-1.5 2A2.5 2.5 0 0 1 3 17l-1-5a4 4 0 0 1 4-4z"/><path d="M7 11v3M5.5 12.5h3M16 12h.01M18 13.5h.01"/></symbol>
+<symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2 9a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><circle cx="12" cy="19" r="1"/></symbol>
+<symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="1"/><path d="M2 19h20l-2-4H4z"/></symbol>
+<symbol id="i-logout" viewBox="0 0 24 24"><path d="M15 4h4v16h-4M10 8l-4 4 4 4M6 12h10"/></symbol>
+<symbol id="i-doc" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+<symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
+</defs>
+</svg><div id="lib">
+
+<section class="block" id="ecrans">
+  <div class="wrap">
+    <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
+    <h2 class="title">Toutes les pages de l'application</h2>
+    <p class="intro">33 écrans dessinés à partir du cahier des charges : 30 pour l'application client, 3 pour le back-office Admin. Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
+    <nav class="groups" aria-label="Parcours">
+      <a href="#g-acces">Accès au compte <b>1–5</b></a>
+      <a href="#g-accueil">Accueil et catalogue <b>6–8</b></a>
+      <a href="#g-achats">Achats et commandes <b>9–17</b></a>
+      <a href="#g-entrepot">Entrepôt et livraison <b>18–22</b></a>
+      <a href="#g-wallet">Wallet <b>23–25</b></a>
+      <a href="#g-compte">Compte et services <b>26–30</b></a>
+      <a href="#g-admin">Back-office Admin <b>31–33</b></a>
+    </nav>
+
+    <!-- ================= ACCÈS ================= -->
+    <h3 class="gtitle" id="g-acces">Accès au compte</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="pv pv-center">
+        <div class="logo-xl"><span>SS</span> <em>DROPSHIP</em></div>
+        <div class="orbit">
+          <div class="ic ic-lg"><svg><use href="#i-globe"/></svg></div>
+          <div class="ic ic-sm o1"><svg><use href="#i-plane"/></svg></div>
+          <div class="ic ic-sm ic-red o2"><svg><use href="#i-box"/></svg></div>
+          <div class="ic ic-sm o3"><svg><use href="#i-ship"/></svg></div>
+          <div class="ic ic-sm o4"><svg><use href="#i-wallet"/></svg></div>
+        </div>
+        <h4 class="big">Achetez partout dans le monde</h4>
+        <p class="sub">Sourcing, achat, entrepôt et livraison jusqu'à chez vous.</p>
+        <div class="chips center"><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Dubaï</span><span class="chip">Europe</span></div>
+        <div class="stack">
+          <span class="btn">Créer un compte</span>
+          <span class="btn btn-ghost">Se connecter</span>
+        </div>
+        <span class="lang"><svg><use href="#i-globe"/></svg>Français<svg><use href="#i-down"/></svg></span>
+      </div></div>
+      <figcaption><span class="num">01</span><b>Bienvenue</b><small>Premier écran : créer un compte ou se connecter, choix de la langue.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Créer un compte</h4></div><div class="pv">
+        <label class="lb">Nom complet</label><div class="in">Awa Koné</div>
+        <div class="seg"><span class="on">Téléphone</span><span>Email</span></div>
+        <div class="in-row"><div class="in in-pre">+225<svg><use href="#i-down"/></svg></div><div class="in">07 08 42 18 63</div></div>
+        <label class="lb">Pays</label><div class="in in-sel">Côte d'Ivoire<svg><use href="#i-down"/></svg></div>
+        <label class="lb">Mot de passe</label><div class="in in-pw">••••••••••<span class="hint ok">Fort</span></div>
+        <label class="lb">Confirmer le mot de passe</label><div class="in">••••••••••</div>
+        <div class="ref"><div class="ic ic-red ic-xs"><svg><use href="#i-gift"/></svg></div><div><label class="lb">Code de parrainage <i>(facultatif)</i></label><div class="in in-ref">KOFFI-3H8P</div></div></div>
+        <div class="checkline"><span class="cb on"><svg><use href="#i-check"/></svg></span>J'accepte les conditions d'utilisation et la politique de confidentialité</div>
+        <span class="btn">Créer mon compte</span>
+        <p class="foot">Déjà un compte ? <b>Se connecter</b></p>
+      </div></div>
+      <figcaption><span class="num">02</span><b>Inscription + code de parrainage</b><small>Champ parrainage facultatif, visible dès l'inscription (D-005).</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Vérification</h4></div><div class="pv pv-center">
+        <div class="ic ic-lg"><svg><use href="#i-mobile"/></svg></div>
+        <h4 class="big">Entrez le code reçu</h4>
+        <p class="sub">Un code à 6 chiffres a été envoyé par SMS au <b>+225 07 •• •• 18 63</b>.</p>
+        <div class="otp"><span>4</span><span>8</span><span>2</span><span>1</span><span class="cur"></span><span></span></div>
+        <p class="muted">Renvoyer le code dans <b>0:45</b></p>
+        <span class="btn">Valider</span>
+        <p class="foot">Mauvais numéro ? <b>Modifier</b></p>
+      </div></div>
+      <figcaption><span class="num">03</span><b>Vérification du contact</b><small>Code OTP par SMS ou email, avec délai avant renvoi.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="pv">
+        <div class="logo-md"><span>SS</span> <em>DROPSHIP</em></div>
+        <h4 class="big left">Bon retour !</h4>
+        <p class="sub left">Connectez-vous pour suivre vos achats et vos colis.</p>
+        <label class="lb">Téléphone ou email</label><div class="in in-ico"><svg><use href="#i-user"/></svg>+225 07 08 42 18 63</div>
+        <label class="lb">Mot de passe</label><div class="in in-ico"><svg><use href="#i-lock"/></svg>••••••••••</div>
+        <p class="right link">Mot de passe oublié ?</p>
+        <span class="btn">Se connecter</span>
+        <div class="or"><span>ou</span></div>
+        <span class="btn btn-ghost"><svg><use href="#i-mobile"/></svg>Recevoir un code par SMS</span>
+        <p class="foot">Nouveau sur SS DROPSHIP ? <b>Créer un compte</b></p>
+      </div></div>
+      <figcaption><span class="num">04</span><b>Connexion</b><small>Téléphone ou email, mot de passe, ou connexion par code SMS.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mot de passe oublié</h4></div><div class="pv">
+        <div class="steps"><span class="on">1<i>Contact</i></span><span>2<i>Code</i></span><span>3<i>Nouveau</i></span></div>
+        <div class="ic ic-lg mx"><svg><use href="#i-lock"/></svg></div>
+        <h4 class="big">Réinitialiser votre mot de passe</h4>
+        <p class="sub">Saisissez le téléphone ou l'email de votre compte. Nous vous enverrons un code de vérification.</p>
+        <label class="lb">Téléphone ou email</label><div class="in">awa.kone@exemple.ci</div>
+        <span class="btn">Recevoir un code</span>
+        <div class="note-s"><svg><use href="#i-shield"/></svg>Par sécurité, le nombre de tentatives est limité. Le lien expire après 15 minutes.</div>
+      </div></div>
+      <figcaption><span class="num">05</span><b>Mot de passe oublié</b><small>Réinitialisation sécurisée en 3 étapes.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= ACCUEIL ================= -->
+    <h3 class="gtitle" id="g-accueil">Accueil et catalogue</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="pv pv-tab">
+        <div class="top"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><span class="bell"><svg><use href="#i-bell"/></svg><i></i></span></div>
+        <p class="hello">Bonjour Awa</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span>Produit, lien, photo ou fournisseur…</span><svg class="r"><use href="#i-camera"/></svg></div>
+        <div class="chips"><span class="chip on"><svg><use href="#i-search"/></svg>Nom</span><span class="chip"><svg><use href="#i-link"/></svg>Lien</span><span class="chip"><svg><use href="#i-camera"/></svg>Photo</span><span class="chip"><svg><use href="#i-qr"/></svg>QR</span></div>
+        <div class="banner"><small>ACHAT INTERNATIONAL</small><b>Vos fournisseurs en Chine, Turquie, Dubaï et Europe</b><span class="btn btn-w">Faire une demande</span></div>
+        <div class="sec"><b>Catégories</b><span>Tout voir</span></div>
+        <div class="cats">
+          <span><i class="ic ic-sm"><svg><use href="#i-mobile"/></svg></i>Téléphones</span>
+          <span><i class="ic ic-sm"><svg><use href="#i-laptop"/></svg></i>Informatique</span>
+          <span><i class="ic ic-sm ic-red"><svg><use href="#i-game"/></svg></i>Jeux vidéo</span>
+          <span><i class="ic ic-sm"><svg><use href="#i-wifi"/></svg></i>Réseau</span>
+        </div>
+        <div class="sec"><b>Mis en avant</b><span>Voir tout</span></div>
+        <div class="prods">
+          <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur Wi-Fi 6 AX3000</b><small>Chine · 10–15 j</small><em>dès 38 500 F</em></div>
+          <div class="prod"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Manette sans fil</b><small>Dubaï · 7–10 j</small><em>dès 21 000 F</em></div>
+        </div>
+      </div><span class="fab"><svg><use href="#i-chat"/></svg></span><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">06</span><b>Accueil</b><small>Recherche par nom, lien, photo ou QR ; catégories ; produits mis en avant ; chat flottant.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">routeur wifi 6</span></div></div><div class="pv pv-tab">
+        <div class="chips"><span class="chip on"><svg><use href="#i-filter"/></svg>Filtres</span><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Prix</span><span class="chip">Délai</span></div>
+        <p class="muted">48 résultats · prix indicatifs, confirmés par devis</p>
+        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000 double bande</b><small>Shenzhen Netlink · Chine</small><span class="price">38 500 F <i>/ unité</i></span><small>Délai 10–15 j · min. 1</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Kit Mesh Wi-Fi 6 (3 bornes)</b><small>Istanbul Elektronik · Turquie</small><span class="price">96 000 F <i>/ kit</i></span><small>Délai 8–12 j · min. 1</small></div><span class="hrt on"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur 4G/5G Wi-Fi 6 SIM</b><small>Gulf Tech Trading · Dubaï</small><span class="price">72 000 F <i>/ unité</i></span><small>Délai 7–10 j · min. 2</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="tip"><svg><use href="#i-info"/></svg>Vous ne trouvez pas ? <b>Demandez une recherche</b></div>
+      </div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">07</span><b>Résultats de recherche</b><small>Filtres par pays, prix, délai ; ajout aux favoris ; bascule vers une demande de recherche.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Fournisseurs</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
+        <div class="seg"><span>Locaux</span><span class="on">Internationaux</span></div>
+        <div class="sup"><div class="sup-h"><div class="av">SN</div><div><b>Shenzhen Netlink Co.</b><small><svg><use href="#i-pin"/></svg>Chine · Shenzhen</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Réseau</span><span>Informatique</span></div><div class="kv3"><span><b>10–15 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>CI · GH</b>Livre</span></div></div>
+        <div class="sup"><div class="sup-h"><div class="av red">IE</div><div><b>Istanbul Elektronik</b><small><svg><use href="#i-pin"/></svg>Turquie · Istanbul</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Électronique</span><span>Téléphones</span></div><div class="kv3"><span><b>8–12 j</b>Délai</span><span><b>2</b>Min. cmd</span><span><b>CI · GN</b>Livre</span></div></div>
+        <div class="sup"><div class="sup-h"><div class="av">GT</div><div><b>Gulf Tech Trading</b><small><svg><use href="#i-pin"/></svg>Émirats · Dubaï</small></div><span class="badge b-grey">En revue</span></div><div class="tags"><span>Jeux vidéo</span><span>Accessoires</span></div><div class="kv3"><span><b>7–10 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>CI</b>Livre</span></div></div>
+        <p class="muted center">Fiches validées par l'équipe SS DROPSHIP. Aucune note simulée.</p>
+      </div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">08</span><b>Annuaire des fournisseurs</b><small>Locaux et internationaux, filtrables ; fiches validées par l'Admin.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= ACHATS ================= -->
+    <h3 class="gtitle" id="g-achats">Achats et commandes</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Nouvelle commande</h4></div><div class="pv pv-tab">
+        <p class="sub left">Comment voulez-vous commander ?</p>
+        <div class="mode on"><div class="ic"><svg><use href="#i-link"/></svg></div><div><b>Commande directe</b><small>Vous connaissez le produit : collez un lien ou une référence.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="mode"><div class="ic"><svg><use href="#i-search"/></svg></div><div><b>Recherche de produit</b><small>Décrivez ce que vous cherchez, avec photos ou vidéo.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="mode"><div class="ic ic-red"><svg><use href="#i-deal"/></svg></div><div><b>Recherche + négociation</b><small>Un agent contacte les fournisseurs et vous propose des offres.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Les frais de service sont affichés dans le devis, avant tout paiement.</div>
+        <div class="sec"><b>Mes demandes récentes</b><span>Voir tout</span></div>
+        <div class="row"><div class="ic ic-xs"><svg><use href="#i-deal"/></svg></div><div><b>DMD-2026-0142</b><small>Écrans 27" · négociation</small></div><span class="badge b-blue">3 offres</span></div>
+        <div class="row"><div class="ic ic-xs"><svg><use href="#i-link"/></svg></div><div><b>DMD-2026-0139</b><small>Routeur Wi-Fi 6 · directe</small></div><span class="badge b-grey">Devis envoyé</span></div>
+      </div><nav class="tb" data-a="cart"></nav></div>
+      <figcaption><span class="num">09</span><b>Choisir le mode de commande</b><small>Les trois modes validés (D-006) et les demandes récentes.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Commande directe</h4></div><div class="pv">
+        <label class="lb">Lien ou référence du produit</label>
+        <div class="in in-ico"><svg><use href="#i-link"/></svg><span class="trunc">https://fournisseur.example/item/AX3000-W6</span></div>
+        <div class="detect"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div><small class="ok-t"><svg><use href="#i-check"/></svg>Produit reconnu</small><b>Routeur Wi-Fi 6 AX3000</b><small>Prix fournisseur affiché : 52,90 USD</small></div></div>
+        <label class="lb">Variante</label><div class="in in-sel">Noir · prise UE<svg><use href="#i-down"/></svg></div>
+        <div class="two"><div><label class="lb">Quantité</label><div class="stepper"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div><div><label class="lb">Livrer en</label><div class="in in-sel">Côte d'Ivoire<svg><use href="#i-down"/></svg></div></div></div>
+        <label class="lb">Commentaire pour l'agent</label><div class="in in-area">Merci de vérifier que la notice est en français.</div>
+        <span class="btn">Demander un devis</span>
+        <p class="muted center">Réponse habituelle sous 24 h ouvrées.</p>
+      </div></div>
+      <figcaption><span class="num">10</span><b>Commande directe</b><small>Lien ou référence, variante, quantité, commentaire, demande de devis.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recherche de produit</h4></div><div class="pv">
+        <label class="lb">Que cherchez-vous ?</label>
+        <div class="in in-area tall">Ordinateur portable 15" pour bureautique, 16 Go de RAM, SSD 512 Go, clavier AZERTY, garantie 1 an minimum.</div>
+        <label class="lb">Photos ou vidéo <i>(facultatif)</i></label>
+        <div class="up"><span class="th"><svg><use href="#i-laptop"/></svg></span><span class="th"><svg><use href="#i-camera"/></svg></span><span class="add"><svg><use href="#i-upload"/></svg>Ajouter</span></div>
+        <div class="two"><div><label class="lb">Quantité</label><div class="stepper"><span><svg><use href="#i-minus"/></svg></span><b>5</b><span><svg><use href="#i-plus"/></svg></span></div></div><div><label class="lb">Budget / unité</label><div class="in">250 000 F</div></div></div>
+        <label class="lb">Origine préférée</label>
+        <div class="chips"><span class="chip on">Indifférent</span><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Dubaï</span><span class="chip">Europe</span></div>
+        <span class="btn">Envoyer ma demande</span>
+      </div></div>
+      <figcaption><span class="num">11</span><b>Recherche de produit</b><small>Description libre, photos/vidéo (D-009), quantité, budget, origine.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>DMD-2026-0142</h4></div><div class="pv">
+        <span class="badge b-red">Recherche + négociation</span>
+        <h4 class="big left">Écrans 27" IPS · 10 unités</h4>
+        <p class="sub left">Prix cible : 95 000 F / unité · livraison avant le 15/12</p>
+        <div class="agent"><div class="av">KA</div><div><b>Koffi A.</b><small>Votre agent d'achat</small></div><span class="ic ic-xs"><svg><use href="#i-chat"/></svg></span></div>
+        <ul class="tl">
+          <li class="done"><b>Demande reçue</b><small>12/11 · 09:14</small></li>
+          <li class="done"><b>Agent assigné</b><small>12/11 · 11:02</small></li>
+          <li class="done"><b>Fournisseurs contactés</b><small>5 fournisseurs en Chine et en Turquie</small></li>
+          <li class="cur"><b>Offres disponibles</b><small>3 offres à comparer · valables 7 jours</small></li>
+          <li><b>Votre choix</b><small>En attente</small></li>
+        </ul>
+        <span class="btn">Comparer les 3 offres</span>
+      </div></div>
+      <figcaption><span class="num">12</span><b>Négociation en cours</b><small>Suivi d'une demande avec agent dédié et étapes horodatées.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Comparer les offres</h4></div><div class="pv">
+        <div class="offer on"><div class="of-h"><b>Offre A · Shenzhen Display</b><span class="badge b-blue">Meilleur prix</span></div><div class="kv3"><span><b>89 500 F</b>Prix unitaire</span><span><b>12–18 j</b>Délai</span><span><b>Chine</b>Origine</span></div><p class="muted">Frais de service 6 % · valable jusqu'au 19/11</p><span class="radio on"></span></div>
+        <div class="offer"><div class="of-h"><b>Offre B · Ankara Vision</b><span class="badge b-grey">Plus rapide</span></div><div class="kv3"><span><b>97 000 F</b>Prix unitaire</span><span><b>8–10 j</b>Délai</span><span><b>Turquie</b>Origine</span></div><p class="muted">Frais de service 6 % · valable jusqu'au 19/11</p><span class="radio"></span></div>
+        <div class="offer"><div class="of-h"><b>Offre C · Guangzhou Screen</b></div><div class="kv3"><span><b>92 000 F</b>Prix unitaire</span><span><b>15–20 j</b>Délai</span><span><b>Chine</b>Origine</span></div><p class="muted">Fiche technique incomplète</p><span class="radio"></span></div>
+        <div class="sum"><span>10 × 89 500 F</span><b>895 000 F</b></div>
+        <span class="btn">Choisir l'offre A</span>
+      </div></div>
+      <figcaption><span class="num">13</span><b>Comparaison d'offres</b><small>Prix, délai, origine, validité du devis et qualité des informations.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon panier</h4></div><div class="pv pv-tab">
+        <div class="seg"><span class="on">Panier (2)</span><span>Favoris (5)</span></div>
+        <div class="citem"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Offre DMD-0139</small><span class="price">38 500 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div>
+        <div class="citem"><div class="pimg red"><svg><use href="#i-game"/></svg></div><div class="rt"><b>Manette sans fil</b><small>Blanc · Dubaï</small><span class="price">21 000 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>1</b><span><svg><use href="#i-plus"/></svg></span></div></div>
+        <div class="recap">
+          <p><span>Sous-total</span><b>98 000 F</b></p>
+          <p><span>Frais de service (6 %)</span><b>5 880 F</b></p>
+          <p><span>Livraison internationale</span><i>calculée à l'entrepôt</i></p>
+          <p class="tot"><span>Total à payer</span><b>103 880 F CFA</b></p>
+        </div>
+        <span class="btn">Passer au paiement</span>
+      </div><nav class="tb" data-a="cart"></nav></div>
+      <figcaption><span class="num">14</span><b>Panier et favoris</b><small>Panier et liste de souhaits distincts, récapitulatif des frais.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paiement</h4></div><div class="pv">
+        <div class="recap sm"><p><span>Commande</span><b>CMD-2026-0091</b></p><p><span>2 articles</span><b>98 000 F</b></p><p><span>Frais de service</span><b>5 880 F</b></p><p class="tot"><span>Total</span><b>103 880 F CFA</b></p></div>
+        <label class="lb">Moyen de paiement</label>
+        <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-wallet"/></svg></div><div><b>Wallet SS DROPSHIP</b><small>Solde : 312 500 F</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Selon votre pays</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Carte Visa / Mastercard</b><small>Via prestataire sécurisé</small></div><span class="radio"></span></div>
+        <div class="note-s"><svg><use href="#i-shield"/></svg>La commande est validée seulement après confirmation du paiement par le prestataire. Aucune donnée de carte n'est conservée.</div>
+        <span class="btn">Payer 103 880 F CFA</span>
+      </div></div>
+      <figcaption><span class="num">15</span><b>Paiement</b><small>Wallet, Mobile Money ou carte ; validation après confirmation (D-008).</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mes commandes</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
+        <div class="seg three"><span class="on">En cours</span><span>Livrées</span><span>Litiges</span></div>
+        <div class="ord"><div class="o-h"><b>CMD-2026-0091</b><span class="badge b-blue">Paiement confirmé</span></div><p>Routeur Wi-Fi 6 ×2 · Manette ×1</p><small>17/11/2026 · 103 880 F</small></div>
+        <div class="ord"><div class="o-h"><b>CMD-2026-0087</b><span class="badge b-night">Reçu entrepôt</span></div><p>Ordinateur portable 15" ×5</p><small>08/11/2026 · 1 187 500 F</small></div>
+        <div class="ord"><div class="o-h"><b>CMD-2026-0074</b><span class="badge b-red">Douane</span></div><p>Écrans 24" ×4</p><small>28/10/2026 · 342 000 F</small></div>
+        <div class="ord"><div class="o-h"><b>CMD-2026-0069</b><span class="badge b-green">Livré</span></div><p>Téléphone 128 Go ×1</p><small>21/10/2026 · 185 000 F</small></div>
+      </div><nav class="tb" data-a="cart"></nav></div>
+      <figcaption><span class="num">16</span><b>Mes commandes</b><small>Liste par statut : en cours, livrées, litiges.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0087</h4><span class="hd-r"><svg><use href="#i-share"/></svg></span></div><div class="pv">
+        <div class="ohead"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div><b>Ordinateur portable 15" ×5</b><small>Shenzhen Office Tech · 1 187 500 F</small></div></div>
+        <ul class="tl dense">
+          <li class="done"><b>Devis accepté</b><small>05/11</small></li>
+          <li class="done"><b>Paiement confirmé</b><small>06/11</small></li>
+          <li class="done"><b>Achat en cours</b><small>06/11</small></li>
+          <li class="done"><b>Expédié par le fournisseur</b><small>09/11 · suivi YT2026…418</small></li>
+          <li class="cur"><b>Reçu à l'entrepôt</b><small>14/11 · Guangzhou · carton non ouvert</small></li>
+          <li><b>Préparation</b></li>
+          <li><b>Remis au transporteur</b></li>
+          <li><b>En transit</b></li>
+          <li><b>Douane</b></li>
+          <li><b>Arrivé au pays</b></li>
+          <li><b>Livré</b></li>
+        </ul>
+        <div class="two"><span class="btn btn-ghost sm"><svg><use href="#i-download"/></svg>Facture</span><span class="btn btn-ghost sm red"><svg><use href="#i-alert"/></svg>Signaler</span></div>
+      </div></div>
+      <figcaption><span class="num">17</span><b>Statuts de commande</b><small>Les 11 états traçables du cahier des charges, facture et litige.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= ENTREPÔT ================= -->
+    <h3 class="gtitle" id="g-entrepot">Entrepôt et livraison</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
+        <div class="addr"><small>MON ADRESSE ENTREPÔT · GUANGZHOU</small><b>SS DROPSHIP – SSD-48213</b><span>Bât. 6, zone logistique, Baiyun, Guangzhou, Chine</span><span class="cp"><svg><use href="#i-copy"/></svg>Copier</span></div>
+        <div class="cnt"><span><b>2</b>Attendus</span><span class="on"><b>3</b>Reçus</span><span><b>1</b>Prêt</span><span><b>4</b>Expédiés</span></div>
+        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0318</b><small>CMD-0087 · 2,4 kg · reçu le 14/11</small></div><span class="badge b-night">Reçu</span></div>
+        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0297</b><small>CMD-0083 · 0,8 kg · reçu le 12/11</small></div><span class="badge b-night">Reçu</span></div>
+        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0284</b><small>CMD-0080 · 5,1 kg · reçu le 10/11</small></div><span class="badge b-blue">Prêt</span></div>
+        <div class="note-s red"><svg><use href="#i-info"/></svg>Au lancement, vos cartons sont expédiés tels qu'ils arrivent, sans être ouverts.</div>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">18</span><b>Mon entrepôt</b><small>Adresse personnelle d'entrepôt, compteurs par état, colis reçus.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>PKG-24-11-0318</h4></div><div class="pv">
+        <div class="photo"><svg><use href="#i-box"/></svg><span>Photo du carton extérieur · 14/11</span></div>
+        <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>2,4 kg</b>Poids</span><span><svg><use href="#i-ruler"/></svg><b>40×30×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,024 m³</b>Volume</span><span><svg><use href="#i-pin"/></svg><b>A-12-03</b>Emplacement</span></div>
+        <p class="muted">État extérieur : bon · Transporteur fournisseur : YunExpress</p>
+        <div class="sec"><b>Services</b></div>
+        <div class="svc on"><svg><use href="#i-check"/></svg><span>Expédition du carton d'origine</span><b>Inclus</b></div>
+        <div class="svc off"><svg><use href="#i-shield"/></svg><span>Contrôle qualité (QC)</span><i>Bientôt</i></div>
+        <div class="svc off"><svg><use href="#i-camera"/></svg><span>Photo / vidéo du contenu</span><i>Bientôt</i></div>
+        <div class="svc off"><svg><use href="#i-box"/></svg><span>Regroupement de colis</span><i>Bientôt</i></div>
+        <div class="svc off"><svg><use href="#i-gift"/></svg><span>Reconditionnement</span><i>Bientôt</i></div>
+        <span class="btn">Préparer l'expédition</span>
+      </div></div>
+      <figcaption><span class="num">19</span><b>Détail d'un colis</b><small>Poids, dimensions, photo extérieure ; services avancés désactivés (D-010).</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Choisir le transport</h4></div><div class="pv">
+        <p class="sub left">Destination : <b>Abidjan, Côte d'Ivoire</b> · 2,4 kg</p>
+        <div class="carrier on"><div class="ic"><svg><use href="#i-plane"/></svg></div><div><b>Partenaire SS DROPSHIP · aérien</b><small>7–10 jours · suivi inclus</small></div><em>≈ 26 400 F</em></div>
+        <div class="carrier"><div class="ic"><svg><use href="#i-send"/></svg></div><div><b>Express international</b><small>3–5 jours · DHL, FedEx, UPS ou Aramex selon contrats</small></div><em>≈ 58 000 F</em></div>
+        <div class="carrier"><div class="ic ic-red"><svg><use href="#i-truck"/></svg></div><div><b>Mon transitaire personnel</b><small>Formulaire à remplir, approbation sous 24 h</small></div><em>Sur devis</em></div>
+        <div class="carrier off"><div class="ic"><svg><use href="#i-ship"/></svg></div><div><b>Maritime LCL / FCL</b><small>Disponible dans une phase ultérieure</small></div><i>Bientôt</i></div>
+        <p class="muted">Montants estimés, confirmés dans le devis de livraison.</p>
+        <span class="btn">Continuer</span>
+      </div></div>
+      <figcaption><span class="num">20</span><b>Choix du transporteur</b><small>Partenaire, express ou transitaire personnel ; maritime plus tard (D-012).</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis de livraison</h4></div><div class="pv">
+        <div class="route"><div><small>Départ</small><b>Guangzhou</b></div><svg><use href="#i-plane"/></svg><div class="r"><small>Arrivée</small><b>Abidjan</b></div></div>
+        <label class="lb">Adresse de livraison</label>
+        <div class="in in-ico in-sel"><svg><use href="#i-pin"/></svg>Cocody, Riviera 3, Abidjan<svg><use href="#i-down"/></svg></div>
+        <div class="recap">
+          <p><span>Fret aérien (2,4 kg)</span><b>21 600 F</b></p>
+          <p><span>Manutention entrepôt</span><b>2 500 F</b></p>
+          <p><span>Livraison locale</span><b>2 300 F</b></p>
+          <p><span>Assurance <i>(facultative)</i></span><span class="tgl"></span></p>
+          <p class="tot"><span>Total livraison</span><b>26 400 F CFA</b></p>
+        </div>
+        <p class="muted"><svg class="in-ic"><use href="#i-clock"/></svg>Livraison estimée entre le 25 et le 28/11. Devis valable 48 h.</p>
+        <span class="btn">Confirmer et payer</span>
+      </div></div>
+      <figcaption><span class="num">21</span><b>Devis de livraison</b><small>Détail des frais logistiques avant paiement, assurance facultative.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Suivi du colis</h4></div><div class="pv">
+        <div class="map">
+          <svg class="mapline" viewBox="0 0 260 110" preserveAspectRatio="none"><path d="M230 30 C 170 0, 90 10, 30 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5"/><circle cx="230" cy="30" r="5" fill="#0077C8"/><circle cx="30" cy="80" r="5" fill="#F21A16"/></svg>
+          <span class="m1">Guangzhou</span><span class="m2">Doha</span><span class="m3">Abidjan</span>
+          <span class="mplane"><svg><use href="#i-plane"/></svg></span>
+        </div>
+        <div class="trk"><div><small>N° de suivi</small><b>SSD-EXP-7741-0318</b></div><span class="badge b-red">Douane</span></div>
+        <ul class="tl dense">
+          <li class="cur"><b>Dédouanement en cours</b><small>17/11 · 08:40 · Abidjan</small></li>
+          <li class="done"><b>Arrivé au pays</b><small>17/11 · 06:15 · Aéroport FHB</small></li>
+          <li class="done"><b>En transit</b><small>16/11 · 02:30 · Doha</small></li>
+          <li class="done"><b>Remis au transporteur</b><small>15/11 · 18:10 · Guangzhou</small></li>
+          <li class="done"><b>Préparation</b><small>15/11 · 10:00 · Entrepôt</small></li>
+        </ul>
+        <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Contacter le support</span>
+      </div></div>
+      <figcaption><span class="num">22</span><b>Suivi international</b><small>Trajet, numéro de suivi, événements datés jusqu'à la livraison.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= WALLET ================= -->
+    <h3 class="gtitle" id="g-wallet">Wallet</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Wallet</h4><span class="hd-r">F CFA<svg><use href="#i-down"/></svg></span></div><div class="pv pv-tab">
+        <div class="wcard"><small>Solde disponible</small><b>312 500 F CFA</b><span>ID client SSD-48213</span></div>
+        <div class="acts"><span><i class="ic"><svg><use href="#i-plus"/></svg></i>Recharger</span><span><i class="ic"><svg><use href="#i-card"/></svg></i>Payer</span><span><i class="ic ic-red"><svg><use href="#i-download"/></svg></i>Retirer</span><span><i class="ic"><svg><use href="#i-file"/></svg></i>Reçus</span></div>
+        <div class="sec"><b>Dernières opérations</b><span>Tout voir</span></div>
+        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Recharge Mobile Money</b><small>16/11 · 14:02</small></div><em class="plus">+50 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-cart"/></svg></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · 10:31</small></div><em>−1 187 500 F</em></div>
+        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Recharge carte</b><small>05/11 · 18:47</small></div><em class="plus">+1 200 000 F</em></div>
+        <p class="muted">Retraits et remboursements selon les règles en vigueur dans votre pays.</p>
+      </div><nav class="tb" data-a="wallet"></nav></div>
+      <figcaption><span class="num">23</span><b>Wallet</b><small>Solde, actions rapides et dernières opérations.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recharger</h4></div><div class="pv">
+        <label class="lb">Montant</label>
+        <div class="amount">50 000 <i>F CFA</i></div>
+        <div class="chips"><span class="chip">10 000</span><span class="chip">25 000</span><span class="chip on">50 000</span><span class="chip">100 000</span></div>
+        <label class="lb">Moyens disponibles en Côte d'Ivoire</label>
+        <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Carte bancaire</b><small>Visa, Mastercard</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-globe"/></svg></div><div><b>PayPal</b><small>Sous réserve d'intégration</small></div><span class="radio"></span></div>
+        <div class="note-s"><svg><use href="#i-shield"/></svg>Votre solde est crédité uniquement après confirmation du paiement par le prestataire.</div>
+        <span class="btn">Recharger 50 000 F CFA</span>
+      </div></div>
+      <figcaption><span class="num">24</span><b>Recharger le wallet</b><small>Montant, moyens filtrés par pays, crédit après confirmation.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique</h4><span class="hd-r"><svg><use href="#i-download"/></svg></span></div><div class="pv">
+        <div class="seg three"><span class="on">Tout</span><span>Entrées</span><span>Sorties</span></div>
+        <p class="day">Novembre 2026</p>
+        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Recharge carte</b><small>17/11 · REF TX-90412</small><span class="badge b-grey">En attente · non crédité</span></div><em class="pend">+25 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Recharge Mobile Money</b><small>16/11 · REF TX-90377</small><span class="badge b-green">Confirmé</span></div><em class="plus">+50 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>Remboursement CMD-0081</b><small>12/11 · REF TX-90215</small><span class="badge b-green">Confirmé</span></div><em class="plus">+12 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-cart"/></svg></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · REF TX-89960</small><span class="badge b-green">Confirmé</span></div><em>−1 187 500 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-truck"/></svg></div><div><b>Livraison PKG-0284</b><small>04/11 · REF TX-89811</small><span class="badge b-green">Confirmé</span></div><em>−31 200 F</em></div>
+      </div></div>
+      <figcaption><span class="num">25</span><b>Historique des transactions</b><small>Chaque opération a une référence unique ; « en attente » n'est pas crédité.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= COMPTE ================= -->
+    <h3 class="gtitle" id="g-compte">Compte et services</h3>
+    <div class="gallery">
+
+      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon compte</h4><span class="hd-r"><svg><use href="#i-gear"/></svg></span></div><div class="pv pv-tab">
+        <div class="prof"><div class="av lg">AK</div><div><b>Awa Koné</b><small>ID client SSD-48213 · Côte d'Ivoire</small><span class="badge b-blue"><svg><use href="#i-check"/></svg>Téléphone vérifié</span></div></div>
+        <div class="refban"><div class="ic ic-red ic-xs"><svg><use href="#i-gift"/></svg></div><div><b>Parrainez vos proches</b><small>Votre code : AWA-7K42</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="menu">
+          <span><svg><use href="#i-user"/></svg>Mon profil<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-pin"/></svg>Mes adresses<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-gift"/></svg>Parrainage<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-bell"/></svg>Notifications<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-lock"/></svg>Sécurité<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-globe"/></svg>Langue et devise<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-file"/></svg>Factures et reçus<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span><svg><use href="#i-chat"/></svg>Support et FAQ<svg class="ch"><use href="#i-chev"/></svg></span>
+          <span class="red"><svg><use href="#i-logout"/></svg>Se déconnecter</span>
+        </div>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">26</span><b>Mon compte</b><small>Profil, accès direct au parrainage, réglages et support.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Parrainage</h4></div><div class="pv">
+        <div class="refcard"><small>Mon code de parrainage</small><b>AWA-7K42</b><div class="two"><span class="btn btn-w sm"><svg><use href="#i-copy"/></svg>Copier</span><span class="btn btn-w sm"><svg><use href="#i-share"/></svg>Partager</span></div></div>
+        <div class="kv3 boxed"><span><b>4</b>Filleuls</span><span><b>2</b>Actifs</span><span><b>—</b>Récompenses</span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Le montant des récompenses sera affiché dès que la règle sera validée par SS DROPSHIP.</div>
+        <div class="sec"><b>Comment ça marche</b></div>
+        <ol class="how"><li>Partagez votre code</li><li>Vos proches le saisissent à l'inscription</li><li>Vous suivez vos filleuls et vos récompenses ici</li></ol>
+        <div class="sec"><b>Mes filleuls</b></div>
+        <div class="row"><div class="av sm">FD</div><div><b>Fatou D.</b><small>Inscrite le 10/11</small></div><span class="badge b-green">Active</span></div>
+        <div class="row"><div class="av sm">YB</div><div><b>Yao B.</b><small>Inscrit le 03/11</small></div><span class="badge b-grey">En attente</span></div>
+      </div></div>
+      <figcaption><span class="num">27</span><b>Parrainage</b><small>Code à copier ou partager, filleuls, récompenses (règle M-002 à valider).</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Notifications</h4><span class="hd-r link">Tout lire</span></div><div class="pv">
+        <p class="day">Aujourd'hui</p>
+        <div class="nt new"><div class="ic ic-xs ic-red"><svg><use href="#i-shield"/></svg></div><div><b>Colis en douane</b><small>PKG-0318 est en cours de dédouanement à Abidjan.</small><i>08:40</i></div></div>
+        <div class="nt new"><div class="ic ic-xs"><svg><use href="#i-deal"/></svg></div><div><b>3 offres disponibles</b><small>Votre agent a reçu 3 offres pour DMD-0142.</small><i>07:55</i></div></div>
+        <p class="day">Cette semaine</p>
+        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>Colis reçu à l'entrepôt</b><small>PKG-0318 · 2,4 kg · carton non ouvert.</small><i>14/11</i></div></div>
+        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-check"/></svg></div><div><b>Paiement confirmé</b><small>CMD-0091 · 103 880 F CFA.</small><i>13/11</i></div></div>
+        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-star"/></svg></div><div><b>Nouveaux fournisseurs validés</b><small>12 fournisseurs réseau ajoutés en Turquie.</small><i>12/11</i></div></div>
+      </div></div>
+      <figcaption><span class="num">28</span><b>Notifications</b><small>Changements d'état des commandes, colis, paiements et offres.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Support SS DROPSHIP</b><small><i class="on-dot"></i>En ligne · répond en ~5 min</small></div><span class="hd-r"><svg><use href="#i-phone"/></svg></span></div><div class="pv pv-chat">
+        <div class="faq"><svg><use href="#i-info"/></svg>Consulter la FAQ<svg class="ch"><use href="#i-chev"/></svg></div>
+        <p class="day center">Aujourd'hui</p>
+        <div class="msg me">Bonjour, mon colis PKG-0318 est en douane depuis ce matin. Dois-je faire quelque chose ?</div>
+        <div class="msg">Bonjour Awa, rien à faire de votre côté. Le dédouanement prend en général 24 à 48 h. Nous vous prévenons dès qu'il est libéré.</div>
+        <div class="msg me">Merci ! Et pour la facture ?</div>
+        <div class="msg"><span class="att"><svg><use href="#i-file"/></svg>Facture_CMD-0087.pdf</span>La voici. Elle est aussi dans Compte › Factures.</div>
+        <div class="quick"><span>Suivre une commande</span><span>Problème de paiement</span><span>Ouvrir un litige</span></div>
+        <div class="composer"><svg><use href="#i-plus"/></svg><span>Écrire un message…</span><i class="send"><svg><use href="#i-send"/></svg></i></div>
+      </div></div>
+      <figcaption><span class="num">29</span><b>Support et chat</b><small>Chat avec l'équipe, pièces jointes, réponses rapides, FAQ.</small></figcaption></figure>
+
+      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paramètres</h4></div><div class="pv">
+        <p class="day">Langue</p>
+        <div class="opts"><span class="on">Français</span><span>English</span><span>Türkçe</span><span>Español</span><span>中文</span></div>
+        <p class="day">Pays et devise</p>
+        <div class="set"><span>Pays</span><b>Côte d'Ivoire<svg><use href="#i-chev"/></svg></b></div>
+        <div class="set"><span>Devise d'affichage</span><b>F CFA (XOF)<svg><use href="#i-chev"/></svg></b></div>
+        <p class="day">Sécurité</p>
+        <div class="set"><span>Double authentification</span><span class="tgl on"></span></div>
+        <div class="set"><span>Changer le mot de passe</span><b><svg><use href="#i-chev"/></svg></b></div>
+        <p class="day">Affichage</p>
+        <div class="set"><span>Thème sombre <i>(si validé)</i></span><span class="tgl"></span></div>
+        <p class="day">Confidentialité</p>
+        <div class="set"><span>Exporter mes données</span><b><svg><use href="#i-download"/></svg></b></div>
+        <div class="set red"><span>Supprimer mon compte</span><b><svg><use href="#i-chev"/></svg></b></div>
+      </div></div>
+      <figcaption><span class="num">30</span><b>Paramètres</b><small>5 langues (D-015), pays et devise, sécurité, confidentialité.</small></figcaption></figure>
+    </div>
+
+    <!-- ================= ADMIN ================= -->
+    <h3 class="gtitle" id="g-admin">Back-office Admin</h3>
+    <div class="gallery wide">
+
+      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+        <span class="on"><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
+      </aside><div class="dmain">
+        <div class="dtop"><h4>Tableau de bord</h4><span class="muted">Mardi 17 novembre 2026</span><span class="who"><span class="av sm">MO</span>Admin · Marc O.</span></div>
+        <div class="kpis"><div><small>Demandes du jour</small><b>24</b><i class="up">+6 vs hier</i></div><div><small>Commandes en cours</small><b>138</b><i>dont 12 en douane</i></div><div><small>Colis en entrepôt</small><b>412</b><i>Guangzhou · Istanbul</i></div><div class="alert"><small>Paiements à rapprocher</small><b>3</b><i>webhooks en attente</i></div></div>
+        <div class="dcols">
+          <div class="dcard"><b>Commandes par semaine</b>
+            <svg class="bars" viewBox="0 0 300 120" role="img" aria-label="Commandes par semaine : 41, 52, 48, 63, 71, 66">
+              <g fill="#0077C8"><rect x="12" y="62" width="30" height="41"/><rect x="60" y="51" width="30" height="52"/><rect x="108" y="55" width="30" height="48"/><rect x="156" y="40" width="30" height="63"/><rect x="204" y="32" width="30" height="71"/></g><rect x="252" y="37" width="30" height="66" fill="#F21A16"/>
+              <g fill="#51647B" font-size="10" text-anchor="middle" font-family="Inter,system-ui,sans-serif"><text x="27" y="116">S41</text><text x="75" y="116">S42</text><text x="123" y="116">S43</text><text x="171" y="116">S44</text><text x="219" y="116">S45</text><text x="267" y="116">S46</text></g>
+              <g fill="#10213D" font-size="10" text-anchor="middle" font-family="Inter,system-ui,sans-serif"><text x="27" y="57">41</text><text x="75" y="46">52</text><text x="123" y="50">48</text><text x="171" y="35">63</text><text x="219" y="27">71</text><text x="267" y="32">66</text></g>
+            </svg>
+          </div>
+          <div class="dcard"><b>À traiter</b>
+            <p class="al"><span class="badge b-red">Urgent</span>2 colis signalés endommagés à la réception</p>
+            <p class="al"><span class="badge b-blue">Devis</span>7 demandes sans offre depuis plus de 24 h</p>
+            <p class="al"><span class="badge b-grey">Fournisseur</span>5 fiches en attente de validation</p>
+            <p class="al"><span class="badge b-grey">Transitaire</span>1 transitaire client à approuver</p>
+          </div>
+        </div>
+      </div></div>
+      <figcaption><span class="num">31</span><b>Tableau de bord Admin</b><small>Indicateurs du jour, activité hebdomadaire, file des actions à traiter.</small></figcaption></figure>
+
+      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+        <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span class="on"><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
+      </aside><div class="dmain">
+        <div class="dtop"><h4>Demandes et commandes</h4><div class="search sm"><svg><use href="#i-search"/></svg><span>ID, client, fournisseur…</span></div></div>
+        <div class="chips"><span class="chip on">Toutes (162)</span><span class="chip">Nouvelles (24)</span><span class="chip">Négociation (11)</span><span class="chip">Devis envoyé (19)</span><span class="chip">Payées (31)</span></div>
+        <div class="tablewrap"><table class="dt">
+          <thead><tr><th>ID</th><th>Client</th><th>Mode</th><th>Statut</th><th>Agent</th><th class="n">Montant</th></tr></thead>
+          <tbody>
+            <tr><td>DMD-2026-0142</td><td>SSD-48213</td><td>Négociation</td><td><span class="badge b-blue">3 offres</span></td><td>Koffi A.</td><td class="n">895 000 F</td></tr>
+            <tr><td>DMD-2026-0141</td><td>SSD-51077</td><td>Recherche</td><td><span class="badge b-grey">Nouvelle</span></td><td>—</td><td class="n">—</td></tr>
+            <tr><td>CMD-2026-0091</td><td>SSD-48213</td><td>Directe</td><td><span class="badge b-blue">Payée</span></td><td>Ama S.</td><td class="n">103 880 F</td></tr>
+            <tr><td>CMD-2026-0087</td><td>SSD-48213</td><td>Recherche</td><td><span class="badge b-night">Reçu entrepôt</span></td><td>Koffi A.</td><td class="n">1 187 500 F</td></tr>
+            <tr><td>CMD-2026-0074</td><td>SSD-39950</td><td>Directe</td><td><span class="badge b-red">Douane</span></td><td>Ama S.</td><td class="n">342 000 F</td></tr>
+            <tr><td>CMD-2026-0069</td><td>SSD-44120</td><td>Directe</td><td><span class="badge b-green">Livré</span></td><td>Ama S.</td><td class="n">185 000 F</td></tr>
+          </tbody>
+        </table></div>
+        <p class="muted">Chaque modification de statut est enregistrée dans le journal d'audit (qui, quand, avant, après).</p>
+      </div></div>
+      <figcaption><span class="num">32</span><b>Gestion des demandes et commandes</b><small>Filtres par statut, agent assigné, montant ; traçabilité des changements.</small></figcaption></figure>
+
+      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+        <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span class="on"><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
+      </aside><div class="dmain">
+        <div class="dtop"><h4>Réception d'un colis · Guangzhou</h4><span class="badge b-night">Agent entrepôt</span></div>
+        <div class="form2">
+          <div><label class="lb">Code client</label><div class="in">SSD-48213 · Awa Koné</div></div>
+          <div><label class="lb">Commande liée</label><div class="in in-sel">CMD-2026-0087<svg><use href="#i-down"/></svg></div></div>
+          <div><label class="lb">Transporteur fournisseur</label><div class="in">YunExpress</div></div>
+          <div><label class="lb">N° de suivi</label><div class="in">YT2026111400418</div></div>
+          <div><label class="lb">Poids (kg)</label><div class="in">2,4</div></div>
+          <div><label class="lb">Dimensions (cm)</label><div class="in">40 × 30 × 20</div></div>
+          <div><label class="lb">État extérieur</label><div class="opts sm"><span class="on">Bon</span><span>Abîmé</span><span>Mouillé</span></div></div>
+          <div><label class="lb">Emplacement</label><div class="in">A-12-03</div></div>
+          <div class="full"><label class="lb">Photos du carton extérieur</label><div class="up"><span class="th"><svg><use href="#i-box"/></svg></span><span class="th"><svg><use href="#i-box"/></svg></span><span class="add"><svg><use href="#i-camera"/></svg>Ajouter</span></div></div>
+        </div>
+        <div class="note-s red"><svg><use href="#i-alert"/></svg>MVP : le carton ne doit pas être ouvert. Les prestations QC, photo du contenu, regroupement et reconditionnement sont désactivées.</div>
+        <div class="dact"><span class="btn btn-ghost sm">Signaler une anomalie</span><span class="btn sm">Enregistrer la réception</span></div>
+      </div></div>
+      <figcaption><span class="num">33</span><b>Réception en entrepôt</b><small>Saisie par l'agent : poids, dimensions, photos extérieures, emplacement.</small></figcaption></figure>
+    </div>
+  </div>
+</section>
+<!-- Écrans supplémentaires utilisés uniquement par les visuels -->
+<div class="ph" id="x-cats"><div class="hd"><h4 class="hd-l">Catégories</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
+  <div class="cats">
+    <span><i class="ic ic-sm"><svg><use href="#i-mobile"/></svg></i>Téléphones</span>
+    <span><i class="ic ic-sm"><svg><use href="#i-laptop"/></svg></i>Informatique</span>
+    <span><i class="ic ic-sm ic-red"><svg><use href="#i-game"/></svg></i>Jeux vidéo</span>
+    <span><i class="ic ic-sm"><svg><use href="#i-wifi"/></svg></i>Réseau</span>
+    <span><i class="ic ic-sm"><svg><use href="#i-cpu"/></svg></i>Composants</span>
+    <span><i class="ic ic-sm ic-red"><svg><use href="#i-camera"/></svg></i>Image et son</span>
+    <span><i class="ic ic-sm"><svg><use href="#i-store"/></svg></i>Bureau</span>
+    <span><i class="ic ic-sm"><svg><use href="#i-grid"/></svg></i>Autres</span>
+  </div>
+  <div class="promo"><small>PROMOTION · EXEMPLE</small><b>Frais de service réduits sur le réseau</b><span>Jusqu'au 30/11/2026</span></div>
+  <div class="sec"><b>Les plus demandés</b><span>Voir tout</span></div>
+  <div class="prods">
+    <div class="prod"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><b>Portable 15" 16 Go</b><small>Chine · 12–18 j</small><em>dès 238 000 F</em></div>
+    <div class="prod"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><b>Téléphone 128 Go</b><small>Dubaï · 7–10 j</small><em>dès 175 000 F</em></div>
+  </div>
+  <div class="sec"><b>Actualités</b></div>
+  <div class="row"><div class="ic ic-xs"><svg><use href="#i-store"/></svg></div><div><b>12 fournisseurs réseau ajoutés</b><small>Turquie · cette semaine</small></div></div>
+</div><nav class="tb" data-a="home"></nav></div>
+
+<div class="ph" id="x-devis"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis DMD-2026-0139</h4></div><div class="pv">
+  <span class="badge b-blue"><svg><use href="#i-clock"/></svg>Valable jusqu'au 19/11/2026</span>
+  <div class="ohead"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Shenzhen Netlink</small></div></div>
+  <div class="recap">
+    <p><span>Prix produit (2 × 38 500 F)</span><b>77 000 F</b></p>
+    <p><span>Transport fournisseur → entrepôt</span><b>3 500 F</b></p>
+    <p><span>Frais de service (6 %)</span><b>4 620 F</b></p>
+    <p class="tot"><span>Total du devis</span><b>85 120 F CFA</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>La livraison internationale est calculée à la réception du carton en entrepôt, selon le poids réel.</div>
+  <div class="kv3 boxed"><span><b>10–15 j</b>Délai d'achat</span><span><b>Chine</b>Origine</span><span><b>Ama S.</b>Agent</span></div>
+  <span class="btn">Accepter le devis</span>
+  <span class="btn btn-ghost">Poser une question</span>
+  <p class="muted center">Refuser le devis</p>
+</div></div>
+
+<div class="ph" id="x-payok"><div class="pv pv-center">
+  <div class="okbig"><svg><use href="#i-check"/></svg></div>
+  <h4 class="big">Paiement confirmé</h4>
+  <p class="amount-s">103 880 F CFA</p>
+  <div class="recap sm wide">
+    <p><span>Commande</span><b>CMD-2026-0091</b></p>
+    <p><span>Référence</span><b>TX-90412</b></p>
+    <p><span>Moyen</span><b>Wallet SS DROPSHIP</b></p>
+    <p><span>Date</span><b>17/11/2026 · 10:42</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Paiement confirmé par le prestataire. Votre agent lance l'achat auprès du fournisseur.</div>
+  <div class="stack"><span class="btn">Suivre ma commande</span><span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Télécharger le reçu</span></div>
+</div></div>
+
+<div class="ph" id="x-factures"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Factures et reçus</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv">
+  <div class="seg"><span class="on">Factures (4)</span><span>Reçus (9)</span></div>
+  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0091</b><small>CMD-0091 · 17/11 · 103 880 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0087</b><small>CMD-0087 · 06/11 · 1 187 500 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0074</b><small>CMD-0074 · 28/10 · 342 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0069</b><small>CMD-0069 · 21/10 · 185 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="pdf"><div class="pdf-h"><b>SS DROPSHIP</b><small>FAC-2026-0091</small></div><i></i><i></i><i class="s"></i><div class="pdf-t"><span>Total</span><b>103 880 F CFA</b></div></div>
+  <span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Tout télécharger (PDF)</span>
+</div></div>
+
+<div class="ph" id="x-avis"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0069</h4></div><div class="pv">
+  <div class="ohead"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><div><b>Téléphone 128 Go ×1</b><small>Livré le 21/10/2026</small></div></div>
+  <div class="sec"><b>Donner mon avis</b></div>
+  <div class="stars"><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+  <div class="in in-area">Conforme à la description, livraison dans les délais.</div>
+  <span class="btn">Publier mon avis</span>
+  <div class="sec"><b>Un problème avec la commande ?</b></div>
+  <div class="opts col"><span>Produit non conforme</span><span>Colis endommagé</span><span>Article manquant</span><span>Retard de livraison</span></div>
+  <span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Ouvrir un litige</span>
+  <p class="muted center">Réponse de l'équipe sous 48 h ouvrées.</p>
+</div></div>
+
+<div class="ph" id="x-attendus"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
+  <div class="seg three"><span class="on">Attendus (2)</span><span>Reçus (3)</span><span>Expédiés</span></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs"><svg><use href="#i-clock"/></svg></div><div><b>CMD-2026-0091</b><small>Routeur Wi-Fi 6 ×2 · Manette ×1</small></div><span class="badge b-blue">En route</span></div><div class="mini"><span class="on"></span><span class="on"></span><span></span><span></span></div><small>Shenzhen → Guangzhou · suivi YT2026111700512 · arrivée prévue 20/11</small></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs"><svg><use href="#i-clock"/></svg></div><div><b>CMD-2026-0088</b><small>Écran 24" ×2</small></div><span class="badge b-grey">Expédié fournisseur</span></div><div class="mini"><span class="on"></span><span></span><span></span><span></span></div><small>Istanbul → Istanbul (entrepôt) · arrivée prévue 22/11</small></div>
+  <span class="btn btn-ghost"><svg><use href="#i-plus"/></svg>Annoncer un colis</span>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Achat fait vous-même ? Indiquez votre code client SSD-48213 sur l'adresse de livraison du fournisseur.</div>
+</div><nav class="tb" data-a="box"></nav></div>
+
+<div class="ph" id="x-photos"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Photos du colis</h4></div><div class="pv">
+  <div class="photo tall"><svg><use href="#i-box"/></svg><span>Face avant · étiquette fournisseur</span></div>
+  <div class="up"><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span></div>
+  <p class="muted">PKG-24-11-0318 · prises le 14/11 à 10:12 par l'agent GZ-04</p>
+  <span class="badge b-green"><svg><use href="#i-check"/></svg>État extérieur : bon</span>
+  <div class="note-s red"><svg><use href="#i-info"/></svg>Le carton n'est pas ouvert : seules les faces extérieures sont photographiées.</div>
+  <span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Signaler un problème</span>
+</div></div>
+
+<div class="ph" id="x-poids"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Poids et volume</h4></div><div class="pv">
+  <div class="cube"><div class="cube3"><svg><use href="#i-box"/></svg></div><span class="cl l">35 cm</span><span class="cl w">25 cm</span><span class="cl h">20 cm</span></div>
+  <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>5,1 kg</b>Réel</span><span><svg><use href="#i-ruler"/></svg><b>35×25×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,018 m³</b>Volume</span><span><svg><use href="#i-plane"/></svg><b>3,5 kg</b>Volumétrique</span></div>
+  <div class="recap">
+    <p><span>Poids réel</span><b>5,1 kg</b></p>
+    <p><span>Poids volumétrique (L×l×h ÷ 5000)</span><b>3,5 kg</b></p>
+    <p class="tot"><span>Poids facturé</span><b>5,1 kg</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Le transporteur facture le plus élevé des deux poids. Le diviseur dépend du transporteur choisi.</div>
+  <p class="muted">PKG-24-11-0284 · pesé le 10/11 · balance GZ-B2</p>
+</div></div>
+
+<div class="ph" id="x-histo"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique · PKG-0318</h4></div><div class="pv">
+  <ul class="tl">
+    <li class="cur"><b>Remis au transporteur</b><small>15/11 · 18:10 · agent GZ-07</small></li>
+    <li class="done"><b>Expédition demandée par le client</b><small>15/11 · 09:02 · application</small></li>
+    <li class="done"><b>Rangé à l'emplacement A-12-03</b><small>14/11 · 10:25 · agent GZ-04</small></li>
+    <li class="done"><b>Photographié (extérieur)</b><small>14/11 · 10:12 · agent GZ-04</small></li>
+    <li class="done"><b>Pesé et mesuré : 2,4 kg</b><small>14/11 · 10:09 · agent GZ-04</small></li>
+    <li class="done"><b>Reçu à l'entrepôt de Guangzhou</b><small>14/11 · 09:58 · agent GZ-04</small></li>
+    <li class="done"><b>Annoncé par le fournisseur</b><small>09/11 · suivi YT2026…418</small></li>
+  </ul>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Chaque action est horodatée et attribuée à un agent identifié.</div>
+</div></div>
+
+<div class="ph" id="x-douane"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Douane · PKG-0318</h4></div><div class="pv">
+  <div class="stat red"><div class="ic ic-red"><svg><use href="#i-shield"/></svg></div><div><b>Dédouanement en cours</b><small>Aéroport d'Abidjan · depuis le 17/11 à 08:40</small></div></div>
+  <div class="sec"><b>Documents</b></div>
+  <div class="svc on"><svg><use href="#i-check"/></svg><span>Facture commerciale</span><b>Fournie</b></div>
+  <div class="svc on"><svg><use href="#i-check"/></svg><span>Liste de colisage</span><b>Fournie</b></div>
+  <div class="svc on"><svg><use href="#i-check"/></svg><span>Lettre de transport aérien</span><b>Fournie</b></div>
+  <div class="sec"><b>Droits et taxes</b></div>
+  <div class="recap sm"><p><span>Montant</span><i>communiqué par le transitaire</i></p><p><span>Payé par</span><b>Selon l'incoterm du devis</b></p></div>
+  <div class="note-s"><svg><use href="#i-clock"/></svg>Délai habituel : 24 à 48 h. Vous serez notifié dès la mainlevée.</div>
+  <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Poser une question</span>
+</div></div>
+
+<div class="ph" id="x-arrive"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Arrivé à Abidjan</h4></div><div class="pv">
+  <div class="stat"><div class="ic"><svg><use href="#i-pin"/></svg></div><div><b>Votre colis est arrivé</b><small>Dédouané le 18/11 · agence SS DROPSHIP Abidjan</small></div></div>
+  <label class="lb">Comment le recevoir ?</label>
+  <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-truck"/></svg></div><div><b>Livraison à domicile</b><small>Cocody, Riviera 3 · 2 300 F</small></div><span class="radio on"></span></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-store"/></svg></div><div><b>Retrait en agence</b><small>Plateau · sans frais · pièce d'identité</small></div><span class="radio"></span></div>
+  <label class="lb">Créneau de livraison</label>
+  <div class="chips"><span class="chip on">Jeu 19/11 · 9h–12h</span><span class="chip">Jeu 19/11 · 14h–17h</span><span class="chip">Ven 20/11 · 9h–12h</span></div>
+  <label class="lb">Téléphone du destinataire</label><div class="in">+225 07 08 42 18 63</div>
+  <span class="btn">Confirmer la livraison</span>
+</div></div>
+
+<div class="ph" id="x-livre"><div class="pv pv-center">
+  <div class="okbig"><svg><use href="#i-check"/></svg></div>
+  <h4 class="big">Colis livré</h4>
+  <p class="sub">PKG-24-11-0318 · 19/11/2026 à 10:47</p>
+  <div class="recap sm wide">
+    <p><span>Remis à</span><b>Awa Koné</b></p>
+    <p><span>Code de livraison</span><b>4821 · validé</b></p>
+    <p><span>Livreur</span><b>Ibrahim T.</b></p>
+    <p><span>Commande</span><b>CMD-2026-0087</b></p>
+  </div>
+  <p class="sub">Comment s'est passée la livraison ?</p>
+  <div class="stars"><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg></div>
+  <div class="stack"><span class="btn">Envoyer ma note</span><span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Signaler un problème</span></div>
+</div></div>
+
+<div class="ph" id="x-fiche"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Fournisseur</h4><span class="hd-r"><svg><use href="#i-heart"/></svg></span></div><div class="pv">
+  <div class="sup-h big"><div class="av lg">SN</div><div><b>Shenzhen Netlink Co.</b><small><svg><use href="#i-pin"/></svg>Chine · Shenzhen</small></div></div>
+  <span class="badge b-blue"><svg><use href="#i-check"/></svg>Fiche vérifiée le 02/10/2026</span>
+  <div class="kv3 boxed"><span><b>10–15 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>38</b>Commandes</span></div>
+  <div class="tags"><span>Routeurs</span><span>Switchs</span><span>Câbles</span><span>Wi-Fi 6</span></div>
+  <div class="sec"><b>Produits</b><span>Tout voir</span></div>
+  <div class="prods">
+    <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur AX3000</b><em>38 500 F</em></div>
+    <div class="prod"><div class="pimg"><svg><use href="#i-cpu"/></svg></div><b>Switch 8 ports</b><em>14 000 F</em></div>
+  </div>
+  <div class="set"><span>Livre vers</span><b>Côte d'Ivoire, Ghana, Guinée</b></div>
+  <div class="set"><span>Langues</span><b>Anglais, chinois</b></div>
+  <span class="btn">Demander un devis</span>
+</div></div>
+
+<div class="ph" id="x-intl"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">ordinateur portable 16 Go</span></div></div><div class="pv pv-tab">
+  <div class="world">
+    <svg class="wl" viewBox="0 0 260 120" preserveAspectRatio="none"><path d="M40 92 C 90 40, 170 30, 228 46M40 92 C 90 60, 140 50, 160 44M40 92 C 70 50, 110 30, 130 28M40 92 C 60 60, 90 40, 112 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4"/></svg>
+    <span class="wp" style="left:34px;top:84px">Abidjan</span><span class="wp b" style="right:6px;top:36px">Chine</span><span class="wp b" style="left:140px;top:20px">Dubaï</span><span class="wp b" style="left:112px;top:4px">Turquie</span><span class="wp b" style="left:66px;top:22px">Europe</span>
+  </div>
+  <label class="lb">Origine</label>
+  <div class="chips"><span class="chip on">Toutes (200)</span><span class="chip">Chine 124</span><span class="chip">Turquie 38</span><span class="chip">Dubaï 21</span><span class="chip">Europe 17</span></div>
+  <div class="res"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div class="rt"><b>Portable 15,6" i5 16 Go / 512 Go</b><small>Shenzhen Office Tech · Chine</small><span class="price">238 000 F</span><small>Délai 12–18 j</small></div></div>
+  <div class="res"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div class="rt"><b>Portable 14" Ryzen 7 16 Go</b><small>Istanbul Bilişim · Turquie</small><span class="price">265 000 F</span><small>Délai 8–12 j</small></div></div>
+</div><nav class="tb" data-a="home"></nav></div>
+
+<div class="ph" id="x-nego"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Koffi A. · agent d'achat</b><small><i class="on-dot"></i>DMD-2026-0142</small></div></div><div class="pv pv-chat">
+  <div class="msg">Le fournisseur Shenzhen Display propose 92 000 F par écran pour 10 unités, délai 12–18 jours.</div>
+  <div class="msg me">Pouvez-vous négocier autour de 88 000 F ?</div>
+  <div class="msg">J'ai envoyé une contre-offre en mettant en avant la quantité et un paiement rapide.</div>
+  <div class="offcard"><small>NOUVELLE OFFRE · VALABLE 7 JOURS</small><b>89 500 F / unité</b><span>10 unités · 12–18 jours · garantie 12 mois</span><div class="two"><span class="btn sm">Accepter</span><span class="btn btn-ghost sm">Discuter</span></div></div>
+  <div class="msg me">Parfait, je regarde ça.</div>
+  <div class="composer"><svg><use href="#i-plus"/></svg><span>Écrire à votre agent…</span><i class="send"><svg><use href="#i-send"/></svg></i></div>
+</div></div>
+
+<div class="ph" id="x-favoris"><div class="hd"><h4 class="hd-l">Favoris</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
+  <div class="seg"><span class="on">Produits (4)</span><span>Fournisseurs (2)</span></div>
+  <div class="prods">
+    <div class="prod fav"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Kit Mesh Wi-Fi 6</b><small>Turquie</small><em>96 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Console portable</b><small>Dubaï</small><em>182 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><b>Portable 14" 16 Go</b><small>Turquie</small><em>265 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg"><svg><use href="#i-camera"/></svg></div><b>Caméra IP Wi-Fi</b><small>Chine</small><em>17 500 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+  </div>
+  <span class="btn btn-ghost"><svg><use href="#i-cart"/></svg>Ajouter la sélection au panier</span>
+</div><nav class="tb" data-a="cart"></nav></div>
+
+<div class="ph" id="x-moyens"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Moyens de paiement</h4></div><div class="pv">
+  <div class="in in-sel in-ico"><svg><use href="#i-pin"/></svg>Côte d'Ivoire<svg><use href="#i-down"/></svg></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="badge b-green">Actif</span></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Visa / Mastercard</b><small>Paiement 3-D Secure</small></div><span class="badge b-green">Actif</span></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-globe"/></svg></div><div><b>PayPal</b><small>Compte PayPal</small></div><span class="badge b-grey">Prévu</span></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Apple Pay · Google Pay</b><small>Selon l'appareil</small></div><span class="badge b-grey">Prévu</span></div>
+  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-doc"/></svg></div><div><b>Virement bancaire</b><small>Commandes importantes</small></div><span class="badge b-blue">Sur demande</span></div>
+  <div class="pay"><div class="ic ic-xs ic-red"><svg><use href="#i-globe"/></svg></div><div><b>Alipay · WeChat Pay</b><small>Paiement fournisseur en Chine</small></div><span class="badge b-grey">Prévu</span></div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>La liste dépend du pays et des prestataires réellement intégrés. Aucune donnée de carte n'est conservée.</div>
+</div></div>
+
+<div class="desk" id="x-audit"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+  <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-chart"/></svg>Analytics</span><span class="on"><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
+</aside><div class="dmain">
+  <div class="dtop"><h4>Analytics et traçabilité</h4><span class="muted">7 derniers jours</span></div>
+  <div class="kpis"><div><small>Délai moyen d'un devis</small><b>18 h</b><i class="up">−3 h</i></div><div><small>Devis acceptés</small><b>42 %</b><i>sur 96 devis</i></div><div><small>Colis traités</small><b>286</b><i>2 entrepôts</i></div><div class="alert"><small>Incidents ouverts</small><b>3</b><i>dont 2 colis abîmés</i></div></div>
+  <div class="tablewrap"><table class="dt">
+    <thead><tr><th>Date</th><th>Utilisateur</th><th>Action</th><th>Objet</th><th>Avant → après</th></tr></thead>
+    <tbody>
+      <tr><td>17/11 08:40</td><td>DOU-02</td><td>Statut colis</td><td>PKG-0318</td><td>En transit → Douane</td></tr>
+      <tr><td>17/11 08:12</td><td>Système</td><td>Webhook paiement</td><td>TX-90412</td><td>En attente → Confirmé</td></tr>
+      <tr><td>16/11 17:55</td><td>Ama S.</td><td>Devis envoyé</td><td>DMD-0139</td><td>Brouillon → Envoyé</td></tr>
+      <tr><td>16/11 15:30</td><td>Marc O.</td><td>Fournisseur validé</td><td>Istanbul Elektronik</td><td>En revue → Validé</td></tr>
+      <tr><td>15/11 18:10</td><td>GZ-07</td><td>Remise transporteur</td><td>PKG-0318</td><td>Prêt → Remis</td></tr>
+    </tbody>
+  </table></div>
+</div></div>
+</div><div id="out"></div><script>// Données des 50 visuels. s = numéro d'écran (1–33) ou id d'écran supplémentaire.
+var G={
+ compte:["Compte","Inscription","Vérification","Connexion","Premier achat"],
+ achat:["Achats","Rechercher","Demander","Payer","Suivre"],
+ entrepot:["Entrepôt","Annonce","Réception","Pesée et photos","Expédition"],
+ livraison:["Livraison","Transport","Transit","Douane","Livraison"],
+ sourcing:["Sourcing","Fournisseurs","Offres","Négociation","Panier"],
+ wallet:["Wallet","Recharger","Confirmer","Payer","Suivre"],
+ services:["Compte et services","Parrainer","Être notifié","Échanger","Personnaliser"],
+ admin:["Back-office","Piloter","Traiter","Tracer","Analyser"],
+ eco:["Écosystème","Sourcing","Achat","Entrepôt","Livraison"]
+};
+var V=[
+{n:1,t:"Achetez partout <b>dans le monde</b>",p:"Sourcing, achat, entrepôt et livraison réunis dans une seule application.",s:6,g:"eco",k:0,c:[["globe",0,"Sourcing international","Chine, Turquie, Dubaï et Europe."],["box",1,"Entrepôt dédié","Vos colis reçus, pesés et photographiés."],["wallet",0,"Wallet intégré","Rechargez et payez en F CFA."],["truck",0,"Livraison suivie","De l'usine jusqu'à votre porte."]]},
+{n:2,t:"Création de compte <b>+ parrainage</b>",p:"Inscrivez-vous en une minute, avec le code d'un proche si vous en avez un.",s:2,g:"compte",k:0,c:[["user",0,"Inscription simple","Nom, téléphone ou email, pays."],["gift",1,"Code de parrainage","Facultatif, saisi dès l'inscription."],["lock",0,"Mot de passe sécurisé","Indicateur de robustesse en direct."],["shield",0,"Données protégées","Consentement clair et confidentialité."]]},
+{n:3,t:"Vérification <b>du compte</b>",p:"Un code envoyé par SMS ou par email confirme que le contact vous appartient.",s:3,g:"compte",k:1,c:[["mobile",0,"Code à 6 chiffres","Reçu par SMS ou par email."],["clock",0,"Renvoi programmé","Nouveau code après 45 secondes."],["shield",1,"Anti-fraude","Tentatives limitées automatiquement."],["check",0,"Compte activé","Accès immédiat à l'application."]]},
+{n:4,t:"Connexion <b>rapide et sûre</b>",p:"Retrouvez vos achats, vos colis et votre wallet sur mobile comme sur le site.",s:4,g:"compte",k:2,c:[["user",0,"Téléphone ou email","Un seul identifiant pour tout."],["mobile",0,"Code par SMS","Connexion sans mot de passe."],["globe",1,"Site et appli synchronisés","Les mêmes données partout."],["lock",0,"Session protégée","Double authentification possible."]]},
+{n:5,t:"Mot de passe <b>oublié</b>",p:"Réinitialisez votre accès en trois étapes, sans contacter le support.",s:5,g:"compte",k:2,c:[["mail",0,"Contact vérifié","Code envoyé au téléphone ou à l'email."],["clock",1,"Lien temporaire","Expire après 15 minutes."],["lock",0,"Nouveau mot de passe","Choisi et confirmé par vous."],["shield",0,"Tentatives limitées","Protection contre les abus."]]},
+{n:6,t:"L'accueil <b>SS DROPSHIP</b>",p:"Tout commence ici : rechercher, découvrir et commander en quelques gestes.",s:6,g:"achat",k:0,c:[["search",0,"Recherche universelle","Nom, lien, photo ou QR code."],["grid",0,"Catégories","Téléphones, informatique, réseau…"],["star",1,"Mis en avant","Sélections pilotées par l'équipe."],["chat",0,"Chat flottant","Le support toujours à portée."]]},
+{n:7,t:"Recherche par nom, <b>lien ou photo</b>",p:"Trouvez le bon produit chez des fournisseurs vérifiés, avec des prix indicatifs clairs.",s:7,g:"achat",k:0,c:[["link",0,"Collez un lien","Le produit est reconnu automatiquement."],["camera",1,"Recherche par photo","Montrez ce que vous voulez."],["filter",0,"Filtres utiles","Pays, prix, délai, minimum."],["heart",0,"Favoris","Gardez vos trouvailles."]]},
+{n:8,t:"Catégories <b>et promotions</b>",p:"Parcourez les rayons, profitez des offres du moment et suivez les nouveautés.",s:"x-cats",g:"achat",k:0,c:[["grid",0,"8 rayons","Administrables depuis le back-office."],["gift",1,"Promotions","Offres datées et signalées."],["star",0,"Les plus demandés","Basé sur les commandes réelles."],["bell",0,"Actualités","Nouveaux fournisseurs et produits."]]},
+{n:9,t:"Trois façons <b>de commander</b>",p:"Commande directe, recherche de produit ou négociation par un agent : à vous de choisir.",s:9,g:"achat",k:1,c:[["link",0,"Commande directe","Vous avez le lien ou la référence."],["search",0,"Recherche de produit","Décrivez, nous trouvons."],["deal",1,"Négociation","Un agent obtient le meilleur prix."],["file",0,"Frais affichés","Tout est clair avant de payer."]]},
+{n:10,t:"Commande <b>directe</b>",p:"Collez un lien, choisissez la variante et la quantité : un devis arrive sous 24 h.",s:10,g:"achat",k:1,c:[["link",0,"Lien reconnu","Produit et prix fournisseur détectés."],["box",0,"Variante et quantité","Couleur, prise, nombre d'unités."],["chat",1,"Note pour l'agent","Précisez vos exigences."],["clock",0,"Devis sous 24 h","Jours ouvrés."]]},
+{n:11,t:"Recherche <b>de produit</b>",p:"Décrivez votre besoin avec photos ou vidéo, fixez un budget et une origine.",s:11,g:"achat",k:1,c:[["doc",0,"Description libre","Caractéristiques et usage."],["camera",1,"Photos et vidéo","Pour lever toute ambiguïté."],["wallet",0,"Budget par unité","En F CFA."],["globe",0,"Origine préférée","Chine, Turquie, Dubaï, Europe."]]},
+{n:12,t:"Suivi <b>de votre demande</b>",p:"Un agent d'achat dédié contacte les fournisseurs et vous tient informé à chaque étape.",s:12,g:"achat",k:1,c:[["user",0,"Agent dédié","Un interlocuteur unique."],["store",0,"Fournisseurs contactés","Plusieurs sources comparées."],["clock",1,"Étapes horodatées","Vous savez où en est la demande."],["chat",0,"Discussion directe","Questions et précisions."]]},
+{n:13,t:"Un devis <b>clair et détaillé</b>",p:"Prix produit, frais d'acheminement et frais de service : chaque ligne est expliquée.",s:"x-devis",g:"achat",k:1,c:[["file",0,"Chaque frais détaillé","Aucune ligne cachée."],["clock",1,"Validité affichée","Date limite d'acceptation."],["scale",0,"Livraison au réel","Calculée au poids en entrepôt."],["check",0,"Acceptation en un geste","Puis paiement sécurisé."]]},
+{n:14,t:"Validation <b>et paiement</b>",p:"Payez avec votre wallet, Mobile Money ou carte, selon les moyens disponibles dans votre pays.",s:15,g:"achat",k:2,c:[["wallet",0,"Wallet SS DROPSHIP","Solde visible avant paiement."],["mobile",0,"Mobile Money","Selon le pays."],["card",0,"Carte bancaire","Via un prestataire sécurisé."],["shield",1,"Confirmation obligatoire","Commande validée après le prestataire."]]},
+{n:15,t:"Paiement <b>confirmé</b>",p:"Dès la confirmation du prestataire, votre agent lance l'achat auprès du fournisseur.",s:"x-payok",g:"achat",k:2,c:[["check",0,"Confirmation fiable","Reçue du prestataire de paiement."],["file",0,"Reçu immédiat","Téléchargeable en PDF."],["doc",1,"Référence unique","Chaque opération est traçable."],["cart",0,"Achat lancé","Votre agent prend le relais."]]},
+{n:16,t:"Mes <b>commandes</b>",p:"Toutes vos commandes au même endroit, classées par statut.",s:16,g:"achat",k:3,c:[["cart",0,"Vue d'ensemble","En cours, livrées, litiges."],["clock",0,"Statut en direct","Mis à jour à chaque étape."],["search",0,"Recherche rapide","Par numéro ou produit."],["bell",1,"Notifications","Vous êtes prévenu des changements."]]},
+{n:17,t:"Factures <b>et reçus</b>",p:"Téléchargez vos factures et reçus de paiement à tout moment.",s:"x-factures",g:"achat",k:3,c:[["file",0,"Factures PDF","Pour chaque commande."],["doc",0,"Reçus de paiement","Recharges, achats, livraisons."],["download",1,"Export groupé","Tout télécharger en un clic."],["shield",0,"Archivage","Disponibles depuis votre compte."]]},
+{n:18,t:"Avis <b>et litiges</b>",p:"Notez vos commandes et signalez un problème : une procédure claire, suivie par l'équipe.",s:"x-avis",g:"achat",k:3,c:[["star",0,"Avis vérifiés","Seuls les acheteurs notent."],["alert",1,"Litige guidé","Motif, photos, suivi."],["clock",0,"Réponse sous 48 h","Jours ouvrés."],["shield",0,"Procédure encadrée","Retours et remboursements définis."]]},
+{n:19,t:"Statuts <b>de commande</b>",p:"Onze étapes traçables, du devis à la livraison, avec date et lieu.",s:17,g:"achat",k:3,c:[["file",0,"Devis et paiement","Le point de départ."],["store",0,"Achat et expédition","Chez le fournisseur."],["warehouse",1,"Entrepôt","Réception du carton fermé."],["truck",0,"Transit et douane","Jusqu'à la livraison."]]},
+{n:20,t:"Colis <b>attendus</b>",p:"Suivez les colis en route vers votre entrepôt avant même leur arrivée.",s:"x-attendus",g:"entrepot",k:0,c:[["clock",0,"Arrivée prévue","Date estimée par colis."],["link",0,"Suivi fournisseur","Numéro de tracking relié."],["plus",1,"Annoncer un colis","Pour vos achats faits ailleurs."],["pin",0,"Code client","Indispensable sur l'étiquette."]]},
+{n:21,t:"Colis <b>réceptionnés</b>",p:"Votre adresse d'entrepôt personnelle et tous vos colis reçus, en un coup d'œil.",s:18,g:"entrepot",k:1,c:[["warehouse",0,"Adresse personnelle","Guangzhou, avec votre code."],["box",0,"Compteurs par état","Attendus, reçus, prêts, expédiés."],["bell",1,"Alerte à l'arrivée","Notification dès la réception."],["shield",0,"Carton non ouvert","Expédié tel qu'il arrive."]]},
+{n:22,t:"Détail <b>d'un colis</b>",p:"Poids, dimensions, emplacement et services : toutes les informations utiles avant l'expédition.",s:19,g:"entrepot",k:2,c:[["scale",0,"Poids et dimensions","Mesurés à la réception."],["pin",0,"Emplacement","Rangement identifié."],["check",0,"Carton d'origine","Expédition incluse."],["clock",1,"Services à venir","QC, vidéo, regroupement : bientôt."]]},
+{n:23,t:"Photo du colis <b>extérieur</b>",p:"Chaque face du carton est photographiée à la réception, sans ouverture.",s:"x-photos",g:"entrepot",k:2,c:[["camera",0,"Photos horodatées","Prises par un agent identifié."],["box",0,"Toutes les faces","Étiquette et état visibles."],["shield",1,"Carton fermé","Le contenu n'est pas manipulé."],["alert",0,"Signalement","En cas de dommage apparent."]]},
+{n:24,t:"Poids <b>et volume</b>",p:"Poids réel et poids volumétrique sont calculés pour un prix de transport juste.",s:"x-poids",g:"entrepot",k:2,c:[["scale",0,"Poids réel","Pesé sur balance contrôlée."],["ruler",0,"Dimensions","Longueur, largeur, hauteur."],["plane",1,"Poids volumétrique","Selon le transporteur choisi."],["file",0,"Calcul affiché","Le poids facturé est expliqué."]]},
+{n:25,t:"Historique <b>de l'entrepôt</b>",p:"Chaque action sur votre colis est horodatée et attribuée à un agent.",s:"x-histo",g:"entrepot",k:3,c:[["clock",0,"Horodatage","Date et heure de chaque étape."],["user",0,"Agent identifié","Qui a fait quoi."],["doc",1,"Journal d'audit","Conservé côté administration."],["truck",0,"Jusqu'au départ","Remise au transporteur incluse."]]},
+{n:26,t:"Choix <b>du transporteur</b>",p:"Partenaire SS DROPSHIP, express international ou votre propre transitaire.",s:20,g:"livraison",k:0,c:[["plane",0,"Partenaire aérien","7 à 10 jours, suivi inclus."],["send",0,"Express","3 à 5 jours selon contrats."],["truck",1,"Votre transitaire","Formulaire et approbation."],["ship",0,"Maritime","Prévu dans une phase ultérieure."]]},
+{n:27,t:"Devis <b>de livraison</b>",p:"Fret, manutention et livraison locale détaillés avant le paiement.",s:21,g:"livraison",k:0,c:[["file",0,"Frais détaillés","Fret, manutention, livraison."],["pin",0,"Adresse choisie","Domicile ou agence."],["shield",1,"Assurance facultative","Activable en un geste."],["clock",0,"Date estimée","Fenêtre de livraison affichée."]]},
+{n:28,t:"Suivi <b>international</b>",p:"Suivez votre colis étape par étape, de l'entrepôt jusqu'à votre pays.",s:22,g:"livraison",k:1,c:[["globe",0,"Trajet visible","Départ, escales, arrivée."],["doc",0,"Numéro de suivi","Unique pour chaque envoi."],["clock",1,"Événements datés","Heure et lieu précis."],["chat",0,"Support direct","Une question, une réponse."]]},
+{n:29,t:"Statut <b>en douane</b>",p:"Documents, délais et droits : vous savez où en est le dédouanement.",s:"x-douane",g:"livraison",k:2,c:[["shield",1,"Dédouanement suivi","Début et fin notifiés."],["doc",0,"Documents fournis","Facture, colisage, LTA."],["wallet",0,"Droits et taxes","Communiqués par le transitaire."],["clock",0,"Délai habituel","24 à 48 heures."]]},
+{n:30,t:"Réception dans <b>le pays de destination</b>",p:"Votre colis est arrivé : choisissez la livraison à domicile ou le retrait en agence.",s:"x-arrive",g:"livraison",k:3,c:[["pin",0,"Arrivée confirmée","Agence locale notifiée."],["truck",0,"Livraison à domicile","Créneau au choix."],["store",1,"Retrait en agence","Sans frais, avec pièce d'identité."],["phone",0,"Destinataire joignable","Numéro confirmé."]]},
+{n:31,t:"Confirmation <b>de livraison</b>",p:"Le colis est remis contre un code de livraison, puis vous notez le service.",s:"x-livre",g:"livraison",k:3,c:[["check",0,"Remise sécurisée","Code de livraison validé."],["user",0,"Livreur identifié","Nom et horaire enregistrés."],["star",1,"Votre avis compte","Notez la livraison."],["alert",0,"Problème ?","Signalement immédiat."]]},
+{n:32,t:"Liste <b>des fournisseurs</b>",p:"Des fournisseurs locaux et internationaux, vérifiés par l'équipe SS DROPSHIP.",s:8,g:"sourcing",k:0,c:[["store",0,"Locaux et internationaux","Un seul annuaire."],["check",1,"Fiches validées","Contrôlées par l'Admin."],["filter",0,"Filtres","Catégorie, zone, délai, prix."],["star",0,"Aucune note simulée","Seulement des données réelles."]]},
+{n:33,t:"Fiche <b>fournisseur</b>",p:"Délais, minimum de commande, zones livrées et produits : tout pour décider.",s:"x-fiche",g:"sourcing",k:0,c:[["check",0,"Vérification datée","Dernier contrôle affiché."],["box",0,"Catalogue","Produits et prix indicatifs."],["globe",1,"Zones livrées","Côte d'Ivoire, Ghana, Guinée."],["file",0,"Devis direct","Depuis la fiche."]]},
+{n:34,t:"Recherche <b>internationale</b>",p:"Comparez les origines d'un même produit en un seul écran.",s:"x-intl",g:"sourcing",k:1,c:[["globe",0,"4 origines","Chine, Turquie, Dubaï, Europe."],["filter",0,"Résultats par pays","Nombre d'offres visible."],["clock",1,"Délais comparés","Pour chaque fournisseur."],["wallet",0,"Prix en F CFA","Conversion intégrée."]]},
+{n:35,t:"Comparaison <b>d'offres</b>",p:"Prix, délai, origine et validité côte à côte pour choisir en confiance.",s:13,g:"sourcing",k:1,c:[["scale",0,"Côte à côte","Toutes les offres réunies."],["star",1,"Meilleur prix","Repéré automatiquement."],["clock",0,"Validité","Date limite de chaque offre."],["info",0,"Qualité des infos","Fiches incomplètes signalées."]]},
+{n:36,t:"Négociation <b>fournisseur</b>",p:"Votre agent négocie pour vous et vous présente chaque contre-offre.",s:"x-nego",g:"sourcing",k:2,c:[["deal",1,"Contre-offres","Négociées par votre agent."],["chat",0,"Échange en direct","Dans la messagerie."],["clock",0,"Offres datées","Valables 7 jours."],["check",0,"Vous décidez","Accepter ou discuter."]]},
+{n:37,t:"Mes <b>favoris</b>",p:"Gardez les produits et fournisseurs qui vous intéressent pour plus tard.",s:"x-favoris",g:"sourcing",k:3,c:[["heart",1,"Produits favoris","Retrouvés en un geste."],["store",0,"Fournisseurs favoris","Vos sources de confiance."],["cart",0,"Vers le panier","Ajout groupé."],["bell",0,"Alertes","Disponibilité et nouveautés."]]},
+{n:38,t:"Mon <b>panier</b>",p:"Le panier reste distinct de vos favoris, avec un récapitulatif complet des frais.",s:14,g:"sourcing",k:3,c:[["cart",0,"Panier séparé","Distinct de la liste de souhaits."],["plus",0,"Quantités","Modifiables à tout moment."],["file",1,"Frais visibles","Service et livraison annoncés."],["wallet",0,"Paiement rapide","En un écran."]]},
+{n:39,t:"Recharge <b>du wallet</b>",p:"Rechargez en F CFA avec les moyens disponibles dans votre pays.",s:24,g:"wallet",k:0,c:[["plus",0,"Montants rapides","10 000 à 100 000 F."],["mobile",0,"Mobile Money","Orange, MTN, Moov, Wave."],["card",0,"Carte bancaire","Visa et Mastercard."],["shield",1,"Crédit confirmé","Après validation du prestataire."]]},
+{n:40,t:"Moyens <b>de paiement</b>",p:"Les moyens proposés s'adaptent à votre pays et aux intégrations actives.",s:"x-moyens",g:"wallet",k:1,c:[["pin",0,"Selon le pays","Liste filtrée automatiquement."],["mobile",0,"Mobile Money et cartes","Les plus utilisés."],["globe",1,"International","PayPal, Alipay, WeChat Pay prévus."],["lock",0,"Sans stockage de carte","Données sensibles protégées."]]},
+{n:41,t:"Historique <b>des transactions</b>",p:"Chaque mouvement du wallet a une référence unique et un statut clair.",s:25,g:"wallet",k:3,c:[["doc",0,"Référence unique","Pour chaque opération."],["check",0,"Statut clair","Confirmé ou en attente."],["clock",1,"En attente = non crédité","Aucun solde fictif."],["download",0,"Export","Relevé téléchargeable."]]},
+{n:42,t:"Programme <b>de parrainage</b>",p:"Partagez votre code et suivez vos filleuls depuis votre compte.",s:27,g:"services",k:0,c:[["gift",1,"Code personnel","À copier ou partager."],["users",0,"Vos filleuls","Inscriptions et activité."],["star",0,"Récompenses","Selon la règle validée."],["share",0,"Partage facile","WhatsApp, SMS, réseaux."]]},
+{n:43,t:"<b>Notifications</b>",p:"Offres, paiements, colis, douane : vous êtes prévenu au bon moment.",s:28,g:"services",k:1,c:[["bell",0,"En temps réel","À chaque changement d'état."],["deal",0,"Offres reçues","Dès que l'agent répond."],["box",1,"Colis et douane","Chaque étape logistique."],["gear",0,"Personnalisables","Choisissez vos alertes."]]},
+{n:44,t:"Messagerie <b>et support</b>",p:"Une équipe humaine joignable par chat, avec FAQ et réponses rapides.",s:29,g:"services",k:2,c:[["chat",0,"Chat en direct","Réponse en quelques minutes."],["file",0,"Pièces jointes","Factures, photos, documents."],["info",1,"FAQ","Les réponses aux questions fréquentes."],["phone",0,"Appel possible","Pour les cas urgents."]]},
+{n:45,t:"Profil <b>et paramètres</b>",p:"Votre profil, vos adresses, votre sécurité et vos documents au même endroit.",s:26,g:"services",k:3,c:[["user",0,"Profil vérifié","Téléphone confirmé."],["pin",0,"Adresses","Domicile, bureau, agence."],["lock",1,"Sécurité","Mot de passe et double authentification."],["file",0,"Factures","Toujours accessibles."]]},
+{n:46,t:"Préférences <b>de langue</b>",p:"Français, anglais, turc, espagnol et chinois, avec pays et devise d'affichage.",s:30,g:"services",k:3,c:[["globe",0,"5 langues","FR, EN, TR, ES, ZH."],["wallet",0,"Devise","F CFA par défaut."],["pin",1,"Pays","Moyens et tarifs adaptés."],["shield",0,"Vos données","Export et suppression possibles."]]},
+{n:47,t:"Tableau de bord <b>Admin</b>",p:"Les indicateurs du jour et les actions à traiter, pour piloter toute l'activité.",s:31,g:"admin",k:0,c:[["chart",0,"Indicateurs du jour","Demandes, commandes, colis."],["alert",1,"À traiter","Urgences mises en avant."],["wallet",0,"Rapprochement","Paiements à vérifier."],["users",0,"Rôles séparés","Accès selon le profil."]]},
+{n:48,t:"Gestion des commandes <b>Admin</b>",p:"Demandes et commandes filtrées par statut, avec agent assigné et montant.",s:32,g:"admin",k:1,c:[["filter",0,"Filtres par statut","Nouvelles, négociation, payées."],["user",0,"Agent assigné","Responsabilité claire."],["doc",1,"Changements tracés","Qui, quand, avant, après."],["search",0,"Recherche","Par ID, client ou fournisseur."]]},
+{n:49,t:"Analytics <b>et traçabilité</b>",p:"Mesurer la performance et garder une trace de chaque action sensible.",s:"x-audit",g:"admin",k:3,c:[["chart",0,"Performance","Délais, conversion, volumes."],["doc",1,"Journal d'audit","Chaque action enregistrée."],["shield",0,"Webhooks vérifiés","Paiements confirmés et tracés."],["alert",0,"Incidents","Suivis jusqu'à résolution."]]},
+{n:50,t:"L'écosystème <b>SS DROPSHIP</b>",p:"Une application client, un site web et un back-office reliés aux fournisseurs, entrepôts, transitaires et paiements.",s:"eco",g:"eco",k:-1,c:[]}
+];
+</script>
+<script>
+var T=[["home","Accueil"],["cart","Achats"],["box","Entrepôt"],["wallet","Wallet"],["user","Compte"]];
+function fillTabs(root){root.querySelectorAll('nav.tb').forEach(function(n){n.innerHTML=T.map(function(t){return '<span class="'+(t[0]===n.dataset.a?'on':'')+'"><svg><use href="#i-'+t[0]+'"/></svg>'+t[1]+'</span>';}).join('');});}
+function scr(ref){var el;if(typeof ref==='number'){var f=document.querySelectorAll('#lib .scr')[ref-1];el=f.querySelector('.ph,.desk');}else{el=document.getElementById(ref);}var c=el.cloneNode(true);c.removeAttribute('id');return c;}
+function ico(id){return '<svg><use href="#i-'+id+'"/></svg>';}
+function render(n){
+  var d=V[n-1],g=G[d.g],out=document.getElementById('out');
+  var isDesk=typeof d.s==='number'?d.s>=31:(d.s==='x-audit');
+  var h='<div class="v'+(isDesk?' desk-v':'')+(d.s==='eco'?' eco':'')+'"><div class="ring"></div><div class="ring r2"></div>'+
+   '<div class="vh"><div class="lg">SS <em>DROPSHIP</em></div><div class="stp">ÉTAPE '+(n<10?'0':'')+n+' / 50</div></div>'+
+   '<div class="vt"><div class="eb">'+g[0]+'</div><h1>'+d.t+'</h1><p>'+d.p+'</p></div>'+
+   '<div class="stage-wrap"><div class="stage" id="stage"></div></div>'+(isDesk||d.s==='eco'?'':'<div class="shadow"></div>')+
+   '<div class="cards">'+d.c.map(function(c,i){return '<div class="cd c'+(i+1)+'"><div class="ti'+(c[1]?' r':'')+'">'+ico(c[0])+'</div><div><b>'+c[2]+'</b><br><span>'+c[3]+'</span></div></div>';}).join('')+'</div>'+
+   '<div class="band">'+g.slice(1).map(function(s,i){var cl=d.k<0?'dn':(i<d.k?'dn':(i===d.k?'on':''));return (i?'<span class="ar">›</span>':'')+'<div class="st '+cl+'"><i>'+(i+1)+'</i>'+s+'</div>';}).join('')+'</div>'+
+   '<div class="vf">ssdropship.com · maquette de présentation</div></div>';
+  out.innerHTML=h;
+  var st=out.querySelector('#stage');
+  if(d.s==='eco'){
+    var w=document.createElement('div');w.className='eco-wrap';
+    w.innerHTML='<div class="lap"><div class="laptop"></div><div class="lbase"></div></div><div class="p p1"></div><div class="p p2"></div><div class="p p3"></div>';
+    w.querySelector('.laptop').appendChild(scr(31));w.querySelector('.p1').appendChild(scr(18));w.querySelector('.p2').appendChild(scr(6));w.querySelector('.p3').appendChild(scr(23));
+    out.querySelector('.v').appendChild(w);
+    var row=document.createElement('div');row.className='eco-row';
+    row.innerHTML=[["store","Fournisseurs"],["warehouse","Entrepôts"],["truck","Transitaires"],["wallet","Paiements"]].map(function(p){return '<span class="eco-lbl">'+ico(p[0])+p[1]+'</span>';}).join('');
+    out.querySelector('.v').appendChild(row);
+  } else if(isDesk){
+    var lap=document.createElement('div');lap.innerHTML='<div class="laptop"></div><div class="lbase"></div>';lap.querySelector('.laptop').appendChild(scr(d.s));st.appendChild(lap);
+  } else { st.appendChild(scr(d.s)); }
+  fillTabs(out);
+}
+</script></body></html>

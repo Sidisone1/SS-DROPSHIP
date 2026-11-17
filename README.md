@@ -39,7 +39,7 @@ Les maquettes et images réalisées dans les anciennes conversations ne sont **p
 | Documentation de cadrage | Consolidée à partir des échanges |
 | Structure de fichiers | Initialisée |
 | Design system | Documenté |
-| Série de 50 visuels | En cours d'inventaire; originaux HD à vérifier |
+| Série de 50 visuels | 50 visuels générés (1080 × 1920), à valider ; originaux HD 01–19 à récupérer |
 | Code fonctionnel de l'application | Non livré dans cette consolidation |
 
 Site de référence du projet : [ssdropship.com](https://ssdropship.com).
