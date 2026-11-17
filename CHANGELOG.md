@@ -50,3 +50,8 @@
 - Écran 01 « Bienvenue » (`design/prototypes/ecrans-bogolan.html`) : les pastilles Chine, Turquie, Dubaï, Europe sont
   regroupées dans une carte « Nos pays d'achat », alignées sur une ligne avec un code pays (CN, TR, AE, EU) aux couleurs
   de la charte. Pas de drapeaux, pour ne pas introduire de jaune (D-003). Demande du propriétaire.
+
+## 2026-11-17 — Visuels 1 à 50 avec les icônes 3D Bogolan
+- Les 50 visuels de `design/mockups/exports/` sont régénérés avec les écrans de `ecrans-bogolan.html` et les icônes 3D Bogolan (D-018) dans les cartes d'avantages, la barre d'onglets et les écrans ; mêmes noms de fichiers.
+- Visuels 39 et 40 alignés sur D-019 (Mobile Money, carte via Stripe, Google Pay, Apple Pay).
+- Modèle `design/mockups/source/visuels-template.html` mis à jour (chemins vers `design/icons/bogolan/png/`). Toujours « à valider ».

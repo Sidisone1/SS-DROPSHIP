@@ -482,7 +482,35 @@ html,body{margin:0;background:#fff}
 .eco-wrap .p3{transform:perspective(2000px) scale(.86) rotateY(-16deg)}
 .eco-wrap .p2{top:400px;transform:scale(.92)}
 .eco-row{position:absolute;left:40px;right:40px;top:1560px;z-index:4;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-.eco-row .eco-lbl{position:static}</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true">
+.eco-row .eco-lbl{position:static}
+/* Icônes 3D Bogolan (remplacent les pictogrammes au trait dans les pastilles, la barre d'onglets et le bouton de discussion) */
+.ic.ic3d{background:none;box-shadow:none;padding:0}
+.ic.ic3d img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(16,33,61,.14))}
+.fab.fab3d{background:#fff;padding:0;overflow:hidden}
+.fab.fab3d img{width:100%;height:100%;object-fit:cover}
+.tb span img{width:24px;height:24px;border-radius:6px;opacity:.55;filter:grayscale(.6)}
+.tb span.on img{opacity:1;filter:none}
+#bogolan .ico-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(108px,1fr));gap:14px;margin-top:22px}
+#bogolan figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;min-width:0}
+#bogolan figure img{width:88px;height:88px}
+#bogolan figcaption{font-size:12.5px;font-weight:600;line-height:1.3;overflow-wrap:anywhere}
+#bogolan figcaption code{display:block;font-size:10.5px;font-weight:500;opacity:.6}
+.i3d>img{flex:none;object-fit:contain}
+.ic.i3d{background:none;box-shadow:none}.ic.i3d>img{width:100%;height:100%}
+.pimg.i3d{background:#F4F6F8}.pimg.i3d>img{height:56px;width:56px}
+.th.i3d{background:#F4F6F8}.th.i3d>img{width:86%;height:86%}
+.svc.i3d>img{width:26px;height:26px;border-radius:7px}.svc.off.i3d>img{filter:grayscale(1);opacity:.6}
+.photo.i3d>img{width:64px;height:64px}
+.origins{width:100%;border:1px solid var(--ln);border-radius:14px;background:#fff;padding:9px 6px 10px;box-shadow:0 6px 14px rgba(16,33,61,.06)}.origins-t{margin:0 0 7px;text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}.origins-g{display:grid;grid-template-columns:repeat(4,1fr)}.origins-g span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:#3B4F68}.origins-g span+span{border-left:1px solid var(--ln)}.origins-g b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--blue);box-shadow:inset 0 -2px 3px rgba(0,0,0,.18),0 3px 6px rgba(0,119,200,.25)}.origins-g span:nth-child(2) b{background:var(--red);box-shadow:inset 0 -2px 3px rgba(0,0,0,.18),0 3px 6px rgba(242,26,22,.25)}.origins-g span:nth-child(3) b{background:var(--night,#10213D)}.origins-g span:nth-child(4) b{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+
+.cd .ti.b3d{background:none;box-shadow:none;width:96px;height:96px}
+.cd .ti.b3d img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 8px 12px rgba(16,33,61,.18))}
+.v.desk-v .cd .ti.b3d{width:80px;height:80px}
+.cube3.i3d img{width:78px;height:78px}
+.eco-lbl img{width:34px;height:34px}
+.photo.tall.i3d>img{width:110px;height:110px}
+.okbig{flex:none}
+</style></head><body><svg width="0" height="0" style="position:absolute" aria-hidden="true">
 <defs>
 <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></symbol>
 <symbol id="i-cart" viewBox="0 0 24 24"><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l2.5 12h11L21 7H6.2"/></symbol>
@@ -541,9 +569,9 @@ html,body{margin:0;background:#fff}
 <symbol id="i-doc" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
 <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></symbol>
 </defs>
-</svg><div id="lib">
+</svg>
 
-<section class="block" id="ecrans">
+<div id="lib"><section class="block" id="ecrans">
   <div class="wrap">
     <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
     <h2 class="title">Toutes les pages de l'application</h2>
@@ -565,15 +593,15 @@ html,body{margin:0;background:#fff}
       <figure class="scr"><div class="ph"><div class="pv pv-center">
         <div class="logo-xl"><span>SS</span> <em>DROPSHIP</em></div>
         <div class="orbit">
-          <div class="ic ic-lg"><svg><use href="#i-globe"/></svg></div>
-          <div class="ic ic-sm o1"><svg><use href="#i-plane"/></svg></div>
-          <div class="ic ic-sm ic-red o2"><svg><use href="#i-box"/></svg></div>
-          <div class="ic ic-sm o3"><svg><use href="#i-ship"/></svg></div>
-          <div class="ic ic-sm o4"><svg><use href="#i-wallet"/></svg></div>
+          <div class="ic ic-lg ic3d"><img src="../../icons/bogolan/png/globe.png" alt=""></div>
+          <div class="ic ic-sm o1 ic3d"><img src="../../icons/bogolan/png/plane.png" alt=""></div>
+          <div class="ic ic-sm ic-red o2 ic3d"><img src="../../icons/bogolan/png/box.png" alt=""></div>
+          <div class="ic ic-sm o3 ic3d"><img src="../../icons/bogolan/png/ship.png" alt=""></div>
+          <div class="ic ic-sm o4 ic3d"><img src="../../icons/bogolan/png/wallet.png" alt=""></div>
         </div>
         <h4 class="big">Achetez partout dans le monde</h4>
         <p class="sub">Sourcing, achat, entrepôt et livraison jusqu'à chez vous.</p>
-        <div class="chips center"><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Dubaï</span><span class="chip">Europe</span></div>
+        <div class="origins" aria-label="Pays d'achat"><p class="origins-t">Nos pays d'achat</p><div class="origins-g"><span><b>CN</b>Chine</span><span><b>TR</b>Turquie</span><span><b>AE</b>Dubaï</span><span><b>EU</b>Europe</span></div></div>
         <div class="stack">
           <span class="btn">Créer un compte</span>
           <span class="btn btn-ghost">Se connecter</span>
@@ -589,7 +617,7 @@ html,body{margin:0;background:#fff}
         <label class="lb">Pays</label><div class="in in-sel">Côte d'Ivoire<svg><use href="#i-down"/></svg></div>
         <label class="lb">Mot de passe</label><div class="in in-pw">••••••••••<span class="hint ok">Fort</span></div>
         <label class="lb">Confirmer le mot de passe</label><div class="in">••••••••••</div>
-        <div class="ref"><div class="ic ic-red ic-xs"><svg><use href="#i-gift"/></svg></div><div><label class="lb">Code de parrainage <i>(facultatif)</i></label><div class="in in-ref">KOFFI-3H8P</div></div></div>
+        <div class="ref"><div class="ic ic-red ic-xs ic3d"><img src="../../icons/bogolan/png/gift.png" alt=""></div><div><label class="lb">Code de parrainage <i>(facultatif)</i></label><div class="in in-ref">KOFFI-3H8P</div></div></div>
         <div class="checkline"><span class="cb on"><svg><use href="#i-check"/></svg></span>J'accepte les conditions d'utilisation et la politique de confidentialité</div>
         <span class="btn">Créer mon compte</span>
         <p class="foot">Déjà un compte ? <b>Se connecter</b></p>
@@ -597,7 +625,7 @@ html,body{margin:0;background:#fff}
       <figcaption><span class="num">02</span><b>Inscription + code de parrainage</b><small>Champ parrainage facultatif, visible dès l'inscription (D-005).</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Vérification</h4></div><div class="pv pv-center">
-        <div class="ic ic-lg"><svg><use href="#i-mobile"/></svg></div>
+        <div class="ic ic-lg ic3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div>
         <h4 class="big">Entrez le code reçu</h4>
         <p class="sub">Un code à 6 chiffres a été envoyé par SMS au <b>+225 07 •• •• 18 63</b>.</p>
         <div class="otp"><span>4</span><span>8</span><span>2</span><span>1</span><span class="cur"></span><span></span></div>
@@ -623,7 +651,7 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mot de passe oublié</h4></div><div class="pv">
         <div class="steps"><span class="on">1<i>Contact</i></span><span>2<i>Code</i></span><span>3<i>Nouveau</i></span></div>
-        <div class="ic ic-lg mx"><svg><use href="#i-lock"/></svg></div>
+        <div class="ic ic-lg mx ic3d"><img src="../../icons/bogolan/png/lock.png" alt=""></div>
         <h4 class="big">Réinitialiser votre mot de passe</h4>
         <p class="sub">Saisissez le téléphone ou l'email de votre compte. Nous vous enverrons un code de vérification.</p>
         <label class="lb">Téléphone ou email</label><div class="in">awa.kone@exemple.ci</div>
@@ -645,25 +673,25 @@ html,body{margin:0;background:#fff}
         <div class="banner"><small>ACHAT INTERNATIONAL</small><b>Vos fournisseurs en Chine, Turquie, Dubaï et Europe</b><span class="btn btn-w">Faire une demande</span></div>
         <div class="sec"><b>Catégories</b><span>Tout voir</span></div>
         <div class="cats">
-          <span><i class="ic ic-sm"><svg><use href="#i-mobile"/></svg></i>Téléphones</span>
-          <span><i class="ic ic-sm"><svg><use href="#i-laptop"/></svg></i>Informatique</span>
-          <span><i class="ic ic-sm ic-red"><svg><use href="#i-game"/></svg></i>Jeux vidéo</span>
-          <span><i class="ic ic-sm"><svg><use href="#i-wifi"/></svg></i>Réseau</span>
+          <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></i>Téléphones</span>
+          <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></i>Informatique</span>
+          <span><i class="ic ic-sm ic-red i3d"><img src="../../icons/bogolan/png/game.png" alt=""></i>Jeux vidéo</span>
+          <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></i>Réseau</span>
         </div>
         <div class="sec"><b>Mis en avant</b><span>Voir tout</span></div>
         <div class="prods">
-          <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur Wi-Fi 6 AX3000</b><small>Chine · 10–15 j</small><em>dès 38 500 F</em></div>
-          <div class="prod"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Manette sans fil</b><small>Dubaï · 7–10 j</small><em>dès 21 000 F</em></div>
+          <div class="prod"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><b>Routeur Wi-Fi 6 AX3000</b><small>Chine · 10–15 j</small><em>dès 38 500 F</em></div>
+          <div class="prod"><div class="pimg red i3d"><img src="../../icons/bogolan/png/game.png" alt=""></div><b>Manette sans fil</b><small>Dubaï · 7–10 j</small><em>dès 21 000 F</em></div>
         </div>
-      </div><span class="fab"><svg><use href="#i-chat"/></svg></span><nav class="tb" data-a="home"></nav></div>
+      </div><span class="fab fab3d"><img src="../../icons/bogolan/png/chat.png" alt=""></span><nav class="tb" data-a="home"></nav></div>
       <figcaption><span class="num">06</span><b>Accueil</b><small>Recherche par nom, lien, photo ou QR ; catégories ; produits mis en avant ; chat flottant.</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">routeur wifi 6</span></div></div><div class="pv pv-tab">
         <div class="chips"><span class="chip on"><svg><use href="#i-filter"/></svg>Filtres</span><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Prix</span><span class="chip">Délai</span></div>
         <p class="muted">48 résultats · prix indicatifs, confirmés par devis</p>
-        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000 double bande</b><small>Shenzhen Netlink · Chine</small><span class="price">38 500 F <i>/ unité</i></span><small>Délai 10–15 j · min. 1</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
-        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Kit Mesh Wi-Fi 6 (3 bornes)</b><small>Istanbul Elektronik · Turquie</small><span class="price">96 000 F <i>/ kit</i></span><small>Délai 8–12 j · min. 1</small></div><span class="hrt on"><svg><use href="#i-heart"/></svg></span></div>
-        <div class="res"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur 4G/5G Wi-Fi 6 SIM</b><small>Gulf Tech Trading · Dubaï</small><span class="price">72 000 F <i>/ unité</i></span><small>Délai 7–10 j · min. 2</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="res"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000 double bande</b><small>Shenzhen Netlink · Chine</small><span class="price">38 500 F <i>/ unité</i></span><small>Délai 10–15 j · min. 1</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="res"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Kit Mesh Wi-Fi 6 (3 bornes)</b><small>Istanbul Elektronik · Turquie</small><span class="price">96 000 F <i>/ kit</i></span><small>Délai 8–12 j · min. 1</small></div><span class="hrt on"><svg><use href="#i-heart"/></svg></span></div>
+        <div class="res"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Routeur 4G/5G Wi-Fi 6 SIM</b><small>Gulf Tech Trading · Dubaï</small><span class="price">72 000 F <i>/ unité</i></span><small>Délai 7–10 j · min. 2</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
         <div class="tip"><svg><use href="#i-info"/></svg>Vous ne trouvez pas ? <b>Demandez une recherche</b></div>
       </div><nav class="tb" data-a="home"></nav></div>
       <figcaption><span class="num">07</span><b>Résultats de recherche</b><small>Filtres par pays, prix, délai ; ajout aux favoris ; bascule vers une demande de recherche.</small></figcaption></figure>
@@ -684,20 +712,20 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Nouvelle commande</h4></div><div class="pv pv-tab">
         <p class="sub left">Comment voulez-vous commander ?</p>
-        <div class="mode on"><div class="ic"><svg><use href="#i-link"/></svg></div><div><b>Commande directe</b><small>Vous connaissez le produit : collez un lien ou une référence.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
-        <div class="mode"><div class="ic"><svg><use href="#i-search"/></svg></div><div><b>Recherche de produit</b><small>Décrivez ce que vous cherchez, avec photos ou vidéo.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
-        <div class="mode"><div class="ic ic-red"><svg><use href="#i-deal"/></svg></div><div><b>Recherche + négociation</b><small>Un agent contacte les fournisseurs et vous propose des offres.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="mode on"><div class="ic ic3d"><img src="../../icons/bogolan/png/link.png" alt=""></div><div><b>Commande directe</b><small>Vous connaissez le produit : collez un lien ou une référence.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="mode"><div class="ic ic3d"><img src="../../icons/bogolan/png/search.png" alt=""></div><div><b>Recherche de produit</b><small>Décrivez ce que vous cherchez, avec photos ou vidéo.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="mode"><div class="ic ic-red ic3d"><img src="../../icons/bogolan/png/deal.png" alt=""></div><div><b>Recherche + négociation</b><small>Un agent contacte les fournisseurs et vous propose des offres.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="note-s"><svg><use href="#i-info"/></svg>Les frais de service sont affichés dans le devis, avant tout paiement.</div>
         <div class="sec"><b>Mes demandes récentes</b><span>Voir tout</span></div>
-        <div class="row"><div class="ic ic-xs"><svg><use href="#i-deal"/></svg></div><div><b>DMD-2026-0142</b><small>Écrans 27" · négociation</small></div><span class="badge b-blue">3 offres</span></div>
-        <div class="row"><div class="ic ic-xs"><svg><use href="#i-link"/></svg></div><div><b>DMD-2026-0139</b><small>Routeur Wi-Fi 6 · directe</small></div><span class="badge b-grey">Devis envoyé</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/deal.png" alt=""></div><div><b>DMD-2026-0142</b><small>Écrans 27" · négociation</small></div><span class="badge b-blue">3 offres</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/link.png" alt=""></div><div><b>DMD-2026-0139</b><small>Routeur Wi-Fi 6 · directe</small></div><span class="badge b-grey">Devis envoyé</span></div>
       </div><nav class="tb" data-a="cart"></nav></div>
       <figcaption><span class="num">09</span><b>Choisir le mode de commande</b><small>Les trois modes validés (D-006) et les demandes récentes.</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Commande directe</h4></div><div class="pv">
         <label class="lb">Lien ou référence du produit</label>
         <div class="in in-ico"><svg><use href="#i-link"/></svg><span class="trunc">https://fournisseur.example/item/AX3000-W6</span></div>
-        <div class="detect"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div><small class="ok-t"><svg><use href="#i-check"/></svg>Produit reconnu</small><b>Routeur Wi-Fi 6 AX3000</b><small>Prix fournisseur affiché : 52,90 USD</small></div></div>
+        <div class="detect"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div><small class="ok-t"><svg><use href="#i-check"/></svg>Produit reconnu</small><b>Routeur Wi-Fi 6 AX3000</b><small>Prix fournisseur affiché : 52,90 USD</small></div></div>
         <label class="lb">Variante</label><div class="in in-sel">Noir · prise UE<svg><use href="#i-down"/></svg></div>
         <div class="two"><div><label class="lb">Quantité</label><div class="stepper"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div><div><label class="lb">Livrer en</label><div class="in in-sel">Côte d'Ivoire<svg><use href="#i-down"/></svg></div></div></div>
         <label class="lb">Commentaire pour l'agent</label><div class="in in-area">Merci de vérifier que la notice est en français.</div>
@@ -710,7 +738,7 @@ html,body{margin:0;background:#fff}
         <label class="lb">Que cherchez-vous ?</label>
         <div class="in in-area tall">Ordinateur portable 15" pour bureautique, 16 Go de RAM, SSD 512 Go, clavier AZERTY, garantie 1 an minimum.</div>
         <label class="lb">Photos ou vidéo <i>(facultatif)</i></label>
-        <div class="up"><span class="th"><svg><use href="#i-laptop"/></svg></span><span class="th"><svg><use href="#i-camera"/></svg></span><span class="add"><svg><use href="#i-upload"/></svg>Ajouter</span></div>
+        <div class="up"><span class="th i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></span><span class="th i3d"><img src="../../icons/bogolan/png/camera.png" alt=""></span><span class="add"><svg><use href="#i-upload"/></svg>Ajouter</span></div>
         <div class="two"><div><label class="lb">Quantité</label><div class="stepper"><span><svg><use href="#i-minus"/></svg></span><b>5</b><span><svg><use href="#i-plus"/></svg></span></div></div><div><label class="lb">Budget / unité</label><div class="in">250 000 F</div></div></div>
         <label class="lb">Origine préférée</label>
         <div class="chips"><span class="chip on">Indifférent</span><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Dubaï</span><span class="chip">Europe</span></div>
@@ -722,7 +750,7 @@ html,body{margin:0;background:#fff}
         <span class="badge b-red">Recherche + négociation</span>
         <h4 class="big left">Écrans 27" IPS · 10 unités</h4>
         <p class="sub left">Prix cible : 95 000 F / unité · livraison avant le 15/12</p>
-        <div class="agent"><div class="av">KA</div><div><b>Koffi A.</b><small>Votre agent d'achat</small></div><span class="ic ic-xs"><svg><use href="#i-chat"/></svg></span></div>
+        <div class="agent"><div class="av">KA</div><div><b>Koffi A.</b><small>Votre agent d'achat</small></div><span class="ic ic-xs i3d"><img src="../../icons/bogolan/png/chat.png" alt=""></span></div>
         <ul class="tl">
           <li class="done"><b>Demande reçue</b><small>12/11 · 09:14</small></li>
           <li class="done"><b>Agent assigné</b><small>12/11 · 11:02</small></li>
@@ -745,8 +773,8 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon panier</h4></div><div class="pv pv-tab">
         <div class="seg"><span class="on">Panier (2)</span><span>Favoris (5)</span></div>
-        <div class="citem"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Offre DMD-0139</small><span class="price">38 500 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div>
-        <div class="citem"><div class="pimg red"><svg><use href="#i-game"/></svg></div><div class="rt"><b>Manette sans fil</b><small>Blanc · Dubaï</small><span class="price">21 000 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>1</b><span><svg><use href="#i-plus"/></svg></span></div></div>
+        <div class="citem"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Offre DMD-0139</small><span class="price">38 500 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div>
+        <div class="citem"><div class="pimg red i3d"><img src="../../icons/bogolan/png/game.png" alt=""></div><div class="rt"><b>Manette sans fil</b><small>Blanc · Dubaï</small><span class="price">21 000 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>1</b><span><svg><use href="#i-plus"/></svg></span></div></div>
         <div class="recap">
           <p><span>Sous-total</span><b>98 000 F</b></p>
           <p><span>Frais de service (6 %)</span><b>5 880 F</b></p>
@@ -760,9 +788,9 @@ html,body{margin:0;background:#fff}
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paiement</h4></div><div class="pv">
         <div class="recap sm"><p><span>Commande</span><b>CMD-2026-0091</b></p><p><span>2 articles</span><b>98 000 F</b></p><p><span>Frais de service</span><b>5 880 F</b></p><p class="tot"><span>Total</span><b>103 880 F CFA</b></p></div>
         <label class="lb">Moyen de paiement</label>
-        <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-wallet"/></svg></div><div><b>Wallet SS DROPSHIP</b><small>Solde : 312 500 F</small></div><span class="radio on"></span></div>
-        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Selon votre pays</small></div><span class="radio"></span></div>
-        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Carte Visa / Mastercard</b><small>Via prestataire sécurisé</small></div><span class="radio"></span></div>
+        <div class="pay on"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/wallet.png" alt=""></div><div><b>Wallet SS DROPSHIP</b><small>Solde : 312 500 F</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Selon votre pays</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/card.png" alt=""></div><div><b>Carte Visa / Mastercard</b><small>Via prestataire sécurisé</small></div><span class="radio"></span></div>
         <div class="note-s"><svg><use href="#i-shield"/></svg>La commande est validée seulement après confirmation du paiement par le prestataire. Aucune donnée de carte n'est conservée.</div>
         <span class="btn">Payer 103 880 F CFA</span>
       </div></div>
@@ -778,7 +806,7 @@ html,body{margin:0;background:#fff}
       <figcaption><span class="num">16</span><b>Mes commandes</b><small>Liste par statut : en cours, livrées, litiges.</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0087</h4><span class="hd-r"><svg><use href="#i-share"/></svg></span></div><div class="pv">
-        <div class="ohead"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div><b>Ordinateur portable 15" ×5</b><small>Shenzhen Office Tech · 1 187 500 F</small></div></div>
+        <div class="ohead"><div class="pimg i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></div><div><b>Ordinateur portable 15" ×5</b><small>Shenzhen Office Tech · 1 187 500 F</small></div></div>
         <ul class="tl dense">
           <li class="done"><b>Devis accepté</b><small>05/11</small></li>
           <li class="done"><b>Paiement confirmé</b><small>06/11</small></li>
@@ -804,33 +832,33 @@ html,body{margin:0;background:#fff}
       <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
         <div class="addr"><small>MON ADRESSE ENTREPÔT · GUANGZHOU</small><b>SS DROPSHIP – SSD-48213</b><span>Bât. 6, zone logistique, Baiyun, Guangzhou, Chine</span><span class="cp"><svg><use href="#i-copy"/></svg>Copier</span></div>
         <div class="cnt"><span><b>2</b>Attendus</span><span class="on"><b>3</b>Reçus</span><span><b>1</b>Prêt</span><span><b>4</b>Expédiés</span></div>
-        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0318</b><small>CMD-0087 · 2,4 kg · reçu le 14/11</small></div><span class="badge b-night">Reçu</span></div>
-        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0297</b><small>CMD-0083 · 0,8 kg · reçu le 12/11</small></div><span class="badge b-night">Reçu</span></div>
-        <div class="pkg"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>PKG-24-11-0284</b><small>CMD-0080 · 5,1 kg · reçu le 10/11</small></div><span class="badge b-blue">Prêt</span></div>
+        <div class="pkg"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0318</b><small>CMD-0087 · 2,4 kg · reçu le 14/11</small></div><span class="badge b-night">Reçu</span></div>
+        <div class="pkg"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0297</b><small>CMD-0083 · 0,8 kg · reçu le 12/11</small></div><span class="badge b-night">Reçu</span></div>
+        <div class="pkg"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0284</b><small>CMD-0080 · 5,1 kg · reçu le 10/11</small></div><span class="badge b-blue">Prêt</span></div>
         <div class="note-s red"><svg><use href="#i-info"/></svg>Au lancement, vos cartons sont expédiés tels qu'ils arrivent, sans être ouverts.</div>
       </div><nav class="tb" data-a="box"></nav></div>
       <figcaption><span class="num">18</span><b>Mon entrepôt</b><small>Adresse personnelle d'entrepôt, compteurs par état, colis reçus.</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>PKG-24-11-0318</h4></div><div class="pv">
-        <div class="photo"><svg><use href="#i-box"/></svg><span>Photo du carton extérieur · 14/11</span></div>
+        <div class="photo i3d"><img src="../../icons/bogolan/png/box.png" alt=""><span>Photo du carton extérieur · 14/11</span></div>
         <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>2,4 kg</b>Poids</span><span><svg><use href="#i-ruler"/></svg><b>40×30×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,024 m³</b>Volume</span><span><svg><use href="#i-pin"/></svg><b>A-12-03</b>Emplacement</span></div>
         <p class="muted">État extérieur : bon · Transporteur fournisseur : YunExpress</p>
         <div class="sec"><b>Services</b></div>
-        <div class="svc on"><svg><use href="#i-check"/></svg><span>Expédition du carton d'origine</span><b>Inclus</b></div>
-        <div class="svc off"><svg><use href="#i-shield"/></svg><span>Contrôle qualité (QC)</span><i>Bientôt</i></div>
-        <div class="svc off"><svg><use href="#i-camera"/></svg><span>Photo / vidéo du contenu</span><i>Bientôt</i></div>
-        <div class="svc off"><svg><use href="#i-box"/></svg><span>Regroupement de colis</span><i>Bientôt</i></div>
-        <div class="svc off"><svg><use href="#i-gift"/></svg><span>Reconditionnement</span><i>Bientôt</i></div>
+        <div class="svc on i3d"><img src="../../icons/bogolan/png/check.png" alt=""><span>Expédition du carton d'origine</span><b>Inclus</b></div>
+        <div class="svc off i3d"><img src="../../icons/bogolan/png/shield.png" alt=""><span>Contrôle qualité (QC)</span><i>Bientôt</i></div>
+        <div class="svc off i3d"><img src="../../icons/bogolan/png/camera.png" alt=""><span>Photo / vidéo du contenu</span><i>Bientôt</i></div>
+        <div class="svc off i3d"><img src="../../icons/bogolan/png/box.png" alt=""><span>Regroupement de colis</span><i>Bientôt</i></div>
+        <div class="svc off i3d"><img src="../../icons/bogolan/png/gift.png" alt=""><span>Reconditionnement</span><i>Bientôt</i></div>
         <span class="btn">Préparer l'expédition</span>
       </div></div>
       <figcaption><span class="num">19</span><b>Détail d'un colis</b><small>Poids, dimensions, photo extérieure ; services avancés désactivés (D-010).</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Choisir le transport</h4></div><div class="pv">
         <p class="sub left">Destination : <b>Abidjan, Côte d'Ivoire</b> · 2,4 kg</p>
-        <div class="carrier on"><div class="ic"><svg><use href="#i-plane"/></svg></div><div><b>Partenaire SS DROPSHIP · aérien</b><small>7–10 jours · suivi inclus</small></div><em>≈ 26 400 F</em></div>
-        <div class="carrier"><div class="ic"><svg><use href="#i-send"/></svg></div><div><b>Express international</b><small>3–5 jours · DHL, FedEx, UPS ou Aramex selon contrats</small></div><em>≈ 58 000 F</em></div>
-        <div class="carrier"><div class="ic ic-red"><svg><use href="#i-truck"/></svg></div><div><b>Mon transitaire personnel</b><small>Formulaire à remplir, approbation sous 24 h</small></div><em>Sur devis</em></div>
-        <div class="carrier off"><div class="ic"><svg><use href="#i-ship"/></svg></div><div><b>Maritime LCL / FCL</b><small>Disponible dans une phase ultérieure</small></div><i>Bientôt</i></div>
+        <div class="carrier on"><div class="ic ic3d"><img src="../../icons/bogolan/png/plane.png" alt=""></div><div><b>Partenaire SS DROPSHIP · aérien</b><small>7–10 jours · suivi inclus</small></div><em>≈ 26 400 F</em></div>
+        <div class="carrier"><div class="ic ic3d"><img src="../../icons/bogolan/png/send.png" alt=""></div><div><b>Express international</b><small>3–5 jours · DHL, FedEx, UPS ou Aramex selon contrats</small></div><em>≈ 58 000 F</em></div>
+        <div class="carrier"><div class="ic ic-red ic3d"><img src="../../icons/bogolan/png/truck.png" alt=""></div><div><b>Mon transitaire personnel</b><small>Formulaire à remplir, approbation sous 24 h</small></div><em>Sur devis</em></div>
+        <div class="carrier off"><div class="ic ic3d"><img src="../../icons/bogolan/png/ship.png" alt=""></div><div><b>Maritime LCL / FCL</b><small>Disponible dans une phase ultérieure</small></div><i>Bientôt</i></div>
         <p class="muted">Montants estimés, confirmés dans le devis de livraison.</p>
         <span class="btn">Continuer</span>
       </div></div>
@@ -877,11 +905,11 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Wallet</h4><span class="hd-r">F CFA<svg><use href="#i-down"/></svg></span></div><div class="pv pv-tab">
         <div class="wcard"><small>Solde disponible</small><b>312 500 F CFA</b><span>ID client SSD-48213</span></div>
-        <div class="acts"><span><i class="ic"><svg><use href="#i-plus"/></svg></i>Recharger</span><span><i class="ic"><svg><use href="#i-card"/></svg></i>Payer</span><span><i class="ic ic-red"><svg><use href="#i-download"/></svg></i>Retirer</span><span><i class="ic"><svg><use href="#i-file"/></svg></i>Reçus</span></div>
+        <div class="acts"><span><i class="ic i3d"><img src="../../icons/bogolan/png/plus.png" alt=""></i>Recharger</span><span><i class="ic i3d"><img src="../../icons/bogolan/png/card.png" alt=""></i>Payer</span><span><i class="ic ic-red i3d"><img src="../../icons/bogolan/png/download.png" alt=""></i>Retirer</span><span><i class="ic i3d"><img src="../../icons/bogolan/png/file.png" alt=""></i>Reçus</span></div>
         <div class="sec"><b>Dernières opérations</b><span>Tout voir</span></div>
-        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Recharge Mobile Money</b><small>16/11 · 14:02</small></div><em class="plus">+50 000 F</em></div>
-        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-cart"/></svg></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · 10:31</small></div><em>−1 187 500 F</em></div>
-        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Recharge carte</b><small>05/11 · 18:47</small></div><em class="plus">+1 200 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Recharge Mobile Money</b><small>16/11 · 14:02</small></div><em class="plus">+50 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red ic3d"><img src="../../icons/bogolan/png/cart.png" alt=""></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · 10:31</small></div><em>−1 187 500 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/card.png" alt=""></div><div><b>Recharge carte</b><small>05/11 · 18:47</small></div><em class="plus">+1 200 000 F</em></div>
         <p class="muted">Retraits et remboursements selon les règles en vigueur dans votre pays.</p>
       </div><nav class="tb" data-a="wallet"></nav></div>
       <figcaption><span class="num">23</span><b>Wallet</b><small>Solde, actions rapides et dernières opérations.</small></figcaption></figure>
@@ -891,22 +919,23 @@ html,body{margin:0;background:#fff}
         <div class="amount">50 000 <i>F CFA</i></div>
         <div class="chips"><span class="chip">10 000</span><span class="chip">25 000</span><span class="chip on">50 000</span><span class="chip">100 000</span></div>
         <label class="lb">Moyens disponibles en Côte d'Ivoire</label>
-        <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="radio on"></span></div>
-        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Carte bancaire</b><small>Visa, Mastercard</small></div><span class="radio"></span></div>
-        <div class="pay"><div class="ic ic-xs"><svg><use href="#i-globe"/></svg></div><div><b>PayPal</b><small>Sous réserve d'intégration</small></div><span class="radio"></span></div>
+        <div class="pay on"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/wallet.png" alt=""></div><div><b>Google Pay</b><small>Android · sous réserve d'intégration</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/recharge.png" alt=""></div><div><b>Apple Pay</b><small>iPhone · sous réserve d'intégration</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/card.png" alt=""></div><div><b>Carte bancaire via Stripe</b><small>Visa, Mastercard · sous réserve d'intégration</small></div><span class="radio"></span></div>
         <div class="note-s"><svg><use href="#i-shield"/></svg>Votre solde est crédité uniquement après confirmation du paiement par le prestataire.</div>
         <span class="btn">Recharger 50 000 F CFA</span>
       </div></div>
-      <figcaption><span class="num">24</span><b>Recharger le wallet</b><small>Montant, moyens filtrés par pays, crédit après confirmation.</small></figcaption></figure>
+      <figcaption><span class="num">24</span><b>Recharger le wallet</b><small>Montant ; Mobile Money, Google Pay, Apple Pay, carte via Stripe, filtrés par pays ; crédit après confirmation.</small></figcaption></figure>
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique</h4><span class="hd-r"><svg><use href="#i-download"/></svg></span></div><div class="pv">
         <div class="seg three"><span class="on">Tout</span><span>Entrées</span><span>Sorties</span></div>
         <p class="day">Novembre 2026</p>
-        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Recharge carte</b><small>17/11 · REF TX-90412</small><span class="badge b-grey">En attente · non crédité</span></div><em class="pend">+25 000 F</em></div>
-        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Recharge Mobile Money</b><small>16/11 · REF TX-90377</small><span class="badge b-green">Confirmé</span></div><em class="plus">+50 000 F</em></div>
-        <div class="tx"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>Remboursement CMD-0081</b><small>12/11 · REF TX-90215</small><span class="badge b-green">Confirmé</span></div><em class="plus">+12 000 F</em></div>
-        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-cart"/></svg></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · REF TX-89960</small><span class="badge b-green">Confirmé</span></div><em>−1 187 500 F</em></div>
-        <div class="tx"><div class="ic ic-xs ic-red"><svg><use href="#i-truck"/></svg></div><div><b>Livraison PKG-0284</b><small>04/11 · REF TX-89811</small><span class="badge b-green">Confirmé</span></div><em>−31 200 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/card.png" alt=""></div><div><b>Recharge carte</b><small>17/11 · REF TX-90412</small><span class="badge b-grey">En attente · non crédité</span></div><em class="pend">+25 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Recharge Mobile Money</b><small>16/11 · REF TX-90377</small><span class="badge b-green">Confirmé</span></div><em class="plus">+50 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/file.png" alt=""></div><div><b>Remboursement CMD-0081</b><small>12/11 · REF TX-90215</small><span class="badge b-green">Confirmé</span></div><em class="plus">+12 000 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red ic3d"><img src="../../icons/bogolan/png/cart.png" alt=""></div><div><b>Paiement CMD-2026-0087</b><small>06/11 · REF TX-89960</small><span class="badge b-green">Confirmé</span></div><em>−1 187 500 F</em></div>
+        <div class="tx"><div class="ic ic-xs ic-red ic3d"><img src="../../icons/bogolan/png/truck.png" alt=""></div><div><b>Livraison PKG-0284</b><small>04/11 · REF TX-89811</small><span class="badge b-green">Confirmé</span></div><em>−31 200 F</em></div>
       </div></div>
       <figcaption><span class="num">25</span><b>Historique des transactions</b><small>Chaque opération a une référence unique ; « en attente » n'est pas crédité.</small></figcaption></figure>
     </div>
@@ -917,7 +946,7 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon compte</h4><span class="hd-r"><svg><use href="#i-gear"/></svg></span></div><div class="pv pv-tab">
         <div class="prof"><div class="av lg">AK</div><div><b>Awa Koné</b><small>ID client SSD-48213 · Côte d'Ivoire</small><span class="badge b-blue"><svg><use href="#i-check"/></svg>Téléphone vérifié</span></div></div>
-        <div class="refban"><div class="ic ic-red ic-xs"><svg><use href="#i-gift"/></svg></div><div><b>Parrainez vos proches</b><small>Votre code : AWA-7K42</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+        <div class="refban"><div class="ic ic-red ic-xs ic3d"><img src="../../icons/bogolan/png/gift.png" alt=""></div><div><b>Parrainez vos proches</b><small>Votre code : AWA-7K42</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="menu">
           <span><svg><use href="#i-user"/></svg>Mon profil<svg class="ch"><use href="#i-chev"/></svg></span>
           <span><svg><use href="#i-pin"/></svg>Mes adresses<svg class="ch"><use href="#i-chev"/></svg></span>
@@ -946,12 +975,12 @@ html,body{margin:0;background:#fff}
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Notifications</h4><span class="hd-r link">Tout lire</span></div><div class="pv">
         <p class="day">Aujourd'hui</p>
-        <div class="nt new"><div class="ic ic-xs ic-red"><svg><use href="#i-shield"/></svg></div><div><b>Colis en douane</b><small>PKG-0318 est en cours de dédouanement à Abidjan.</small><i>08:40</i></div></div>
-        <div class="nt new"><div class="ic ic-xs"><svg><use href="#i-deal"/></svg></div><div><b>3 offres disponibles</b><small>Votre agent a reçu 3 offres pour DMD-0142.</small><i>07:55</i></div></div>
+        <div class="nt new"><div class="ic ic-xs ic-red ic3d"><img src="../../icons/bogolan/png/shield.png" alt=""></div><div><b>Colis en douane</b><small>PKG-0318 est en cours de dédouanement à Abidjan.</small><i>08:40</i></div></div>
+        <div class="nt new"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/deal.png" alt=""></div><div><b>3 offres disponibles</b><small>Votre agent a reçu 3 offres pour DMD-0142.</small><i>07:55</i></div></div>
         <p class="day">Cette semaine</p>
-        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-box"/></svg></div><div><b>Colis reçu à l'entrepôt</b><small>PKG-0318 · 2,4 kg · carton non ouvert.</small><i>14/11</i></div></div>
-        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-check"/></svg></div><div><b>Paiement confirmé</b><small>CMD-0091 · 103 880 F CFA.</small><i>13/11</i></div></div>
-        <div class="nt"><div class="ic ic-xs"><svg><use href="#i-star"/></svg></div><div><b>Nouveaux fournisseurs validés</b><small>12 fournisseurs réseau ajoutés en Turquie.</small><i>12/11</i></div></div>
+        <div class="nt"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/box.png" alt=""></div><div><b>Colis reçu à l'entrepôt</b><small>PKG-0318 · 2,4 kg · carton non ouvert.</small><i>14/11</i></div></div>
+        <div class="nt"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/check.png" alt=""></div><div><b>Paiement confirmé</b><small>CMD-0091 · 103 880 F CFA.</small><i>13/11</i></div></div>
+        <div class="nt"><div class="ic ic-xs ic3d"><img src="../../icons/bogolan/png/star.png" alt=""></div><div><b>Nouveaux fournisseurs validés</b><small>12 fournisseurs réseau ajoutés en Turquie.</small><i>12/11</i></div></div>
       </div></div>
       <figcaption><span class="num">28</span><b>Notifications</b><small>Changements d'état des commandes, colis, paiements et offres.</small></figcaption></figure>
 
@@ -1045,7 +1074,7 @@ html,body{margin:0;background:#fff}
           <div><label class="lb">Dimensions (cm)</label><div class="in">40 × 30 × 20</div></div>
           <div><label class="lb">État extérieur</label><div class="opts sm"><span class="on">Bon</span><span>Abîmé</span><span>Mouillé</span></div></div>
           <div><label class="lb">Emplacement</label><div class="in">A-12-03</div></div>
-          <div class="full"><label class="lb">Photos du carton extérieur</label><div class="up"><span class="th"><svg><use href="#i-box"/></svg></span><span class="th"><svg><use href="#i-box"/></svg></span><span class="add"><svg><use href="#i-camera"/></svg>Ajouter</span></div></div>
+          <div class="full"><label class="lb">Photos du carton extérieur</label><div class="up"><span class="th i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span><span class="th i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span><span class="add"><svg><use href="#i-camera"/></svg>Ajouter</span></div></div>
         </div>
         <div class="note-s red"><svg><use href="#i-alert"/></svg>MVP : le carton ne doit pas être ouvert. Les prestations QC, photo du contenu, regroupement et reconditionnement sont désactivées.</div>
         <div class="dact"><span class="btn btn-ghost sm">Signaler une anomalie</span><span class="btn sm">Enregistrer la réception</span></div>
@@ -1053,32 +1082,31 @@ html,body{margin:0;background:#fff}
       <figcaption><span class="num">33</span><b>Réception en entrepôt</b><small>Saisie par l'agent : poids, dimensions, photos extérieures, emplacement.</small></figcaption></figure>
     </div>
   </div>
-</section>
-<!-- Écrans supplémentaires utilisés uniquement par les visuels -->
+</section><!-- Écrans supplémentaires utilisés uniquement par les visuels -->
 <div class="ph" id="x-cats"><div class="hd"><h4 class="hd-l">Catégories</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
   <div class="cats">
-    <span><i class="ic ic-sm"><svg><use href="#i-mobile"/></svg></i>Téléphones</span>
-    <span><i class="ic ic-sm"><svg><use href="#i-laptop"/></svg></i>Informatique</span>
-    <span><i class="ic ic-sm ic-red"><svg><use href="#i-game"/></svg></i>Jeux vidéo</span>
-    <span><i class="ic ic-sm"><svg><use href="#i-wifi"/></svg></i>Réseau</span>
-    <span><i class="ic ic-sm"><svg><use href="#i-cpu"/></svg></i>Composants</span>
-    <span><i class="ic ic-sm ic-red"><svg><use href="#i-camera"/></svg></i>Image et son</span>
-    <span><i class="ic ic-sm"><svg><use href="#i-store"/></svg></i>Bureau</span>
-    <span><i class="ic ic-sm"><svg><use href="#i-grid"/></svg></i>Autres</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></i>Téléphones</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></i>Informatique</span>
+    <span><i class="ic ic-sm ic-red i3d"><img src="../../icons/bogolan/png/game.png" alt=""></i>Jeux vidéo</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></i>Réseau</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/cpu.png" alt=""></i>Composants</span>
+    <span><i class="ic ic-sm ic-red i3d"><img src="../../icons/bogolan/png/camera.png" alt=""></i>Image et son</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/store.png" alt=""></i>Bureau</span>
+    <span><i class="ic ic-sm i3d"><img src="../../icons/bogolan/png/grid.png" alt=""></i>Autres</span>
   </div>
   <div class="promo"><small>PROMOTION · EXEMPLE</small><b>Frais de service réduits sur le réseau</b><span>Jusqu'au 30/11/2026</span></div>
   <div class="sec"><b>Les plus demandés</b><span>Voir tout</span></div>
   <div class="prods">
-    <div class="prod"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><b>Portable 15" 16 Go</b><small>Chine · 12–18 j</small><em>dès 238 000 F</em></div>
-    <div class="prod"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><b>Téléphone 128 Go</b><small>Dubaï · 7–10 j</small><em>dès 175 000 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></div><b>Portable 15" 16 Go</b><small>Chine · 12–18 j</small><em>dès 238 000 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><b>Téléphone 128 Go</b><small>Dubaï · 7–10 j</small><em>dès 175 000 F</em></div>
   </div>
   <div class="sec"><b>Actualités</b></div>
-  <div class="row"><div class="ic ic-xs"><svg><use href="#i-store"/></svg></div><div><b>12 fournisseurs réseau ajoutés</b><small>Turquie · cette semaine</small></div></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/store.png" alt=""></div><div><b>12 fournisseurs réseau ajoutés</b><small>Turquie · cette semaine</small></div></div>
 </div><nav class="tb" data-a="home"></nav></div>
 
 <div class="ph" id="x-devis"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis DMD-2026-0139</h4></div><div class="pv">
   <span class="badge b-blue"><svg><use href="#i-clock"/></svg>Valable jusqu'au 19/11/2026</span>
-  <div class="ohead"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><div><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Shenzhen Netlink</small></div></div>
+  <div class="ohead"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><div><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Shenzhen Netlink</small></div></div>
   <div class="recap">
     <p><span>Prix produit (2 × 38 500 F)</span><b>77 000 F</b></p>
     <p><span>Transport fournisseur → entrepôt</span><b>3 500 F</b></p>
@@ -1108,16 +1136,16 @@ html,body{margin:0;background:#fff}
 
 <div class="ph" id="x-factures"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Factures et reçus</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv">
   <div class="seg"><span class="on">Factures (4)</span><span>Reçus (9)</span></div>
-  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0091</b><small>CMD-0091 · 17/11 · 103 880 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
-  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0087</b><small>CMD-0087 · 06/11 · 1 187 500 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
-  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0074</b><small>CMD-0074 · 28/10 · 342 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
-  <div class="row"><div class="ic ic-xs"><svg><use href="#i-file"/></svg></div><div><b>FAC-2026-0069</b><small>CMD-0069 · 21/10 · 185 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0091</b><small>CMD-0091 · 17/11 · 103 880 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0087</b><small>CMD-0087 · 06/11 · 1 187 500 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0074</b><small>CMD-0074 · 28/10 · 342 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0069</b><small>CMD-0069 · 21/10 · 185 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
   <div class="pdf"><div class="pdf-h"><b>SS DROPSHIP</b><small>FAC-2026-0091</small></div><i></i><i></i><i class="s"></i><div class="pdf-t"><span>Total</span><b>103 880 F CFA</b></div></div>
   <span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Tout télécharger (PDF)</span>
 </div></div>
 
 <div class="ph" id="x-avis"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0069</h4></div><div class="pv">
-  <div class="ohead"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><div><b>Téléphone 128 Go ×1</b><small>Livré le 21/10/2026</small></div></div>
+  <div class="ohead"><div class="pimg i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Téléphone 128 Go ×1</b><small>Livré le 21/10/2026</small></div></div>
   <div class="sec"><b>Donner mon avis</b></div>
   <div class="stars"><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
   <div class="in in-area">Conforme à la description, livraison dans les délais.</div>
@@ -1130,15 +1158,15 @@ html,body{margin:0;background:#fff}
 
 <div class="ph" id="x-attendus"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
   <div class="seg three"><span class="on">Attendus (2)</span><span>Reçus (3)</span><span>Expédiés</span></div>
-  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs"><svg><use href="#i-clock"/></svg></div><div><b>CMD-2026-0091</b><small>Routeur Wi-Fi 6 ×2 · Manette ×1</small></div><span class="badge b-blue">En route</span></div><div class="mini"><span class="on"></span><span class="on"></span><span></span><span></span></div><small>Shenzhen → Guangzhou · suivi YT2026111700512 · arrivée prévue 20/11</small></div>
-  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs"><svg><use href="#i-clock"/></svg></div><div><b>CMD-2026-0088</b><small>Écran 24" ×2</small></div><span class="badge b-grey">Expédié fournisseur</span></div><div class="mini"><span class="on"></span><span></span><span></span><span></span></div><small>Istanbul → Istanbul (entrepôt) · arrivée prévue 22/11</small></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0091</b><small>Routeur Wi-Fi 6 ×2 · Manette ×1</small></div><span class="badge b-blue">En route</span></div><div class="mini"><span class="on"></span><span class="on"></span><span></span><span></span></div><small>Shenzhen → Guangzhou · suivi YT2026111700512 · arrivée prévue 20/11</small></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0088</b><small>Écran 24" ×2</small></div><span class="badge b-grey">Expédié fournisseur</span></div><div class="mini"><span class="on"></span><span></span><span></span><span></span></div><small>Istanbul → Istanbul (entrepôt) · arrivée prévue 22/11</small></div>
   <span class="btn btn-ghost"><svg><use href="#i-plus"/></svg>Annoncer un colis</span>
   <div class="note-s"><svg><use href="#i-info"/></svg>Achat fait vous-même ? Indiquez votre code client SSD-48213 sur l'adresse de livraison du fournisseur.</div>
 </div><nav class="tb" data-a="box"></nav></div>
 
 <div class="ph" id="x-photos"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Photos du colis</h4></div><div class="pv">
-  <div class="photo tall"><svg><use href="#i-box"/></svg><span>Face avant · étiquette fournisseur</span></div>
-  <div class="up"><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span><span class="th brown"><svg><use href="#i-box"/></svg></span></div>
+  <div class="photo tall i3d"><img src="../../icons/bogolan/png/box.png" alt=""><span>Face avant · étiquette fournisseur</span></div>
+  <div class="up"><span class="th brown i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../../icons/bogolan/png/box.png" alt=""></span></div>
   <p class="muted">PKG-24-11-0318 · prises le 14/11 à 10:12 par l'agent GZ-04</p>
   <span class="badge b-green"><svg><use href="#i-check"/></svg>État extérieur : bon</span>
   <div class="note-s red"><svg><use href="#i-info"/></svg>Le carton n'est pas ouvert : seules les faces extérieures sont photographiées.</div>
@@ -1146,7 +1174,7 @@ html,body{margin:0;background:#fff}
 </div></div>
 
 <div class="ph" id="x-poids"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Poids et volume</h4></div><div class="pv">
-  <div class="cube"><div class="cube3"><svg><use href="#i-box"/></svg></div><span class="cl l">35 cm</span><span class="cl w">25 cm</span><span class="cl h">20 cm</span></div>
+  <div class="cube"><div class="cube3 i3d"><img src="../../icons/bogolan/png/box.png" alt=""></div><span class="cl l">35 cm</span><span class="cl w">25 cm</span><span class="cl h">20 cm</span></div>
   <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>5,1 kg</b>Réel</span><span><svg><use href="#i-ruler"/></svg><b>35×25×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,018 m³</b>Volume</span><span><svg><use href="#i-plane"/></svg><b>3,5 kg</b>Volumétrique</span></div>
   <div class="recap">
     <p><span>Poids réel</span><b>5,1 kg</b></p>
@@ -1171,11 +1199,11 @@ html,body{margin:0;background:#fff}
 </div></div>
 
 <div class="ph" id="x-douane"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Douane · PKG-0318</h4></div><div class="pv">
-  <div class="stat red"><div class="ic ic-red"><svg><use href="#i-shield"/></svg></div><div><b>Dédouanement en cours</b><small>Aéroport d'Abidjan · depuis le 17/11 à 08:40</small></div></div>
+  <div class="stat red"><div class="ic ic-red i3d"><img src="../../icons/bogolan/png/shield.png" alt=""></div><div><b>Dédouanement en cours</b><small>Aéroport d'Abidjan · depuis le 17/11 à 08:40</small></div></div>
   <div class="sec"><b>Documents</b></div>
-  <div class="svc on"><svg><use href="#i-check"/></svg><span>Facture commerciale</span><b>Fournie</b></div>
-  <div class="svc on"><svg><use href="#i-check"/></svg><span>Liste de colisage</span><b>Fournie</b></div>
-  <div class="svc on"><svg><use href="#i-check"/></svg><span>Lettre de transport aérien</span><b>Fournie</b></div>
+  <div class="svc on i3d"><img src="../../icons/bogolan/png/check.png" alt=""><span>Facture commerciale</span><b>Fournie</b></div>
+  <div class="svc on i3d"><img src="../../icons/bogolan/png/check.png" alt=""><span>Liste de colisage</span><b>Fournie</b></div>
+  <div class="svc on i3d"><img src="../../icons/bogolan/png/check.png" alt=""><span>Lettre de transport aérien</span><b>Fournie</b></div>
   <div class="sec"><b>Droits et taxes</b></div>
   <div class="recap sm"><p><span>Montant</span><i>communiqué par le transitaire</i></p><p><span>Payé par</span><b>Selon l'incoterm du devis</b></p></div>
   <div class="note-s"><svg><use href="#i-clock"/></svg>Délai habituel : 24 à 48 h. Vous serez notifié dès la mainlevée.</div>
@@ -1183,10 +1211,10 @@ html,body{margin:0;background:#fff}
 </div></div>
 
 <div class="ph" id="x-arrive"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Arrivé à Abidjan</h4></div><div class="pv">
-  <div class="stat"><div class="ic"><svg><use href="#i-pin"/></svg></div><div><b>Votre colis est arrivé</b><small>Dédouané le 18/11 · agence SS DROPSHIP Abidjan</small></div></div>
+  <div class="stat"><div class="ic i3d"><img src="../../icons/bogolan/png/pin.png" alt=""></div><div><b>Votre colis est arrivé</b><small>Dédouané le 18/11 · agence SS DROPSHIP Abidjan</small></div></div>
   <label class="lb">Comment le recevoir ?</label>
-  <div class="pay on"><div class="ic ic-xs"><svg><use href="#i-truck"/></svg></div><div><b>Livraison à domicile</b><small>Cocody, Riviera 3 · 2 300 F</small></div><span class="radio on"></span></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-store"/></svg></div><div><b>Retrait en agence</b><small>Plateau · sans frais · pièce d'identité</small></div><span class="radio"></span></div>
+  <div class="pay on"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/truck.png" alt=""></div><div><b>Livraison à domicile</b><small>Cocody, Riviera 3 · 2 300 F</small></div><span class="radio on"></span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/store.png" alt=""></div><div><b>Retrait en agence</b><small>Plateau · sans frais · pièce d'identité</small></div><span class="radio"></span></div>
   <label class="lb">Créneau de livraison</label>
   <div class="chips"><span class="chip on">Jeu 19/11 · 9h–12h</span><span class="chip">Jeu 19/11 · 14h–17h</span><span class="chip">Ven 20/11 · 9h–12h</span></div>
   <label class="lb">Téléphone du destinataire</label><div class="in">+225 07 08 42 18 63</div>
@@ -1215,8 +1243,8 @@ html,body{margin:0;background:#fff}
   <div class="tags"><span>Routeurs</span><span>Switchs</span><span>Câbles</span><span>Wi-Fi 6</span></div>
   <div class="sec"><b>Produits</b><span>Tout voir</span></div>
   <div class="prods">
-    <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur AX3000</b><em>38 500 F</em></div>
-    <div class="prod"><div class="pimg"><svg><use href="#i-cpu"/></svg></div><b>Switch 8 ports</b><em>14 000 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><b>Routeur AX3000</b><em>38 500 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../../icons/bogolan/png/cpu.png" alt=""></div><b>Switch 8 ports</b><em>14 000 F</em></div>
   </div>
   <div class="set"><span>Livre vers</span><b>Côte d'Ivoire, Ghana, Guinée</b></div>
   <div class="set"><span>Langues</span><b>Anglais, chinois</b></div>
@@ -1230,8 +1258,8 @@ html,body{margin:0;background:#fff}
   </div>
   <label class="lb">Origine</label>
   <div class="chips"><span class="chip on">Toutes (200)</span><span class="chip">Chine 124</span><span class="chip">Turquie 38</span><span class="chip">Dubaï 21</span><span class="chip">Europe 17</span></div>
-  <div class="res"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div class="rt"><b>Portable 15,6" i5 16 Go / 512 Go</b><small>Shenzhen Office Tech · Chine</small><span class="price">238 000 F</span><small>Délai 12–18 j</small></div></div>
-  <div class="res"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><div class="rt"><b>Portable 14" Ryzen 7 16 Go</b><small>Istanbul Bilişim · Turquie</small><span class="price">265 000 F</span><small>Délai 8–12 j</small></div></div>
+  <div class="res"><div class="pimg i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></div><div class="rt"><b>Portable 15,6" i5 16 Go / 512 Go</b><small>Shenzhen Office Tech · Chine</small><span class="price">238 000 F</span><small>Délai 12–18 j</small></div></div>
+  <div class="res"><div class="pimg i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></div><div class="rt"><b>Portable 14" Ryzen 7 16 Go</b><small>Istanbul Bilişim · Turquie</small><span class="price">265 000 F</span><small>Délai 8–12 j</small></div></div>
 </div><nav class="tb" data-a="home"></nav></div>
 
 <div class="ph" id="x-nego"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Koffi A. · agent d'achat</b><small><i class="on-dot"></i>DMD-2026-0142</small></div></div><div class="pv pv-chat">
@@ -1246,23 +1274,22 @@ html,body{margin:0;background:#fff}
 <div class="ph" id="x-favoris"><div class="hd"><h4 class="hd-l">Favoris</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
   <div class="seg"><span class="on">Produits (4)</span><span>Fournisseurs (2)</span></div>
   <div class="prods">
-    <div class="prod fav"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Kit Mesh Wi-Fi 6</b><small>Turquie</small><em>96 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
-    <div class="prod fav"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Console portable</b><small>Dubaï</small><em>182 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
-    <div class="prod fav"><div class="pimg"><svg><use href="#i-laptop"/></svg></div><b>Portable 14" 16 Go</b><small>Turquie</small><em>265 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
-    <div class="prod fav"><div class="pimg"><svg><use href="#i-camera"/></svg></div><b>Caméra IP Wi-Fi</b><small>Chine</small><em>17 500 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg i3d"><img src="../../icons/bogolan/png/wifi.png" alt=""></div><b>Kit Mesh Wi-Fi 6</b><small>Turquie</small><em>96 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg red i3d"><img src="../../icons/bogolan/png/game.png" alt=""></div><b>Console portable</b><small>Dubaï</small><em>182 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg i3d"><img src="../../icons/bogolan/png/laptop.png" alt=""></div><b>Portable 14" 16 Go</b><small>Turquie</small><em>265 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg i3d"><img src="../../icons/bogolan/png/camera.png" alt=""></div><b>Caméra IP Wi-Fi</b><small>Chine</small><em>17 500 F</em><i><svg><use href="#i-heart"/></svg></i></div>
   </div>
   <span class="btn btn-ghost"><svg><use href="#i-cart"/></svg>Ajouter la sélection au panier</span>
 </div><nav class="tb" data-a="cart"></nav></div>
 
 <div class="ph" id="x-moyens"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Moyens de paiement</h4></div><div class="pv">
   <div class="in in-sel in-ico"><svg><use href="#i-pin"/></svg>Côte d'Ivoire<svg><use href="#i-down"/></svg></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="badge b-green">Actif</span></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-card"/></svg></div><div><b>Visa / Mastercard</b><small>Paiement 3-D Secure</small></div><span class="badge b-green">Actif</span></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-globe"/></svg></div><div><b>PayPal</b><small>Compte PayPal</small></div><span class="badge b-grey">Prévu</span></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-mobile"/></svg></div><div><b>Apple Pay · Google Pay</b><small>Selon l'appareil</small></div><span class="badge b-grey">Prévu</span></div>
-  <div class="pay"><div class="ic ic-xs"><svg><use href="#i-doc"/></svg></div><div><b>Virement bancaire</b><small>Commandes importantes</small></div><span class="badge b-blue">Sur demande</span></div>
-  <div class="pay"><div class="ic ic-xs ic-red"><svg><use href="#i-globe"/></svg></div><div><b>Alipay · WeChat Pay</b><small>Paiement fournisseur en Chine</small></div><span class="badge b-grey">Prévu</span></div>
-  <div class="note-s"><svg><use href="#i-info"/></svg>La liste dépend du pays et des prestataires réellement intégrés. Aucune donnée de carte n'est conservée.</div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/card.png" alt=""></div><div><b>Carte bancaire via Stripe</b><small>Visa, Mastercard · 3-D Secure</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/phone.png" alt=""></div><div><b>Google Pay</b><small>Android</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../../icons/bogolan/png/mobile.png" alt=""></div><div><b>Apple Pay</b><small>iPhone</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays. Le solde n'est crédité qu'après confirmation du prestataire.</div>
+  <p class="muted">Autres moyens (PayPal, virement, Alipay, WeChat Pay) : selon une décision ultérieure.</p>
 </div></div>
 
 <div class="desk" id="x-audit"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
@@ -1332,8 +1359,8 @@ var V=[
 {n:36,t:"Négociation <b>fournisseur</b>",p:"Votre agent négocie pour vous et vous présente chaque contre-offre.",s:"x-nego",g:"sourcing",k:2,c:[["deal",1,"Contre-offres","Négociées par votre agent."],["chat",0,"Échange en direct","Dans la messagerie."],["clock",0,"Offres datées","Valables 7 jours."],["check",0,"Vous décidez","Accepter ou discuter."]]},
 {n:37,t:"Mes <b>favoris</b>",p:"Gardez les produits et fournisseurs qui vous intéressent pour plus tard.",s:"x-favoris",g:"sourcing",k:3,c:[["heart",1,"Produits favoris","Retrouvés en un geste."],["store",0,"Fournisseurs favoris","Vos sources de confiance."],["cart",0,"Vers le panier","Ajout groupé."],["bell",0,"Alertes","Disponibilité et nouveautés."]]},
 {n:38,t:"Mon <b>panier</b>",p:"Le panier reste distinct de vos favoris, avec un récapitulatif complet des frais.",s:14,g:"sourcing",k:3,c:[["cart",0,"Panier séparé","Distinct de la liste de souhaits."],["plus",0,"Quantités","Modifiables à tout moment."],["file",1,"Frais visibles","Service et livraison annoncés."],["wallet",0,"Paiement rapide","En un écran."]]},
-{n:39,t:"Recharge <b>du wallet</b>",p:"Rechargez en F CFA avec les moyens disponibles dans votre pays.",s:24,g:"wallet",k:0,c:[["plus",0,"Montants rapides","10 000 à 100 000 F."],["mobile",0,"Mobile Money","Orange, MTN, Moov, Wave."],["card",0,"Carte bancaire","Visa et Mastercard."],["shield",1,"Crédit confirmé","Après validation du prestataire."]]},
-{n:40,t:"Moyens <b>de paiement</b>",p:"Les moyens proposés s'adaptent à votre pays et aux intégrations actives.",s:"x-moyens",g:"wallet",k:1,c:[["pin",0,"Selon le pays","Liste filtrée automatiquement."],["mobile",0,"Mobile Money et cartes","Les plus utilisés."],["globe",1,"International","PayPal, Alipay, WeChat Pay prévus."],["lock",0,"Sans stockage de carte","Données sensibles protégées."]]},
+{n:39,t:"Recharge <b>du wallet</b>",p:"Rechargez en F CFA avec les moyens disponibles dans votre pays.",s:24,g:"wallet",k:0,c:[["plus",0,"Montants rapides","10 000 à 100 000 F."],["mobile",0,"Mobile Money","Orange, MTN, Moov, Wave."],["card",0,"Carte, Google Pay, Apple Pay","Paiement par carte via Stripe."],["shield",1,"Crédit confirmé","Après validation du prestataire."]]},
+{n:40,t:"Moyens <b>de paiement</b>",p:"Mobile Money, carte via Stripe, Google Pay et Apple Pay, selon votre pays.",s:"x-moyens",g:"wallet",k:1,c:[["mobile",0,"Mobile Money","Orange, MTN, Moov, Wave."],["card",0,"Carte via Stripe","Visa et Mastercard sécurisées."],["phone",1,"Google Pay et Apple Pay","Payer en un geste."],["lock",0,"Sans stockage de carte","Données sensibles protégées."]]},
 {n:41,t:"Historique <b>des transactions</b>",p:"Chaque mouvement du wallet a une référence unique et un statut clair.",s:25,g:"wallet",k:3,c:[["doc",0,"Référence unique","Pour chaque opération."],["check",0,"Statut clair","Confirmé ou en attente."],["clock",1,"En attente = non crédité","Aucun solde fictif."],["download",0,"Export","Relevé téléchargeable."]]},
 {n:42,t:"Programme <b>de parrainage</b>",p:"Partagez votre code et suivez vos filleuls depuis votre compte.",s:27,g:"services",k:0,c:[["gift",1,"Code personnel","À copier ou partager."],["users",0,"Vos filleuls","Inscriptions et activité."],["star",0,"Récompenses","Selon la règle validée."],["share",0,"Partage facile","WhatsApp, SMS, réseaux."]]},
 {n:43,t:"<b>Notifications</b>",p:"Offres, paiements, colis, douane : vous êtes prévenu au bon moment.",s:28,g:"services",k:1,c:[["bell",0,"En temps réel","À chaque changement d'état."],["deal",0,"Offres reçues","Dès que l'agent répond."],["box",1,"Colis et douane","Chaque étape logistique."],["gear",0,"Personnalisables","Choisissez vos alertes."]]},
@@ -1348,7 +1375,7 @@ var V=[
 </script>
 <script>
 var T=[["home","Accueil"],["cart","Achats"],["box","Entrepôt"],["wallet","Wallet"],["user","Compte"]];
-function fillTabs(root){root.querySelectorAll('nav.tb').forEach(function(n){n.innerHTML=T.map(function(t){return '<span class="'+(t[0]===n.dataset.a?'on':'')+'"><svg><use href="#i-'+t[0]+'"/></svg>'+t[1]+'</span>';}).join('');});}
+function fillTabs(root){root.querySelectorAll('nav.tb').forEach(function(n){n.innerHTML=T.map(function(t){return '<span class="'+(t[0]===n.dataset.a?'on':'')+'"><img src="../../icons/bogolan/png/'+t[0]+'.png" alt="">'+t[1]+'</span>';}).join('');});}
 function scr(ref){var el;if(typeof ref==='number'){var f=document.querySelectorAll('#lib .scr')[ref-1];el=f.querySelector('.ph,.desk');}else{el=document.getElementById(ref);}var c=el.cloneNode(true);c.removeAttribute('id');return c;}
 function ico(id){return '<svg><use href="#i-'+id+'"/></svg>';}
 function render(n){
@@ -1358,7 +1385,7 @@ function render(n){
    '<div class="vh"><div class="lg">SS <em>DROPSHIP</em></div><div class="stp">ÉTAPE '+(n<10?'0':'')+n+' / 50</div></div>'+
    '<div class="vt"><div class="eb">'+g[0]+'</div><h1>'+d.t+'</h1><p>'+d.p+'</p></div>'+
    '<div class="stage-wrap"><div class="stage" id="stage"></div></div>'+(isDesk||d.s==='eco'?'':'<div class="shadow"></div>')+
-   '<div class="cards">'+d.c.map(function(c,i){return '<div class="cd c'+(i+1)+'"><div class="ti'+(c[1]?' r':'')+'">'+ico(c[0])+'</div><div><b>'+c[2]+'</b><br><span>'+c[3]+'</span></div></div>';}).join('')+'</div>'+
+   '<div class="cards">'+d.c.map(function(c,i){return '<div class="cd c'+(i+1)+'"><div class="ti b3d"><img src="../../icons/bogolan/png/'+c[0]+'.png" alt=""></div><div><b>'+c[2]+'</b><br><span>'+c[3]+'</span></div></div>';}).join('')+'</div>'+
    '<div class="band">'+g.slice(1).map(function(s,i){var cl=d.k<0?'dn':(i<d.k?'dn':(i===d.k?'on':''));return (i?'<span class="ar">›</span>':'')+'<div class="st '+cl+'"><i>'+(i+1)+'</i>'+s+'</div>';}).join('')+'</div>'+
    '<div class="vf">ssdropship.com · maquette de présentation</div></div>';
   out.innerHTML=h;
@@ -1369,7 +1396,7 @@ function render(n){
     w.querySelector('.laptop').appendChild(scr(31));w.querySelector('.p1').appendChild(scr(18));w.querySelector('.p2').appendChild(scr(6));w.querySelector('.p3').appendChild(scr(23));
     out.querySelector('.v').appendChild(w);
     var row=document.createElement('div');row.className='eco-row';
-    row.innerHTML=[["store","Fournisseurs"],["warehouse","Entrepôts"],["truck","Transitaires"],["wallet","Paiements"]].map(function(p){return '<span class="eco-lbl">'+ico(p[0])+p[1]+'</span>';}).join('');
+    row.innerHTML=[["store","Fournisseurs"],["warehouse","Entrepôts"],["truck","Transitaires"],["wallet","Paiements"]].map(function(p){return '<span class="eco-lbl"><img src="../../icons/bogolan/png/'+p[0]+'.png" alt="">'+p[1]+'</span>';}).join('');
     out.querySelector('.v').appendChild(row);
   } else if(isDesk){
     var lap=document.createElement('div');lap.innerHTML='<div class="laptop"></div><div class="lbase"></div>';lap.querySelector('.laptop').appendChild(scr(d.s));st.appendChild(lap);
