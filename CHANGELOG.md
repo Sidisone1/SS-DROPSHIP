@@ -33,3 +33,9 @@
 - Icône « Wi-Fi » régénérée : la première version montrait une personne qui se connecte, d'où une erreur sur les fiches
   « Routeur Wi-Fi ». Libellé passé de « Connexion » à « Wi-Fi ». Script `scripts/recadrer_icone_seule.py` ajouté.
 - Les apps (`apps/`) n'ont toujours pas de code : rien à brancher pour l'instant.
+
+## 2026-11-17 — Moyens de recharge
+- Écran 24 « Recharger » (`design/prototypes/ecrans-bogolan.html`) : Mobile Money, Google Pay, Apple Pay et carte bancaire
+  via Stripe, à la demande du propriétaire (décision D-019). PayPal retiré de cet écran.
+- Google Pay, Apple Pay et Stripe sont marqués « sous réserve d'intégration » : aucune intégration réelle n'existe.
+- Les logos officiels de ces marques ne sont pas utilisés (icônes Bogolan génériques) ; à intégrer depuis leurs kits officiels si besoin.
