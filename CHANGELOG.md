@@ -30,4 +30,6 @@
 - Icône « Devis » régénérée avec un badge FCFA (au lieu de « $ ») ; source `design/icons/bogolan/planches/ss-devis-fcfa.png`.
 - Ajout de `packages/ui/icones.mjs` (catalogue sans dépendance : chemin et libellé de chaque icône) et de son test
   `packages/ui/icones.test.mjs` (4 tests, `node --test packages/ui/icones.test.mjs`).
+- Icône « Wi-Fi » régénérée : la première version montrait une personne qui se connecte, d'où une erreur sur les fiches
+  « Routeur Wi-Fi ». Libellé passé de « Connexion » à « Wi-Fi ». Script `scripts/recadrer_icone_seule.py` ajouté.
 - Les apps (`apps/`) n'ont toujours pas de code : rien à brancher pour l'instant.

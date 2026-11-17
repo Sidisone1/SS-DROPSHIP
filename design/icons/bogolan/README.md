@@ -31,5 +31,7 @@ Source modifiable : fichier Figma « SS DROPSHIP — Icônes Bogolan »
 
 ## À vérifier avant usage en production
 - « Devis » refaite avec un badge FCFA (source : `planches/ss-devis-fcfa.png`).
+- « Wi-Fi » refaite (la première version montrait une personne qui se connecte) ; source `planches/ss-wifi.png`,
+  recadrée avec `scripts/recadrer_icone_seule.py`.
 - Aperçu en situation : `design/prototypes/ecrans-bogolan.html` (les 33 écrans avec ces icônes). `ecrans.html`
   garde les pictogrammes au trait. Les apps (`apps/`) ne sont pas encore modifiées (statut : **à valider**).
