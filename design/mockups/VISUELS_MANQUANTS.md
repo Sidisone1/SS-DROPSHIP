@@ -1,6 +1,9 @@
 # Visuels manquants ou non vérifiés — plan de récupération
 
-## Constat certain
+## Mise à jour du 17/11/2026
+Les 50 visuels ont été **générés à nouveau** et déposés dans `design/mockups/exports/` (voir INVENTAIRE_VISUELS.md). Ils sont à valider. Les originaux HD des étapes 01–19 restent à récupérer pour comparaison, et les titres 03–18 et 20–50 restent des propositions.
+
+## Constat certain (avant génération)
 Le dépôt GitHub SS-DROPSHIP était vide à la première inspection du 17 novembre 2026. **Aucun export HD des étapes 01–50 n'était disponible dans le dépôt**. La consultation des dossiers de bibliothèque SS DROPSHIP et SUPPLIERS MARKET n'a pas permis de retrouver un fichier exportable.
 
 ## 1. À récupérer en priorité — étapes déjà travaillées
