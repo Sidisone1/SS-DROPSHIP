@@ -39,3 +39,8 @@
   via Stripe, à la demande du propriétaire (décision D-019). PayPal retiré de cet écran.
 - Google Pay, Apple Pay et Stripe sont marqués « sous réserve d'intégration » : aucune intégration réelle n'existe.
 - Les logos officiels de ces marques ne sont pas utilisés (icônes Bogolan génériques) ; à intégrer depuis leurs kits officiels si besoin.
+
+## 2026-11-17 — Écran de bienvenue
+- Écran 01 « Bienvenue » (`design/prototypes/ecrans-bogolan.html`) : les pastilles Chine, Turquie, Dubaï, Europe sont
+  regroupées dans une carte « Nos pays d'achat », alignées sur une ligne avec un code pays (CN, TR, AE, EU) aux couleurs
+  de la charte. Pas de drapeaux, pour ne pas introduire de jaune (D-003). Demande du propriétaire.
