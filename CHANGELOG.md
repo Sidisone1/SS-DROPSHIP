@@ -19,3 +19,9 @@
 - Décision D-018 : bande bogolan brun terre autorisée sur les icônes, aucun jaune (D-003 maintenue).
 - Scripts de génération et de découpage fournis. Source modifiable dans Figma.
 - Statut : **à valider** ; le prototype HTML utilise toujours ses pictogrammes au trait. Aucun code modifié.
+
+## 2026-11-17 — Écrans avec icônes Bogolan
+- Ajout de `design/prototypes/ecrans-bogolan.html` : les 33 écrans avec les icônes 3D Bogolan (pastilles,
+  barre d'onglets, bouton de discussion, vignettes produits, cartes de services) et une galerie des 64 icônes.
+- Les icônes sont lues dans `design/icons/bogolan/png/`. `ecrans.html` (version au trait) est conservé tel quel.
+- Version publiée aussi en page Artifact privée pour la visualisation. Statut : **à valider**. Aucun code d'app modifié.

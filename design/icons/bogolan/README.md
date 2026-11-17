@@ -30,5 +30,5 @@ Source modifiable : fichier Figma « SS DROPSHIP — Icônes Bogolan »
 
 ## À vérifier avant usage en production
 - « Devis » montre un symbole « $ » : à remplacer par FCFA ou une devise neutre si besoin.
-- Les pictogrammes au trait du prototype ne sont pas encore remplacés dans le code : ces PNG sont les assets 3D
-  proposés, à valider par le propriétaire (statut : **à valider**).
+- Aperçu en situation : `design/prototypes/ecrans-bogolan.html` (les 33 écrans avec ces icônes). `ecrans.html`
+  garde les pictogrammes au trait. Les apps (`apps/`) ne sont pas encore modifiées (statut : **à valider**).
