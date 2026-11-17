@@ -1,0 +1,44 @@
+# SS DROPSHIP
+
+**Plateforme internationale d'agent d'achat, sourcing, entrepôt, logistique et livraison.**
+
+> Version de consolidation : 17 novembre 2026 — reconstruction documentaire à partir des décisions validées dans nos conversations. Ce dépôt n'est pas encore une application en production.
+
+## Navigation du projet
+
+- [Cahier des charges consolidé](docs/requirements/CAHIER_DES_CHARGES.md)
+- [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md)
+- [Décisions validées et points à arbitrer](docs/decisions/REGISTRE_DECISIONS.md)
+- [Design system](design/branding/DESIGN_SYSTEM.md)
+- [Inventaire des maquettes et visuels 01–50](design/mockups/INVENTAIRE_VISUELS.md)
+- [Liste des visuels à récupérer ou créer](design/mockups/VISUELS_MANQUANTS.md)
+- [Prototype visuel de référence](design/prototypes/index.html)
+- [Plan de réalisation](docs/planning/ROADMAP.md)
+- [Directives des agents IA](AGENTS.md)
+
+## Décisions non négociables
+
+- Palette **bleu #0077C8, rouge #F21A16, blanc et bleu nuit**, sans jaune. Icônes et présentations **3D premium**.
+- Site et application synchronisés; parcours mobile-first, accessible en français et autres langues retenues.
+- **Trois modalités de commande** : directe, recherche de produit, recherche avec négociation fournisseur.
+- Inscription, connexion, mot de passe oublié, **code de parrainage visible à l'inscription et dans le compte**.
+- **Wallet**, historique et paiement par prestataires habilités avec confirmation avant crédit.
+- Entrepôt, suivi des colis, frais logistiques, expédition et traçabilité.
+- **MVP : livraison du carton d'origine sans ouverture**; les prestations avancées (photo produit, vidéo, QC, regroupement, reconditionnement) sont prévues mais **désactivées au lancement**.
+- Id unique par opération, contrôle des rôles et journal d'audit.
+
+## Traçabilité des designs
+
+Les maquettes et images réalisées dans les anciennes conversations ne sont **pas automatiquement déposées sur GitHub**. Les contenus documentaires, l'inventaire et un prototype de travail peuvent être ajoutés ici; les originaux HD doivent être récupérés ou régénérés puis intégrés dans `design/mockups/exports/`.
+
+## Statut
+
+| Élément | État |
+|---|---|
+| Documentation de cadrage | Consolidée à partir des échanges |
+| Structure de fichiers | Initialisée |
+| Design system | Documenté |
+| Série de 50 visuels | En cours d'inventaire; originaux HD à vérifier |
+| Code fonctionnel de l'application | Non livré dans cette consolidation |
+
+Site de référence du projet : [ssdropship.com](https://ssdropship.com).
