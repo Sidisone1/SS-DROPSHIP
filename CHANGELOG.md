@@ -25,3 +25,9 @@
   barre d'onglets, bouton de discussion, vignettes produits, cartes de services) et une galerie des 64 icônes.
 - Les icônes sont lues dans `design/icons/bogolan/png/`. `ecrans.html` (version au trait) est conservé tel quel.
 - Version publiée aussi en page Artifact privée pour la visualisation. Statut : **à valider**. Aucun code d'app modifié.
+
+## 2026-11-17 — Icône Devis en FCFA et catalogue d'icônes
+- Icône « Devis » régénérée avec un badge FCFA (au lieu de « $ ») ; source `design/icons/bogolan/planches/ss-devis-fcfa.png`.
+- Ajout de `packages/ui/icones.mjs` (catalogue sans dépendance : chemin et libellé de chaque icône) et de son test
+  `packages/ui/icones.test.mjs` (4 tests, `node --test packages/ui/icones.test.mjs`).
+- Les apps (`apps/`) n'ont toujours pas de code : rien à brancher pour l'instant.

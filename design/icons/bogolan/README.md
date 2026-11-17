@@ -9,6 +9,7 @@ par Tchi TELIMAN), adaptées à la charte SS DROPSHIP (décision D-018).
 | `png/` | 64 icônes découpées, PNG 256 × 256, coins arrondis, fond transparent |
 | `scripts/icones_ss.json` | Liste des icônes : nom de fichier et libellé français |
 | `scripts/prompt_ss.py` | Consigne de génération d'une planche (`python3 prompt_ss.py 1`) |
+| `../../../packages/ui/icones.mjs` | Catalogue pour le code (chemin et libellé de chaque icône), testé |
 | `scripts/decouper_ss.py` | Découpage d'une planche en icônes (`python3 decouper_ss.py ../planches/ss-01.png 1 ../png`) |
 
 Source modifiable : fichier Figma « SS DROPSHIP — Icônes Bogolan »
@@ -29,6 +30,6 @@ Source modifiable : fichier Figma « SS DROPSHIP — Icônes Bogolan »
 - **8 icônes de parcours du design system** : recharge, devis, suivi, transitaire, douane, bientot, support, langue.
 
 ## À vérifier avant usage en production
-- « Devis » montre un symbole « $ » : à remplacer par FCFA ou une devise neutre si besoin.
+- « Devis » refaite avec un badge FCFA (source : `planches/ss-devis-fcfa.png`).
 - Aperçu en situation : `design/prototypes/ecrans-bogolan.html` (les 33 écrans avec ces icônes). `ecrans.html`
   garde les pictogrammes au trait. Les apps (`apps/`) ne sont pas encore modifiées (statut : **à valider**).
