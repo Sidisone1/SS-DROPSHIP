@@ -22,6 +22,7 @@ Dernière consolidation : 17/11/2026.
 | D-015 | Multilingue FR, EN, TR, ES, ZH | Internationalisation |
 | D-016 | Série visuelle 1–50, individuellement en haute définition | Livrables design |
 | D-017 | Ne pas générer les visuels en lot; procéder un par un | Production visuelle |
+| D-018 | Icônes 3D dans le style « Collection Bogolan » : objets en bleu, rouge, blanc, bleu nuit, avec une bande bogolan brun terre (#6B3E26); toujours aucun jaune (choix du propriétaire, 17/11/2026) | `design/icons/bogolan/`; le brun est réservé au motif bogolan et aux cartons, jamais en couleur de marque |
 
 ## À confirmer
 - M-001 : modèle économique final (abonnement, commissions, publicité, combinaison).
