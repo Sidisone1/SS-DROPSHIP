@@ -55,3 +55,6 @@
 - Les 50 visuels de `design/mockups/exports/` sont régénérés avec les écrans de `ecrans-bogolan.html` et les icônes 3D Bogolan (D-018) dans les cartes d'avantages, la barre d'onglets et les écrans ; mêmes noms de fichiers.
 - Visuels 39 et 40 alignés sur D-019 (Mobile Money, carte via Stripe, Google Pay, Apple Pay).
 - Modèle `design/mockups/source/visuels-template.html` mis à jour (chemins vers `design/icons/bogolan/png/`). Toujours « à valider ».
+
+## 2026-11-17 — Bogolan comme version de référence
+- README et design system : les écrans `ecrans-bogolan.html`, les icônes 3D Bogolan et les visuels Bogolan deviennent la référence ; `ecrans.html` et `index.html` sont gardés comme archives.

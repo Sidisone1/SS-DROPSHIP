@@ -12,14 +12,17 @@
 - [Design system](design/branding/DESIGN_SYSTEM.md)
 - [Inventaire des maquettes et visuels 01–50](design/mockups/INVENTAIRE_VISUELS.md)
 - [Liste des visuels à récupérer ou créer](design/mockups/VISUELS_MANQUANTS.md)
-- [Prototype visuel de référence](design/prototypes/index.html)
-- [Maquettes des 33 écrans (application + Admin)](design/prototypes/ecrans.html)
+- **[Maquettes des 33 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)**
+- [Icônes 3D Bogolan (64 icônes)](design/icons/bogolan/README.md)
+- [Visuels de présentation 01–50 (Bogolan)](design/mockups/exports/)
+- [Maquettes des 33 écrans, version au trait (archive)](design/prototypes/ecrans.html)
+- [Premier prototype (archive)](design/prototypes/index.html)
 - [Plan de réalisation](docs/planning/ROADMAP.md)
 - [Directives des agents IA](AGENTS.md)
 
 ## Décisions non négociables
 
-- Palette **bleu #0077C8, rouge #F21A16, blanc et bleu nuit**, sans jaune. Icônes et présentations **3D premium**.
+- Palette **bleu #0077C8, rouge #F21A16, blanc et bleu nuit**, sans jaune. Icônes et présentations **3D premium dans le style Bogolan** (bande bogolan brun terre, D-018) : c'est la version de référence de tous les écrans et visuels.
 - Site et application synchronisés; parcours mobile-first, accessible en français et autres langues retenues.
 - **Trois modalités de commande** : directe, recherche de produit, recherche avec négociation fournisseur.
 - Inscription, connexion, mot de passe oublié, **code de parrainage visible à l'inscription et dans le compte**.

@@ -33,5 +33,5 @@ En-tête SS DROPSHIP, barre de recherche par nom/lien/photo, catégories d'achat
 
 ## Ressources graphiques
 - Original du logo SS DROPSHIP : **à fournir ou à retrouver**.
-- Icônes 3D HD : **sources originales à récupérer**. Ne pas confondre pictogrammes HTML du prototype avec des assets 3D définitifs.
+- Icônes 3D : **style Bogolan, version de référence** (D-018) : 64 icônes dans `design/icons/bogolan/png/`, catalogue `packages/ui/icones.mjs`. Les pictogrammes au trait de `ecrans.html` sont une archive, à ne plus utiliser pour les nouveaux écrans et visuels.
 - Référence de présentation : étapes 1–50 de la série SS DROPSHIP.
