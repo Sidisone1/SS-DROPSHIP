@@ -63,3 +63,12 @@
 - `design/prototypes/ecrans-bogolan.html` passe de 33 à 46 écrans : ajout des écrans 34 à 46, les pages des étapes 20 à 50 qui n'existaient que dans les visuels (colis attendus, photos du colis, poids et volume, historique de l'entrepôt, douane, arrivée dans le pays, confirmation de livraison, fiche fournisseur, recherche internationale, négociation, favoris, moyens de paiement, analytics et traçabilité).
 - Tableau de correspondance étape 20–50 → écran, et ancres `#e-1` à `#e-46` sur chaque écran.
 - Statut : à valider (données d'exemple).
+
+## 2026-11-18 — Frise bogolan sur les pages 28 à 50
+- Écrans des étapes 28 à 50 (`ecrans-bogolan.html`, 22 écrans marqués `bgl`) : frise bogolan (zigzag, point, deux traits, blanc sur brun terre #6B3E26, D-018) sous les en-têtes, au-dessus de la barre d'onglets et de la zone de saisie, au bas des cartes foncées, sur le menu et le titre des écrans Admin ; filet brun sur les encadrés d'état.
+- Visuels 28 à 50 régénérés avec ces écrans, une frise sous le titre et en haut du bandeau de processus ; mêmes noms de fichiers.
+- Modèle `design/mockups/source/visuels-template.html` : la classe `bgl` s'applique aux visuels 28 à 50. Statut : à valider.
+
+## 2026-11-18 — Frise bogolan sur toutes les pages et tous les visuels
+- La frise bogolan s'applique désormais aux 46 écrans et aux 50 visuels (et non plus seulement aux étapes 28 à 50) ; espacement sous les en-têtes resserré.
+- Nouveau dossier `design/mockups/ecrans/` : les 46 écrans exportés en PNG, avec un index.
