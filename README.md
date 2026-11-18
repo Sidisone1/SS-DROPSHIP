@@ -15,6 +15,7 @@
 - **[Maquettes des 46 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)**
 - [Icônes 3D Bogolan (64 icônes)](design/icons/bogolan/README.md)
 - [Visuels de présentation 01–50 (Bogolan)](design/mockups/exports/)
+- [Les 46 écrans en images (Bogolan)](design/mockups/ecrans/)
 - [Maquettes des 33 écrans, version au trait (archive)](design/prototypes/ecrans.html)
 - [Premier prototype (archive)](design/prototypes/index.html)
 - [Plan de réalisation](docs/planning/ROADMAP.md)

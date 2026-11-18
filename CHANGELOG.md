@@ -68,3 +68,7 @@
 - Écrans des étapes 28 à 50 (`ecrans-bogolan.html`, 22 écrans marqués `bgl`) : frise bogolan (zigzag, point, deux traits, blanc sur brun terre #6B3E26, D-018) sous les en-têtes, au-dessus de la barre d'onglets et de la zone de saisie, au bas des cartes foncées, sur le menu et le titre des écrans Admin ; filet brun sur les encadrés d'état.
 - Visuels 28 à 50 régénérés avec ces écrans, une frise sous le titre et en haut du bandeau de processus ; mêmes noms de fichiers.
 - Modèle `design/mockups/source/visuels-template.html` : la classe `bgl` s'applique aux visuels 28 à 50. Statut : à valider.
+
+## 2026-11-18 — Frise bogolan sur toutes les pages et tous les visuels
+- La frise bogolan s'applique désormais aux 46 écrans et aux 50 visuels (et non plus seulement aux étapes 28 à 50) ; espacement sous les en-têtes resserré.
+- Nouveau dossier `design/mockups/ecrans/` : les 46 écrans exportés en PNG, avec un index.

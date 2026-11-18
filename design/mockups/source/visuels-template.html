@@ -511,9 +511,9 @@ html,body{margin:0;background:#fff}
 .photo.tall.i3d>img{width:110px;height:110px}
 .okbig{flex:none}
 
-/* Frise bogolan (zigzag · point · deux traits), blanc sur brun terre #6B3E26 (D-018) : étapes 28 à 50 */
+/* Frise bogolan (zigzag · point · deux traits), blanc sur brun terre #6B3E26 (D-018) : tous les visuels */
 .bgl{--frise:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='16' viewBox='0 0 48 16'%3E%3Cpath d='M2 12 L9 4 L16 12 L23 4 L30 12' fill='none' stroke='%23FFF6EC' stroke-width='2.2' stroke-linejoin='round' stroke-linecap='round'/%3E%3Ccircle cx='37' cy='8' r='1.7' fill='%23FFF6EC'/%3E%3Cpath d='M42 4v8M46 4v8' stroke='%23FFF6EC' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");--terre:#6B3E26}
-.bgl .hd{border-bottom:0;position:relative;margin-bottom:12px}
+.bgl .hd{border-bottom:0;position:relative;margin-bottom:9px}
 .bgl .hd::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:8px;background:var(--terre) var(--frise) repeat-x center/30px 10px}
 .bgl .tb{border-top:0}
 .bgl .tb::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:var(--terre) var(--frise) repeat-x center/24px 8px}
@@ -1407,7 +1407,7 @@ function ico(id){return '<svg><use href="#i-'+id+'"/></svg>';}
 function render(n){
   var d=V[n-1],g=G[d.g],out=document.getElementById('out');
   var isDesk=typeof d.s==='number'?d.s>=31:(d.s==='x-audit');
-  var h='<div class="v'+(n>=28?' bgl':'')+(isDesk?' desk-v':'')+(d.s==='eco'?' eco':'')+'"><div class="ring"></div><div class="ring r2"></div>'+
+  var h='<div class="v'+' bgl'+(isDesk?' desk-v':'')+(d.s==='eco'?' eco':'')+'"><div class="ring"></div><div class="ring r2"></div>'+
    '<div class="vh"><div class="lg">SS <em>DROPSHIP</em></div><div class="stp">ÉTAPE '+(n<10?'0':'')+n+' / 50</div></div>'+
    '<div class="vt"><div class="eb">'+g[0]+'</div><h1>'+d.t+'</h1><p>'+d.p+'</p></div>'+
    '<div class="stage-wrap"><div class="stage" id="stage"></div></div>'+(isDesk||d.s==='eco'?'':'<div class="shadow"></div>')+
