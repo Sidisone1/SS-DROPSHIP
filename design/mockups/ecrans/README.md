@@ -1,6 +1,6 @@
 # Écrans en images — version Bogolan
 
-Les 46 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (résolution ×2), avec la frise bogolan et les icônes 3D Bogolan. Statut : à valider (données d'exemple).
+Les 64 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (résolution ×2), avec la frise bogolan et les icônes 3D Bogolan. Statut : à valider (données d'exemple).
 
 - [01 Bienvenue](SS-DROPSHIP_Ecran_01_Bienvenue.png)
 - [02 Inscription code de parrainage](SS-DROPSHIP_Ecran_02_Inscription_code_de_parrainage.png)
@@ -48,3 +48,21 @@ Les 46 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (réso
 - [44 Mes favoris](SS-DROPSHIP_Ecran_44_Mes_favoris.png)
 - [45 Moyens de paiement](SS-DROPSHIP_Ecran_45_Moyens_de_paiement.png)
 - [46 Analytics et tracabilite](SS-DROPSHIP_Ecran_46_Analytics_et_tracabilite.png)
+- [47 Categories et promotions](SS-DROPSHIP_Ecran_47_Categories_et_promotions.png)
+- [48 Devis detaille](SS-DROPSHIP_Ecran_48_Devis_detaille.png)
+- [49 Paiement confirme](SS-DROPSHIP_Ecran_49_Paiement_confirme.png)
+- [50 Factures et recus](SS-DROPSHIP_Ecran_50_Factures_et_recus.png)
+- [51 Avis et litiges](SS-DROPSHIP_Ecran_51_Avis_et_litiges.png)
+- [52 Mon profil](SS-DROPSHIP_Ecran_52_Mon_profil.png)
+- [53 Mes adresses](SS-DROPSHIP_Ecran_53_Mes_adresses.png)
+- [54 Securite](SS-DROPSHIP_Ecran_54_Securite.png)
+- [55 FAQ et aide](SS-DROPSHIP_Ecran_55_FAQ_et_aide.png)
+- [56 Suivi d un litige](SS-DROPSHIP_Ecran_56_Suivi_d_un_litige.png)
+- [57 Mon transitaire personnel](SS-DROPSHIP_Ecran_57_Mon_transitaire_personnel.png)
+- [58 Retrait et remboursement](SS-DROPSHIP_Ecran_58_Retrait_et_remboursement.png)
+- [59 Fournisseurs validation](SS-DROPSHIP_Ecran_59_Fournisseurs_validation.png)
+- [60 Transitaires](SS-DROPSHIP_Ecran_60_Transitaires.png)
+- [61 Paiements et rapprochement](SS-DROPSHIP_Ecran_61_Paiements_et_rapprochement.png)
+- [62 Utilisateurs et roles](SS-DROPSHIP_Ecran_62_Utilisateurs_et_roles.png)
+- [63 Parametres](SS-DROPSHIP_Ecran_63_Parametres.png)
+- [64 Support et tickets](SS-DROPSHIP_Ecran_64_Support_et_tickets.png)

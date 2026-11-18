@@ -603,14 +603,21 @@ html{scroll-behavior:smooth}
 #ecrans .bgl .composer{border-top:0}
 #ecrans .bgl .composer::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:var(--terre) var(--frise) repeat-x center/24px 8px}
 #ecrans .bgl .okbig{box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 12px 24px rgba(22,138,78,.35),0 0 0 6px #fff,0 0 0 10px var(--terre)}
+
+#ecrans .faqi{border:1px solid var(--ln);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:6px}
+#ecrans .faqi b{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:11.5px}
+#ecrans .faqi.open{border-color:#BFDCF2;background:#F6FBFF}
+#ecrans .faqi p{margin:0;font-size:10.5px;color:var(--mu);line-height:1.45}
+#ecrans .pay .badge{margin-top:3px}
+#ecrans .dt .btn{width:auto;margin:0;padding:6px 10px;font-size:11px}
 </style>
 
 <header class="band">
   <div class="wrap">
     <div class="brand"><span>SS</span> <em>DROPSHIP</em> · Design</div>
-    <p class="lede">Les 46 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
+    <p class="lede">Les 64 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
     <nav class="toc" aria-label="Sections">
-      <a href="#ecrans">Les 46 écrans</a>
+      <a href="#ecrans">Les 64 écrans</a>
       <a href="#bogolan">Icônes Bogolan</a>
       <a href="#maquette">Maquette d'origine</a>
       <a href="#charte">Charte graphique</a>
@@ -686,7 +693,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
     <h2 class="title">Toutes les pages de l'application</h2>
-    <p class="intro">46 écrans dessinés à partir du cahier des charges : 42 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50). Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
+    <p class="intro">64 écrans dessinés à partir du cahier des charges : 54 pour l'application client, 10 pour le back-office Admin. Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
     <nav class="groups" aria-label="Parcours">
       <a href="#g-acces">Accès au compte <b>1–5</b></a>
       <a href="#g-accueil">Accueil et catalogue <b>6–8</b></a>
@@ -696,6 +703,9 @@ html{scroll-behavior:smooth}
       <a href="#g-compte">Compte et services <b>26–30</b></a>
       <a href="#g-admin">Back-office Admin <b>31–33</b></a>
       <a href="#g-etapes">Étapes 20 à 50 <b>34–46</b></a>
+      <a href="#g-etapes1">Étapes 1 à 19 <b>47–51</b></a>
+      <a href="#g-detail">Écrans de détail <b>52–58</b></a>
+      <a href="#g-admin2">Admin : autres modules <b>59–64</b></a>
     </nav>
 
     <!-- ================= ACCÈS ================= -->
@@ -1356,6 +1366,243 @@ html{scroll-behavior:smooth}
       <figcaption><span class="num">46</span><b>Analytics et traçabilité</b><small>Étape 49 des visuels. Indicateurs de performance et journal d'audit des actions sensibles.</small></figcaption></figure>
     </div>
     <div class="steps-map"><table><thead><tr><th>Étape</th><th>Titre du visuel</th><th>Écran</th></tr></thead><tbody><tr><td>20</td><td>Colis attendus</td><td><a href="#e-34">Écran 34</a></td></tr><tr><td>21</td><td>Colis réceptionnés</td><td><a href="#e-18">Écran 18</a></td></tr><tr><td>22</td><td>Détail d'un colis</td><td><a href="#e-19">Écran 19</a></td></tr><tr><td>23</td><td>Photo du colis extérieur</td><td><a href="#e-35">Écran 35</a></td></tr><tr><td>24</td><td>Poids et volume</td><td><a href="#e-36">Écran 36</a></td></tr><tr><td>25</td><td>Historique de l'entrepôt</td><td><a href="#e-37">Écran 37</a></td></tr><tr><td>26</td><td>Choix du transporteur</td><td><a href="#e-20">Écran 20</a></td></tr><tr><td>27</td><td>Devis de livraison</td><td><a href="#e-21">Écran 21</a></td></tr><tr><td>28</td><td>Suivi international</td><td><a href="#e-22">Écran 22</a></td></tr><tr><td>29</td><td>Statut en douane</td><td><a href="#e-38">Écran 38</a></td></tr><tr><td>30</td><td>Réception dans le pays de destination</td><td><a href="#e-39">Écran 39</a></td></tr><tr><td>31</td><td>Confirmation de livraison</td><td><a href="#e-40">Écran 40</a></td></tr><tr><td>32</td><td>Liste des fournisseurs</td><td><a href="#e-8">Écran 8</a></td></tr><tr><td>33</td><td>Fiche fournisseur</td><td><a href="#e-41">Écran 41</a></td></tr><tr><td>34</td><td>Recherche internationale</td><td><a href="#e-42">Écran 42</a></td></tr><tr><td>35</td><td>Comparaison d'offres</td><td><a href="#e-13">Écran 13</a></td></tr><tr><td>36</td><td>Négociation fournisseur</td><td><a href="#e-43">Écran 43</a></td></tr><tr><td>37</td><td>Mes favoris</td><td><a href="#e-44">Écran 44</a></td></tr><tr><td>38</td><td>Mon panier</td><td><a href="#e-14">Écran 14</a></td></tr><tr><td>39</td><td>Recharge du wallet</td><td><a href="#e-24">Écran 24</a></td></tr><tr><td>40</td><td>Moyens de paiement</td><td><a href="#e-45">Écran 45</a></td></tr><tr><td>41</td><td>Historique des transactions</td><td><a href="#e-25">Écran 25</a></td></tr><tr><td>42</td><td>Programme de parrainage</td><td><a href="#e-27">Écran 27</a></td></tr><tr><td>43</td><td>Notifications</td><td><a href="#e-28">Écran 28</a></td></tr><tr><td>44</td><td>Messagerie et support</td><td><a href="#e-29">Écran 29</a></td></tr><tr><td>45</td><td>Profil et paramètres</td><td><a href="#e-26">Écran 26</a></td></tr><tr><td>46</td><td>Préférences de langue</td><td><a href="#e-30">Écran 30</a></td></tr><tr><td>47</td><td>Tableau de bord Admin</td><td><a href="#e-31">Écran 31</a></td></tr><tr><td>48</td><td>Gestion des commandes Admin</td><td><a href="#e-32">Écran 32</a></td></tr><tr><td>49</td><td>Analytics et traçabilité</td><td><a href="#e-46">Écran 46</a></td></tr><tr><td>50</td><td>L'écosystème SS DROPSHIP</td><td>Vue d'ensemble (visuel 50)</td></tr></tbody></table></div>
+
+    <h3 class="gtitle" id="g-etapes1">Étapes 1 à 19 : écrans complémentaires</h3>
+    <div class="gallery">
+      <figure class="scr bgl" id="e-47"><div class="ph"><div class="hd"><h4 class="hd-l">Catégories</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
+  <div class="cats">
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></i>Téléphones</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></i>Informatique</span>
+    <span><i class="ic ic-sm ic-red i3d"><img src="../icons/bogolan/png/game.png" alt=""></i>Jeux vidéo</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></i>Réseau</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/cpu.png" alt=""></i>Composants</span>
+    <span><i class="ic ic-sm ic-red i3d"><img src="../icons/bogolan/png/camera.png" alt=""></i>Image et son</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/store.png" alt=""></i>Bureau</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/grid.png" alt=""></i>Autres</span>
+  </div>
+  <div class="promo"><small>PROMOTION · EXEMPLE</small><b>Frais de service réduits sur le réseau</b><span>Jusqu'au 30/11/2026</span></div>
+  <div class="sec"><b>Les plus demandés</b><span>Voir tout</span></div>
+  <div class="prods">
+    <div class="prod"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><b>Portable 15" 16 Go</b><small>Chine · 12–18 j</small><em>dès 238 000 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><b>Téléphone 128 Go</b><small>Dubaï · 7–10 j</small><em>dès 175 000 F</em></div>
+  </div>
+  <div class="sec"><b>Actualités</b></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>12 fournisseurs réseau ajoutés</b><small>Turquie · cette semaine</small></div></div>
+</div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">47</span><b>Catégories et promotions</b><small>Étape 8 des visuels. Rayons administrables, promotion datée, plus demandés, actualités.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-48"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis DMD-2026-0139</h4></div><div class="pv">
+  <span class="badge b-blue"><svg><use href="#i-clock"/></svg>Valable jusqu'au 19/11/2026</span>
+  <div class="ohead"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><div><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Shenzhen Netlink</small></div></div>
+  <div class="recap">
+    <p><span>Prix produit (2 × 38 500 F)</span><b>77 000 F</b></p>
+    <p><span>Transport fournisseur → entrepôt</span><b>3 500 F</b></p>
+    <p><span>Frais de service (6 %)</span><b>4 620 F</b></p>
+    <p class="tot"><span>Total du devis</span><b>85 120 F CFA</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>La livraison internationale est calculée à la réception du carton en entrepôt, selon le poids réel.</div>
+  <div class="kv3 boxed"><span><b>10–15 j</b>Délai d'achat</span><span><b>Chine</b>Origine</span><span><b>Ama S.</b>Agent</span></div>
+  <span class="btn">Accepter le devis</span>
+  <span class="btn btn-ghost">Poser une question</span>
+  <p class="muted center">Refuser le devis</p>
+</div></div>
+      <figcaption><span class="num">48</span><b>Devis détaillé</b><small>Étape 13 des visuels. Prix produit, acheminement, frais de service, validité, acceptation.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-49"><div class="ph"><div class="pv pv-center">
+  <div class="okbig"><svg><use href="#i-check"/></svg></div>
+  <h4 class="big">Paiement confirmé</h4>
+  <p class="amount-s">103 880 F CFA</p>
+  <div class="recap sm wide">
+    <p><span>Commande</span><b>CMD-2026-0091</b></p>
+    <p><span>Référence</span><b>TX-90412</b></p>
+    <p><span>Moyen</span><b>Wallet SS DROPSHIP</b></p>
+    <p><span>Date</span><b>17/11/2026 · 10:42</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Paiement confirmé par le prestataire. Votre agent lance l'achat auprès du fournisseur.</div>
+  <div class="stack"><span class="btn">Suivre ma commande</span><span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Télécharger le reçu</span></div>
+</div></div>
+      <figcaption><span class="num">49</span><b>Paiement confirmé</b><small>Étape 15 des visuels. Confirmation du prestataire, référence unique, reçu téléchargeable.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-50"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Factures et reçus</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv">
+  <div class="seg"><span class="on">Factures (4)</span><span>Reçus (9)</span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0091</b><small>CMD-0091 · 17/11 · 103 880 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0087</b><small>CMD-0087 · 06/11 · 1 187 500 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0074</b><small>CMD-0074 · 28/10 · 342 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/file.png" alt=""></div><div><b>FAC-2026-0069</b><small>CMD-0069 · 21/10 · 185 000 F</small></div><span class="dl"><svg><use href="#i-download"/></svg></span></div>
+  <div class="pdf"><div class="pdf-h"><b>SS DROPSHIP</b><small>FAC-2026-0091</small></div><i></i><i></i><i class="s"></i><div class="pdf-t"><span>Total</span><b>103 880 F CFA</b></div></div>
+  <span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Tout télécharger (PDF)</span>
+</div></div>
+      <figcaption><span class="num">50</span><b>Factures et reçus</b><small>Étape 17 des visuels. Factures par commande, reçus de paiement, export PDF.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-51"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0069</h4></div><div class="pv">
+  <div class="ohead"><div class="pimg i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Téléphone 128 Go ×1</b><small>Livré le 21/10/2026</small></div></div>
+  <div class="sec"><b>Donner mon avis</b></div>
+  <div class="stars"><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></div>
+  <div class="in in-area">Conforme à la description, livraison dans les délais.</div>
+  <span class="btn">Publier mon avis</span>
+  <div class="sec"><b>Un problème avec la commande ?</b></div>
+  <div class="opts col"><span>Produit non conforme</span><span>Colis endommagé</span><span>Article manquant</span><span>Retard de livraison</span></div>
+  <span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Ouvrir un litige</span>
+  <p class="muted center">Réponse de l'équipe sous 48 h ouvrées.</p>
+</div></div>
+      <figcaption><span class="num">51</span><b>Avis et litiges</b><small>Étape 18 des visuels. Avis vérifiés et ouverture guidée d'un litige.</small></figcaption></figure>
+    </div>
+
+    <h3 class="gtitle" id="g-detail">Compte et services : écrans de détail</h3>
+    <div class="gallery">
+      <figure class="scr bgl" id="e-52"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mon profil</h4><span class="hd-r link">Modifier</span></div><div class="pv">
+  <div class="prof"><div class="av lg">AK</div><div><b>Awa Koné</b><small>ID client SSD-48213 · membre depuis le 02/09/2026</small><span class="badge b-blue"><svg><use href="#i-check"/></svg>Téléphone vérifié</span></div></div>
+  <label class="lb">Nom complet</label><div class="in">Awa Koné</div>
+  <label class="lb">Téléphone</label><div class="in in-pw">+225 07 08 42 18 63<span class="hint ok">Vérifié</span></div>
+  <label class="lb">Email</label><div class="in in-pw">awa.kone@exemple.ci<span class="badge b-grey">À vérifier</span></div>
+  <div class="two"><div><label class="lb">Pays</label><div class="in in-sel">Côte d'Ivoire<svg><use href="#i-down"/></svg></div></div><div><label class="lb">Langue</label><div class="in in-sel">Français<svg><use href="#i-down"/></svg></div></div></div>
+  <label class="lb">Type de compte</label>
+  <div class="seg"><span class="on">Particulier</span><span>Entreprise</span></div>
+  <span class="btn">Enregistrer</span>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Un changement de téléphone ou d'email demande un nouveau code de vérification.</div>
+</div></div>
+      <figcaption><span class="num">52</span><b>Mon profil</b><small>Identité, contact vérifié, pays, langue ; modification encadrée.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-53"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mes adresses</h4></div><div class="pv">
+  <div class="pay on"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/home.png" alt=""></div><div><b>Domicile</b><small>Cocody, Riviera 3, villa 112, Abidjan</small><span class="badge b-blue">Par défaut</span></div><svg class="ch"><use href="#i-chev"/></svg></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Bureau</b><small>Plateau, avenue Chardy, immeuble Alpha 2000, 6ᵉ étage</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/warehouse.png" alt=""></div><div><b>Agence SS DROPSHIP Plateau</b><small>Retrait sans frais, pièce d'identité</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
+  <div class="sec"><b>Ajouter une adresse</b></div>
+  <label class="lb">Nom de l'adresse</label><div class="in">Chez ma sœur</div>
+  <div class="two"><div><label class="lb">Ville</label><div class="in in-sel">Abidjan<svg><use href="#i-down"/></svg></div></div><div><label class="lb">Commune</label><div class="in in-sel">Yopougon<svg><use href="#i-down"/></svg></div></div></div>
+  <label class="lb">Repère et téléphone</label><div class="in in-area">Près de la pharmacie Sainte Rita · +225 05 44 12 90 11</div>
+  <span class="btn">Enregistrer l'adresse</span>
+</div></div>
+      <figcaption><span class="num">53</span><b>Mes adresses</b><small>Domicile, bureau, agence ; adresse par défaut pour la livraison.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-54"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Sécurité</h4></div><div class="pv">
+  <div class="stat"><div class="ic i3d"><img src="../icons/bogolan/png/shield.png" alt=""></div><div><b>Niveau de sécurité : bon</b><small>Double authentification activée</small></div></div>
+  <div class="set"><span>Changer le mot de passe</span><b>il y a 2 mois<svg><use href="#i-chev"/></svg></b></div>
+  <div class="set"><span>Double authentification (SMS)</span><span class="tgl on"></span></div>
+  <div class="set"><span>Code pour valider les paiements</span><span class="tgl on"></span></div>
+  <p class="day">Appareils connectés</p>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Téléphone Android · cet appareil</b><small>Abidjan · actif maintenant</small></div></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><div><b>Navigateur web · ssdropship.com</b><small>Abidjan · il y a 3 jours</small></div><span class="link">Déconnecter</span></div>
+  <p class="day">Activité récente</p>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/lock.png" alt=""></div><div><b>Connexion réussie</b><small>18/11 · 07:52 · Android</small></div></div>
+  <div class="row"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>2 tentatives refusées</b><small>15/11 · 23:10 · bloquées automatiquement</small></div></div>
+</div></div>
+      <figcaption><span class="num">54</span><b>Sécurité</b><small>Mot de passe, double authentification, appareils connectés.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-55"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Aide et FAQ</h4></div><div class="pv">
+  <div class="search"><svg><use href="#i-search"/></svg><span>Rechercher une question…</span></div>
+  <div class="cats">
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/cart.png" alt=""></i>Commandes</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/box.png" alt=""></i>Entrepôt</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/wallet.png" alt=""></i>Paiements</span>
+    <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/truck.png" alt=""></i>Livraison</span>
+  </div>
+  <div class="sec"><b>Questions fréquentes</b></div>
+  <div class="faqi open"><b>Pourquoi mon carton n'est-il pas ouvert à l'entrepôt ?<svg><use href="#i-down"/></svg></b><p>Au lancement, les colis sont expédiés tels qu'ils arrivent pour éviter toute manipulation. Le contrôle qualité et les photos du contenu arriveront plus tard.</p></div>
+  <div class="faqi"><b>Quand mon wallet est-il crédité ?<svg><use href="#i-chev"/></svg></b></div>
+  <div class="faqi"><b>Comment est calculé le prix de la livraison ?<svg><use href="#i-chev"/></svg></b></div>
+  <div class="faqi"><b>Puis-je utiliser mon propre transitaire ?<svg><use href="#i-chev"/></svg></b></div>
+  <div class="faqi"><b>Comment ouvrir un litige ?<svg><use href="#i-chev"/></svg></b></div>
+  <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Écrire au support</span>
+</div></div>
+      <figcaption><span class="num">55</span><b>FAQ et aide</b><small>Questions fréquentes par thème, recherche, accès au chat.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-56"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Litige LIT-2026-0012</h4></div><div class="pv">
+  <div class="stat red"><div class="ic i3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Colis endommagé</b><small>CMD-2026-0074 · Écrans 24" ×4 · ouvert le 12/11</small></div></div>
+  <div class="up"><span class="th i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th i3d"><img src="../icons/bogolan/png/camera.png" alt=""></span><span class="add"><svg><use href="#i-upload"/></svg>Ajouter</span></div>
+  <ul class="tl dense">
+    <li class="done"><b>Litige ouvert</b><small>12/11 · 3 photos jointes</small></li>
+    <li class="done"><b>Pris en charge par le support</b><small>12/11 · Mariam D.</small></li>
+    <li class="cur"><b>Analyse avec le transporteur</b><small>Réponse attendue sous 48 h</small></li>
+    <li><b>Décision</b><small>Remplacement, avoir ou remboursement</small></li>
+  </ul>
+  <div class="msg">Merci pour les photos. Nous avons ouvert une réclamation auprès du transporteur pour l'écran fissuré.</div>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Les remboursements suivent la procédure validée et passent par votre wallet après décision.</div>
+  <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Répondre au support</span>
+</div></div>
+      <figcaption><span class="num">56</span><b>Suivi d'un litige</b><small>Motif, pièces jointes, étapes et échanges avec l'équipe.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-57"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mon transitaire</h4></div><div class="pv">
+  <p class="sub left">Indiquez le transitaire qui récupérera votre colis à Guangzhou. L'équipe vérifie ses informations avant la remise.</p>
+  <label class="lb">Nom de la société</label><div class="in">Trans-Afrique Cargo</div>
+  <div class="two"><div><label class="lb">Contact</label><div class="in">M. Diallo</div></div><div><label class="lb">Téléphone</label><div class="in">+86 138 0000 4521</div></div></div>
+  <label class="lb">Adresse de l'entrepôt du transitaire</label><div class="in in-area">Baiyun, Guangzhou · entrepôt n° 14</div>
+  <label class="lb">Mode</label>
+  <div class="chips"><span class="chip on">Aérien</span><span class="chip">Maritime</span><span class="chip">Les deux</span></div>
+  <label class="lb">Document (facultatif)</label>
+  <div class="up"><span class="add"><svg><use href="#i-upload"/></svg>Joindre</span></div>
+  <span class="btn">Envoyer pour approbation</span>
+  <div class="note-s"><svg><use href="#i-clock"/></svg>Réponse sous 24 h. Le colis n'est remis qu'après approbation et confirmation de votre part.</div>
+</div></div>
+      <figcaption><span class="num">57</span><b>Mon transitaire personnel</b><small>Formulaire d'information soumis à l'approbation de l'équipe (D-012).</small></figcaption></figure>
+      <figure class="scr bgl" id="e-58"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Retirer</h4></div><div class="pv">
+  <div class="wcard"><small>Solde disponible</small><b>312 500 F CFA</b><span>dont 12 000 F de remboursement</span></div>
+  <label class="lb">Montant à retirer</label>
+  <div class="amount">50 000 <i>F CFA</i></div>
+  <label class="lb">Vers</label>
+  <div class="pay on"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>+225 07 •• •• 18 63</small></div><span class="radio on"></span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/doc.png" alt=""></div><div><b>Virement bancaire</b><small>À partir de 100 000 F</small></div><span class="radio"></span></div>
+  <div class="recap sm"><p><span>Frais de retrait</span><i>selon la règle du pays</i></p><p><span>Délai</span><b>24 à 72 h</b></p></div>
+  <span class="btn">Demander le retrait</span>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Chaque retrait est validé par un code et tracé dans votre historique.</div>
+</div></div>
+      <figcaption><span class="num">58</span><b>Retrait et remboursement</b><small>Demande de retrait du wallet selon les règles du pays.</small></figcaption></figure>
+    </div>
+
+    <h3 class="gtitle" id="g-admin2">Back-office : autres modules</h3>
+    <div class="gallery wide">
+      <figure class="scr bgl" id="e-59"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span class="on"><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Fournisseurs</h4><div class="search sm"><svg><use href="#i-search"/></svg><span>Nom, pays, catégorie…</span></div></div>
+<div class="chips"><span class="chip">Validés (184)</span><span class="chip on">En revue (5)</span><span class="chip">Refusés (12)</span></div>
+<div class="tablewrap"><table class="dt"><thead><tr><th>Fournisseur</th><th>Pays</th><th>Catégories</th><th>Documents</th><th>Statut</th><th></th></tr></thead><tbody>
+<tr><td>Gulf Tech Trading</td><td>Émirats</td><td>Jeux vidéo, accessoires</td><td>Licence commerciale ✓</td><td><span class="badge b-grey">En revue</span></td><td><span class="btn sm">Valider</span></td></tr>
+<tr><td>Ankara Vision</td><td>Turquie</td><td>Écrans</td><td>Licence ✓ · Références ✓</td><td><span class="badge b-grey">En revue</span></td><td><span class="btn sm">Valider</span></td></tr>
+<tr><td>Guangzhou Screen</td><td>Chine</td><td>Écrans</td><td>Fiche technique incomplète</td><td><span class="badge b-red">À compléter</span></td><td><span class="btn btn-ghost sm">Relancer</span></td></tr>
+<tr><td>Abidjan Tech Distribution</td><td>Côte d'Ivoire</td><td>Informatique</td><td>RCCM ✓</td><td><span class="badge b-grey">En revue</span></td><td><span class="btn sm">Valider</span></td></tr>
+</tbody></table></div>
+<p class="muted">Aucune note n'est affichée sans commandes réelles. Chaque validation est enregistrée dans le journal d'audit.</p></div></div>
+      <figcaption><span class="num">59</span><b>Fournisseurs (validation)</b><small>Fiches en revue, documents, validation ou refus par l'Admin.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-60"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span class="on"><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Transitaires</h4><span class="badge b-night">Accès Admin uniquement (D-013)</span></div>
+<div class="kpis"><div><small>Partenaires actifs</small><b>6</b><i>aérien et express</i></div><div><small>À approuver</small><b>1</b><i>transitaire client</i></div><div><small>Délai moyen aérien</small><b>8,4 j</b><i>Guangzhou → Abidjan</i></div><div><small>Incidents ce mois</small><b>2</b><i>colis abîmés</i></div></div>
+<div class="tablewrap"><table class="dt"><thead><tr><th>Transitaire</th><th>Type</th><th>Lignes</th><th class="n">Tarif / kg</th><th>Statut</th></tr></thead><tbody>
+<tr><td>Partenaire Air SS</td><td>Partenaire</td><td>Guangzhou → Abidjan, Accra</td><td class="n">9 000 F</td><td><span class="badge b-green">Actif</span></td></tr>
+<tr><td>Express international</td><td>Express</td><td>Monde → Abidjan, Conakry</td><td class="n">≈ 24 000 F</td><td><span class="badge b-green">Actif</span></td></tr>
+<tr><td>Trans-Afrique Cargo</td><td>Transitaire client</td><td>Guangzhou → Abidjan</td><td class="n">—</td><td><span class="badge b-grey">À approuver</span></td></tr>
+<tr><td>Maritime LCL</td><td>Partenaire</td><td>Guangzhou → Abidjan</td><td class="n">—</td><td><span class="badge b-grey">Phase 2</span></td></tr>
+</tbody></table></div></div></div>
+      <figcaption><span class="num">60</span><b>Transitaires</b><small>Partenaires, transitaires des clients à approuver, tarifs et délais.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-61"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span class="on"><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Paiements et rapprochement</h4><span class="muted">Mardi 17 novembre 2026</span></div>
+<div class="kpis"><div><small>Encaissé aujourd'hui</small><b>4,2 M F</b><i>132 opérations</i></div><div><small>Confirmés par webhook</small><b>129</b><i>signatures vérifiées</i></div><div class="alert"><small>À rapprocher</small><b>3</b><i>en attente du prestataire</i></div><div><small>Remboursements</small><b>2</b><i>à valider</i></div></div>
+<div class="tablewrap"><table class="dt"><thead><tr><th>Référence</th><th>Client</th><th>Moyen</th><th class="n">Montant</th><th>Webhook</th><th>Wallet</th></tr></thead><tbody>
+<tr><td>TX-90412</td><td>SSD-48213</td><td>Carte · Stripe</td><td class="n">25 000 F</td><td><span class="badge b-grey">En attente</span></td><td>Non crédité</td></tr>
+<tr><td>TX-90377</td><td>SSD-48213</td><td>Mobile Money</td><td class="n">50 000 F</td><td><span class="badge b-green">Confirmé</span></td><td>Crédité</td></tr>
+<tr><td>TX-90371</td><td>SSD-51077</td><td>Mobile Money</td><td class="n">15 000 F</td><td><span class="badge b-red">Montant différent</span></td><td>Bloqué</td></tr>
+<tr><td>TX-90360</td><td>SSD-39950</td><td>Google Pay</td><td class="n">72 000 F</td><td><span class="badge b-green">Confirmé</span></td><td>Crédité</td></tr>
+</tbody></table></div>
+<p class="muted">Aucun crédit sans webhook authentifié (D-008). Une même référence n'est jamais créditée deux fois.</p></div></div>
+      <figcaption><span class="num">61</span><b>Paiements et rapprochement</b><small>Webhooks reçus, écarts à rapprocher, remboursements.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-62"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span class="on"><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Utilisateurs et rôles</h4><div class="search sm"><svg><use href="#i-search"/></svg><span>Nom, ID, rôle…</span></div></div>
+<div class="chips"><span class="chip on">Équipe (14)</span><span class="chip">Clients (2 318)</span></div>
+<div class="tablewrap"><table class="dt"><thead><tr><th>Nom</th><th>Rôle</th><th>Accès</th><th>Double auth.</th><th>Dernière action</th></tr></thead><tbody>
+<tr><td>Marc O.</td><td>Administrateur</td><td>Tout</td><td><span class="badge b-green">Activée</span></td><td>Fournisseur validé · 16/11</td></tr>
+<tr><td>Koffi A.</td><td>Agent d'achat</td><td>Demandes, devis, messagerie</td><td><span class="badge b-green">Activée</span></td><td>Offre envoyée · 17/11</td></tr>
+<tr><td>GZ-04</td><td>Agent entrepôt</td><td>Réception, photos, emplacements</td><td><span class="badge b-green">Activée</span></td><td>Colis reçu · 14/11</td></tr>
+<tr><td>Fanta K.</td><td>Comptable</td><td>Paiements, remboursements, rapports</td><td><span class="badge b-green">Activée</span></td><td>Rapprochement · 17/11</td></tr>
+<tr><td>Mariam D.</td><td>Support</td><td>Tickets, litiges, chat</td><td><span class="badge b-red">À activer</span></td><td>Litige pris en charge · 12/11</td></tr>
+</tbody></table></div></div></div>
+      <figcaption><span class="num">62</span><b>Utilisateurs et rôles</b><small>Comptes, rôles opérationnels et permissions (RBAC).</small></figcaption></figure>
+      <figure class="scr bgl" id="e-63"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span class="on"><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Paramètres</h4><span class="badge b-grey">Modifications tracées</span></div>
+<div class="form2">
+  <div><label class="lb">Pays actifs</label><div class="opts sm"><span class="on">Côte d'Ivoire</span><span class="on">Ghana</span><span class="on">Guinée</span><span>+ Ajouter</span></div></div>
+  <div><label class="lb">Devise d'affichage par défaut</label><div class="in in-sel">F CFA (XOF)<svg><use href="#i-down"/></svg></div></div>
+  <div><label class="lb">Frais de service</label><div class="in">6 % du prix produit</div></div>
+  <div><label class="lb">Taux de change USD → XOF</label><div class="in">Mis à jour chaque jour à 06:00</div></div>
+  <div><label class="lb">Moyens de paiement (Côte d'Ivoire)</label><div class="opts sm"><span class="on">Mobile Money</span><span class="on">Stripe</span><span class="on">Google Pay</span><span class="on">Apple Pay</span><span class="on">Alipay</span><span class="on">WeChat Pay</span></div></div>
+  <div><label class="lb">Récompense de parrainage</label><div class="in in-pw">Non activée<span class="badge b-grey">Règle M-002 à valider</span></div></div>
+</div>
+<div class="note-s"><svg><use href="#i-info"/></svg>Les règles non validées (parrainage, monétisation) restent désactivées tant que le propriétaire ne les a pas approuvées.</div></div></div>
+      <figcaption><span class="num">63</span><b>Paramètres</b><small>Pays, devises, frais de service, moyens de paiement et règles soumises à validation.</small></figcaption></figure>
+      <figure class="scr bgl" id="e-64"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span class="on"><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Support et tickets</h4><span class="muted">Délai moyen de première réponse : 6 min</span></div>
+<div class="chips"><span class="chip on">Ouverts (17)</span><span class="chip">Litiges (3)</span><span class="chip">Résolus aujourd'hui (22)</span></div>
+<div class="tablewrap"><table class="dt"><thead><tr><th>Ticket</th><th>Client</th><th>Sujet</th><th>Priorité</th><th>Assigné</th><th>Attente</th></tr></thead><tbody>
+<tr><td>LIT-2026-0012</td><td>SSD-39950</td><td>Colis endommagé · CMD-0074</td><td><span class="badge b-red">Haute</span></td><td>Mariam D.</td><td>2 h</td></tr>
+<tr><td>TCK-2026-0418</td><td>SSD-48213</td><td>Colis en douane · PKG-0318</td><td><span class="badge b-blue">Normale</span></td><td>Mariam D.</td><td>5 min</td></tr>
+<tr><td>TCK-2026-0417</td><td>SSD-51077</td><td>Paiement non crédité · TX-90371</td><td><span class="badge b-red">Haute</span></td><td>Fanta K.</td><td>35 min</td></tr>
+<tr><td>TCK-2026-0415</td><td>SSD-44120</td><td>Question sur le parrainage</td><td><span class="badge b-grey">Basse</span></td><td>—</td><td>1 h</td></tr>
+</tbody></table></div></div></div>
+      <figcaption><span class="num">64</span><b>Support et tickets</b><small>File des tickets, litiges et conversations, avec délais de réponse.</small></figcaption></figure>
+    </div>
+
   </div>
 </section>
 

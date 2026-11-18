@@ -75,3 +75,10 @@
 
 ## 2026-11-18 — Moyens de paiement : Stripe, Alipay, WeChat Pay (D-020)
 - Écran 45 et visuel 40 : « Carte bancaire via Stripe » devient « Stripe » ; ajout d'Alipay et de WeChat Pay (demande faite en commentaire sur la maquette).
+
+## 2026-11-18 — Écrans manquants : 64 écrans
+- `ecrans-bogolan.html` passe de 46 à 64 écrans, tous en version Bogolan avec frise :
+  - 47–51 : écrans des étapes 1 à 19 qui n'existaient que dans les visuels (catégories et promotions, devis détaillé, paiement confirmé, factures et reçus, avis et litiges) ;
+  - 52–58 : écrans de détail du compte (profil, adresses, sécurité, FAQ, suivi d'un litige, transitaire personnel, retrait et remboursement) ;
+  - 59–64 : modules Admin (fournisseurs, transitaires, paiements et rapprochement, utilisateurs et rôles, paramètres, support et tickets).
+- `design/mockups/ecrans/` : les 64 écrans en PNG.
