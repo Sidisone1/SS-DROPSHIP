@@ -1,6 +1,6 @@
 # Inventaire de 50 visuels — SS DROPSHIP
 
-**Mise à jour : 17/11/2026.** Les 50 visuels existent désormais dans le dépôt, dans `design/mockups/exports/`, en PNG 1080 × 1920. Ils ont été **générés à nouveau** (version 2 du 17/11/2026 : écrans et cartes avec les **icônes 3D Bogolan**, décision D-018 ; moyens de recharge selon D-019) à partir du cahier des charges et du design system : ce ne sont **pas** les originaux HD des anciennes conversations.
+**Mise à jour : 17/11/2026.** Les 50 visuels existent désormais dans le dépôt, dans `design/mockups/exports/`, en PNG 1080 × 1920. Ils ont été **générés à nouveau** (version 2 du 17/11/2026 : écrans et cartes avec les **icônes 3D Bogolan**, décision D-018 ; moyens de recharge selon D-019 ; visuels 28 à 50 avec la frise bogolan, version 3 du 18/11/2026) à partir du cahier des charges et du design system : ce ne sont **pas** les originaux HD des anciennes conversations.
 
 ## Statut à lire avant usage
 
@@ -39,29 +39,29 @@
 | 25 | Historique de l'entrepôt | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_25_Historique_de_l_entrepot_1080x1920.png](exports/SS-DROPSHIP_Visuel_25_Historique_de_l_entrepot_1080x1920.png) | 554 Ko | À valider |
 | 26 | Choix du transporteur | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_26_Choix_du_transporteur_1080x1920.png](exports/SS-DROPSHIP_Visuel_26_Choix_du_transporteur_1080x1920.png) | 570 Ko | À valider |
 | 27 | Devis de livraison | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_27_Devis_de_livraison_1080x1920.png](exports/SS-DROPSHIP_Visuel_27_Devis_de_livraison_1080x1920.png) | 529 Ko | À valider |
-| 28 | Suivi international | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_28_Suivi_international_1080x1920.png](exports/SS-DROPSHIP_Visuel_28_Suivi_international_1080x1920.png) | 554 Ko | À valider |
-| 29 | Statut en douane | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_29_Statut_en_douane_1080x1920.png](exports/SS-DROPSHIP_Visuel_29_Statut_en_douane_1080x1920.png) | 548 Ko | À valider |
-| 30 | Réception dans le pays de destination | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_30_Reception_dans_le_pays_de_destination_1080x1920.png](exports/SS-DROPSHIP_Visuel_30_Reception_dans_le_pays_de_destination_1080x1920.png) | 570 Ko | À valider |
-| 31 | Confirmation de livraison | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_31_Confirmation_de_livraison_1080x1920.png](exports/SS-DROPSHIP_Visuel_31_Confirmation_de_livraison_1080x1920.png) | 533 Ko | À valider |
-| 32 | Liste des fournisseurs | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_32_Liste_des_fournisseurs_1080x1920.png](exports/SS-DROPSHIP_Visuel_32_Liste_des_fournisseurs_1080x1920.png) | 564 Ko | À valider |
-| 33 | Fiche fournisseur | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_33_Fiche_fournisseur_1080x1920.png](exports/SS-DROPSHIP_Visuel_33_Fiche_fournisseur_1080x1920.png) | 559 Ko | À valider |
-| 34 | Recherche internationale | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_34_Recherche_internationale_1080x1920.png](exports/SS-DROPSHIP_Visuel_34_Recherche_internationale_1080x1920.png) | 574 Ko | À valider |
-| 35 | Comparaison d'offres | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_35_Comparaison_d_offres_1080x1920.png](exports/SS-DROPSHIP_Visuel_35_Comparaison_d_offres_1080x1920.png) | 557 Ko | À valider |
-| 36 | Négociation fournisseur | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_36_Negociation_fournisseur_1080x1920.png](exports/SS-DROPSHIP_Visuel_36_Negociation_fournisseur_1080x1920.png) | 572 Ko | À valider |
-| 37 | Mes favoris | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png](exports/SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png) | 552 Ko | À valider |
-| 38 | Mon panier | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png](exports/SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png) | 557 Ko | À valider |
-| 39 | Recharge du wallet | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png](exports/SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png) | 596 Ko | À valider |
-| 40 | Moyens de paiement | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png](exports/SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png) | 570 Ko | À valider |
-| 41 | Historique des transactions | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png](exports/SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png) | 574 Ko | À valider |
-| 42 | Programme de parrainage | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png](exports/SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png) | 585 Ko | À valider |
-| 43 | Notifications | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png](exports/SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png) | 553 Ko | À valider |
-| 44 | Messagerie et support | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_44_Messagerie_et_support_1080x1920.png](exports/SS-DROPSHIP_Visuel_44_Messagerie_et_support_1080x1920.png) | 578 Ko | À valider |
-| 45 | Profil et paramètres | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_45_Profil_et_parametres_1080x1920.png](exports/SS-DROPSHIP_Visuel_45_Profil_et_parametres_1080x1920.png) | 551 Ko | À valider |
-| 46 | Préférences de langue | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_46_Preferences_de_langue_1080x1920.png](exports/SS-DROPSHIP_Visuel_46_Preferences_de_langue_1080x1920.png) | 528 Ko | À valider |
-| 47 | Tableau de bord Admin | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_47_Tableau_de_bord_Admin_1080x1920.png](exports/SS-DROPSHIP_Visuel_47_Tableau_de_bord_Admin_1080x1920.png) | 418 Ko | À valider |
-| 48 | Gestion des commandes Admin | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_48_Gestion_des_commandes_Admin_1080x1920.png](exports/SS-DROPSHIP_Visuel_48_Gestion_des_commandes_Admin_1080x1920.png) | 455 Ko | À valider |
-| 49 | Analytics et traçabilité | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_49_Analytics_et_tracabilite_1080x1920.png](exports/SS-DROPSHIP_Visuel_49_Analytics_et_tracabilite_1080x1920.png) | 433 Ko | À valider |
-| 50 | L'écosystème SS DROPSHIP | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_50_L_ecosysteme_SS_DROPSHIP_1080x1920.png](exports/SS-DROPSHIP_Visuel_50_L_ecosysteme_SS_DROPSHIP_1080x1920.png) | 595 Ko | À valider |
+| 28 | Suivi international | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_28_Suivi_international_1080x1920.png](exports/SS-DROPSHIP_Visuel_28_Suivi_international_1080x1920.png) | 564 Ko | À valider |
+| 29 | Statut en douane | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_29_Statut_en_douane_1080x1920.png](exports/SS-DROPSHIP_Visuel_29_Statut_en_douane_1080x1920.png) | 560 Ko | À valider |
+| 30 | Réception dans le pays de destination | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_30_Reception_dans_le_pays_de_destination_1080x1920.png](exports/SS-DROPSHIP_Visuel_30_Reception_dans_le_pays_de_destination_1080x1920.png) | 580 Ko | À valider |
+| 31 | Confirmation de livraison | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_31_Confirmation_de_livraison_1080x1920.png](exports/SS-DROPSHIP_Visuel_31_Confirmation_de_livraison_1080x1920.png) | 541 Ko | À valider |
+| 32 | Liste des fournisseurs | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_32_Liste_des_fournisseurs_1080x1920.png](exports/SS-DROPSHIP_Visuel_32_Liste_des_fournisseurs_1080x1920.png) | 583 Ko | À valider |
+| 33 | Fiche fournisseur | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_33_Fiche_fournisseur_1080x1920.png](exports/SS-DROPSHIP_Visuel_33_Fiche_fournisseur_1080x1920.png) | 570 Ko | À valider |
+| 34 | Recherche internationale | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_34_Recherche_internationale_1080x1920.png](exports/SS-DROPSHIP_Visuel_34_Recherche_internationale_1080x1920.png) | 593 Ko | À valider |
+| 35 | Comparaison d'offres | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_35_Comparaison_d_offres_1080x1920.png](exports/SS-DROPSHIP_Visuel_35_Comparaison_d_offres_1080x1920.png) | 569 Ko | À valider |
+| 36 | Négociation fournisseur | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_36_Negociation_fournisseur_1080x1920.png](exports/SS-DROPSHIP_Visuel_36_Negociation_fournisseur_1080x1920.png) | 601 Ko | À valider |
+| 37 | Mes favoris | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png](exports/SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png) | 574 Ko | À valider |
+| 38 | Mon panier | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png](exports/SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png) | 578 Ko | À valider |
+| 39 | Recharge du wallet | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png](exports/SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png) | 606 Ko | À valider |
+| 40 | Moyens de paiement | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png](exports/SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png) | 580 Ko | À valider |
+| 41 | Historique des transactions | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png](exports/SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png) | 583 Ko | À valider |
+| 42 | Programme de parrainage | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png](exports/SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png) | 605 Ko | À valider |
+| 43 | Notifications | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png](exports/SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png) | 564 Ko | À valider |
+| 44 | Messagerie et support | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_44_Messagerie_et_support_1080x1920.png](exports/SS-DROPSHIP_Visuel_44_Messagerie_et_support_1080x1920.png) | 596 Ko | À valider |
+| 45 | Profil et paramètres | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_45_Profil_et_parametres_1080x1920.png](exports/SS-DROPSHIP_Visuel_45_Profil_et_parametres_1080x1920.png) | 572 Ko | À valider |
+| 46 | Préférences de langue | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_46_Preferences_de_langue_1080x1920.png](exports/SS-DROPSHIP_Visuel_46_Preferences_de_langue_1080x1920.png) | 541 Ko | À valider |
+| 47 | Tableau de bord Admin | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_47_Tableau_de_bord_Admin_1080x1920.png](exports/SS-DROPSHIP_Visuel_47_Tableau_de_bord_Admin_1080x1920.png) | 428 Ko | À valider |
+| 48 | Gestion des commandes Admin | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_48_Gestion_des_commandes_Admin_1080x1920.png](exports/SS-DROPSHIP_Visuel_48_Gestion_des_commandes_Admin_1080x1920.png) | 465 Ko | À valider |
+| 49 | Analytics et traçabilité | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_49_Analytics_et_tracabilite_1080x1920.png](exports/SS-DROPSHIP_Visuel_49_Analytics_et_tracabilite_1080x1920.png) | 443 Ko | À valider |
+| 50 | L'écosystème SS DROPSHIP | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_50_L_ecosysteme_SS_DROPSHIP_1080x1920.png](exports/SS-DROPSHIP_Visuel_50_L_ecosysteme_SS_DROPSHIP_1080x1920.png) | 628 Ko | À valider |
 
 ## Composition commune
 
