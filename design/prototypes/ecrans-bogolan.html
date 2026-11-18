@@ -521,14 +521,76 @@ html{scroll-behavior:smooth}
 #ecrans .svc.i3d>img{width:26px;height:26px;border-radius:7px}#ecrans .svc.off.i3d>img{filter:grayscale(1);opacity:.6}
 #ecrans .photo.i3d>img{width:64px;height:64px}
 #ecrans .origins{width:100%;border:1px solid var(--ln);border-radius:14px;background:#fff;padding:9px 6px 10px;box-shadow:0 6px 14px rgba(16,33,61,.06)}#ecrans .origins-t{margin:0 0 7px;text-align:center;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}#ecrans .origins-g{display:grid;grid-template-columns:repeat(4,1fr)}#ecrans .origins-g span{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:10.5px;font-weight:600;color:#3B4F68}#ecrans .origins-g span+span{border-left:1px solid var(--ln)}#ecrans .origins-g b{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-size:10px;font-weight:800;letter-spacing:.02em;color:#fff;background:var(--blue);box-shadow:inset 0 -2px 3px rgba(0,0,0,.18),0 3px 6px rgba(0,119,200,.25)}#ecrans .origins-g span:nth-child(2) b{background:var(--red);box-shadow:inset 0 -2px 3px rgba(0,0,0,.18),0 3px 6px rgba(242,26,22,.25)}#ecrans .origins-g span:nth-child(3) b{background:var(--night,#10213D)}#ecrans .origins-g span:nth-child(4) b{background:#fff;color:var(--blue);border:2px solid var(--blue)}
+
+/* Écrans complémentaires des étapes 20 à 50 */
+#ecrans .promo{background:linear-gradient(120deg,#F21A16,#A80F0C);color:#fff;border-radius:15px;padding:12px 14px;display:flex;flex-direction:column;gap:3px}
+#ecrans .promo small{font-size:9px;font-weight:800;letter-spacing:.1em;color:#FFD3D1}
+#ecrans .promo b{font-size:13.5px}
+#ecrans .promo span{font-size:10.5px;color:#FFE1DF}
+#ecrans .okbig{width:84px;height:84px;border-radius:26px;display:grid;place-items:center;font-size:44px;color:#fff;background:linear-gradient(150deg,#2FB36C,#127A43);box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 12px 24px rgba(22,138,78,.35)}
+#ecrans .okbig svg{stroke-width:2.6}
+#ecrans .amount-s{margin:0;font-family:var(--f-display);font-size:24px;font-weight:700;color:var(--blue)}
+#ecrans .recap.wide{width:100%;text-align:left}
+#ecrans .dl{width:30px;height:30px;border-radius:9px;background:var(--bs);color:var(--blue);display:grid;place-items:center;font-size:14px}
+#ecrans .pdf{border:1px solid var(--ln);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:7px;background:#FBFDFF}
+#ecrans .pdf-h{display:flex;justify-content:space-between;align-items:baseline}
+#ecrans .pdf-h b{color:var(--blue);font-family:var(--f-display);font-size:13px}
+#ecrans .pdf-h small{font-size:10px;color:var(--mu)}
+#ecrans .pdf i{height:7px;border-radius:4px;background:#E3EBF3;display:block}
+#ecrans .pdf i.s{width:60%}
+#ecrans .pdf-t{display:flex;justify-content:space-between;border-top:1px solid var(--ln);padding-top:7px;font-size:11px}
+#ecrans .pdf-t b{color:var(--blue)}
+#ecrans .stars{display:flex;gap:6px;font-size:26px;color:#C9D5E1}
+#ecrans .stars svg.on{color:var(--blue);fill:var(--blue)}
+#ecrans .opts.col{flex-direction:column}
+#ecrans .opts.col span{font-weight:500}
+#ecrans .pkg.col{flex-direction:column;align-items:stretch;gap:7px}
+#ecrans .pk-h{display:flex;gap:10px;align-items:center}
+#ecrans .pk-h>div:nth-child(2){flex:1;display:flex;flex-direction:column}
+#ecrans .mini{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+#ecrans .mini span{height:5px;border-radius:4px;background:#E3EBF3}
+#ecrans .mini span.on{background:var(--blue)}
+#ecrans .photo.tall{height:200px;font-size:72px}
+#ecrans .up .th.brown{background:linear-gradient(160deg,#E9DCC8,#CDB693);color:#6B5232}
+#ecrans .cube{position:relative;height:150px;display:grid;place-items:center;background:var(--mist);border-radius:14px}
+#ecrans .cube3{width:96px;height:96px;border-radius:18px;display:grid;place-items:center;font-size:58px;color:#6B5232;background:linear-gradient(160deg,#F0E4D2,#CDB693);box-shadow:0 14px 24px rgba(107,82,50,.25);transform:perspective(300px) rotateX(10deg) rotateY(-14deg)}
+#ecrans .cl{position:absolute;font-size:10.5px;font-weight:700;background:#fff;color:var(--blue);padding:2px 7px;border-radius:6px;box-shadow:0 2px 5px rgba(16,33,61,.1)}
+#ecrans .cl.l{bottom:12px;left:50%;transform:translateX(-50%)}
+#ecrans .cl.w{right:28px;top:50%}
+#ecrans .cl.h{left:28px;top:44%}
+#ecrans .stat{display:flex;gap:10px;align-items:center;border-radius:14px;padding:11px;background:var(--bs)}
+#ecrans .stat.red{background:var(--rs)}
+#ecrans .stat>div:nth-child(2){display:flex;flex-direction:column}
+#ecrans .stat b{font-size:13px}
+#ecrans .stat small{font-size:10.5px;color:var(--mu)}
+#ecrans .sup-h.big b{font-size:15px}
+#ecrans .world{position:relative;height:120px;border-radius:14px;background:radial-gradient(circle at 20% 80%,#DCEEFB,transparent 50%),#F2F8FD;overflow:hidden;color:#8DB9DD}
+#ecrans .wl{position:absolute;inset:0;width:100%;height:100%}
+#ecrans .wp{position:absolute;font-size:9.5px;font-weight:700;background:var(--red);color:#fff;padding:2px 6px;border-radius:6px}
+#ecrans .wp.b{background:var(--blue)}
+#ecrans .offcard{align-self:stretch;background:#fff;border:1.5px solid var(--blue);border-radius:14px;padding:11px;display:flex;flex-direction:column;gap:4px}
+#ecrans .offcard small{font-size:9px;font-weight:800;letter-spacing:.08em;color:var(--red)}
+#ecrans .offcard b{font-family:var(--f-display);font-size:19px;color:var(--blue)}
+#ecrans .offcard>span{font-size:10.5px;color:var(--mu)}
+#ecrans .prod.fav{position:relative}
+#ecrans .prod.fav i{position:absolute;top:12px;right:12px;color:var(--red);font-size:14px}
+#ecrans .prod.fav i svg{fill:currentColor}
+#ecrans .cube3.i3d img{width:78px;height:78px}
+#ecrans .photo.tall.i3d>img{width:110px;height:110px}
+#ecrans .steps-map{overflow-x:auto;margin-top:28px;border:1px solid var(--line);border-radius:14px;background:#fff}
+#ecrans .steps-map table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:480px}
+#ecrans .steps-map th{text-align:left;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 14px;border-bottom:1px solid var(--line);background:#FBFDFF}
+#ecrans .steps-map td{padding:9px 14px;border-bottom:1px solid var(--line)}
+#ecrans .steps-map td:first-child{font-weight:700;font-variant-numeric:tabular-nums;color:var(--red)}
+#ecrans .steps-map a{color:var(--blue);font-weight:600}
 </style>
 
 <header class="band">
   <div class="wrap">
     <div class="brand"><span>SS</span> <em>DROPSHIP</em> · Design</div>
-    <p class="lede">Les 33 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
+    <p class="lede">Les 46 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
     <nav class="toc" aria-label="Sections">
-      <a href="#ecrans">Les 33 écrans</a>
+      <a href="#ecrans">Les 46 écrans</a>
       <a href="#bogolan">Icônes Bogolan</a>
       <a href="#maquette">Maquette d'origine</a>
       <a href="#charte">Charte graphique</a>
@@ -604,7 +666,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
     <h2 class="title">Toutes les pages de l'application</h2>
-    <p class="intro">33 écrans dessinés à partir du cahier des charges : 30 pour l'application client, 3 pour le back-office Admin. Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
+    <p class="intro">46 écrans dessinés à partir du cahier des charges : 42 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
     <nav class="groups" aria-label="Parcours">
       <a href="#g-acces">Accès au compte <b>1–5</b></a>
       <a href="#g-accueil">Accueil et catalogue <b>6–8</b></a>
@@ -613,13 +675,14 @@ html{scroll-behavior:smooth}
       <a href="#g-wallet">Wallet <b>23–25</b></a>
       <a href="#g-compte">Compte et services <b>26–30</b></a>
       <a href="#g-admin">Back-office Admin <b>31–33</b></a>
+      <a href="#g-etapes">Étapes 20 à 50 <b>34–46</b></a>
     </nav>
 
     <!-- ================= ACCÈS ================= -->
     <h3 class="gtitle" id="g-acces">Accès au compte</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="pv pv-center">
+      <figure class="scr" id="e-1"><div class="ph"><div class="pv pv-center">
         <div class="logo-xl"><span>SS</span> <em>DROPSHIP</em></div>
         <div class="orbit">
           <div class="ic ic-lg ic3d"><img src="../icons/bogolan/png/globe.png" alt=""></div>
@@ -639,7 +702,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">01</span><b>Bienvenue</b><small>Premier écran : créer un compte ou se connecter, choix de la langue.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Créer un compte</h4></div><div class="pv">
+      <figure class="scr" id="e-2"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Créer un compte</h4></div><div class="pv">
         <label class="lb">Nom complet</label><div class="in">Awa Koné</div>
         <div class="seg"><span class="on">Téléphone</span><span>Email</span></div>
         <div class="in-row"><div class="in in-pre">+225<svg><use href="#i-down"/></svg></div><div class="in">07 08 42 18 63</div></div>
@@ -653,7 +716,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">02</span><b>Inscription + code de parrainage</b><small>Champ parrainage facultatif, visible dès l'inscription (D-005).</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Vérification</h4></div><div class="pv pv-center">
+      <figure class="scr" id="e-3"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Vérification</h4></div><div class="pv pv-center">
         <div class="ic ic-lg ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div>
         <h4 class="big">Entrez le code reçu</h4>
         <p class="sub">Un code à 6 chiffres a été envoyé par SMS au <b>+225 07 •• •• 18 63</b>.</p>
@@ -664,7 +727,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">03</span><b>Vérification du contact</b><small>Code OTP par SMS ou email, avec délai avant renvoi.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="pv">
+      <figure class="scr" id="e-4"><div class="ph"><div class="pv">
         <div class="logo-md"><span>SS</span> <em>DROPSHIP</em></div>
         <h4 class="big left">Bon retour !</h4>
         <p class="sub left">Connectez-vous pour suivre vos achats et vos colis.</p>
@@ -678,7 +741,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">04</span><b>Connexion</b><small>Téléphone ou email, mot de passe, ou connexion par code SMS.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mot de passe oublié</h4></div><div class="pv">
+      <figure class="scr" id="e-5"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mot de passe oublié</h4></div><div class="pv">
         <div class="steps"><span class="on">1<i>Contact</i></span><span>2<i>Code</i></span><span>3<i>Nouveau</i></span></div>
         <div class="ic ic-lg mx ic3d"><img src="../icons/bogolan/png/lock.png" alt=""></div>
         <h4 class="big">Réinitialiser votre mot de passe</h4>
@@ -694,7 +757,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-accueil">Accueil et catalogue</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="pv pv-tab">
+      <figure class="scr" id="e-6"><div class="ph"><div class="pv pv-tab">
         <div class="top"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><span class="bell"><svg><use href="#i-bell"/></svg><i></i></span></div>
         <p class="hello">Bonjour Awa</p>
         <div class="search"><svg><use href="#i-search"/></svg><span>Produit, lien, photo ou fournisseur…</span><svg class="r"><use href="#i-camera"/></svg></div>
@@ -715,7 +778,7 @@ html{scroll-behavior:smooth}
       </div><span class="fab fab3d"><img src="../icons/bogolan/png/chat.png" alt=""></span><nav class="tb" data-a="home"></nav></div>
       <figcaption><span class="num">06</span><b>Accueil</b><small>Recherche par nom, lien, photo ou QR ; catégories ; produits mis en avant ; chat flottant.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">routeur wifi 6</span></div></div><div class="pv pv-tab">
+      <figure class="scr" id="e-7"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">routeur wifi 6</span></div></div><div class="pv pv-tab">
         <div class="chips"><span class="chip on"><svg><use href="#i-filter"/></svg>Filtres</span><span class="chip">Chine</span><span class="chip">Turquie</span><span class="chip">Prix</span><span class="chip">Délai</span></div>
         <p class="muted">48 résultats · prix indicatifs, confirmés par devis</p>
         <div class="res"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000 double bande</b><small>Shenzhen Netlink · Chine</small><span class="price">38 500 F <i>/ unité</i></span><small>Délai 10–15 j · min. 1</small></div><span class="hrt"><svg><use href="#i-heart"/></svg></span></div>
@@ -725,7 +788,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="home"></nav></div>
       <figcaption><span class="num">07</span><b>Résultats de recherche</b><small>Filtres par pays, prix, délai ; ajout aux favoris ; bascule vers une demande de recherche.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Fournisseurs</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
+      <figure class="scr" id="e-8"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Fournisseurs</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
         <div class="seg"><span>Locaux</span><span class="on">Internationaux</span></div>
         <div class="sup"><div class="sup-h"><div class="av">SN</div><div><b>Shenzhen Netlink Co.</b><small><svg><use href="#i-pin"/></svg>Chine · Shenzhen</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Réseau</span><span>Informatique</span></div><div class="kv3"><span><b>10–15 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>CI · GH</b>Livre</span></div></div>
         <div class="sup"><div class="sup-h"><div class="av red">IE</div><div><b>Istanbul Elektronik</b><small><svg><use href="#i-pin"/></svg>Turquie · Istanbul</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Électronique</span><span>Téléphones</span></div><div class="kv3"><span><b>8–12 j</b>Délai</span><span><b>2</b>Min. cmd</span><span><b>CI · GN</b>Livre</span></div></div>
@@ -739,7 +802,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-achats">Achats et commandes</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Nouvelle commande</h4></div><div class="pv pv-tab">
+      <figure class="scr" id="e-9"><div class="ph"><div class="hd"><h4 class="hd-l">Nouvelle commande</h4></div><div class="pv pv-tab">
         <p class="sub left">Comment voulez-vous commander ?</p>
         <div class="mode on"><div class="ic ic3d"><img src="../icons/bogolan/png/link.png" alt=""></div><div><b>Commande directe</b><small>Vous connaissez le produit : collez un lien ou une référence.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="mode"><div class="ic ic3d"><img src="../icons/bogolan/png/search.png" alt=""></div><div><b>Recherche de produit</b><small>Décrivez ce que vous cherchez, avec photos ou vidéo.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
@@ -751,7 +814,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="cart"></nav></div>
       <figcaption><span class="num">09</span><b>Choisir le mode de commande</b><small>Les trois modes validés (D-006) et les demandes récentes.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Commande directe</h4></div><div class="pv">
+      <figure class="scr" id="e-10"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Commande directe</h4></div><div class="pv">
         <label class="lb">Lien ou référence du produit</label>
         <div class="in in-ico"><svg><use href="#i-link"/></svg><span class="trunc">https://fournisseur.example/item/AX3000-W6</span></div>
         <div class="detect"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><div><small class="ok-t"><svg><use href="#i-check"/></svg>Produit reconnu</small><b>Routeur Wi-Fi 6 AX3000</b><small>Prix fournisseur affiché : 52,90 USD</small></div></div>
@@ -763,7 +826,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">10</span><b>Commande directe</b><small>Lien ou référence, variante, quantité, commentaire, demande de devis.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recherche de produit</h4></div><div class="pv">
+      <figure class="scr" id="e-11"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recherche de produit</h4></div><div class="pv">
         <label class="lb">Que cherchez-vous ?</label>
         <div class="in in-area tall">Ordinateur portable 15" pour bureautique, 16 Go de RAM, SSD 512 Go, clavier AZERTY, garantie 1 an minimum.</div>
         <label class="lb">Photos ou vidéo <i>(facultatif)</i></label>
@@ -775,7 +838,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">11</span><b>Recherche de produit</b><small>Description libre, photos/vidéo (D-009), quantité, budget, origine.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>DMD-2026-0142</h4></div><div class="pv">
+      <figure class="scr" id="e-12"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>DMD-2026-0142</h4></div><div class="pv">
         <span class="badge b-red">Recherche + négociation</span>
         <h4 class="big left">Écrans 27" IPS · 10 unités</h4>
         <p class="sub left">Prix cible : 95 000 F / unité · livraison avant le 15/12</p>
@@ -791,7 +854,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">12</span><b>Négociation en cours</b><small>Suivi d'une demande avec agent dédié et étapes horodatées.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Comparer les offres</h4></div><div class="pv">
+      <figure class="scr" id="e-13"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Comparer les offres</h4></div><div class="pv">
         <div class="offer on"><div class="of-h"><b>Offre A · Shenzhen Display</b><span class="badge b-blue">Meilleur prix</span></div><div class="kv3"><span><b>89 500 F</b>Prix unitaire</span><span><b>12–18 j</b>Délai</span><span><b>Chine</b>Origine</span></div><p class="muted">Frais de service 6 % · valable jusqu'au 19/11</p><span class="radio on"></span></div>
         <div class="offer"><div class="of-h"><b>Offre B · Ankara Vision</b><span class="badge b-grey">Plus rapide</span></div><div class="kv3"><span><b>97 000 F</b>Prix unitaire</span><span><b>8–10 j</b>Délai</span><span><b>Turquie</b>Origine</span></div><p class="muted">Frais de service 6 % · valable jusqu'au 19/11</p><span class="radio"></span></div>
         <div class="offer"><div class="of-h"><b>Offre C · Guangzhou Screen</b></div><div class="kv3"><span><b>92 000 F</b>Prix unitaire</span><span><b>15–20 j</b>Délai</span><span><b>Chine</b>Origine</span></div><p class="muted">Fiche technique incomplète</p><span class="radio"></span></div>
@@ -800,7 +863,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">13</span><b>Comparaison d'offres</b><small>Prix, délai, origine, validité du devis et qualité des informations.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon panier</h4></div><div class="pv pv-tab">
+      <figure class="scr" id="e-14"><div class="ph"><div class="hd"><h4 class="hd-l">Mon panier</h4></div><div class="pv pv-tab">
         <div class="seg"><span class="on">Panier (2)</span><span>Favoris (5)</span></div>
         <div class="citem"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><div class="rt"><b>Routeur Wi-Fi 6 AX3000</b><small>Noir · prise UE · Offre DMD-0139</small><span class="price">38 500 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>2</b><span><svg><use href="#i-plus"/></svg></span></div></div>
         <div class="citem"><div class="pimg red i3d"><img src="../icons/bogolan/png/game.png" alt=""></div><div class="rt"><b>Manette sans fil</b><small>Blanc · Dubaï</small><span class="price">21 000 F</span></div><div class="stepper xs"><span><svg><use href="#i-minus"/></svg></span><b>1</b><span><svg><use href="#i-plus"/></svg></span></div></div>
@@ -814,7 +877,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="cart"></nav></div>
       <figcaption><span class="num">14</span><b>Panier et favoris</b><small>Panier et liste de souhaits distincts, récapitulatif des frais.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paiement</h4></div><div class="pv">
+      <figure class="scr" id="e-15"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paiement</h4></div><div class="pv">
         <div class="recap sm"><p><span>Commande</span><b>CMD-2026-0091</b></p><p><span>2 articles</span><b>98 000 F</b></p><p><span>Frais de service</span><b>5 880 F</b></p><p class="tot"><span>Total</span><b>103 880 F CFA</b></p></div>
         <label class="lb">Moyen de paiement</label>
         <div class="pay on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Wallet SS DROPSHIP</b><small>Solde : 312 500 F</small></div><span class="radio on"></span></div>
@@ -825,7 +888,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">15</span><b>Paiement</b><small>Wallet, Mobile Money ou carte ; validation après confirmation (D-008).</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mes commandes</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
+      <figure class="scr" id="e-16"><div class="ph"><div class="hd"><h4 class="hd-l">Mes commandes</h4><span class="hd-r"><svg><use href="#i-search"/></svg></span></div><div class="pv pv-tab">
         <div class="seg three"><span class="on">En cours</span><span>Livrées</span><span>Litiges</span></div>
         <div class="ord"><div class="o-h"><b>CMD-2026-0091</b><span class="badge b-blue">Paiement confirmé</span></div><p>Routeur Wi-Fi 6 ×2 · Manette ×1</p><small>17/11/2026 · 103 880 F</small></div>
         <div class="ord"><div class="o-h"><b>CMD-2026-0087</b><span class="badge b-night">Reçu entrepôt</span></div><p>Ordinateur portable 15" ×5</p><small>08/11/2026 · 1 187 500 F</small></div>
@@ -834,7 +897,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="cart"></nav></div>
       <figcaption><span class="num">16</span><b>Mes commandes</b><small>Liste par statut : en cours, livrées, litiges.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0087</h4><span class="hd-r"><svg><use href="#i-share"/></svg></span></div><div class="pv">
+      <figure class="scr" id="e-17"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0087</h4><span class="hd-r"><svg><use href="#i-share"/></svg></span></div><div class="pv">
         <div class="ohead"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><div><b>Ordinateur portable 15" ×5</b><small>Shenzhen Office Tech · 1 187 500 F</small></div></div>
         <ul class="tl dense">
           <li class="done"><b>Devis accepté</b><small>05/11</small></li>
@@ -858,7 +921,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-entrepot">Entrepôt et livraison</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
+      <figure class="scr" id="e-18"><div class="ph"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
         <div class="addr"><small>MON ADRESSE ENTREPÔT · GUANGZHOU</small><b>SS DROPSHIP – SSD-48213</b><span>Bât. 6, zone logistique, Baiyun, Guangzhou, Chine</span><span class="cp"><svg><use href="#i-copy"/></svg>Copier</span></div>
         <div class="cnt"><span><b>2</b>Attendus</span><span class="on"><b>3</b>Reçus</span><span><b>1</b>Prêt</span><span><b>4</b>Expédiés</span></div>
         <div class="pkg"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0318</b><small>CMD-0087 · 2,4 kg · reçu le 14/11</small></div><span class="badge b-night">Reçu</span></div>
@@ -868,7 +931,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="box"></nav></div>
       <figcaption><span class="num">18</span><b>Mon entrepôt</b><small>Adresse personnelle d'entrepôt, compteurs par état, colis reçus.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>PKG-24-11-0318</h4></div><div class="pv">
+      <figure class="scr" id="e-19"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>PKG-24-11-0318</h4></div><div class="pv">
         <div class="photo i3d"><img src="../icons/bogolan/png/box.png" alt=""><span>Photo du carton extérieur · 14/11</span></div>
         <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>2,4 kg</b>Poids</span><span><svg><use href="#i-ruler"/></svg><b>40×30×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,024 m³</b>Volume</span><span><svg><use href="#i-pin"/></svg><b>A-12-03</b>Emplacement</span></div>
         <p class="muted">État extérieur : bon · Transporteur fournisseur : YunExpress</p>
@@ -882,7 +945,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">19</span><b>Détail d'un colis</b><small>Poids, dimensions, photo extérieure ; services avancés désactivés (D-010).</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Choisir le transport</h4></div><div class="pv">
+      <figure class="scr" id="e-20"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Choisir le transport</h4></div><div class="pv">
         <p class="sub left">Destination : <b>Abidjan, Côte d'Ivoire</b> · 2,4 kg</p>
         <div class="carrier on"><div class="ic ic3d"><img src="../icons/bogolan/png/plane.png" alt=""></div><div><b>Partenaire SS DROPSHIP · aérien</b><small>7–10 jours · suivi inclus</small></div><em>≈ 26 400 F</em></div>
         <div class="carrier"><div class="ic ic3d"><img src="../icons/bogolan/png/send.png" alt=""></div><div><b>Express international</b><small>3–5 jours · DHL, FedEx, UPS ou Aramex selon contrats</small></div><em>≈ 58 000 F</em></div>
@@ -893,7 +956,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">20</span><b>Choix du transporteur</b><small>Partenaire, express ou transitaire personnel ; maritime plus tard (D-012).</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis de livraison</h4></div><div class="pv">
+      <figure class="scr" id="e-21"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Devis de livraison</h4></div><div class="pv">
         <div class="route"><div><small>Départ</small><b>Guangzhou</b></div><svg><use href="#i-plane"/></svg><div class="r"><small>Arrivée</small><b>Abidjan</b></div></div>
         <label class="lb">Adresse de livraison</label>
         <div class="in in-ico in-sel"><svg><use href="#i-pin"/></svg>Cocody, Riviera 3, Abidjan<svg><use href="#i-down"/></svg></div>
@@ -909,7 +972,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">21</span><b>Devis de livraison</b><small>Détail des frais logistiques avant paiement, assurance facultative.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Suivi du colis</h4></div><div class="pv">
+      <figure class="scr" id="e-22"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Suivi du colis</h4></div><div class="pv">
         <div class="map">
           <svg class="mapline" viewBox="0 0 260 110" preserveAspectRatio="none"><path d="M230 30 C 170 0, 90 10, 30 80" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 5"/><circle cx="230" cy="30" r="5" fill="#0077C8"/><circle cx="30" cy="80" r="5" fill="#F21A16"/></svg>
           <span class="m1">Guangzhou</span><span class="m2">Doha</span><span class="m3">Abidjan</span>
@@ -932,7 +995,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-wallet">Wallet</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Wallet</h4><span class="hd-r">F CFA<svg><use href="#i-down"/></svg></span></div><div class="pv pv-tab">
+      <figure class="scr" id="e-23"><div class="ph"><div class="hd"><h4 class="hd-l">Wallet</h4><span class="hd-r">F CFA<svg><use href="#i-down"/></svg></span></div><div class="pv pv-tab">
         <div class="wcard"><small>Solde disponible</small><b>312 500 F CFA</b><span>ID client SSD-48213</span></div>
         <div class="acts"><span><i class="ic i3d"><img src="../icons/bogolan/png/plus.png" alt=""></i>Recharger</span><span><i class="ic i3d"><img src="../icons/bogolan/png/card.png" alt=""></i>Payer</span><span><i class="ic ic-red i3d"><img src="../icons/bogolan/png/download.png" alt=""></i>Retirer</span><span><i class="ic i3d"><img src="../icons/bogolan/png/file.png" alt=""></i>Reçus</span></div>
         <div class="sec"><b>Dernières opérations</b><span>Tout voir</span></div>
@@ -943,7 +1006,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="wallet"></nav></div>
       <figcaption><span class="num">23</span><b>Wallet</b><small>Solde, actions rapides et dernières opérations.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recharger</h4></div><div class="pv">
+      <figure class="scr" id="e-24"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Recharger</h4></div><div class="pv">
         <label class="lb">Montant</label>
         <div class="amount">50 000 <i>F CFA</i></div>
         <div class="chips"><span class="chip">10 000</span><span class="chip">25 000</span><span class="chip on">50 000</span><span class="chip">100 000</span></div>
@@ -957,7 +1020,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">24</span><b>Recharger le wallet</b><small>Montant ; Mobile Money, Google Pay, Apple Pay, carte via Stripe, filtrés par pays ; crédit après confirmation.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique</h4><span class="hd-r"><svg><use href="#i-download"/></svg></span></div><div class="pv">
+      <figure class="scr" id="e-25"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique</h4><span class="hd-r"><svg><use href="#i-download"/></svg></span></div><div class="pv">
         <div class="seg three"><span class="on">Tout</span><span>Entrées</span><span>Sorties</span></div>
         <p class="day">Novembre 2026</p>
         <div class="tx"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/card.png" alt=""></div><div><b>Recharge carte</b><small>17/11 · REF TX-90412</small><span class="badge b-grey">En attente · non crédité</span></div><em class="pend">+25 000 F</em></div>
@@ -973,7 +1036,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-compte">Compte et services</h3>
     <div class="gallery">
 
-      <figure class="scr"><div class="ph"><div class="hd"><h4 class="hd-l">Mon compte</h4><span class="hd-r"><svg><use href="#i-gear"/></svg></span></div><div class="pv pv-tab">
+      <figure class="scr" id="e-26"><div class="ph"><div class="hd"><h4 class="hd-l">Mon compte</h4><span class="hd-r"><svg><use href="#i-gear"/></svg></span></div><div class="pv pv-tab">
         <div class="prof"><div class="av lg">AK</div><div><b>Awa Koné</b><small>ID client SSD-48213 · Côte d'Ivoire</small><span class="badge b-blue"><svg><use href="#i-check"/></svg>Téléphone vérifié</span></div></div>
         <div class="refban"><div class="ic ic-red ic-xs ic3d"><img src="../icons/bogolan/png/gift.png" alt=""></div><div><b>Parrainez vos proches</b><small>Votre code : AWA-7K42</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="menu">
@@ -990,7 +1053,7 @@ html{scroll-behavior:smooth}
       </div><nav class="tb" data-a="user"></nav></div>
       <figcaption><span class="num">26</span><b>Mon compte</b><small>Profil, accès direct au parrainage, réglages et support.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Parrainage</h4></div><div class="pv">
+      <figure class="scr" id="e-27"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Parrainage</h4></div><div class="pv">
         <div class="refcard"><small>Mon code de parrainage</small><b>AWA-7K42</b><div class="two"><span class="btn btn-w sm"><svg><use href="#i-copy"/></svg>Copier</span><span class="btn btn-w sm"><svg><use href="#i-share"/></svg>Partager</span></div></div>
         <div class="kv3 boxed"><span><b>4</b>Filleuls</span><span><b>2</b>Actifs</span><span><b>—</b>Récompenses</span></div>
         <div class="note-s"><svg><use href="#i-info"/></svg>Le montant des récompenses sera affiché dès que la règle sera validée par SS DROPSHIP.</div>
@@ -1002,7 +1065,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">27</span><b>Parrainage</b><small>Code à copier ou partager, filleuls, récompenses (règle M-002 à valider).</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Notifications</h4><span class="hd-r link">Tout lire</span></div><div class="pv">
+      <figure class="scr" id="e-28"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Notifications</h4><span class="hd-r link">Tout lire</span></div><div class="pv">
         <p class="day">Aujourd'hui</p>
         <div class="nt new"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/shield.png" alt=""></div><div><b>Colis en douane</b><small>PKG-0318 est en cours de dédouanement à Abidjan.</small><i>08:40</i></div></div>
         <div class="nt new"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/deal.png" alt=""></div><div><b>3 offres disponibles</b><small>Votre agent a reçu 3 offres pour DMD-0142.</small><i>07:55</i></div></div>
@@ -1013,7 +1076,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">28</span><b>Notifications</b><small>Changements d'état des commandes, colis, paiements et offres.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Support SS DROPSHIP</b><small><i class="on-dot"></i>En ligne · répond en ~5 min</small></div><span class="hd-r"><svg><use href="#i-phone"/></svg></span></div><div class="pv pv-chat">
+      <figure class="scr" id="e-29"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Support SS DROPSHIP</b><small><i class="on-dot"></i>En ligne · répond en ~5 min</small></div><span class="hd-r"><svg><use href="#i-phone"/></svg></span></div><div class="pv pv-chat">
         <div class="faq"><svg><use href="#i-info"/></svg>Consulter la FAQ<svg class="ch"><use href="#i-chev"/></svg></div>
         <p class="day center">Aujourd'hui</p>
         <div class="msg me">Bonjour, mon colis PKG-0318 est en douane depuis ce matin. Dois-je faire quelque chose ?</div>
@@ -1025,7 +1088,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">29</span><b>Support et chat</b><small>Chat avec l'équipe, pièces jointes, réponses rapides, FAQ.</small></figcaption></figure>
 
-      <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paramètres</h4></div><div class="pv">
+      <figure class="scr" id="e-30"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Paramètres</h4></div><div class="pv">
         <p class="day">Langue</p>
         <div class="opts"><span class="on">Français</span><span>English</span><span>Türkçe</span><span>Español</span><span>中文</span></div>
         <p class="day">Pays et devise</p>
@@ -1047,7 +1110,7 @@ html{scroll-behavior:smooth}
     <h3 class="gtitle" id="g-admin">Back-office Admin</h3>
     <div class="gallery wide">
 
-      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+      <figure class="scr" id="e-31"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
         <span class="on"><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
       </aside><div class="dmain">
         <div class="dtop"><h4>Tableau de bord</h4><span class="muted">Mardi 17 novembre 2026</span><span class="who"><span class="av sm">MO</span>Admin · Marc O.</span></div>
@@ -1070,7 +1133,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">31</span><b>Tableau de bord Admin</b><small>Indicateurs du jour, activité hebdomadaire, file des actions à traiter.</small></figcaption></figure>
 
-      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+      <figure class="scr" id="e-32"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
         <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span class="on"><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
       </aside><div class="dmain">
         <div class="dtop"><h4>Demandes et commandes</h4><div class="search sm"><svg><use href="#i-search"/></svg><span>ID, client, fournisseur…</span></div></div>
@@ -1090,7 +1153,7 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">32</span><b>Gestion des demandes et commandes</b><small>Filtres par statut, agent assigné, montant ; traçabilité des changements.</small></figcaption></figure>
 
-      <figure class="scr"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+      <figure class="scr" id="e-33"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
         <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span class="on"><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
       </aside><div class="dmain">
         <div class="dtop"><h4>Réception d'un colis · Guangzhou</h4><span class="badge b-night">Agent entrepôt</span></div>
@@ -1110,6 +1173,167 @@ html{scroll-behavior:smooth}
       </div></div>
       <figcaption><span class="num">33</span><b>Réception en entrepôt</b><small>Saisie par l'agent : poids, dimensions, photos extérieures, emplacement.</small></figcaption></figure>
     </div>
+
+    <h3 class="gtitle" id="g-etapes">Étapes 20 à 50 : écrans complémentaires</h3>
+    <p class="intro">Écrans 34 à 46 : les pages des étapes 20 à 50 qui n'existaient que dans les visuels de présentation, ajoutées ici en version Bogolan. Le tableau indique l'écran de chaque étape.</p>
+    <div class="gallery">
+      <figure class="scr" id="e-34"><div class="ph"><div class="hd"><h4 class="hd-l">Mon entrepôt</h4><span class="hd-r"><svg><use href="#i-bell"/></svg></span></div><div class="pv pv-tab">
+  <div class="seg three"><span class="on">Attendus (2)</span><span>Reçus (3)</span><span>Expédiés</span></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0091</b><small>Routeur Wi-Fi 6 ×2 · Manette ×1</small></div><span class="badge b-blue">En route</span></div><div class="mini"><span class="on"></span><span class="on"></span><span></span><span></span></div><small>Shenzhen → Guangzhou · suivi YT2026111700512 · arrivée prévue 20/11</small></div>
+  <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0088</b><small>Écran 24" ×2</small></div><span class="badge b-grey">Expédié fournisseur</span></div><div class="mini"><span class="on"></span><span></span><span></span><span></span></div><small>Istanbul → Istanbul (entrepôt) · arrivée prévue 22/11</small></div>
+  <span class="btn btn-ghost"><svg><use href="#i-plus"/></svg>Annoncer un colis</span>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Achat fait vous-même ? Indiquez votre code client SSD-48213 sur l'adresse de livraison du fournisseur.</div>
+</div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">34</span><b>Colis attendus</b><small>Étape 20 des visuels. Colis en route vers l'entrepôt, avec suivi fournisseur et arrivée prévue.</small></figcaption></figure>
+      <figure class="scr" id="e-35"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Photos du colis</h4></div><div class="pv">
+  <div class="photo tall i3d"><img src="../icons/bogolan/png/box.png" alt=""><span>Face avant · étiquette fournisseur</span></div>
+  <div class="up"><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span></div>
+  <p class="muted">PKG-24-11-0318 · prises le 14/11 à 10:12 par l'agent GZ-04</p>
+  <span class="badge b-green"><svg><use href="#i-check"/></svg>État extérieur : bon</span>
+  <div class="note-s red"><svg><use href="#i-info"/></svg>Le carton n'est pas ouvert : seules les faces extérieures sont photographiées.</div>
+  <span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Signaler un problème</span>
+</div></div>
+      <figcaption><span class="num">35</span><b>Photos du colis extérieur</b><small>Étape 23 des visuels. Toutes les faces du carton, horodatées, sans ouverture.</small></figcaption></figure>
+      <figure class="scr" id="e-36"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Poids et volume</h4></div><div class="pv">
+  <div class="cube"><div class="cube3 i3d"><img src="../icons/bogolan/png/box.png" alt=""></div><span class="cl l">35 cm</span><span class="cl w">25 cm</span><span class="cl h">20 cm</span></div>
+  <div class="kv4"><span><svg><use href="#i-scale"/></svg><b>5,1 kg</b>Réel</span><span><svg><use href="#i-ruler"/></svg><b>35×25×20</b>cm</span><span><svg><use href="#i-box"/></svg><b>0,018 m³</b>Volume</span><span><svg><use href="#i-plane"/></svg><b>3,5 kg</b>Volumétrique</span></div>
+  <div class="recap">
+    <p><span>Poids réel</span><b>5,1 kg</b></p>
+    <p><span>Poids volumétrique (L×l×h ÷ 5000)</span><b>3,5 kg</b></p>
+    <p class="tot"><span>Poids facturé</span><b>5,1 kg</b></p>
+  </div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Le transporteur facture le plus élevé des deux poids. Le diviseur dépend du transporteur choisi.</div>
+  <p class="muted">PKG-24-11-0284 · pesé le 10/11 · balance GZ-B2</p>
+</div></div>
+      <figcaption><span class="num">36</span><b>Poids et volume</b><small>Étape 24 des visuels. Poids réel, poids volumétrique et poids facturé expliqués.</small></figcaption></figure>
+      <figure class="scr" id="e-37"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Historique · PKG-0318</h4></div><div class="pv">
+  <ul class="tl">
+    <li class="cur"><b>Remis au transporteur</b><small>15/11 · 18:10 · agent GZ-07</small></li>
+    <li class="done"><b>Expédition demandée par le client</b><small>15/11 · 09:02 · application</small></li>
+    <li class="done"><b>Rangé à l'emplacement A-12-03</b><small>14/11 · 10:25 · agent GZ-04</small></li>
+    <li class="done"><b>Photographié (extérieur)</b><small>14/11 · 10:12 · agent GZ-04</small></li>
+    <li class="done"><b>Pesé et mesuré : 2,4 kg</b><small>14/11 · 10:09 · agent GZ-04</small></li>
+    <li class="done"><b>Reçu à l'entrepôt de Guangzhou</b><small>14/11 · 09:58 · agent GZ-04</small></li>
+    <li class="done"><b>Annoncé par le fournisseur</b><small>09/11 · suivi YT2026…418</small></li>
+  </ul>
+  <div class="note-s"><svg><use href="#i-shield"/></svg>Chaque action est horodatée et attribuée à un agent identifié.</div>
+</div></div>
+      <figcaption><span class="num">37</span><b>Historique de l'entrepôt</b><small>Étape 25 des visuels. Chaque action horodatée et attribuée à un agent.</small></figcaption></figure>
+      <figure class="scr" id="e-38"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Douane · PKG-0318</h4></div><div class="pv">
+  <div class="stat red"><div class="ic ic-red i3d"><img src="../icons/bogolan/png/shield.png" alt=""></div><div><b>Dédouanement en cours</b><small>Aéroport d'Abidjan · depuis le 17/11 à 08:40</small></div></div>
+  <div class="sec"><b>Documents</b></div>
+  <div class="svc on i3d"><img src="../icons/bogolan/png/check.png" alt=""><span>Facture commerciale</span><b>Fournie</b></div>
+  <div class="svc on i3d"><img src="../icons/bogolan/png/check.png" alt=""><span>Liste de colisage</span><b>Fournie</b></div>
+  <div class="svc on i3d"><img src="../icons/bogolan/png/check.png" alt=""><span>Lettre de transport aérien</span><b>Fournie</b></div>
+  <div class="sec"><b>Droits et taxes</b></div>
+  <div class="recap sm"><p><span>Montant</span><i>communiqué par le transitaire</i></p><p><span>Payé par</span><b>Selon l'incoterm du devis</b></p></div>
+  <div class="note-s"><svg><use href="#i-clock"/></svg>Délai habituel : 24 à 48 h. Vous serez notifié dès la mainlevée.</div>
+  <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Poser une question</span>
+</div></div>
+      <figcaption><span class="num">38</span><b>Statut en douane</b><small>Étape 29 des visuels. Documents fournis, droits et taxes, délai habituel.</small></figcaption></figure>
+      <figure class="scr" id="e-39"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Arrivé à Abidjan</h4></div><div class="pv">
+  <div class="stat"><div class="ic i3d"><img src="../icons/bogolan/png/pin.png" alt=""></div><div><b>Votre colis est arrivé</b><small>Dédouané le 18/11 · agence SS DROPSHIP Abidjan</small></div></div>
+  <label class="lb">Comment le recevoir ?</label>
+  <div class="pay on"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/truck.png" alt=""></div><div><b>Livraison à domicile</b><small>Cocody, Riviera 3 · 2 300 F</small></div><span class="radio on"></span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Retrait en agence</b><small>Plateau · sans frais · pièce d'identité</small></div><span class="radio"></span></div>
+  <label class="lb">Créneau de livraison</label>
+  <div class="chips"><span class="chip on">Jeu 19/11 · 9h–12h</span><span class="chip">Jeu 19/11 · 14h–17h</span><span class="chip">Ven 20/11 · 9h–12h</span></div>
+  <label class="lb">Téléphone du destinataire</label><div class="in">+225 07 08 42 18 63</div>
+  <span class="btn">Confirmer la livraison</span>
+</div></div>
+      <figcaption><span class="num">39</span><b>Réception dans le pays de destination</b><small>Étape 30 des visuels. Livraison à domicile ou retrait en agence, créneau au choix.</small></figcaption></figure>
+      <figure class="scr" id="e-40"><div class="ph"><div class="pv pv-center">
+  <div class="okbig"><svg><use href="#i-check"/></svg></div>
+  <h4 class="big">Colis livré</h4>
+  <p class="sub">PKG-24-11-0318 · 19/11/2026 à 10:47</p>
+  <div class="recap sm wide">
+    <p><span>Remis à</span><b>Awa Koné</b></p>
+    <p><span>Code de livraison</span><b>4821 · validé</b></p>
+    <p><span>Livreur</span><b>Ibrahim T.</b></p>
+    <p><span>Commande</span><b>CMD-2026-0087</b></p>
+  </div>
+  <p class="sub">Comment s'est passée la livraison ?</p>
+  <div class="stars"><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg><svg class="on"><use href="#i-star"/></svg></div>
+  <div class="stack"><span class="btn">Envoyer ma note</span><span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Signaler un problème</span></div>
+</div></div>
+      <figcaption><span class="num">40</span><b>Confirmation de livraison</b><small>Étape 31 des visuels. Remise contre un code de livraison, puis note du service.</small></figcaption></figure>
+      <figure class="scr" id="e-41"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Fournisseur</h4><span class="hd-r"><svg><use href="#i-heart"/></svg></span></div><div class="pv">
+  <div class="sup-h big"><div class="av lg">SN</div><div><b>Shenzhen Netlink Co.</b><small><svg><use href="#i-pin"/></svg>Chine · Shenzhen</small></div></div>
+  <span class="badge b-blue"><svg><use href="#i-check"/></svg>Fiche vérifiée le 02/10/2026</span>
+  <div class="kv3 boxed"><span><b>10–15 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>38</b>Commandes</span></div>
+  <div class="tags"><span>Routeurs</span><span>Switchs</span><span>Câbles</span><span>Wi-Fi 6</span></div>
+  <div class="sec"><b>Produits</b><span>Tout voir</span></div>
+  <div class="prods">
+    <div class="prod"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><b>Routeur AX3000</b><em>38 500 F</em></div>
+    <div class="prod"><div class="pimg i3d"><img src="../icons/bogolan/png/cpu.png" alt=""></div><b>Switch 8 ports</b><em>14 000 F</em></div>
+  </div>
+  <div class="set"><span>Livre vers</span><b>Côte d'Ivoire, Ghana, Guinée</b></div>
+  <div class="set"><span>Langues</span><b>Anglais, chinois</b></div>
+  <span class="btn">Demander un devis</span>
+</div></div>
+      <figcaption><span class="num">41</span><b>Fiche fournisseur</b><small>Étape 33 des visuels. Vérification datée, catalogue, zones livrées, devis direct.</small></figcaption></figure>
+      <figure class="scr" id="e-42"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="search sm"><svg><use href="#i-search"/></svg><span class="val">ordinateur portable 16 Go</span></div></div><div class="pv pv-tab">
+  <div class="world">
+    <svg class="wl" viewBox="0 0 260 120" preserveAspectRatio="none"><path d="M40 92 C 90 40, 170 30, 228 46M40 92 C 90 60, 140 50, 160 44M40 92 C 70 50, 110 30, 130 28M40 92 C 60 60, 90 40, 112 34" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="4 4"/></svg>
+    <span class="wp" style="left:34px;top:84px">Abidjan</span><span class="wp b" style="right:6px;top:36px">Chine</span><span class="wp b" style="left:140px;top:20px">Dubaï</span><span class="wp b" style="left:112px;top:4px">Turquie</span><span class="wp b" style="left:66px;top:22px">Europe</span>
+  </div>
+  <label class="lb">Origine</label>
+  <div class="chips"><span class="chip on">Toutes (200)</span><span class="chip">Chine 124</span><span class="chip">Turquie 38</span><span class="chip">Dubaï 21</span><span class="chip">Europe 17</span></div>
+  <div class="res"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><div class="rt"><b>Portable 15,6" i5 16 Go / 512 Go</b><small>Shenzhen Office Tech · Chine</small><span class="price">238 000 F</span><small>Délai 12–18 j</small></div></div>
+  <div class="res"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><div class="rt"><b>Portable 14" Ryzen 7 16 Go</b><small>Istanbul Bilişim · Turquie</small><span class="price">265 000 F</span><small>Délai 8–12 j</small></div></div>
+</div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">42</span><b>Recherche internationale</b><small>Étape 34 des visuels. Un même produit comparé par origine : Chine, Turquie, Dubaï, Europe.</small></figcaption></figure>
+      <figure class="scr" id="e-43"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><div class="hd-who"><b>Koffi A. · agent d'achat</b><small><i class="on-dot"></i>DMD-2026-0142</small></div></div><div class="pv pv-chat">
+  <div class="msg">Le fournisseur Shenzhen Display propose 92 000 F par écran pour 10 unités, délai 12–18 jours.</div>
+  <div class="msg me">Pouvez-vous négocier autour de 88 000 F ?</div>
+  <div class="msg">J'ai envoyé une contre-offre en mettant en avant la quantité et un paiement rapide.</div>
+  <div class="offcard"><small>NOUVELLE OFFRE · VALABLE 7 JOURS</small><b>89 500 F / unité</b><span>10 unités · 12–18 jours · garantie 12 mois</span><div class="two"><span class="btn sm">Accepter</span><span class="btn btn-ghost sm">Discuter</span></div></div>
+  <div class="msg me">Parfait, je regarde ça.</div>
+  <div class="composer"><svg><use href="#i-plus"/></svg><span>Écrire à votre agent…</span><i class="send"><svg><use href="#i-send"/></svg></i></div>
+</div></div>
+      <figcaption><span class="num">43</span><b>Négociation fournisseur</b><small>Étape 36 des visuels. Contre-offres présentées par l'agent dans la messagerie.</small></figcaption></figure>
+      <figure class="scr" id="e-44"><div class="ph"><div class="hd"><h4 class="hd-l">Favoris</h4><span class="hd-r"><svg><use href="#i-filter"/></svg></span></div><div class="pv pv-tab">
+  <div class="seg"><span class="on">Produits (4)</span><span>Fournisseurs (2)</span></div>
+  <div class="prods">
+    <div class="prod fav"><div class="pimg i3d"><img src="../icons/bogolan/png/wifi.png" alt=""></div><b>Kit Mesh Wi-Fi 6</b><small>Turquie</small><em>96 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg red i3d"><img src="../icons/bogolan/png/game.png" alt=""></div><b>Console portable</b><small>Dubaï</small><em>182 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><b>Portable 14" 16 Go</b><small>Turquie</small><em>265 000 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+    <div class="prod fav"><div class="pimg i3d"><img src="../icons/bogolan/png/camera.png" alt=""></div><b>Caméra IP Wi-Fi</b><small>Chine</small><em>17 500 F</em><i><svg><use href="#i-heart"/></svg></i></div>
+  </div>
+  <span class="btn btn-ghost"><svg><use href="#i-cart"/></svg>Ajouter la sélection au panier</span>
+</div><nav class="tb" data-a="cart"></nav></div>
+      <figcaption><span class="num">44</span><b>Mes favoris</b><small>Étape 37 des visuels. Produits et fournisseurs gardés pour plus tard.</small></figcaption></figure>
+      <figure class="scr" id="e-45"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Moyens de paiement</h4></div><div class="pv">
+  <div class="in in-sel in-ico"><svg><use href="#i-pin"/></svg>Côte d'Ivoire<svg><use href="#i-down"/></svg></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/card.png" alt=""></div><div><b>Carte bancaire via Stripe</b><small>Visa, Mastercard · 3-D Secure</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/phone.png" alt=""></div><div><b>Google Pay</b><small>Android</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Apple Pay</b><small>iPhone</small></div><span class="badge b-blue">Proposé</span></div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays. Le solde n'est crédité qu'après confirmation du prestataire.</div>
+  <p class="muted">Autres moyens (PayPal, virement, Alipay, WeChat Pay) : selon une décision ultérieure.</p>
+</div></div>
+      <figcaption><span class="num">45</span><b>Moyens de paiement</b><small>Étape 40 des visuels. Mobile Money, carte via Stripe, Google Pay, Apple Pay (D-019).</small></figcaption></figure>
+    </div>
+    <div class="gallery wide" style="margin-top:28px">
+      <figure class="scr" id="e-46"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small>
+  <span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-chart"/></svg>Analytics</span><span class="on"><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span>
+</aside><div class="dmain">
+  <div class="dtop"><h4>Analytics et traçabilité</h4><span class="muted">7 derniers jours</span></div>
+  <div class="kpis"><div><small>Délai moyen d'un devis</small><b>18 h</b><i class="up">−3 h</i></div><div><small>Devis acceptés</small><b>42 %</b><i>sur 96 devis</i></div><div><small>Colis traités</small><b>286</b><i>2 entrepôts</i></div><div class="alert"><small>Incidents ouverts</small><b>3</b><i>dont 2 colis abîmés</i></div></div>
+  <div class="tablewrap"><table class="dt">
+    <thead><tr><th>Date</th><th>Utilisateur</th><th>Action</th><th>Objet</th><th>Avant → après</th></tr></thead>
+    <tbody>
+      <tr><td>17/11 08:40</td><td>DOU-02</td><td>Statut colis</td><td>PKG-0318</td><td>En transit → Douane</td></tr>
+      <tr><td>17/11 08:12</td><td>Système</td><td>Webhook paiement</td><td>TX-90412</td><td>En attente → Confirmé</td></tr>
+      <tr><td>16/11 17:55</td><td>Ama S.</td><td>Devis envoyé</td><td>DMD-0139</td><td>Brouillon → Envoyé</td></tr>
+      <tr><td>16/11 15:30</td><td>Marc O.</td><td>Fournisseur validé</td><td>Istanbul Elektronik</td><td>En revue → Validé</td></tr>
+      <tr><td>15/11 18:10</td><td>GZ-07</td><td>Remise transporteur</td><td>PKG-0318</td><td>Prêt → Remis</td></tr>
+    </tbody>
+  </table></div>
+</div></div>
+      <figcaption><span class="num">46</span><b>Analytics et traçabilité</b><small>Étape 49 des visuels. Indicateurs de performance et journal d'audit des actions sensibles.</small></figcaption></figure>
+    </div>
+    <div class="steps-map"><table><thead><tr><th>Étape</th><th>Titre du visuel</th><th>Écran</th></tr></thead><tbody><tr><td>20</td><td>Colis attendus</td><td><a href="#e-34">Écran 34</a></td></tr><tr><td>21</td><td>Colis réceptionnés</td><td><a href="#e-18">Écran 18</a></td></tr><tr><td>22</td><td>Détail d'un colis</td><td><a href="#e-19">Écran 19</a></td></tr><tr><td>23</td><td>Photo du colis extérieur</td><td><a href="#e-35">Écran 35</a></td></tr><tr><td>24</td><td>Poids et volume</td><td><a href="#e-36">Écran 36</a></td></tr><tr><td>25</td><td>Historique de l'entrepôt</td><td><a href="#e-37">Écran 37</a></td></tr><tr><td>26</td><td>Choix du transporteur</td><td><a href="#e-20">Écran 20</a></td></tr><tr><td>27</td><td>Devis de livraison</td><td><a href="#e-21">Écran 21</a></td></tr><tr><td>28</td><td>Suivi international</td><td><a href="#e-22">Écran 22</a></td></tr><tr><td>29</td><td>Statut en douane</td><td><a href="#e-38">Écran 38</a></td></tr><tr><td>30</td><td>Réception dans le pays de destination</td><td><a href="#e-39">Écran 39</a></td></tr><tr><td>31</td><td>Confirmation de livraison</td><td><a href="#e-40">Écran 40</a></td></tr><tr><td>32</td><td>Liste des fournisseurs</td><td><a href="#e-8">Écran 8</a></td></tr><tr><td>33</td><td>Fiche fournisseur</td><td><a href="#e-41">Écran 41</a></td></tr><tr><td>34</td><td>Recherche internationale</td><td><a href="#e-42">Écran 42</a></td></tr><tr><td>35</td><td>Comparaison d'offres</td><td><a href="#e-13">Écran 13</a></td></tr><tr><td>36</td><td>Négociation fournisseur</td><td><a href="#e-43">Écran 43</a></td></tr><tr><td>37</td><td>Mes favoris</td><td><a href="#e-44">Écran 44</a></td></tr><tr><td>38</td><td>Mon panier</td><td><a href="#e-14">Écran 14</a></td></tr><tr><td>39</td><td>Recharge du wallet</td><td><a href="#e-24">Écran 24</a></td></tr><tr><td>40</td><td>Moyens de paiement</td><td><a href="#e-45">Écran 45</a></td></tr><tr><td>41</td><td>Historique des transactions</td><td><a href="#e-25">Écran 25</a></td></tr><tr><td>42</td><td>Programme de parrainage</td><td><a href="#e-27">Écran 27</a></td></tr><tr><td>43</td><td>Notifications</td><td><a href="#e-28">Écran 28</a></td></tr><tr><td>44</td><td>Messagerie et support</td><td><a href="#e-29">Écran 29</a></td></tr><tr><td>45</td><td>Profil et paramètres</td><td><a href="#e-26">Écran 26</a></td></tr><tr><td>46</td><td>Préférences de langue</td><td><a href="#e-30">Écran 30</a></td></tr><tr><td>47</td><td>Tableau de bord Admin</td><td><a href="#e-31">Écran 31</a></td></tr><tr><td>48</td><td>Gestion des commandes Admin</td><td><a href="#e-32">Écran 32</a></td></tr><tr><td>49</td><td>Analytics et traçabilité</td><td><a href="#e-46">Écran 46</a></td></tr><tr><td>50</td><td>L'écosystème SS DROPSHIP</td><td>Vue d'ensemble (visuel 50)</td></tr></tbody></table></div>
   </div>
 </section>
 

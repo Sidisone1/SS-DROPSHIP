@@ -12,7 +12,7 @@
 - [Design system](design/branding/DESIGN_SYSTEM.md)
 - [Inventaire des maquettes et visuels 01–50](design/mockups/INVENTAIRE_VISUELS.md)
 - [Liste des visuels à récupérer ou créer](design/mockups/VISUELS_MANQUANTS.md)
-- **[Maquettes des 33 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)**
+- **[Maquettes des 46 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)**
 - [Icônes 3D Bogolan (64 icônes)](design/icons/bogolan/README.md)
 - [Visuels de présentation 01–50 (Bogolan)](design/mockups/exports/)
 - [Maquettes des 33 écrans, version au trait (archive)](design/prototypes/ecrans.html)
