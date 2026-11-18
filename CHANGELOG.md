@@ -58,3 +58,8 @@
 
 ## 2026-11-17 — Bogolan comme version de référence
 - README et design system : les écrans `ecrans-bogolan.html`, les icônes 3D Bogolan et les visuels Bogolan deviennent la référence ; `ecrans.html` et `index.html` sont gardés comme archives.
+
+## 2026-11-18 — Écrans des étapes 20 à 50 en version Bogolan
+- `design/prototypes/ecrans-bogolan.html` passe de 33 à 46 écrans : ajout des écrans 34 à 46, les pages des étapes 20 à 50 qui n'existaient que dans les visuels (colis attendus, photos du colis, poids et volume, historique de l'entrepôt, douane, arrivée dans le pays, confirmation de livraison, fiche fournisseur, recherche internationale, négociation, favoris, moyens de paiement, analytics et traçabilité).
+- Tableau de correspondance étape 20–50 → écran, et ancres `#e-1` à `#e-46` sur chaque écran.
+- Statut : à valider (données d'exemple).
