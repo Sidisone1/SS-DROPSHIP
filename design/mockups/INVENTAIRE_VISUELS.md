@@ -51,7 +51,7 @@
 | 37 | Mes favoris | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png](exports/SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png) | 574 Ko | À valider |
 | 38 | Mon panier | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png](exports/SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png) | 579 Ko | À valider |
 | 39 | Recharge du wallet | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png](exports/SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png) | 606 Ko | À valider |
-| 40 | Moyens de paiement | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png](exports/SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png) | 580 Ko | À valider |
+| 40 | Moyens de paiement | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png](exports/SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png) | 608 Ko | À valider |
 | 41 | Historique des transactions | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png](exports/SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png) | 583 Ko | À valider |
 | 42 | Programme de parrainage | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png](exports/SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png) | 604 Ko | À valider |
 | 43 | Notifications | Proposition éditoriale non validée | [SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png](exports/SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png) | 564 Ko | À valider |

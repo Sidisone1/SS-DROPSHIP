@@ -72,3 +72,6 @@
 ## 2026-11-18 — Frise bogolan sur toutes les pages et tous les visuels
 - La frise bogolan s'applique désormais aux 46 écrans et aux 50 visuels (et non plus seulement aux étapes 28 à 50) ; espacement sous les en-têtes resserré.
 - Nouveau dossier `design/mockups/ecrans/` : les 46 écrans exportés en PNG, avec un index.
+
+## 2026-11-18 — Moyens de paiement : Stripe, Alipay, WeChat Pay (D-020)
+- Écran 45 et visuel 40 : « Carte bancaire via Stripe » devient « Stripe » ; ajout d'Alipay et de WeChat Pay (demande faite en commentaire sur la maquette).
