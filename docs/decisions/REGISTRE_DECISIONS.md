@@ -25,6 +25,7 @@ Dernière consolidation : 17/11/2026.
 | D-018 | Icônes 3D dans le style « Collection Bogolan » : objets en bleu, rouge, blanc, bleu nuit, avec une bande bogolan brun terre (#6B3E26); toujours aucun jaune (choix du propriétaire, 17/11/2026) | `design/icons/bogolan/`; le brun est réservé au motif bogolan et aux cartons, jamais en couleur de marque |
 | D-019 | Moyens de recharge à proposer : Mobile Money, Google Pay, Apple Pay, carte bancaire via Stripe (demande du propriétaire, 17/11/2026) | Écran « Recharger » de la maquette ; chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays (aucun crédit sans confirmation, D-008) |
 | D-020 | Moyens de paiement affichés : Mobile Money, Stripe (libellé simplifié), Google Pay, Apple Pay, **Alipay et WeChat Pay** (demande du propriétaire, commentaire sur la maquette, 18/11/2026) | Écran 45 et visuel 40 ; mêmes réserves que D-019 : intégration et disponibilité par pays, aucun crédit sans confirmation (D-008) |
+| D-021 | Organisation du dossier `design/` : une seule référence (`prototypes/ecrans-bogolan.html`), les anciennes versions dans `design/archives/`, le back-office humain dans `prototypes/admin/` (demande du propriétaire, 18/11/2026) | Point d'entrée `design/README.md` ; les archives ne sont plus modifiées |
 
 ## À confirmer
 - M-001 : modèle économique final (abonnement, commissions, publicité, combinaison).

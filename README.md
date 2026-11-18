@@ -6,20 +6,24 @@
 
 ## Navigation du projet
 
+**Documents**
 - [Cahier des charges consolidé](docs/requirements/CAHIER_DES_CHARGES.md)
 - [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md)
 - [Décisions validées et points à arbitrer](docs/decisions/REGISTRE_DECISIONS.md)
-- [Design system](design/branding/DESIGN_SYSTEM.md)
-- [Inventaire des maquettes et visuels 01–50](design/mockups/INVENTAIRE_VISUELS.md)
-- [Liste des visuels à récupérer ou créer](design/mockups/VISUELS_MANQUANTS.md)
-- **[Maquettes des 64 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)**
-- [Icônes 3D Bogolan (64 icônes)](design/icons/bogolan/README.md)
-- [Visuels de présentation 01–50 (Bogolan)](design/mockups/exports/)
-- [Les 64 écrans en images (Bogolan)](design/mockups/ecrans/)
-- [Maquettes des 33 écrans, version au trait (archive)](design/prototypes/ecrans.html)
-- [Premier prototype (archive)](design/prototypes/index.html)
+- [Paiements et logistique](docs/integrations/PAIEMENTS_ET_LOGISTIQUE.md)
 - [Plan de réalisation](docs/planning/ROADMAP.md)
-- [Directives des agents IA](AGENTS.md)
+
+**Design** (point d'entrée : [design/README.md](design/README.md))
+- **[Les 64 écrans, version Bogolan (référence)](design/prototypes/ecrans-bogolan.html)** · [en images](design/mockups/ecrans/)
+- [Back-office « humain » : 8 pages Admin](design/prototypes/admin/index.html)
+- [Visuels de présentation 01–50](design/mockups/exports/) · [inventaire et statut](design/mockups/INVENTAIRE_VISUELS.md)
+- [Icônes 3D Bogolan](design/icons/bogolan/README.md)
+- [Charte graphique](design/branding/DESIGN_SYSTEM.md)
+- [Archives : premiers écrans et premier prototype](design/archives/)
+
+**Code** (pas encore commencé) : `apps/` (web, mobile, admin), `packages/` (ui, types, config), `services/` (api, workers).
+
+**Règles de travail** : [AGENTS.md](AGENTS.md) · [historique des changements](CHANGELOG.md)
 
 ## Décisions non négociables
 
@@ -34,16 +38,16 @@
 
 ## Traçabilité des designs
 
-Les maquettes et images réalisées dans les anciennes conversations ne sont **pas automatiquement déposées sur GitHub**. Les contenus documentaires, l'inventaire et un prototype de travail peuvent être ajoutés ici; les originaux HD doivent être récupérés ou régénérés puis intégrés dans `design/mockups/exports/`.
+Les images faites dans les anciennes conversations ne sont pas sur GitHub. Les 50 visuels actuels sont des versions **régénérées** (voir l'inventaire) ; les originaux HD des visuels 01–19 restent à retrouver pour comparaison.
 
-## Statut
+## Statut (18/11/2026)
 
 | Élément | État |
 |---|---|
-| Documentation de cadrage | Consolidée à partir des échanges |
-| Structure de fichiers | Initialisée |
-| Design system | Documenté |
-| Série de 50 visuels | 50 visuels générés (1080 × 1920), à valider ; originaux HD 01–19 à récupérer |
-| Code fonctionnel de l'application | Non livré dans cette consolidation |
+| Documentation de cadrage | Consolidée |
+| Écrans de l'application | 64 écrans Bogolan + 8 pages Admin « humaines », à valider |
+| Visuels de présentation | 50 visuels 1080 × 1920 en version Bogolan, à valider |
+| Icônes | 64 icônes 3D Bogolan, à valider |
+| Code de l'application | Pas encore commencé |
 
 Site de référence du projet : [ssdropship.com](https://ssdropship.com).

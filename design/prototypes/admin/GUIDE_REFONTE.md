@@ -12,7 +12,7 @@ Améliorer les huit interfaces d'administration communiquées en captures : Four
 - Navigation admin cohérente, états actifs visibles, boutons accessibles, données fictives clairement identifiées.
 
 ## Prototype ajouté
-Ouvrir [la prévisualisation HTML](./admin-bogolan-humain.html). Les huit vues sont navigables et réutilisent les assets PNG déjà présents au dépôt.
+Ouvrir [la prévisualisation HTML](./index.html). Les huit vues sont navigables et réutilisent les assets PNG déjà présents au dépôt.
 
 ## Fidélité et limitations
 La planche visuelle avec personnages générée dans ChatGPT constitue une **référence artistique**; son image raster n'est pas incluse dans ce commit. Le prototype HTML propose une adaptation consultable et ne prétend pas être une copie pixel-perfect de la planche. Les représentations humaines sont des pictogrammes temporaires; remplacer par les illustrations humaines validées dès que leurs fichiers seront disponibles.

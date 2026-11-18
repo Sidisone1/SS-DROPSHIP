@@ -98,3 +98,9 @@
 ## 2026-11-18 — 8 pages Admin « humaines » dans la page des écrans
 - Les 8 pages ajoutées par le propriétaire (`design/prototypes/admin/`) apparaissent dans `ecrans-bogolan.html` (section « Back-office : 8 pages humaines Bogolan »), avec un aperçu (`admin/apercus/`) et un lien vers chaque page interactive.
 - Correction du chemin des icônes dans ces 8 pages (`../../icons/bogolan/png/` au lieu de `../../../`), sans quoi les icônes ne s'affichaient pas.
+
+## 2026-11-18 — Réorganisation du projet (D-021)
+- Nouveau point d'entrée `design/README.md` : quoi ouvrir, arborescence, règles pour modifier le design, points ouverts.
+- Anciennes versions déplacées dans `design/archives/` : `ecrans.html` → `ecrans-trait.html`, `index.html` → `prototype-initial.html`.
+- Back-office humain regroupé dans `design/prototypes/admin/` : `admin-bogolan-humain.html` → `admin/index.html`, `REFONTE_HUMAINE_BOGOLAN.md` → `admin/GUIDE_REFONTE.md` (liens mis à jour).
+- README réorganisé (documents, design, code, règles) avec un statut à jour ; décision D-021 ajoutée. Aucun fichier supprimé : tout est déplacé avec son historique (`git mv`).
