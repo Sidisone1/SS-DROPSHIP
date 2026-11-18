@@ -82,3 +82,6 @@
   - 52–58 : écrans de détail du compte (profil, adresses, sécurité, FAQ, suivi d'un litige, transitaire personnel, retrait et remboursement) ;
   - 59–64 : modules Admin (fournisseurs, transitaires, paiements et rapprochement, utilisateurs et rôles, paramètres, support et tickets).
 - `design/mockups/ecrans/` : les 64 écrans en PNG.
+
+## 2026-11-18 — Liste des 50 visuels illustrée
+- Section « Les 50 visuels prévus » de `ecrans-bogolan.html` : chaque carte affiche le visuel Bogolan, son icône 3D Bogolan, son titre actuel et un lien vers l'écran correspondant ; textes et compteurs mis à jour (50 / 50 faits, à valider).
