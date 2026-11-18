@@ -94,3 +94,7 @@
 ## 2026-11-18 — Maquette d'origine redessinée, icônes plates sur 56–64
 - Maquette d'origine (accueil interactif) : icônes 3D Bogolan à la place des emojis, frise bogolan sous l'en-tête, au bas de la bannière et au-dessus des onglets, avatar et cartes de services refaits.
 - Écrans 56 à 64 : icônes plates au trait dans des pastilles teintées (style d'application classique) à la place des icônes 3D ; coches « ✓ » retirées des tableaux Admin.
+
+## 2026-11-18 — 8 pages Admin « humaines » dans la page des écrans
+- Les 8 pages ajoutées par le propriétaire (`design/prototypes/admin/`) apparaissent dans `ecrans-bogolan.html` (section « Back-office : 8 pages humaines Bogolan »), avec un aperçu (`admin/apercus/`) et un lien vers chaque page interactive.
+- Correction du chemin des icônes dans ces 8 pages (`../../icons/bogolan/png/` au lieu de `../../../`), sans quoi les icônes ne s'affichaient pas.
