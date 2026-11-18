@@ -85,3 +85,8 @@
 
 ## 2026-11-18 — Liste des 50 visuels illustrée
 - Section « Les 50 visuels prévus » de `ecrans-bogolan.html` : chaque carte affiche le visuel Bogolan, son icône 3D Bogolan, son titre actuel et un lien vers l'écran correspondant ; textes et compteurs mis à jour (50 / 50 faits, à valider).
+
+## 2026-11-18 — Écrans plus naturels
+- Moins d'encadrés d'explication : 16 encadrés retirés ou réduits à une courte phrase ; suppression des mentions internes dans l'interface client (références de décisions, « aucune note simulée », « sous réserve d'intégration », « exemple ») ; textes raccourcis.
+- Écran 57 « Mon transitaire » : « Contact » devient « Nom », téléphone sur une ligne avec indicatif.
+- Les 50 visuels et les 64 images d'écrans sont régénérés avec ces textes.

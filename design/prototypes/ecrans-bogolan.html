@@ -619,6 +619,8 @@ html{scroll-behavior:smooth}
 #visuels .grid50{grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:16px}
 #visuels .v .thumb{grid-column:1/-1;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:9px;border:1px solid var(--line);background:#F4F6F8;margin-bottom:6px}
 #visuels .v .go{grid-column:1/-1;font-size:12px;font-weight:700;color:var(--blue);text-decoration:none;margin-top:4px}
+#ecrans .in-row.tel{max-width:82%}#ecrans .in-row.tel .in{white-space:nowrap}
+.in-row.tel{max-width:82%}.in-row.tel .in{white-space:nowrap}
 </style>
 
 <header class="band">
@@ -787,7 +789,7 @@ html{scroll-behavior:smooth}
         <p class="sub">Saisissez le téléphone ou l'email de votre compte. Nous vous enverrons un code de vérification.</p>
         <label class="lb">Téléphone ou email</label><div class="in">awa.kone@exemple.ci</div>
         <span class="btn">Recevoir un code</span>
-        <div class="note-s"><svg><use href="#i-shield"/></svg>Par sécurité, le nombre de tentatives est limité. Le lien expire après 15 minutes.</div>
+        <p class="muted">Le code reste valable 15 minutes.</p>
       </div></div>
       <figcaption><span class="num">05</span><b>Mot de passe oublié</b><small>Réinitialisation sécurisée en 3 étapes.</small></figcaption></figure>
     </div>
@@ -832,7 +834,7 @@ html{scroll-behavior:smooth}
         <div class="sup"><div class="sup-h"><div class="av">SN</div><div><b>Shenzhen Netlink Co.</b><small><svg><use href="#i-pin"/></svg>Chine · Shenzhen</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Réseau</span><span>Informatique</span></div><div class="kv3"><span><b>10–15 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>CI · GH</b>Livre</span></div></div>
         <div class="sup"><div class="sup-h"><div class="av red">IE</div><div><b>Istanbul Elektronik</b><small><svg><use href="#i-pin"/></svg>Turquie · Istanbul</small></div><span class="badge b-blue"><svg><use href="#i-check"/></svg>Validé</span></div><div class="tags"><span>Électronique</span><span>Téléphones</span></div><div class="kv3"><span><b>8–12 j</b>Délai</span><span><b>2</b>Min. cmd</span><span><b>CI · GN</b>Livre</span></div></div>
         <div class="sup"><div class="sup-h"><div class="av">GT</div><div><b>Gulf Tech Trading</b><small><svg><use href="#i-pin"/></svg>Émirats · Dubaï</small></div><span class="badge b-grey">En revue</span></div><div class="tags"><span>Jeux vidéo</span><span>Accessoires</span></div><div class="kv3"><span><b>7–10 j</b>Délai</span><span><b>1</b>Min. cmd</span><span><b>CI</b>Livre</span></div></div>
-        <p class="muted center">Fiches validées par l'équipe SS DROPSHIP. Aucune note simulée.</p>
+        
       </div><nav class="tb" data-a="home"></nav></div>
       <figcaption><span class="num">08</span><b>Annuaire des fournisseurs</b><small>Locaux et internationaux, filtrables ; fiches validées par l'Admin.</small></figcaption></figure>
     </div>
@@ -846,7 +848,7 @@ html{scroll-behavior:smooth}
         <div class="mode on"><div class="ic ic3d"><img src="../icons/bogolan/png/link.png" alt=""></div><div><b>Commande directe</b><small>Vous connaissez le produit : collez un lien ou une référence.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="mode"><div class="ic ic3d"><img src="../icons/bogolan/png/search.png" alt=""></div><div><b>Recherche de produit</b><small>Décrivez ce que vous cherchez, avec photos ou vidéo.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
         <div class="mode"><div class="ic ic-red ic3d"><img src="../icons/bogolan/png/deal.png" alt=""></div><div><b>Recherche + négociation</b><small>Un agent contacte les fournisseurs et vous propose des offres.</small></div><svg class="ch"><use href="#i-chev"/></svg></div>
-        <div class="note-s"><svg><use href="#i-info"/></svg>Les frais de service sont affichés dans le devis, avant tout paiement.</div>
+        
         <div class="sec"><b>Mes demandes récentes</b><span>Voir tout</span></div>
         <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/deal.png" alt=""></div><div><b>DMD-2026-0142</b><small>Écrans 27" · négociation</small></div><span class="badge b-blue">3 offres</span></div>
         <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/link.png" alt=""></div><div><b>DMD-2026-0139</b><small>Routeur Wi-Fi 6 · directe</small></div><span class="badge b-grey">Devis envoyé</span></div>
@@ -922,7 +924,7 @@ html{scroll-behavior:smooth}
         <div class="pay on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Wallet SS DROPSHIP</b><small>Solde : 312 500 F</small></div><span class="radio on"></span></div>
         <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Selon votre pays</small></div><span class="radio"></span></div>
         <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/card.png" alt=""></div><div><b>Carte Visa / Mastercard</b><small>Via prestataire sécurisé</small></div><span class="radio"></span></div>
-        <div class="note-s"><svg><use href="#i-shield"/></svg>La commande est validée seulement après confirmation du paiement par le prestataire. Aucune donnée de carte n'est conservée.</div>
+        <p class="muted"><svg class="in-ic"><use href="#i-lock"/></svg>Paiement sécurisé</p>
         <span class="btn">Payer 103 880 F CFA</span>
       </div></div>
       <figcaption><span class="num">15</span><b>Paiement</b><small>Wallet, Mobile Money ou carte ; validation après confirmation (D-008).</small></figcaption></figure>
@@ -966,7 +968,7 @@ html{scroll-behavior:smooth}
         <div class="pkg"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0318</b><small>CMD-0087 · 2,4 kg · reçu le 14/11</small></div><span class="badge b-night">Reçu</span></div>
         <div class="pkg"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0297</b><small>CMD-0083 · 0,8 kg · reçu le 12/11</small></div><span class="badge b-night">Reçu</span></div>
         <div class="pkg"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/box.png" alt=""></div><div><b>PKG-24-11-0284</b><small>CMD-0080 · 5,1 kg · reçu le 10/11</small></div><span class="badge b-blue">Prêt</span></div>
-        <div class="note-s red"><svg><use href="#i-info"/></svg>Au lancement, vos cartons sont expédiés tels qu'ils arrivent, sans être ouverts.</div>
+        <div class="note-s red"><svg><use href="#i-info"/></svg>Vos cartons repartent fermés, tels qu'ils sont arrivés.</div>
       </div><nav class="tb" data-a="box"></nav></div>
       <figcaption><span class="num">18</span><b>Mon entrepôt</b><small>Adresse personnelle d'entrepôt, compteurs par état, colis reçus.</small></figcaption></figure>
 
@@ -1051,10 +1053,10 @@ html{scroll-behavior:smooth}
         <div class="chips"><span class="chip">10 000</span><span class="chip">25 000</span><span class="chip on">50 000</span><span class="chip">100 000</span></div>
         <label class="lb">Moyens disponibles en Côte d'Ivoire</label>
         <div class="pay on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Mobile Money</b><small>Orange Money, MTN MoMo, Moov, Wave</small></div><span class="radio on"></span></div>
-        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Google Pay</b><small>Android · sous réserve d'intégration</small></div><span class="radio"></span></div>
-        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/recharge.png" alt=""></div><div><b>Apple Pay</b><small>iPhone · sous réserve d'intégration</small></div><span class="radio"></span></div>
-        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/card.png" alt=""></div><div><b>Carte bancaire via Stripe</b><small>Visa, Mastercard · sous réserve d'intégration</small></div><span class="radio"></span></div>
-        <div class="note-s"><svg><use href="#i-shield"/></svg>Votre solde est crédité uniquement après confirmation du paiement par le prestataire.</div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Google Pay</b><small>Android</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/recharge.png" alt=""></div><div><b>Apple Pay</b><small>iPhone</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/card.png" alt=""></div><div><b>Carte bancaire via Stripe</b><small>Visa, Mastercard</small></div><span class="radio"></span></div>
+        <p class="muted">Le solde est mis à jour dès que l'opérateur confirme le paiement.</p>
         <span class="btn">Recharger 50 000 F CFA</span>
       </div></div>
       <figcaption><span class="num">24</span><b>Recharger le wallet</b><small>Montant ; Mobile Money, Google Pay, Apple Pay, carte via Stripe, filtrés par pays ; crédit après confirmation.</small></figcaption></figure>
@@ -1095,7 +1097,7 @@ html{scroll-behavior:smooth}
       <figure class="scr bgl" id="e-27"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Parrainage</h4></div><div class="pv">
         <div class="refcard"><small>Mon code de parrainage</small><b>AWA-7K42</b><div class="two"><span class="btn btn-w sm"><svg><use href="#i-copy"/></svg>Copier</span><span class="btn btn-w sm"><svg><use href="#i-share"/></svg>Partager</span></div></div>
         <div class="kv3 boxed"><span><b>4</b>Filleuls</span><span><b>2</b>Actifs</span><span><b>—</b>Récompenses</span></div>
-        <div class="note-s"><svg><use href="#i-info"/></svg>Le montant des récompenses sera affiché dès que la règle sera validée par SS DROPSHIP.</div>
+        
         <div class="sec"><b>Comment ça marche</b></div>
         <ol class="how"><li>Partagez votre code</li><li>Vos proches le saisissent à l'inscription</li><li>Vous suivez vos filleuls et vos récompenses ici</li></ol>
         <div class="sec"><b>Mes filleuls</b></div>
@@ -1207,7 +1209,7 @@ html{scroll-behavior:smooth}
           <div><label class="lb">Emplacement</label><div class="in">A-12-03</div></div>
           <div class="full"><label class="lb">Photos du carton extérieur</label><div class="up"><span class="th i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="add"><svg><use href="#i-camera"/></svg>Ajouter</span></div></div>
         </div>
-        <div class="note-s red"><svg><use href="#i-alert"/></svg>MVP : le carton ne doit pas être ouvert. Les prestations QC, photo du contenu, regroupement et reconditionnement sont désactivées.</div>
+        <div class="note-s red"><svg><use href="#i-alert"/></svg>Ne pas ouvrir le carton. Contrôle qualité, photos du contenu, regroupement et reconditionnement ne sont pas encore proposés.</div>
         <div class="dact"><span class="btn btn-ghost sm">Signaler une anomalie</span><span class="btn sm">Enregistrer la réception</span></div>
       </div></div>
       <figcaption><span class="num">33</span><b>Réception en entrepôt</b><small>Saisie par l'agent : poids, dimensions, photos extérieures, emplacement.</small></figcaption></figure>
@@ -1221,7 +1223,7 @@ html{scroll-behavior:smooth}
   <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0091</b><small>Routeur Wi-Fi 6 ×2 · Manette ×1</small></div><span class="badge b-blue">En route</span></div><div class="mini"><span class="on"></span><span class="on"></span><span></span><span></span></div><small>Shenzhen → Guangzhou · suivi YT2026111700512 · arrivée prévue 20/11</small></div>
   <div class="pkg col"><div class="pk-h"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/clock.png" alt=""></div><div><b>CMD-2026-0088</b><small>Écran 24" ×2</small></div><span class="badge b-grey">Expédié fournisseur</span></div><div class="mini"><span class="on"></span><span></span><span></span><span></span></div><small>Istanbul → Istanbul (entrepôt) · arrivée prévue 22/11</small></div>
   <span class="btn btn-ghost"><svg><use href="#i-plus"/></svg>Annoncer un colis</span>
-  <div class="note-s"><svg><use href="#i-info"/></svg>Achat fait vous-même ? Indiquez votre code client SSD-48213 sur l'adresse de livraison du fournisseur.</div>
+  <div class="note-s"><svg><use href="#i-info"/></svg>Vous commandez vous-même ? Ajoutez SSD-48213 à l'adresse de livraison.</div>
 </div><nav class="tb" data-a="box"></nav></div>
       <figcaption><span class="num">34</span><b>Colis attendus</b><small>Étape 20 des visuels. Colis en route vers l'entrepôt, avec suivi fournisseur et arrivée prévue.</small></figcaption></figure>
       <figure class="scr bgl" id="e-35"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Photos du colis</h4></div><div class="pv">
@@ -1229,7 +1231,7 @@ html{scroll-behavior:smooth}
   <div class="up"><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span><span class="th brown i3d"><img src="../icons/bogolan/png/box.png" alt=""></span></div>
   <p class="muted">PKG-24-11-0318 · prises le 14/11 à 10:12 par l'agent GZ-04</p>
   <span class="badge b-green"><svg><use href="#i-check"/></svg>État extérieur : bon</span>
-  <div class="note-s red"><svg><use href="#i-info"/></svg>Le carton n'est pas ouvert : seules les faces extérieures sont photographiées.</div>
+  <p class="muted">Carton photographié fermé, sans être ouvert.</p>
   <span class="btn btn-ghost red"><svg><use href="#i-alert"/></svg>Signaler un problème</span>
 </div></div>
       <figcaption><span class="num">35</span><b>Photos du colis extérieur</b><small>Étape 23 des visuels. Toutes les faces du carton, horodatées, sans ouverture.</small></figcaption></figure>
@@ -1241,7 +1243,7 @@ html{scroll-behavior:smooth}
     <p><span>Poids volumétrique (L×l×h ÷ 5000)</span><b>3,5 kg</b></p>
     <p class="tot"><span>Poids facturé</span><b>5,1 kg</b></p>
   </div>
-  <div class="note-s"><svg><use href="#i-info"/></svg>Le transporteur facture le plus élevé des deux poids. Le diviseur dépend du transporteur choisi.</div>
+  <p class="muted">On retient le plus élevé des deux poids.</p>
   <p class="muted">PKG-24-11-0284 · pesé le 10/11 · balance GZ-B2</p>
 </div></div>
       <figcaption><span class="num">36</span><b>Poids et volume</b><small>Étape 24 des visuels. Poids réel, poids volumétrique et poids facturé expliqués.</small></figcaption></figure>
@@ -1255,7 +1257,7 @@ html{scroll-behavior:smooth}
     <li class="done"><b>Reçu à l'entrepôt de Guangzhou</b><small>14/11 · 09:58 · agent GZ-04</small></li>
     <li class="done"><b>Annoncé par le fournisseur</b><small>09/11 · suivi YT2026…418</small></li>
   </ul>
-  <div class="note-s"><svg><use href="#i-shield"/></svg>Chaque action est horodatée et attribuée à un agent identifié.</div>
+  
 </div></div>
       <figcaption><span class="num">37</span><b>Historique de l'entrepôt</b><small>Étape 25 des visuels. Chaque action horodatée et attribuée à un agent.</small></figcaption></figure>
       <figure class="scr bgl" id="e-38"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Douane · PKG-0318</h4></div><div class="pv">
@@ -1266,7 +1268,7 @@ html{scroll-behavior:smooth}
   <div class="svc on i3d"><img src="../icons/bogolan/png/check.png" alt=""><span>Lettre de transport aérien</span><b>Fournie</b></div>
   <div class="sec"><b>Droits et taxes</b></div>
   <div class="recap sm"><p><span>Montant</span><i>communiqué par le transitaire</i></p><p><span>Payé par</span><b>Selon l'incoterm du devis</b></p></div>
-  <div class="note-s"><svg><use href="#i-clock"/></svg>Délai habituel : 24 à 48 h. Vous serez notifié dès la mainlevée.</div>
+  <p class="muted">Comptez en général 24 à 48 h.</p>
   <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Poser une question</span>
 </div></div>
       <figcaption><span class="num">38</span><b>Statut en douane</b><small>Étape 29 des visuels. Documents fournis, droits et taxes, délai habituel.</small></figcaption></figure>
@@ -1350,8 +1352,8 @@ html{scroll-behavior:smooth}
   <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Apple Pay</b><small>iPhone</small></div><span class="badge b-blue">Proposé</span></div>
   <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/globe.png" alt=""></div><div><b>Alipay</b><small>Paiement fournisseur en Chine</small></div><span class="badge b-blue">Proposé</span></div>
   <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/chat.png" alt=""></div><div><b>WeChat Pay</b><small>Paiement fournisseur en Chine</small></div><span class="badge b-blue">Proposé</span></div>
-  <div class="note-s"><svg><use href="#i-info"/></svg>Chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays. Le solde n'est crédité qu'après confirmation du prestataire.</div>
-  <p class="muted">Autres moyens (PayPal, virement) : selon une décision ultérieure.</p>
+  
+  
 </div></div>
       <figcaption><span class="num">45</span><b>Moyens de paiement</b><small>Étape 40 des visuels. Mobile Money, Stripe, Google Pay, Apple Pay, Alipay, WeChat Pay.</small></figcaption></figure>
     </div>
@@ -1389,7 +1391,7 @@ html{scroll-behavior:smooth}
     <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/store.png" alt=""></i>Bureau</span>
     <span><i class="ic ic-sm i3d"><img src="../icons/bogolan/png/grid.png" alt=""></i>Autres</span>
   </div>
-  <div class="promo"><small>PROMOTION · EXEMPLE</small><b>Frais de service réduits sur le réseau</b><span>Jusqu'au 30/11/2026</span></div>
+  <div class="promo"><small>PROMOTION</small><b>Frais de service réduits sur le réseau</b><span>Jusqu'au 30/11/2026</span></div>
   <div class="sec"><b>Les plus demandés</b><span>Voir tout</span></div>
   <div class="prods">
     <div class="prod"><div class="pimg i3d"><img src="../icons/bogolan/png/laptop.png" alt=""></div><b>Portable 15" 16 Go</b><small>Chine · 12–18 j</small><em>dès 238 000 F</em></div>
@@ -1408,7 +1410,7 @@ html{scroll-behavior:smooth}
     <p><span>Frais de service (6 %)</span><b>4 620 F</b></p>
     <p class="tot"><span>Total du devis</span><b>85 120 F CFA</b></p>
   </div>
-  <div class="note-s"><svg><use href="#i-info"/></svg>La livraison internationale est calculée à la réception du carton en entrepôt, selon le poids réel.</div>
+  <p class="muted">Livraison internationale : calculée à la pesée du carton.</p>
   <div class="kv3 boxed"><span><b>10–15 j</b>Délai d'achat</span><span><b>Chine</b>Origine</span><span><b>Ama S.</b>Agent</span></div>
   <span class="btn">Accepter le devis</span>
   <span class="btn btn-ghost">Poser une question</span>
@@ -1425,7 +1427,7 @@ html{scroll-behavior:smooth}
     <p><span>Moyen</span><b>Wallet SS DROPSHIP</b></p>
     <p><span>Date</span><b>17/11/2026 · 10:42</b></p>
   </div>
-  <div class="note-s"><svg><use href="#i-shield"/></svg>Paiement confirmé par le prestataire. Votre agent lance l'achat auprès du fournisseur.</div>
+  <p class="sub">Koffi, votre agent, passe la commande chez le fournisseur.</p>
   <div class="stack"><span class="btn">Suivre ma commande</span><span class="btn btn-ghost"><svg><use href="#i-download"/></svg>Télécharger le reçu</span></div>
 </div></div>
       <figcaption><span class="num">49</span><b>Paiement confirmé</b><small>Étape 15 des visuels. Confirmation du prestataire, référence unique, reçu téléchargeable.</small></figcaption></figure>
@@ -1464,7 +1466,7 @@ html{scroll-behavior:smooth}
   <label class="lb">Type de compte</label>
   <div class="seg"><span class="on">Particulier</span><span>Entreprise</span></div>
   <span class="btn">Enregistrer</span>
-  <div class="note-s"><svg><use href="#i-shield"/></svg>Un changement de téléphone ou d'email demande un nouveau code de vérification.</div>
+  
 </div></div>
       <figcaption><span class="num">52</span><b>Mon profil</b><small>Identité, contact vérifié, pays, langue ; modification encadrée.</small></figcaption></figure>
       <figure class="scr bgl" id="e-53"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mes adresses</h4></div><div class="pv">
@@ -1518,21 +1520,22 @@ html{scroll-behavior:smooth}
     <li><b>Décision</b><small>Remplacement, avoir ou remboursement</small></li>
   </ul>
   <div class="msg">Merci pour les photos. Nous avons ouvert une réclamation auprès du transporteur pour l'écran fissuré.</div>
-  <div class="note-s"><svg><use href="#i-shield"/></svg>Les remboursements suivent la procédure validée et passent par votre wallet après décision.</div>
+  
   <span class="btn btn-ghost"><svg><use href="#i-chat"/></svg>Répondre au support</span>
 </div></div>
       <figcaption><span class="num">56</span><b>Suivi d'un litige</b><small>Motif, pièces jointes, étapes et échanges avec l'équipe.</small></figcaption></figure>
       <figure class="scr bgl" id="e-57"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Mon transitaire</h4></div><div class="pv">
   <p class="sub left">Indiquez le transitaire qui récupérera votre colis à Guangzhou. L'équipe vérifie ses informations avant la remise.</p>
   <label class="lb">Nom de la société</label><div class="in">Trans-Afrique Cargo</div>
-  <div class="two"><div><label class="lb">Contact</label><div class="in">M. Diallo</div></div><div><label class="lb">Téléphone</label><div class="in">+86 138 0000 4521</div></div></div>
+  <label class="lb">Nom</label><div class="in">M. Diallo</div>
+  <label class="lb">Téléphone</label><div class="in-row tel"><div class="in in-pre">+86<svg><use href="#i-down"/></svg></div><div class="in">138 0000 4521</div></div>
   <label class="lb">Adresse de l'entrepôt du transitaire</label><div class="in in-area">Baiyun, Guangzhou · entrepôt n° 14</div>
   <label class="lb">Mode</label>
   <div class="chips"><span class="chip on">Aérien</span><span class="chip">Maritime</span><span class="chip">Les deux</span></div>
   <label class="lb">Document (facultatif)</label>
   <div class="up"><span class="add"><svg><use href="#i-upload"/></svg>Joindre</span></div>
   <span class="btn">Envoyer pour approbation</span>
-  <div class="note-s"><svg><use href="#i-clock"/></svg>Réponse sous 24 h. Le colis n'est remis qu'après approbation et confirmation de votre part.</div>
+  <p class="muted">Réponse sous 24 h.</p>
 </div></div>
       <figcaption><span class="num">57</span><b>Mon transitaire personnel</b><small>Formulaire d'information soumis à l'approbation de l'équipe (D-012).</small></figcaption></figure>
       <figure class="scr bgl" id="e-58"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Retirer</h4></div><div class="pv">
@@ -1544,7 +1547,7 @@ html{scroll-behavior:smooth}
   <div class="pay"><div class="ic ic-xs i3d"><img src="../icons/bogolan/png/doc.png" alt=""></div><div><b>Virement bancaire</b><small>À partir de 100 000 F</small></div><span class="radio"></span></div>
   <div class="recap sm"><p><span>Frais de retrait</span><i>selon la règle du pays</i></p><p><span>Délai</span><b>24 à 72 h</b></p></div>
   <span class="btn">Demander le retrait</span>
-  <div class="note-s"><svg><use href="#i-shield"/></svg>Chaque retrait est validé par un code et tracé dans votre historique.</div>
+  
 </div></div>
       <figcaption><span class="num">58</span><b>Retrait et remboursement</b><small>Demande de retrait du wallet selon les règles du pays.</small></figcaption></figure>
     </div>
@@ -1561,7 +1564,7 @@ html{scroll-behavior:smooth}
 </tbody></table></div>
 <p class="muted">Aucune note n'est affichée sans commandes réelles. Chaque validation est enregistrée dans le journal d'audit.</p></div></div>
       <figcaption><span class="num">59</span><b>Fournisseurs (validation)</b><small>Fiches en revue, documents, validation ou refus par l'Admin.</small></figcaption></figure>
-      <figure class="scr bgl" id="e-60"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span class="on"><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Transitaires</h4><span class="badge b-night">Accès Admin uniquement (D-013)</span></div>
+      <figure class="scr bgl" id="e-60"><div class="desk"><aside class="side"><div class="logo-sm"><span>SS</span> <em>DROPSHIP</em></div><small>ADMIN</small><span><svg><use href="#i-grid"/></svg>Tableau de bord</span><span><svg><use href="#i-deal"/></svg>Demandes</span><span><svg><use href="#i-cart"/></svg>Commandes</span><span><svg><use href="#i-warehouse"/></svg>Entrepôts</span><span class="on"><svg><use href="#i-truck"/></svg>Transitaires</span><span><svg><use href="#i-store"/></svg>Fournisseurs</span><span><svg><use href="#i-wallet"/></svg>Paiements</span><span><svg><use href="#i-users"/></svg>Utilisateurs</span><span><svg><use href="#i-chat"/></svg>Support</span><span><svg><use href="#i-doc"/></svg>Journal d'audit</span><span><svg><use href="#i-gear"/></svg>Paramètres</span></aside><div class="dmain"><div class="dtop"><h4>Transitaires</h4><span class="badge b-night">Accès Admin uniquement</span></div>
 <div class="kpis"><div><small>Partenaires actifs</small><b>6</b><i>aérien et express</i></div><div><small>À approuver</small><b>1</b><i>transitaire client</i></div><div><small>Délai moyen aérien</small><b>8,4 j</b><i>Guangzhou → Abidjan</i></div><div><small>Incidents ce mois</small><b>2</b><i>colis abîmés</i></div></div>
 <div class="tablewrap"><table class="dt"><thead><tr><th>Transitaire</th><th>Type</th><th>Lignes</th><th class="n">Tarif / kg</th><th>Statut</th></tr></thead><tbody>
 <tr><td>Partenaire Air SS</td><td>Partenaire</td><td>Guangzhou → Abidjan, Accra</td><td class="n">9 000 F</td><td><span class="badge b-green">Actif</span></td></tr>
@@ -1651,7 +1654,7 @@ html{scroll-behavior:smooth}
             </div>
             <div id="p-orders" class="tab" hidden><h3>Mes commandes</h3><p class="muted">Choisissez comment commander.</p><div class="item"><div class="thumbnail">🔗</div><div><strong>Commande directe</strong><small>Collez un lien produit</small></div></div><div class="item"><div class="thumbnail">🔎</div><div><strong>Recherche produit</strong><small>Décrivez votre besoin</small></div></div><div class="item"><div class="thumbnail">🤝</div><div><strong>Recherche + négociation</strong><small>Recevez une offre d'agent</small></div></div><input id="p-order-field" class="field" placeholder="Lien ou description du produit" aria-label="Lien ou description du produit"><button class="button" data-demo>Demander un devis</button><div class="empty">Aucune commande réelle dans cette démonstration.</div></div>
             <div id="p-warehouse" class="tab" hidden><h3>Mon entrepôt</h3><div class="features"><div class="feature"><div class="emoji">🕓</div><b>Colis attendus</b><small>À recevoir</small></div><div class="feature"><div class="emoji">📦</div><b>Colis reçus</b><small>Poids et volume</small></div><div class="feature"><div class="emoji">🚛</div><b>Expédition</b><small>Choisir transitaire</small></div><div class="feature"><div class="emoji">📍</div><b>Suivi</b><small>Étapes de livraison</small></div></div><p class="notice">MVP : les cartons sont expédiés sans ouverture. Inspection interne, vidéo et regroupement disponibles dans une phase future seulement.</p><div class="empty">Aucun colis enregistré dans ce prototype.</div></div>
-            <div id="p-wallet" class="tab" hidden><h3>Wallet &amp; recharge</h3><div class="wallet"><small>Solde de démonstration</small><b>0 F CFA</b><small>Aucune transaction réelle</small></div><label class="muted" for="p-amount">Montant à recharger</label><input id="p-amount" class="field" placeholder="Ex : 5000" inputmode="numeric"><button class="button" data-demo>Continuer (démo)</button><p class="muted">Mobile Money, Visa/Mastercard, PayPal, Stripe, Alipay, WeChat Pay, Apple Pay et Google Pay : sous réserve d'intégration et de disponibilité pays.</p></div>
+            <div id="p-wallet" class="tab" hidden><h3>Wallet &amp; recharge</h3><div class="wallet"><small>Solde de démonstration</small><b>0 F CFA</b><small>Aucune transaction réelle</small></div><label class="muted" for="p-amount">Montant à recharger</label><input id="p-amount" class="field" placeholder="Ex : 5000" inputmode="numeric"><button class="button" data-demo>Continuer (démo)</button><p class="muted">Mobile Money, Visa/Mastercard, PayPal, Stripe, Alipay, WeChat Pay, Apple Pay et Google Pay :  et de disponibilité pays.</p></div>
             <div id="p-account" class="tab" hidden><h3>Mon compte</h3><div class="item"><div class="thumbnail">🧑</div><div><strong>Mon profil</strong><small>Coordonnées, sécurité, langues</small></div></div><div class="item"><div class="thumbnail">🎁</div><div><strong>Parrainage</strong><small>Partagez votre code et suivez vos filleuls</small></div></div><input id="p-ref" class="field" value="CODE-PARRAIN-DEMO" readonly aria-label="Code de parrainage fictif"><button class="button secondary" data-demo>Partager mon code (démo)</button><div class="item"><div class="thumbnail">💬</div><div><strong>Support</strong><small>FAQ, tickets et chat</small></div></div><p class="muted">Le code de parrainage doit aussi figurer dans le formulaire d'inscription réel.</p></div>
             <p class="caption">Concept HTML · Aucune donnée utilisateur ni connexion API</p>
           </div>
