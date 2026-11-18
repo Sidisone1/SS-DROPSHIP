@@ -90,3 +90,7 @@
 - Moins d'encadrés d'explication : 16 encadrés retirés ou réduits à une courte phrase ; suppression des mentions internes dans l'interface client (références de décisions, « aucune note simulée », « sous réserve d'intégration », « exemple ») ; textes raccourcis.
 - Écran 57 « Mon transitaire » : « Contact » devient « Nom », téléphone sur une ligne avec indicatif.
 - Les 50 visuels et les 64 images d'écrans sont régénérés avec ces textes.
+
+## 2026-11-18 — Maquette d'origine redessinée, icônes plates sur 56–64
+- Maquette d'origine (accueil interactif) : icônes 3D Bogolan à la place des emojis, frise bogolan sous l'en-tête, au bas de la bannière et au-dessus des onglets, avatar et cartes de services refaits.
+- Écrans 56 à 64 : icônes plates au trait dans des pastilles teintées (style d'application classique) à la place des icônes 3D ; coches « ✓ » retirées des tableaux Admin.
