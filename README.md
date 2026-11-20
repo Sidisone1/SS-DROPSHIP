@@ -47,3 +47,10 @@ Les maquettes et images réalisées dans les anciennes conversations ne sont **p
 | Code fonctionnel de l'application | Non livré dans cette consolidation |
 
 Site de référence du projet : [ssdropship.com](https://ssdropship.com).
+## Atelier de suivi des designs (20 novembre 2026)
+
+- [Ouvrir le code de l'atelier interactif 01–50](tools/design-review/index.html) — filtres, aperçu mobile/ordinateur, annotations locales, export JSON.
+- [Guide de l'atelier](tools/design-review/README.md).
+- [État réel des composants et des développements restants](docs/architecture/ETAT_IMPLEMENTATION_2026-11-20.md).
+
+**Note :** cet atelier de revue ne constitue pas l'application commerciale opérationnelle. Les originaux HD 01–19 restent à importer et les 50 visuels régénérés restent à approuver.
