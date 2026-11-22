@@ -1,5 +1,12 @@
 # Historique des mises à jour
 
+## 2026-11-22 — Statut réel des visuels 20–50 dans les pages de présentation
+- `design/prototypes/site-et-application.html` et `design/prototypes/ecrans-bogolan.html` affichaient encore « 0 / 50 images » et « À produire » pour 20–50, alors que les 50 PNG existent dans `design/mockups/exports/` depuis le 17–18/11.
+- La grille « Les 50 visuels » affiche maintenant la miniature de chaque PNG (lien vers l'image HD) et le statut réel : 01–19 « généré, original HD à retrouver », 20–50 « généré, à valider ». Titres repris de l'atelier `tools/design-review/`.
+- Aucun visuel régénéré ni écrasé ; aucun visuel déclaré validé.
+- Vérification : rendu des deux pages sous Chromium (Playwright), 50/50 images chargées en 1080 px, aucune erreur JavaScript.
+- Copies de consultation : artefact « SS DROPSHIP Bogolan » mis à jour (50 visuels intégrés) et 50 visuels importés dans un dossier Canva ; liens dans `INVENTAIRE_VISUELS.md`.
+
 ## 2026-11-17 — Initialisation et consolidation
 - Dépôt SS-DROPSHIP initialement vide; accès GitHub lecture/écriture vérifié.
 - Création du README, cahier des charges, architecture, décisions, roadmap et directives des agents.
