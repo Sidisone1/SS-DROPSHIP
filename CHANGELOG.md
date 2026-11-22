@@ -5,6 +5,7 @@
 - La grille « Les 50 visuels » affiche maintenant la miniature de chaque PNG (lien vers l'image HD) et le statut réel : 01–19 « généré, original HD à retrouver », 20–50 « généré, à valider ». Titres repris de l'atelier `tools/design-review/`.
 - Aucun visuel régénéré ni écrasé ; aucun visuel déclaré validé.
 - Vérification : rendu des deux pages sous Chromium (Playwright), 50/50 images chargées en 1080 px, aucune erreur JavaScript.
+- Copies de consultation : artefact « SS DROPSHIP Bogolan » mis à jour (50 visuels intégrés) et 50 visuels importés dans un dossier Canva ; liens dans `INVENTAIRE_VISUELS.md`.
 
 ## 2026-11-17 — Initialisation et consolidation
 - Dépôt SS-DROPSHIP initialement vide; accès GitHub lecture/écriture vérifié.
