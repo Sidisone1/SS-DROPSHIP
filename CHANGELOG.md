@@ -72,3 +72,12 @@
 ## 2026-11-18 — Frise bogolan sur toutes les pages et tous les visuels
 - La frise bogolan s'applique désormais aux 46 écrans et aux 50 visuels (et non plus seulement aux étapes 28 à 50) ; espacement sous les en-têtes resserré.
 - Nouveau dossier `design/mockups/ecrans/` : les 46 écrans exportés en PNG, avec un index.
+
+## 2026-11-22 — Icônes Glass, site web et application sur 3 appareils
+- Ajout de `design/icons/bogolan/glass/` : les 64 icônes Bogolan sur une tuile de verre givré rendue avec le composant
+  Glass Icon d'OriginKit (motif bogolan bleu, brun, crème ; aucun jaune). Décision D-020. Scripts de rendu fournis.
+- Ajout de `design/prototypes/site-et-application.html` : le site web et l'application, mis en page pour téléphone (390 px),
+  tablette (820 px) et ordinateur (1280 px) par container queries, avec les icônes Glass. Données fictives.
+- Canva : copie « SS DROPSHIP — 50 écrans mobiles Bogolan » complétée de 8 pages (site et application sur 3 appareils,
+  planche des 64 icônes). L'original Canva n'est pas modifié ; les 50 écrans de la copie gardent les icônes précédentes.
+- Statut : **à valider**. Aucun code applicatif modifié.

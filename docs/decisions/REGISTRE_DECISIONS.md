@@ -24,6 +24,7 @@ Dernière consolidation : 17/11/2026.
 | D-017 | Ne pas générer les visuels en lot; procéder un par un | Production visuelle |
 | D-018 | Icônes 3D dans le style « Collection Bogolan » : objets en bleu, rouge, blanc, bleu nuit, avec une bande bogolan brun terre (#6B3E26); toujours aucun jaune (choix du propriétaire, 17/11/2026) | `design/icons/bogolan/`; le brun est réservé au motif bogolan et aux cartons, jamais en couleur de marque |
 | D-019 | Moyens de recharge à proposer : Mobile Money, Google Pay, Apple Pay, carte bancaire via Stripe (demande du propriétaire, 17/11/2026) | Écran « Recharger » de la maquette ; chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays (aucun crédit sans confirmation, D-008) |
+| D-020 | Icônes « Glass » : chaque icône Bogolan 3D (D-018) est posée sur une tuile de verre givré rendue avec le composant Glass Icon d'OriginKit, au-dessus d'un motif bogolan bleu, brun et crème ; aucun jaune (demande du propriétaire, 22/11/2026) | `design/icons/bogolan/glass/` ; les 64 icônes `png/` d'origine restent la source de l'objet ; statut à valider |
 
 ## À confirmer
 - M-001 : modèle économique final (abonnement, commissions, publicité, combinaison).
