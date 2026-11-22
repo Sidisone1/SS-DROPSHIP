@@ -81,3 +81,10 @@
 - Canva : copie « SS DROPSHIP — 50 écrans mobiles Bogolan » complétée de 8 pages (site et application sur 3 appareils,
   planche des 64 icônes). L'original Canva n'est pas modifié ; les 50 écrans de la copie gardent les icônes précédentes.
 - Statut : **à valider**. Aucun code applicatif modifié.
+
+## 2026-11-22 — Maquettes entièrement interactives
+- `design/prototypes/site-et-application.html` : couche d'interactions sur tous les éléments (470) — devis express qui
+  recalcule le total en FCFA, menu replié, onglets de l'application, puces et choix de paiement sélectionnables,
+  interrupteurs, retour à l'écran précédent, barre d'onglets qui mène à la bonne partie, icônes agrandies au clic,
+  message de confirmation à chaque action, accessible au clavier. Demande du propriétaire (commentaire sur la page).
+- Données fictives ; aucun paiement ni appel réseau simulé comme réel (AGENTS n° 8).
