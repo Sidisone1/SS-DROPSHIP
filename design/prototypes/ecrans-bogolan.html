@@ -603,6 +603,20 @@ html{scroll-behavior:smooth}
 #ecrans .bgl .composer{border-top:0}
 #ecrans .bgl .composer::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:var(--terre) var(--frise) repeat-x center/24px 8px}
 #ecrans .bgl .okbig{box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 12px 24px rgba(22,138,78,.35),0 0 0 6px #fff,0 0 0 10px var(--terre)}
+
+/* ---------- Nouvelles fonctionnalités (D-021, 23/11/2026) ---------- */
+#ecrans input.in{font:inherit;font-size:12.5px;color:var(--night);width:100%;appearance:textfield}
+#ecrans input.in:focus-visible{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,119,200,.15)}
+#ecrans .dims{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#ecrans .sim .seg span,#ecrans .sim .chip,#ecrans .sim .tgl{cursor:pointer}
+#ecrans .sim .sim-ass{cursor:pointer}
+#ecrans .sim [data-o="total"]{transition:color .2s}
+#ecrans .svc .tgl{flex:none}
+#ecrans .svc span i.muted{display:inline}
+#ecrans .ba{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#ecrans .ba .photo{height:96px;font-size:34px}
+#ecrans .ba .photo::before{content:"🎧"}
+#ecrans .ba .photo.after{background:#fff;border:1.5px solid var(--ln);color:var(--night)}
 </style>
 
 <header class="band">
@@ -686,7 +700,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
     <h2 class="title">Toutes les pages de l'application</h2>
-    <p class="intro">46 écrans dessinés à partir du cahier des charges : 42 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50). Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
+    <p class="intro">58 écrans dessinés à partir du cahier des charges : 54 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50 et 12 écrans de nouvelles fonctionnalités ajoutés le 23/11/2026). Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
     <nav class="groups" aria-label="Parcours">
       <a href="#g-acces">Accès au compte <b>1–5</b></a>
       <a href="#g-accueil">Accueil et catalogue <b>6–8</b></a>
@@ -696,6 +710,7 @@ html{scroll-behavior:smooth}
       <a href="#g-compte">Compte et services <b>26–30</b></a>
       <a href="#g-admin">Back-office Admin <b>31–33</b></a>
       <a href="#g-etapes">Étapes 20 à 50 <b>34–46</b></a>
+      <a href="#g-nouveautes">Nouvelles fonctionnalités <b>47–58</b></a>
     </nav>
 
     <!-- ================= ACCÈS ================= -->
@@ -1354,6 +1369,151 @@ html{scroll-behavior:smooth}
       <figcaption><span class="num">46</span><b>Analytics et traçabilité</b><small>Étape 49 des visuels. Indicateurs de performance et journal d'audit des actions sensibles.</small></figcaption></figure>
     </div>
     <div class="steps-map"><table><thead><tr><th>Étape</th><th>Titre du visuel</th><th>Écran</th></tr></thead><tbody><tr><td>20</td><td>Colis attendus</td><td><a href="#e-34">Écran 34</a></td></tr><tr><td>21</td><td>Colis réceptionnés</td><td><a href="#e-18">Écran 18</a></td></tr><tr><td>22</td><td>Détail d'un colis</td><td><a href="#e-19">Écran 19</a></td></tr><tr><td>23</td><td>Photo du colis extérieur</td><td><a href="#e-35">Écran 35</a></td></tr><tr><td>24</td><td>Poids et volume</td><td><a href="#e-36">Écran 36</a></td></tr><tr><td>25</td><td>Historique de l'entrepôt</td><td><a href="#e-37">Écran 37</a></td></tr><tr><td>26</td><td>Choix du transporteur</td><td><a href="#e-20">Écran 20</a></td></tr><tr><td>27</td><td>Devis de livraison</td><td><a href="#e-21">Écran 21</a></td></tr><tr><td>28</td><td>Suivi international</td><td><a href="#e-22">Écran 22</a></td></tr><tr><td>29</td><td>Statut en douane</td><td><a href="#e-38">Écran 38</a></td></tr><tr><td>30</td><td>Réception dans le pays de destination</td><td><a href="#e-39">Écran 39</a></td></tr><tr><td>31</td><td>Confirmation de livraison</td><td><a href="#e-40">Écran 40</a></td></tr><tr><td>32</td><td>Liste des fournisseurs</td><td><a href="#e-8">Écran 8</a></td></tr><tr><td>33</td><td>Fiche fournisseur</td><td><a href="#e-41">Écran 41</a></td></tr><tr><td>34</td><td>Recherche internationale</td><td><a href="#e-42">Écran 42</a></td></tr><tr><td>35</td><td>Comparaison d'offres</td><td><a href="#e-13">Écran 13</a></td></tr><tr><td>36</td><td>Négociation fournisseur</td><td><a href="#e-43">Écran 43</a></td></tr><tr><td>37</td><td>Mes favoris</td><td><a href="#e-44">Écran 44</a></td></tr><tr><td>38</td><td>Mon panier</td><td><a href="#e-14">Écran 14</a></td></tr><tr><td>39</td><td>Recharge du wallet</td><td><a href="#e-24">Écran 24</a></td></tr><tr><td>40</td><td>Moyens de paiement</td><td><a href="#e-45">Écran 45</a></td></tr><tr><td>41</td><td>Historique des transactions</td><td><a href="#e-25">Écran 25</a></td></tr><tr><td>42</td><td>Programme de parrainage</td><td><a href="#e-27">Écran 27</a></td></tr><tr><td>43</td><td>Notifications</td><td><a href="#e-28">Écran 28</a></td></tr><tr><td>44</td><td>Messagerie et support</td><td><a href="#e-29">Écran 29</a></td></tr><tr><td>45</td><td>Profil et paramètres</td><td><a href="#e-26">Écran 26</a></td></tr><tr><td>46</td><td>Préférences de langue</td><td><a href="#e-30">Écran 30</a></td></tr><tr><td>47</td><td>Tableau de bord Admin</td><td><a href="#e-31">Écran 31</a></td></tr><tr><td>48</td><td>Gestion des commandes Admin</td><td><a href="#e-32">Écran 32</a></td></tr><tr><td>49</td><td>Analytics et traçabilité</td><td><a href="#e-46">Écran 46</a></td></tr><tr><td>50</td><td>L'écosystème SS DROPSHIP</td><td>Vue d'ensemble (visuel 50)</td></tr></tbody></table></div>
+    <!-- ================= NOUVELLES FONCTIONNALITÉS (benchmark 23/11/2026, D-021) ================= -->
+    <h3 class="gtitle" id="g-nouveautes">Nouvelles fonctionnalités : fret, retrait, revente, IA</h3>
+    <p class="intro">Ajouts du 23/11/2026 (D-021), issus du benchmark de sd-aircargo.com et magnific.com. Tarifs, taux d'assurance et crédits IA sont des <b>exemples</b> (M-003, M-009, M-011). Le simulateur de l'écran 47 fonctionne : changez le mode, le pays et les dimensions.</p>
+    <div class="gallery">
+
+      <figure class="scr bgl" id="e-47"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Simulateur de fret</h4></div><div class="pv pv-tab sim" data-sim>
+        <label class="lb">Mode de transport</label>
+        <div class="seg" data-g="mode"><span class="on" data-v="express">Express</span><span data-v="aerien">Aérien</span><span data-v="maritime">Maritime</span></div>
+        <label class="lb">Pays de livraison</label>
+        <div class="chips" data-g="pays"><span class="chip on" data-v="CI">Côte d'Ivoire</span><span class="chip" data-v="GH">Ghana</span><span class="chip" data-v="GN">Guinée</span></div>
+        <div class="two"><div><label class="lb">Poids (kg)</label><input class="in" type="number" min="0" step="0.1" value="2.4" data-f="poidsKg" aria-label="Poids en kg"></div><div><label class="lb">Valeur (FCFA)</label><input class="in" type="number" min="0" step="1000" value="180000" data-f="valeurDeclaree" aria-label="Valeur déclarée"></div></div>
+        <label class="lb">Dimensions L × l × h (cm)</label>
+        <div class="dims"><input class="in" type="number" min="0" value="35" data-f="longueurCm" aria-label="Longueur"><input class="in" type="number" min="0" value="25" data-f="largeurCm" aria-label="Largeur"><input class="in" type="number" min="0" value="15" data-f="hauteurCm" aria-label="Hauteur"></div>
+        <label class="svc sim-ass"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/shield.png" alt=""></div><span>Assurance colis (2 %)</span><span class="tgl" data-f="assurance" role="switch" aria-checked="false" tabindex="0"></span></label>
+        <div class="recap"><p><span>Quantité facturée</span><b data-o="q">2,5 kg</b></p><p><span>Fret</span><b data-o="fret">33 750 FCFA</b></p><p><span>Assurance</span><b data-o="ass">0 FCFA</b></p><p class="tot"><span>Total estimé</span><b data-o="total">33 750 FCFA</b></p><p><i data-o="delai">Délai : 4 à 7 jours · tarif d'exemple</i></p></div>
+        <span class="btn">Créer une demande d'expédition</span>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">47</span><b>Simulateur de fret</b><small>Prix au kg (aérien, express) ou au m³ (maritime, phase 2), poids volumétrique, assurance optionnelle. Logique : <span class="path">packages/ui/simulateur-fret.mjs</span>.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-48"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Suivre un colis</h4></div><div class="pv">
+        <div class="ic ic-lg ic3d mx"><img src="../icons/bogolan/png/suivi.png" alt=""></div>
+        <h4 class="big">Où est mon colis ?</h4>
+        <p class="sub center">Sans compte : entrez simplement le numéro reçu par SMS.</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span class="val">SSD-2026-04821</span></div>
+        <div class="trk"><div><small>Statut actuel</small><b>En transit · vol GZ → ABJ</b></div><span class="badge b-blue">J+5</span></div>
+        <ul class="tl dense">
+          <li class="done"><b>Reçu à l'entrepôt de Guangzhou</b><small>17/11 · 10:42 · 2,4 kg</small></li>
+          <li class="done"><b>Remis au transporteur</b><small>19/11 · 16:05</small></li>
+          <li class="cur"><b>En vol vers Abidjan</b><small>21/11 · 03:20</small></li>
+          <li><b>Disponible au point de retrait</b><small>Prévu le 24/11</small></li>
+        </ul>
+        <div class="note-s"><svg><use href="#i-lock"/></svg>Le suivi public n'affiche ni nom, ni adresse, ni montant. Le détail complet reste dans l'espace client.</div>
+      </div></div>
+      <figcaption><span class="num">48</span><b>Suivi public par numéro</b><small>Accessible depuis le site sans connexion ; données personnelles masquées (§11).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-49"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Colis sans nom</h4></div><div class="pv pv-tab">
+        <p class="sub left">Un colis est arrivé à l'entrepôt sans votre code client ? Retrouvez-le avec son numéro de suivi fournisseur.</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span class="val">YT7781</span><span class="r muted">5 car. min.</span></div>
+        <div class="pkg"><div class="photo" style="width:64px;height:64px;font-size:26px;flex:none">📦</div><div><b>YT7781 4402 39CN</b><small>Carton brun moyen · 1,8 kg · reçu le 18/11</small><small>Photo du carton extérieur uniquement (D-010)</small></div></div>
+        <label class="lb">Preuve d'achat</label>
+        <div class="up"><span class="th"><svg><use href="#i-file"/></svg></span><span class="add"><svg><use href="#i-upload"/></svg>Capture</span></div>
+        <span class="btn">Réclamer ce colis</span>
+        <div class="note-s"><svg><use href="#i-info"/></svg>L'entrepôt vérifie la preuve puis rattache le colis à votre compte. Vous êtes notifié de la décision.</div>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">49</span><b>Colis sans nom et réclamation</b><small>Recherche par numéro, photo extérieure, preuve d'achat, validation par l'agent entrepôt (journal d'audit).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-50"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Articles interdits</h4></div><div class="pv">
+        <div class="seg"><span class="on">Express</span><span>Aérien</span><span>Maritime</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Batteries et piles seules</b><small>Refusées en express et en aérien</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Inflammables, produits chimiques</b><small>Parfums, aérosols, solvants</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Liquides</b><small>Refusés en express</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Téléphones, ordinateurs portables</b><small>Batterie intégrée à l'appareil</small></div><span class="badge b-green">Accepté</span></div>
+        <div class="note-s red"><svg><use href="#i-shield"/></svg>Tous modes : armes, matériel militaire, explosifs, stupéfiants, denrées périssables. Le colis est bloqué et le client reste responsable.</div>
+        <p class="muted">La liste est contrôlée dès la demande : une catégorie interdite empêche de choisir ce mode.</p>
+      </div></div>
+      <figcaption><span class="num">50</span><b>Articles interdits par mode</b><small>Liste paramétrable par l'Admin, vérifiée à la saisie (<span class="path">verifierArticle()</span>). Liste juridique finale à valider (M-007).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-51"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Points de retrait</h4></div><div class="pv pv-tab">
+        <div class="chips"><span class="chip on">Côte d'Ivoire</span><span class="chip">Ghana</span><span class="chip">Guinée</span></div>
+        <div class="map"><span class="m1">Plateau</span><span class="m2">Cocody</span><span class="m3">Yopougon</span><span class="mplane"><svg><use href="#i-pin"/></svg></span></div>
+        <div class="carrier on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>SS DROPSHIP Abidjan – Cocody</b><small>Lun–sam · 8 h–19 h · à 2,1 km</small></div><em>Itinéraire</em></div>
+        <div class="carrier"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Point partenaire – Yopougon</b><small>Lun–ven · 9 h–18 h · à 7,4 km</small></div><em>Itinéraire</em></div>
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/truck.png" alt=""></div><div><b>Livraison à domicile</b><small>Depuis le point de retrait · à partir de 1 500 FCFA (exemple)</small></div><span class="tgl"></span></div>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">51</span><b>Points de retrait et livraison à domicile</b><small>Adresse, horaires, itinéraire Google Maps ; option livraison de dernière étape (AnKaTa possible plus tard, D-014).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-52"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Payer le transport</h4></div><div class="pv">
+        <div class="recap sm"><p><span>Colis</span><b>SSD-2026-04821</b></p><p class="tot"><span>À payer</span><b>33 750 FCFA</b></p></div>
+        <div class="pay on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Maintenant, avec le wallet</b><small>Solde : 112 500 FCFA</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/recharge.png" alt=""></div><div><b>Maintenant, Mobile Money</b><small>Orange, MTN, Moov, Wave selon le pays</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Au retrait</b><small>Espèces ou Mobile Money au point de retrait</small></div><span class="radio"></span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Paiement au retrait : le colis est remis après encaissement enregistré par l'agent et le reçu est envoyé par SMS. Aucun statut « payé » sans confirmation (D-008).</div>
+        <span class="btn">Confirmer</span>
+      </div></div>
+      <figcaption><span class="num">52</span><b>Payer maintenant ou au retrait</b><small>Nouveau choix de paiement du fret ; l'encaissement au guichet passe par le ledger avec trace d'audit.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-53"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Alertes de suivi</h4></div><div class="pv pv-tab">
+        <p class="sub left">Choisissez comment être prévenu à chaque étape du colis.</p>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><span>SMS</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/chat.png" alt=""></div><span>WhatsApp</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/bell.png" alt=""></div><span>Notification de l'application</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mail.png" alt=""></div><span>Email</span><span class="tgl"></span></div>
+        <div class="sec"><b>Étapes suivies</b></div>
+        <div class="chips"><span class="chip on">Reçu entrepôt</span><span class="chip on">Expédié</span><span class="chip on">Douane</span><span class="chip on">Disponible</span><span class="chip">Livré</span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>SMS et WhatsApp dépendent d'un prestataire d'envoi à choisir ; coût par message à chiffrer.</div>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">53</span><b>Alertes SMS et WhatsApp</b><small>Complète l'écran Notifications (28) : canal par étape du transport.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-54"><div class="ph"><div class="pv pv-tab">
+        <div class="top"><div class="logo-sm"><span>SS</span> <em>SUGU</em></div><span class="bell"><svg><use href="#i-filter"/></svg></span></div>
+        <p class="sub left">Revente locale par les clients SS DROPSHIP</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span>Rechercher à Abidjan…</span></div>
+        <div class="chips"><span class="chip on">Tout</span><span class="chip">Téléphones</span><span class="chip">Informatique</span><span class="chip">Maison</span></div>
+        <div class="prods">
+          <div class="prod"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><b>Smartphone 128 Go neuf</b><small>Cocody · il y a 2 h</small><em>145 000 FCFA</em></div>
+          <div class="prod"><div class="pimg red"><svg><use href="#i-laptop"/></svg></div><b>Ordinateur portable 14"</b><small>Plateau · hier</small><em>310 000 FCFA</em></div>
+          <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur Wi-Fi 6</b><small>Yopougon · hier</small><em>38 000 FCFA</em></div>
+          <div class="prod"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Manette sans fil</b><small>Marcory · 3 j</small><em>22 000 FCFA</em></div>
+        </div>
+        <span class="fab"><svg><use href="#i-plus"/></svg></span>
+      </div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">54</span><b>SS Sugu : annonces de revente</b><small>Les clients revendent localement ce qu'ils ont importé. Gratuit ou inclus dans l'abonnement (M-010).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-55"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Publier une annonce</h4></div><div class="pv">
+        <div class="detect"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><div><b>Depuis le colis SSD-2026-04821</b><small class="ok-t"><svg><use href="#i-check"/></svg>Livré le 24/11</small></div></div>
+        <div class="up"><span class="th"><svg><use href="#i-camera"/></svg></span><span class="th"><svg><use href="#i-camera"/></svg></span><span class="add"><svg><use href="#i-plus"/></svg>Photo</span></div>
+        <label class="lb">Titre</label><div class="in">Smartphone 128 Go neuf, sous blister</div>
+        <div class="two"><div><label class="lb">Prix</label><div class="in">145 000 FCFA</div></div><div><label class="lb">Ville</label><div class="in in-sel">Abidjan<svg><use href="#i-down"/></svg></div></div></div>
+        <span class="btn btn-ghost"><svg><use href="#i-star"/></svg>Améliorer les photos avec le Studio IA</span>
+        <span class="btn">Publier</span>
+        <p class="muted center">Publication en 2 minutes · annonce vérifiée avant mise en ligne</p>
+      </div></div>
+      <figcaption><span class="num">55</span><b>Publier depuis un colis livré</b><small>Fiche préremplie depuis la commande ; modération Admin contre les fausses annonces (§6).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-56"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Studio photo IA</h4><span class="hd-r link">12 crédits</span></div><div class="pv pv-tab">
+        <div class="ba"><div class="photo"><span>Avant</span></div><div class="photo after"><span>Après</span></div></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/camera.png" alt=""></div><div><b>Fond blanc</b><small>Suppression de l'arrière-plan</small></div><span class="badge b-blue">1 crédit</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/search.png" alt=""></div><div><b>Netteté HD</b><small>Agrandit une photo fournisseur floue</small></div><span class="badge b-blue">2 crédits</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/share.png" alt=""></div><div><b>Visuel TikTok / WhatsApp</b><small>Format vertical avec logo, produit fidèle</small></div><span class="badge b-blue">3 crédits</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/doc.png" alt=""></div><div><b>Texte de l'annonce</b><small>Titre et description FR / EN</small></div><span class="badge b-blue">1 crédit</span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Le produit n'est jamais modifié, seul le décor change. Fournisseur d'IA et prix du crédit à choisir (M-011).</div>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">56</span><b>Studio photo IA</b><small>Inspiré de Magnific : fond blanc, netteté, visuels verticaux, texte. Crédits inclus selon l'offre d'abonnement.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-57"><div class="ph"><div class="hd"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/support.png" alt=""></div><div class="hd-who"><b>Assistant d'achat</b><small><i class="on-dot"></i>IA · relais vers un agent humain</small></div></div><div class="pv">
+        <div class="msg me">Je cherche ce casque, livré à Accra 👇<br><span class="path">alibaba.com/product/…</span></div>
+        <div class="msg">J'ai trouvé 3 offres. La moins chère respecte votre budget :</div>
+        <div class="offer on"><div class="of-h"><b>Casque sans fil ANC</b><span class="badge b-green">Meilleur prix</span></div><div class="kv3"><span>Produit<b>18 500</b></span><span>Fret aérien<b>5 100</b></span><span>Délai<b>12 j</b></span></div></div>
+        <div class="msg">Total estimé : <b>26 600 FCFA</b> avec frais de service. Je crée la demande de devis ?</div>
+        <div class="chips"><span class="chip on">Oui, créer le devis</span><span class="chip">Parler à un agent</span></div>
+        <div class="search"><svg><use href="#i-camera"/></svg><span>Lien, photo ou description…</span><span class="r"><svg><use href="#i-send"/></svg></span></div>
+      </div></div>
+      <figcaption><span class="num">57</span><b>Assistant d'achat IA</b><small>Reçoit un lien, une photo ou une description, propose une offre produit + fret, crée la demande ; l'agent humain valide le devis (D-006).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-58"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Offres pro</h4></div><div class="pv pv-tab">
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/user.png" alt=""></div><div><b>Particulier</b><small>1 compte · crédits IA de base</small></div></div>
+        <div class="mode on"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/users.png" alt=""></div><div><b>Business</b><small>Plusieurs utilisateurs, rôles, crédits partagés, factures groupées</small></div><span class="badge b-night">Populaire</span></div>
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/chart.png" alt=""></div><div><b>Entreprise</b><small>Volume, gestionnaire dédié, accès API</small></div></div>
+        <div class="sec"><b>Pour les revendeurs</b></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/link.png" alt=""></div><div><b>API et connecteurs</b><small>Catalogue, demandes, suivi des colis</small></div><span class="badge b-grey">Phase 3</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/gift.png" alt=""></div><div><b>Programme partenaires</b><small>Agents, transitaires, créateurs ; en plus du parrainage</small></div><span class="badge b-grey">À arbitrer</span></div>
+        <p class="muted">Prix et contenu des offres à arbitrer (M-001).</p>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">58</span><b>Offres Business, Entreprise et API</b><small>Comptes multi-utilisateurs, crédits partagés, API revendeurs, programme partenaires.</small></figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -1538,5 +1698,36 @@ html{scroll-behavior:smooth}
 })();
 </script>
 
+
+<script>
+/* Simulateur de l'écran 47 — copie de packages/ui/simulateur-fret.mjs (tarifs d'exemple, M-003). */
+(function(){
+  var T={express:{u:"kg",d:"4 à 7 jours",CI:13500,GH:14000,GN:14500},aerien:{u:"kg",d:"10 à 15 jours",CI:9800,GH:10200,GN:10500},maritime:{u:"m3",d:"45 à 60 jours",p2:1,CI:265000,GH:275000,GN:285000}};
+  var fmt=function(n){return n.toLocaleString("fr-FR").replace(/\u202f|\u00a0/g," ")+" FCFA"};
+  document.querySelectorAll("[data-sim]").forEach(function(root){
+    var st={mode:"express",pays:"CI",assurance:false};
+    function num(f){var v=parseFloat(root.querySelector('[data-f="'+f+'"]').value);return v>=0?v:0}
+    function calc(){
+      var t=T[st.mode],vol=num("longueurCm")*num("largeurCm")*num("hauteurCm"),q,lab;
+      if(t.u==="kg"){q=Math.ceil(Math.max(num("poidsKg"),vol/6000)/0.5)*0.5;lab=String(q).replace(".",",")+" kg"}
+      else{q=Math.round(Math.max(vol/1e6,0.1)*1000)/1000;lab=String(q).replace(".",",")+" m³"}
+      var fret=Math.round(q*t[st.pays]),ass=st.assurance?Math.round(num("valeurDeclaree")*0.02):0;
+      root.querySelector('[data-o="q"]').textContent=lab;
+      root.querySelector('[data-o="fret"]').textContent=fmt(fret);
+      root.querySelector('[data-o="ass"]').textContent=fmt(ass);
+      root.querySelector('[data-o="total"]').textContent=fmt(fret+ass);
+      root.querySelector('[data-o="delai"]').textContent="Délai : "+t.d+(t.p2?" · maritime en phase 2":"")+" · tarif d'exemple";
+    }
+    root.querySelectorAll("[data-g]").forEach(function(g){g.querySelectorAll("[data-v]").forEach(function(o){o.addEventListener("click",function(){
+      g.querySelectorAll("[data-v]").forEach(function(x){x.classList.toggle("on",x===o)});st[g.dataset.g]=o.dataset.v;calc();})})});
+    var tg=root.querySelector('.tgl[data-f="assurance"]');
+    function flip(e){if(e)e.preventDefault();st.assurance=!st.assurance;tg.classList.toggle("on",st.assurance);tg.setAttribute("aria-checked",st.assurance);calc()}
+    root.querySelector(".sim-ass").addEventListener("click",flip);
+    tg.addEventListener("keydown",function(e){if(e.key===" "||e.key==="Enter")flip(e)});
+    root.querySelectorAll("input").forEach(function(i){i.addEventListener("input",calc)});
+    calc();
+  });
+})();
+</script>
 </body>
 </html>

@@ -88,3 +88,12 @@
   interrupteurs, retour à l'écran précédent, barre d'onglets qui mène à la bonne partie, icônes agrandies au clic,
   message de confirmation à chaque action, accessible au clavier. Demande du propriétaire (commentaire sur la page).
 - Données fictives ; aucun paiement ni appel réseau simulé comme réel (AGENTS n° 8).
+
+## 2026-11-23 — Nouvelles fonctionnalités (benchmark sd-aircargo.com et magnific.com)
+- `design/prototypes/ecrans-bogolan.html` passe de 46 à 58 écrans : groupe « Nouvelles fonctionnalités » (47–58) — simulateur de fret
+  interactif, suivi public par numéro, colis sans nom, articles interdits, points de retrait, paiement au retrait, alertes SMS/WhatsApp,
+  SS Sugu (annonces et publication), studio photo IA, assistant d'achat IA, offres Business/Entreprise/API. Correctif : interrupteur non étiré dans les lignes d'options.
+- Ajout de `packages/ui/simulateur-fret.mjs` (calcul fret kg/m³, poids volumétrique, assurance, articles interdits) et de son test
+  `packages/ui/simulateur-fret.test.mjs` (6 tests, `node --test packages/ui/simulateur-fret.test.mjs`). Barème d'**exemple** (M-003).
+- 12 PNG ajoutés dans `design/mockups/ecrans/` (écrans 47–58). Cahier des charges §13, décision D-021, points M-009 à M-012, roadmap.
+- Statut : **à valider**, données fictives. Aucun paiement, envoi de SMS ni appel d'IA réel (AGENTS n° 8 et 10). Les visuels 1–50 ne changent pas.
