@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="toolkit-suivi.css">
 <title>SS DROPSHIP Bogolan</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap">
@@ -1231,12 +1232,21 @@ html{scroll-behavior:smooth}
 
       <figure class="scr"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>CMD-2026-0087</h4><span class="hd-r"><svg><use href="#i-share"/></svg></span></div><div class="pv">
         <div class="ohead"><div class="pimg i3d"><img src="../icons/bogolan/glass/png/laptop.png" alt=""></div><div><b>Ordinateur portable 15" ×5</b><small>Shenzhen Office Tech · 1 187 500 F</small></div></div>
-        <ul class="tl dense">
+        <div class="tk-suivi" data-tk-suivi>
+          <p class="tk-suivi-etat" aria-live="polite"></p>
+          <div class="tk-suivi-rail" aria-hidden="true"><span></span></div>
+          <div class="tk-suivi-actions">
+            <button type="button" data-tk-prev>Étape précédente</button>
+            <button type="button" data-tk-next>Étape suivante</button>
+            <button type="button" data-tk-reset>Statut actuel</button>
+          </div>
+        </div>
+        <ul class="tl dense" aria-label="Historique de la commande">
           <li class="done"><b>Devis accepté</b><small>05/11</small></li>
           <li class="done"><b>Paiement confirmé</b><small>06/11</small></li>
           <li class="done"><b>Achat en cours</b><small>06/11</small></li>
           <li class="done"><b>Expédié par le fournisseur</b><small>09/11 · suivi YT2026…418</small></li>
-          <li class="cur"><b>Reçu à l'entrepôt</b><small>14/11 · Guangzhou · carton non ouvert</small></li>
+          <li class="cur" aria-current="step"><b>Reçu à l'entrepôt</b><small>14/11 · Guangzhou · carton non ouvert</small></li>
           <li><b>Préparation</b></li>
           <li><b>Remis au transporteur</b></li>
           <li><b>En transit</b></li>
@@ -1806,3 +1816,5 @@ html{scroll-behavior:smooth}
   document.addEventListener('keydown',function(e){if(e.key!=='Enter'&&e.key!==' ')return;var el=e.target.closest&&e.target.closest(CIBLES);if(!el||el.tagName==='BUTTON')return;e.preventDefault();agir(el,null);});
 })();
 </script>
+
+<script defer src="toolkit-suivi.js"></script>
