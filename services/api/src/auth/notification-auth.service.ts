@@ -22,7 +22,8 @@ export class NotificationAuthService {
     const prefixe = canal === 'sms' ? 'SS_SMS' : 'SS_EMAIL';
     const url = process.env[prefixe + '_GATEWAY_URL'];
     const secret = process.env[prefixe + '_GATEWAY_TOKEN'];
-    if (!url || !secret || secret.length < 16) return false;
+    if (!url || !secret || secret.length < 16 ||
+      !process.env.SS_OTP_PEPPER || Buffer.byteLength(process.env.SS_OTP_PEPPER, 'utf8') < 32) return false;
     try {
       const cible = new URL(url);
       return cible.protocol === 'https:' && cible.username === '' && cible.password === '';
