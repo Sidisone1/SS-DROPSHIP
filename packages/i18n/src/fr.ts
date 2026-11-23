@@ -11,7 +11,7 @@ export const fr = {
   'chat.ouvrir': 'Discuter avec le support',
 
   'accueil.recherche.placeholder': 'Nom du produit ou lien (Alibaba, 1688, Trendyol…)',
-  'accueil.modes.titre': 'Comment voulez-vous commander ?',
+  'accueil.modes.titre': 'Comment voulez-vous commander ?',
   'accueil.modes.directe': 'Commande directe',
   'accueil.modes.directe.detail': 'Vous avez le lien ou la référence du produit.',
   'accueil.modes.recherche': 'Recherche de produit',
@@ -31,7 +31,7 @@ export const fr = {
   'auth.bouton.inscription': 'Créer mon compte',
   'auth.connexion.titre': 'Se connecter',
   'auth.bouton.connexion': 'Me connecter',
-  'auth.motDePasseOublie': 'Mot de passe oublié ?',
+  'auth.motDePasseOublie': 'Mot de passe oublié ?',
   'auth.parrainage.invalide': 'Ce code de parrainage est invalide. Vous pouvez vous inscrire sans code.',
 
   'compte.parrainage': 'Parrainage',

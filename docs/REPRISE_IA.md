@@ -20,7 +20,7 @@ Produits : site client, application mobile, back-office, API.
 | 2 — Backlog MVP | Fait et validé : [BACKLOG_MVP.md](requirements/BACKLOG_MVP.md) (82 stories, D-025) |
 | 3 — Validation des écrans | **À faire par le propriétaire** (46 écrans Bogolan dans `design/prototypes/`) |
 | 4 — Architecture | Fait : ADR-001 à 004, `openapi.yaml`, `schema.prisma`, `packages/types` |
-| Sprint S0 — socle | **En cours** (voir § 5). Hébergement volontairement reporté par le propriétaire |
+| Sprint S0 — socle | **Terminé sauf hébergement** (voir § 5), reporté par le propriétaire. Captures : `docs/captures/S0/` |
 | Sprints S1 à S12 | À faire |
 
 Aucune intégration externe réelle (paiement, SMS, transporteur) n'existe. Ne jamais prétendre le contraire.
@@ -28,8 +28,8 @@ Aucune intégration externe réelle (paiement, SMS, transporteur) n'existe. Ne j
 ## 3. Carte du dépôt
 ```text
 apps/web        Site client Next.js 16 (accueil, inscription en aperçu)            ✅ build + 3 tests
-apps/admin      Back-office Next.js                                               ⏳ à créer (S0)
-apps/mobile     Application Expo 57 / React Native 0.86                           ⏳ à créer (S0)
+apps/admin      Back-office Next.js (connexion MFA en aperçu, tableau de bord)    ✅ build + 5 tests
+apps/mobile     Application Expo 57 / React Native 0.86, 5 onglets               ✅ export Metro + 6 tests
 services/api    API NestJS 12 + Prisma 7 + PostgreSQL                             ✅ santé, pays, audit ; 20 tests
 services/workers Tâches asynchrones (BullMQ)                                      ⏳ S6+
 packages/types  Machines à états, montants, parrainage, interfaces prestataires   ✅ 22 tests
@@ -48,6 +48,8 @@ pnpm lint                         # Biome
 pnpm turbo run typecheck test     # vérification complète (sans base de données)
 pnpm turbo run build
 pnpm --filter @ss-dropship/web dev        # site sur http://localhost:3001
+pnpm --filter @ss-dropship/admin dev      # back-office sur http://localhost:3002
+pnpm --filter @ss-dropship/mobile start   # application (Expo)
 # API : nécessite PostgreSQL (DATABASE_URL, voir services/api/.env.example)
 pnpm --filter @ss-dropship/api build && DATABASE_URL=postgresql://… node services/api/dist/main.js
 ```
@@ -57,8 +59,8 @@ La CI GitHub Actions (`.github/workflows/ci.yml`) exécute lint, typecheck, test
 ## 5. Sprint S0 — reste à faire
 - [x] US-SOC-01 Monorepo, CI · [x] US-SOC-03 Modèle de données · [x] US-SOC-04 Audit
 - [x] US-SOC-05 i18n et paramètres pays · [x] US-SOC-06 Tokens (composants web de base faits)
-- [ ] `apps/admin` (Next.js, écran d'accès réservé)
-- [ ] `apps/mobile` (Expo, 5 onglets : Accueil, Commandes, Entrepôt, Wallet, Compte + chat flottant)
+- [x] `apps/admin` (Next.js, connexion et tableau de bord)
+- [x] `apps/mobile` (Expo, 5 onglets + chat flottant)
 - [ ] US-SOC-02 Environnements : **bloqué** jusqu'au choix de l'hébergeur (décision du propriétaire)
 - [ ] US-SOC-07 Observabilité (Sentry) : après choix de l'hébergeur
 

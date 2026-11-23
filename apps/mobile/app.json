@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "SS DROPSHIP",
+    "slug": "ss-dropship",
+    "scheme": "ssdropship",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#F4F6F8",
+    "primaryColor": "#0077C8",
+    "ios": { "bundleIdentifier": "com.ssdropship.app", "supportsTablet": true },
+    "android": { "package": "com.ssdropship.app" },
+    "web": { "bundler": "metro", "output": "single" },
+    "plugins": ["expo-router"],
+    "experiments": { "typedRoutes": false }
+  }
+}

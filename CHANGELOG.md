@@ -143,3 +143,13 @@
   aperçu (code de parrainage facultatif, Mali par défaut ; envoi activé en S1). Build de production et 3 tests.
 - Reprise : `docs/REPRISE_IA.md`, `CLAUDE.md`, `GEMINI.md`, ajout à `AGENTS.md` (règles 13 à 15, sans modifier les 12 premières).
 - Restent en S0 : back-office et application mobile ; environnements et observabilité après choix de l'hébergeur.
+
+## 2026-11-23 — Sprint S0 : back-office et application mobile
+- `apps/admin` : Next.js 16, connexion avec champ de double authentification (aperçu, activée en S1), tableau de bord des
+  modules par rôle sans chiffres inventés, `noindex`. Build et 5 tests.
+- `apps/mobile` : Expo 57 / React Native 0.86 / Expo Router, 5 onglets (Accueil, Commandes, Entrepôt, Wallet, Compte),
+  chat flottant, icônes Bogolan, prestations V2 « Bientôt disponible » non cliquables, parrainage dans le compte.
+  Export web Metro réussi, 6 tests ; versions de reanimated, worklets et metro-config figées sur celles d'Expo 57.
+- Typographie : espaces insécables avant « ? » dans les textes français.
+- Vérification complète : lint Biome OK ; `turbo run typecheck test build` 21/21 sans cache.
+- Captures du code réel : `docs/captures/S0/`. Reste en S0 : environnements et observabilité (hébergement à choisir).
