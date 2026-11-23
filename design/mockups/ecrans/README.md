@@ -1,6 +1,6 @@
 # Écrans en images — version Bogolan
 
-Les 46 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (résolution ×2), avec la frise bogolan et les icônes 3D Bogolan. Statut : à valider (données d'exemple).
+Les 58 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (résolution ×2), avec la frise bogolan et les icônes 3D Bogolan. Statut : à valider (données d'exemple).
 
 - [01 Bienvenue](SS-DROPSHIP_Ecran_01_Bienvenue.png)
 - [02 Inscription code de parrainage](SS-DROPSHIP_Ecran_02_Inscription_code_de_parrainage.png)
@@ -48,3 +48,17 @@ Les 46 écrans de `../../prototypes/ecrans-bogolan.html` exportés en PNG (réso
 - [44 Mes favoris](SS-DROPSHIP_Ecran_44_Mes_favoris.png)
 - [45 Moyens de paiement](SS-DROPSHIP_Ecran_45_Moyens_de_paiement.png)
 - [46 Analytics et tracabilite](SS-DROPSHIP_Ecran_46_Analytics_et_tracabilite.png)
+
+## Nouvelles fonctionnalités (23/11/2026, D-021)
+- [47 Simulateur de fret](SS-DROPSHIP_Ecran_47_Simulateur_de_fret.png)
+- [48 Suivi public par numero](SS-DROPSHIP_Ecran_48_Suivi_public_par_numero.png)
+- [49 Colis sans nom et reclamation](SS-DROPSHIP_Ecran_49_Colis_sans_nom_et_reclamation.png)
+- [50 Articles interdits par mode](SS-DROPSHIP_Ecran_50_Articles_interdits_par_mode.png)
+- [51 Points de retrait et livraison](SS-DROPSHIP_Ecran_51_Points_de_retrait_et_livraison.png)
+- [52 Payer maintenant ou au retrait](SS-DROPSHIP_Ecran_52_Payer_maintenant_ou_au_retrait.png)
+- [53 Alertes SMS et WhatsApp](SS-DROPSHIP_Ecran_53_Alertes_SMS_et_WhatsApp.png)
+- [54 SS Sugu annonces de revente](SS-DROPSHIP_Ecran_54_SS_Sugu_annonces_de_revente.png)
+- [55 Publier depuis un colis livre](SS-DROPSHIP_Ecran_55_Publier_depuis_un_colis_livre.png)
+- [56 Studio photo IA](SS-DROPSHIP_Ecran_56_Studio_photo_IA.png)
+- [57 Assistant d achat IA](SS-DROPSHIP_Ecran_57_Assistant_d_achat_IA.png)
+- [58 Offres Business Entreprise et API](SS-DROPSHIP_Ecran_58_Offres_Business_Entreprise_et_API.png)

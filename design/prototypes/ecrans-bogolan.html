@@ -111,7 +111,7 @@ h2.title{font-family:var(--f-display);font-size:clamp(24px,3.4vw,32px);letter-sp
 .legend{display:flex;flex-wrap:wrap;gap:10px 18px;margin-bottom:18px;font-size:13px;color:var(--muted)}
 .legend span{display:inline-flex;align-items:center;gap:7px}
 .dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
-.d-done{background:var(--blue)}.d-todo{background:#B8C7D6}
+.d-done{background:var(--blue)}.d-todo{background:#B8C7D6}.d-gen{background:#7FB3DE}a.v{color:inherit;text-decoration:none}a.v:hover{border-color:var(--blue)}.v .vimg{grid-column:1/-1;width:100%;aspect-ratio:9/16;object-fit:cover;object-position:top;border-radius:8px;background:#f3f7fc;margin-bottom:6px}
 .counts{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:22px}
 .count{border:1px solid var(--line);border-radius:12px;padding:12px 16px;min-width:150px}
 .count b{display:block;font-family:var(--f-display);font-size:26px;font-variant-numeric:tabular-nums}
@@ -603,14 +603,28 @@ html{scroll-behavior:smooth}
 #ecrans .bgl .composer{border-top:0}
 #ecrans .bgl .composer::before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:var(--terre) var(--frise) repeat-x center/24px 8px}
 #ecrans .bgl .okbig{box-shadow:inset 0 2px 0 rgba(255,255,255,.35),0 12px 24px rgba(22,138,78,.35),0 0 0 6px #fff,0 0 0 10px var(--terre)}
+
+/* ---------- Nouvelles fonctionnalités (D-021, 23/11/2026) ---------- */
+#ecrans input.in{font:inherit;font-size:12.5px;color:var(--night);width:100%;appearance:textfield}
+#ecrans input.in:focus-visible{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(0,119,200,.15)}
+#ecrans .dims{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#ecrans .sim .seg span,#ecrans .sim .chip,#ecrans .sim .tgl{cursor:pointer}
+#ecrans .sim .sim-ass{cursor:pointer}
+#ecrans .sim [data-o="total"]{transition:color .2s}
+#ecrans .svc .tgl{flex:none}
+#ecrans .svc span i.muted{display:inline}
+#ecrans .ba{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#ecrans .ba .photo{height:96px;font-size:34px}
+#ecrans .ba .photo::before{content:"🎧"}
+#ecrans .ba .photo.after{background:#fff;border:1.5px solid var(--ln);color:var(--night)}
 </style>
 
 <header class="band">
   <div class="wrap">
     <div class="brand"><span>SS</span> <em>DROPSHIP</em> · Design</div>
-    <p class="lede">Les 46 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
+    <p class="lede">Les 58 écrans de l'application et du back-office, puis le contenu du dossier <code>design/</code> du dépôt GitHub Sidisone1/SS-DROPSHIP : maquette d'origine, charte graphique et état des 50 visuels.</p>
     <nav class="toc" aria-label="Sections">
-      <a href="#ecrans">Les 46 écrans</a>
+      <a href="#ecrans">Les 58 écrans</a>
       <a href="#bogolan">Icônes Bogolan</a>
       <a href="#maquette">Maquette d'origine</a>
       <a href="#charte">Charte graphique</a>
@@ -686,7 +700,7 @@ html{scroll-behavior:smooth}
   <div class="wrap">
     <p class="eyebrow">Maquettes d'écrans · proposition à valider</p>
     <h2 class="title">Toutes les pages de l'application</h2>
-    <p class="intro">46 écrans dessinés à partir du cahier des charges : 42 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50). Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
+    <p class="intro">58 écrans dessinés à partir du cahier des charges : 54 pour l'application client, 4 pour le back-office Admin (dont 13 écrans complémentaires pour les étapes 20 à 50 et 12 écrans de nouvelles fonctionnalités ajoutés le 23/11/2026). Tous les écrans portent la frise bogolan (zigzag, point, deux traits, blanc sur brun terre). Les noms, montants et identifiants sont des exemples. Ces écrans ne remplacent pas les 50 visuels HD de présentation.</p>
     <nav class="groups" aria-label="Parcours">
       <a href="#g-acces">Accès au compte <b>1–5</b></a>
       <a href="#g-accueil">Accueil et catalogue <b>6–8</b></a>
@@ -696,6 +710,7 @@ html{scroll-behavior:smooth}
       <a href="#g-compte">Compte et services <b>26–30</b></a>
       <a href="#g-admin">Back-office Admin <b>31–33</b></a>
       <a href="#g-etapes">Étapes 20 à 50 <b>34–46</b></a>
+      <a href="#g-nouveautes">Nouvelles fonctionnalités <b>47–58</b></a>
     </nav>
 
     <!-- ================= ACCÈS ================= -->
@@ -1354,6 +1369,151 @@ html{scroll-behavior:smooth}
       <figcaption><span class="num">46</span><b>Analytics et traçabilité</b><small>Étape 49 des visuels. Indicateurs de performance et journal d'audit des actions sensibles.</small></figcaption></figure>
     </div>
     <div class="steps-map"><table><thead><tr><th>Étape</th><th>Titre du visuel</th><th>Écran</th></tr></thead><tbody><tr><td>20</td><td>Colis attendus</td><td><a href="#e-34">Écran 34</a></td></tr><tr><td>21</td><td>Colis réceptionnés</td><td><a href="#e-18">Écran 18</a></td></tr><tr><td>22</td><td>Détail d'un colis</td><td><a href="#e-19">Écran 19</a></td></tr><tr><td>23</td><td>Photo du colis extérieur</td><td><a href="#e-35">Écran 35</a></td></tr><tr><td>24</td><td>Poids et volume</td><td><a href="#e-36">Écran 36</a></td></tr><tr><td>25</td><td>Historique de l'entrepôt</td><td><a href="#e-37">Écran 37</a></td></tr><tr><td>26</td><td>Choix du transporteur</td><td><a href="#e-20">Écran 20</a></td></tr><tr><td>27</td><td>Devis de livraison</td><td><a href="#e-21">Écran 21</a></td></tr><tr><td>28</td><td>Suivi international</td><td><a href="#e-22">Écran 22</a></td></tr><tr><td>29</td><td>Statut en douane</td><td><a href="#e-38">Écran 38</a></td></tr><tr><td>30</td><td>Réception dans le pays de destination</td><td><a href="#e-39">Écran 39</a></td></tr><tr><td>31</td><td>Confirmation de livraison</td><td><a href="#e-40">Écran 40</a></td></tr><tr><td>32</td><td>Liste des fournisseurs</td><td><a href="#e-8">Écran 8</a></td></tr><tr><td>33</td><td>Fiche fournisseur</td><td><a href="#e-41">Écran 41</a></td></tr><tr><td>34</td><td>Recherche internationale</td><td><a href="#e-42">Écran 42</a></td></tr><tr><td>35</td><td>Comparaison d'offres</td><td><a href="#e-13">Écran 13</a></td></tr><tr><td>36</td><td>Négociation fournisseur</td><td><a href="#e-43">Écran 43</a></td></tr><tr><td>37</td><td>Mes favoris</td><td><a href="#e-44">Écran 44</a></td></tr><tr><td>38</td><td>Mon panier</td><td><a href="#e-14">Écran 14</a></td></tr><tr><td>39</td><td>Recharge du wallet</td><td><a href="#e-24">Écran 24</a></td></tr><tr><td>40</td><td>Moyens de paiement</td><td><a href="#e-45">Écran 45</a></td></tr><tr><td>41</td><td>Historique des transactions</td><td><a href="#e-25">Écran 25</a></td></tr><tr><td>42</td><td>Programme de parrainage</td><td><a href="#e-27">Écran 27</a></td></tr><tr><td>43</td><td>Notifications</td><td><a href="#e-28">Écran 28</a></td></tr><tr><td>44</td><td>Messagerie et support</td><td><a href="#e-29">Écran 29</a></td></tr><tr><td>45</td><td>Profil et paramètres</td><td><a href="#e-26">Écran 26</a></td></tr><tr><td>46</td><td>Préférences de langue</td><td><a href="#e-30">Écran 30</a></td></tr><tr><td>47</td><td>Tableau de bord Admin</td><td><a href="#e-31">Écran 31</a></td></tr><tr><td>48</td><td>Gestion des commandes Admin</td><td><a href="#e-32">Écran 32</a></td></tr><tr><td>49</td><td>Analytics et traçabilité</td><td><a href="#e-46">Écran 46</a></td></tr><tr><td>50</td><td>L'écosystème SS DROPSHIP</td><td>Vue d'ensemble (visuel 50)</td></tr></tbody></table></div>
+    <!-- ================= NOUVELLES FONCTIONNALITÉS (benchmark 23/11/2026, D-021) ================= -->
+    <h3 class="gtitle" id="g-nouveautes">Nouvelles fonctionnalités : fret, retrait, revente, IA</h3>
+    <p class="intro">Ajouts du 23/11/2026 (D-021), issus du benchmark de sd-aircargo.com et magnific.com. Tarifs, taux d'assurance et crédits IA sont des <b>exemples</b> (M-003, M-009, M-011). Le simulateur de l'écran 47 fonctionne : changez le mode, le pays et les dimensions.</p>
+    <div class="gallery">
+
+      <figure class="scr bgl" id="e-47"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Simulateur de fret</h4></div><div class="pv pv-tab sim" data-sim>
+        <label class="lb">Mode de transport</label>
+        <div class="seg" data-g="mode"><span class="on" data-v="express">Express</span><span data-v="aerien">Aérien</span><span data-v="maritime">Maritime</span></div>
+        <label class="lb">Pays de livraison</label>
+        <div class="chips" data-g="pays"><span class="chip on" data-v="CI">Côte d'Ivoire</span><span class="chip" data-v="GH">Ghana</span><span class="chip" data-v="GN">Guinée</span></div>
+        <div class="two"><div><label class="lb">Poids (kg)</label><input class="in" type="number" min="0" step="0.1" value="2.4" data-f="poidsKg" aria-label="Poids en kg"></div><div><label class="lb">Valeur (FCFA)</label><input class="in" type="number" min="0" step="1000" value="180000" data-f="valeurDeclaree" aria-label="Valeur déclarée"></div></div>
+        <label class="lb">Dimensions L × l × h (cm)</label>
+        <div class="dims"><input class="in" type="number" min="0" value="35" data-f="longueurCm" aria-label="Longueur"><input class="in" type="number" min="0" value="25" data-f="largeurCm" aria-label="Largeur"><input class="in" type="number" min="0" value="15" data-f="hauteurCm" aria-label="Hauteur"></div>
+        <label class="svc sim-ass"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/shield.png" alt=""></div><span>Assurance colis (2 %)</span><span class="tgl" data-f="assurance" role="switch" aria-checked="false" tabindex="0"></span></label>
+        <div class="recap"><p><span>Quantité facturée</span><b data-o="q">2,5 kg</b></p><p><span>Fret</span><b data-o="fret">33 750 FCFA</b></p><p><span>Assurance</span><b data-o="ass">0 FCFA</b></p><p class="tot"><span>Total estimé</span><b data-o="total">33 750 FCFA</b></p><p><i data-o="delai">Délai : 4 à 7 jours · tarif d'exemple</i></p></div>
+        <span class="btn">Créer une demande d'expédition</span>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">47</span><b>Simulateur de fret</b><small>Prix au kg (aérien, express) ou au m³ (maritime, phase 2), poids volumétrique, assurance optionnelle. Logique : <span class="path">packages/ui/simulateur-fret.mjs</span>.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-48"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Suivre un colis</h4></div><div class="pv">
+        <div class="ic ic-lg ic3d mx"><img src="../icons/bogolan/png/suivi.png" alt=""></div>
+        <h4 class="big">Où est mon colis ?</h4>
+        <p class="sub center">Sans compte : entrez simplement le numéro reçu par SMS.</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span class="val">SSD-2026-04821</span></div>
+        <div class="trk"><div><small>Statut actuel</small><b>En transit · vol GZ → ABJ</b></div><span class="badge b-blue">J+5</span></div>
+        <ul class="tl dense">
+          <li class="done"><b>Reçu à l'entrepôt de Guangzhou</b><small>17/11 · 10:42 · 2,4 kg</small></li>
+          <li class="done"><b>Remis au transporteur</b><small>19/11 · 16:05</small></li>
+          <li class="cur"><b>En vol vers Abidjan</b><small>21/11 · 03:20</small></li>
+          <li><b>Disponible au point de retrait</b><small>Prévu le 24/11</small></li>
+        </ul>
+        <div class="note-s"><svg><use href="#i-lock"/></svg>Le suivi public n'affiche ni nom, ni adresse, ni montant. Le détail complet reste dans l'espace client.</div>
+      </div></div>
+      <figcaption><span class="num">48</span><b>Suivi public par numéro</b><small>Accessible depuis le site sans connexion ; données personnelles masquées (§11).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-49"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Colis sans nom</h4></div><div class="pv pv-tab">
+        <p class="sub left">Un colis est arrivé à l'entrepôt sans votre code client ? Retrouvez-le avec son numéro de suivi fournisseur.</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span class="val">YT7781</span><span class="r muted">5 car. min.</span></div>
+        <div class="pkg"><div class="photo" style="width:64px;height:64px;font-size:26px;flex:none">📦</div><div><b>YT7781 4402 39CN</b><small>Carton brun moyen · 1,8 kg · reçu le 18/11</small><small>Photo du carton extérieur uniquement (D-010)</small></div></div>
+        <label class="lb">Preuve d'achat</label>
+        <div class="up"><span class="th"><svg><use href="#i-file"/></svg></span><span class="add"><svg><use href="#i-upload"/></svg>Capture</span></div>
+        <span class="btn">Réclamer ce colis</span>
+        <div class="note-s"><svg><use href="#i-info"/></svg>L'entrepôt vérifie la preuve puis rattache le colis à votre compte. Vous êtes notifié de la décision.</div>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">49</span><b>Colis sans nom et réclamation</b><small>Recherche par numéro, photo extérieure, preuve d'achat, validation par l'agent entrepôt (journal d'audit).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-50"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Articles interdits</h4></div><div class="pv">
+        <div class="seg"><span class="on">Express</span><span>Aérien</span><span>Maritime</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Batteries et piles seules</b><small>Refusées en express et en aérien</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Inflammables, produits chimiques</b><small>Parfums, aérosols, solvants</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic-red ic3d"><img src="../icons/bogolan/png/alert.png" alt=""></div><div><b>Liquides</b><small>Refusés en express</small></div><span class="badge b-red">Interdit</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><div><b>Téléphones, ordinateurs portables</b><small>Batterie intégrée à l'appareil</small></div><span class="badge b-green">Accepté</span></div>
+        <div class="note-s red"><svg><use href="#i-shield"/></svg>Tous modes : armes, matériel militaire, explosifs, stupéfiants, denrées périssables. Le colis est bloqué et le client reste responsable.</div>
+        <p class="muted">La liste est contrôlée dès la demande : une catégorie interdite empêche de choisir ce mode.</p>
+      </div></div>
+      <figcaption><span class="num">50</span><b>Articles interdits par mode</b><small>Liste paramétrable par l'Admin, vérifiée à la saisie (<span class="path">verifierArticle()</span>). Liste juridique finale à valider (M-007).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-51"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Points de retrait</h4></div><div class="pv pv-tab">
+        <div class="chips"><span class="chip on">Côte d'Ivoire</span><span class="chip">Ghana</span><span class="chip">Guinée</span></div>
+        <div class="map"><span class="m1">Plateau</span><span class="m2">Cocody</span><span class="m3">Yopougon</span><span class="mplane"><svg><use href="#i-pin"/></svg></span></div>
+        <div class="carrier on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>SS DROPSHIP Abidjan – Cocody</b><small>Lun–sam · 8 h–19 h · à 2,1 km</small></div><em>Itinéraire</em></div>
+        <div class="carrier"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Point partenaire – Yopougon</b><small>Lun–ven · 9 h–18 h · à 7,4 km</small></div><em>Itinéraire</em></div>
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/truck.png" alt=""></div><div><b>Livraison à domicile</b><small>Depuis le point de retrait · à partir de 1 500 FCFA (exemple)</small></div><span class="tgl"></span></div>
+      </div><nav class="tb" data-a="box"></nav></div>
+      <figcaption><span class="num">51</span><b>Points de retrait et livraison à domicile</b><small>Adresse, horaires, itinéraire Google Maps ; option livraison de dernière étape (AnKaTa possible plus tard, D-014).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-52"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Payer le transport</h4></div><div class="pv">
+        <div class="recap sm"><p><span>Colis</span><b>SSD-2026-04821</b></p><p class="tot"><span>À payer</span><b>33 750 FCFA</b></p></div>
+        <div class="pay on"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/wallet.png" alt=""></div><div><b>Maintenant, avec le wallet</b><small>Solde : 112 500 FCFA</small></div><span class="radio on"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/recharge.png" alt=""></div><div><b>Maintenant, Mobile Money</b><small>Orange, MTN, Moov, Wave selon le pays</small></div><span class="radio"></span></div>
+        <div class="pay"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/store.png" alt=""></div><div><b>Au retrait</b><small>Espèces ou Mobile Money au point de retrait</small></div><span class="radio"></span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Paiement au retrait : le colis est remis après encaissement enregistré par l'agent et le reçu est envoyé par SMS. Aucun statut « payé » sans confirmation (D-008).</div>
+        <span class="btn">Confirmer</span>
+      </div></div>
+      <figcaption><span class="num">52</span><b>Payer maintenant ou au retrait</b><small>Nouveau choix de paiement du fret ; l'encaissement au guichet passe par le ledger avec trace d'audit.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-53"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Alertes de suivi</h4></div><div class="pv pv-tab">
+        <p class="sub left">Choisissez comment être prévenu à chaque étape du colis.</p>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mobile.png" alt=""></div><span>SMS</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/chat.png" alt=""></div><span>WhatsApp</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/bell.png" alt=""></div><span>Notification de l'application</span><span class="tgl on"></span></div>
+        <div class="svc"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/mail.png" alt=""></div><span>Email</span><span class="tgl"></span></div>
+        <div class="sec"><b>Étapes suivies</b></div>
+        <div class="chips"><span class="chip on">Reçu entrepôt</span><span class="chip on">Expédié</span><span class="chip on">Douane</span><span class="chip on">Disponible</span><span class="chip">Livré</span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>SMS et WhatsApp dépendent d'un prestataire d'envoi à choisir ; coût par message à chiffrer.</div>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">53</span><b>Alertes SMS et WhatsApp</b><small>Complète l'écran Notifications (28) : canal par étape du transport.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-54"><div class="ph"><div class="pv pv-tab">
+        <div class="top"><div class="logo-sm"><span>SS</span> <em>SUGU</em></div><span class="bell"><svg><use href="#i-filter"/></svg></span></div>
+        <p class="sub left">Revente locale par les clients SS DROPSHIP</p>
+        <div class="search"><svg><use href="#i-search"/></svg><span>Rechercher à Abidjan…</span></div>
+        <div class="chips"><span class="chip on">Tout</span><span class="chip">Téléphones</span><span class="chip">Informatique</span><span class="chip">Maison</span></div>
+        <div class="prods">
+          <div class="prod"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><b>Smartphone 128 Go neuf</b><small>Cocody · il y a 2 h</small><em>145 000 FCFA</em></div>
+          <div class="prod"><div class="pimg red"><svg><use href="#i-laptop"/></svg></div><b>Ordinateur portable 14"</b><small>Plateau · hier</small><em>310 000 FCFA</em></div>
+          <div class="prod"><div class="pimg"><svg><use href="#i-wifi"/></svg></div><b>Routeur Wi-Fi 6</b><small>Yopougon · hier</small><em>38 000 FCFA</em></div>
+          <div class="prod"><div class="pimg red"><svg><use href="#i-game"/></svg></div><b>Manette sans fil</b><small>Marcory · 3 j</small><em>22 000 FCFA</em></div>
+        </div>
+        <span class="fab"><svg><use href="#i-plus"/></svg></span>
+      </div><nav class="tb" data-a="home"></nav></div>
+      <figcaption><span class="num">54</span><b>SS Sugu : annonces de revente</b><small>Les clients revendent localement ce qu'ils ont importé. Gratuit ou inclus dans l'abonnement (M-010).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-55"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Publier une annonce</h4></div><div class="pv">
+        <div class="detect"><div class="pimg"><svg><use href="#i-mobile"/></svg></div><div><b>Depuis le colis SSD-2026-04821</b><small class="ok-t"><svg><use href="#i-check"/></svg>Livré le 24/11</small></div></div>
+        <div class="up"><span class="th"><svg><use href="#i-camera"/></svg></span><span class="th"><svg><use href="#i-camera"/></svg></span><span class="add"><svg><use href="#i-plus"/></svg>Photo</span></div>
+        <label class="lb">Titre</label><div class="in">Smartphone 128 Go neuf, sous blister</div>
+        <div class="two"><div><label class="lb">Prix</label><div class="in">145 000 FCFA</div></div><div><label class="lb">Ville</label><div class="in in-sel">Abidjan<svg><use href="#i-down"/></svg></div></div></div>
+        <span class="btn btn-ghost"><svg><use href="#i-star"/></svg>Améliorer les photos avec le Studio IA</span>
+        <span class="btn">Publier</span>
+        <p class="muted center">Publication en 2 minutes · annonce vérifiée avant mise en ligne</p>
+      </div></div>
+      <figcaption><span class="num">55</span><b>Publier depuis un colis livré</b><small>Fiche préremplie depuis la commande ; modération Admin contre les fausses annonces (§6).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-56"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Studio photo IA</h4><span class="hd-r link">12 crédits</span></div><div class="pv pv-tab">
+        <div class="ba"><div class="photo"><span>Avant</span></div><div class="photo after"><span>Après</span></div></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/camera.png" alt=""></div><div><b>Fond blanc</b><small>Suppression de l'arrière-plan</small></div><span class="badge b-blue">1 crédit</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/search.png" alt=""></div><div><b>Netteté HD</b><small>Agrandit une photo fournisseur floue</small></div><span class="badge b-blue">2 crédits</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/share.png" alt=""></div><div><b>Visuel TikTok / WhatsApp</b><small>Format vertical avec logo, produit fidèle</small></div><span class="badge b-blue">3 crédits</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/doc.png" alt=""></div><div><b>Texte de l'annonce</b><small>Titre et description FR / EN</small></div><span class="badge b-blue">1 crédit</span></div>
+        <div class="note-s"><svg><use href="#i-info"/></svg>Le produit n'est jamais modifié, seul le décor change. Fournisseur d'IA et prix du crédit à choisir (M-011).</div>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">56</span><b>Studio photo IA</b><small>Inspiré de Magnific : fond blanc, netteté, visuels verticaux, texte. Crédits inclus selon l'offre d'abonnement.</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-57"><div class="ph"><div class="hd"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/support.png" alt=""></div><div class="hd-who"><b>Assistant d'achat</b><small><i class="on-dot"></i>IA · relais vers un agent humain</small></div></div><div class="pv">
+        <div class="msg me">Je cherche ce casque, livré à Accra 👇<br><span class="path">alibaba.com/product/…</span></div>
+        <div class="msg">J'ai trouvé 3 offres. La moins chère respecte votre budget :</div>
+        <div class="offer on"><div class="of-h"><b>Casque sans fil ANC</b><span class="badge b-green">Meilleur prix</span></div><div class="kv3"><span>Produit<b>18 500</b></span><span>Fret aérien<b>5 100</b></span><span>Délai<b>12 j</b></span></div></div>
+        <div class="msg">Total estimé : <b>26 600 FCFA</b> avec frais de service. Je crée la demande de devis ?</div>
+        <div class="chips"><span class="chip on">Oui, créer le devis</span><span class="chip">Parler à un agent</span></div>
+        <div class="search"><svg><use href="#i-camera"/></svg><span>Lien, photo ou description…</span><span class="r"><svg><use href="#i-send"/></svg></span></div>
+      </div></div>
+      <figcaption><span class="num">57</span><b>Assistant d'achat IA</b><small>Reçoit un lien, une photo ou une description, propose une offre produit + fret, crée la demande ; l'agent humain valide le devis (D-006).</small></figcaption></figure>
+
+      <figure class="scr bgl" id="e-58"><div class="ph"><div class="hd"><span class="bk"><svg><use href="#i-back"/></svg></span><h4>Offres pro</h4></div><div class="pv pv-tab">
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/user.png" alt=""></div><div><b>Particulier</b><small>1 compte · crédits IA de base</small></div></div>
+        <div class="mode on"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/users.png" alt=""></div><div><b>Business</b><small>Plusieurs utilisateurs, rôles, crédits partagés, factures groupées</small></div><span class="badge b-night">Populaire</span></div>
+        <div class="mode"><div class="ic ic-sm ic3d"><img src="../icons/bogolan/png/chart.png" alt=""></div><div><b>Entreprise</b><small>Volume, gestionnaire dédié, accès API</small></div></div>
+        <div class="sec"><b>Pour les revendeurs</b></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/link.png" alt=""></div><div><b>API et connecteurs</b><small>Catalogue, demandes, suivi des colis</small></div><span class="badge b-grey">Phase 3</span></div>
+        <div class="row"><div class="ic ic-xs ic3d"><img src="../icons/bogolan/png/gift.png" alt=""></div><div><b>Programme partenaires</b><small>Agents, transitaires, créateurs ; en plus du parrainage</small></div><span class="badge b-grey">À arbitrer</span></div>
+        <p class="muted">Prix et contenu des offres à arbitrer (M-001).</p>
+      </div><nav class="tb" data-a="user"></nav></div>
+      <figcaption><span class="num">58</span><b>Offres Business, Entreprise et API</b><small>Comptes multi-utilisateurs, crédits partagés, API revendeurs, programme partenaires.</small></figcaption></figure>
+    </div>
   </div>
 </section>
 
@@ -1464,16 +1624,16 @@ html{scroll-behavior:smooth}
 <section class="block" id="visuels">
   <div class="wrap">
     <p class="eyebrow">design/mockups/INVENTAIRE_VISUELS.md · VISUELS_MANQUANTS.md</p>
-    <h2 class="title">Les 50 visuels prévus</h2>
-    <p class="intro">Aucun de ces 50 visuels n'est présent en image dans le dépôt. Le tableau dit seulement lesquels ont déjà été travaillés dans d'anciennes conversations et lesquels restent à faire.</p>
+    <h2 class="title">Les 50 visuels</h2>
+    <p class="intro">Les 50 visuels sont présents dans le dépôt (<code>design/mockups/exports/</code>, PNG 1080 × 1920, version Bogolan). Ce sont des <b>versions régénérées</b> : aucun n'est encore validé, et les originaux HD 01–19 des anciennes conversations restent à récupérer pour comparaison.</p>
     <div class="counts">
-      <div class="count"><b>0 / 50</b><small>images présentes dans le dépôt</small></div>
-      <div class="count"><b>19</b><small>déjà travaillés, fichiers à retrouver</small></div>
-      <div class="count"><b>31</b><small>à produire (titres non validés)</small></div>
+      <div class="count"><b>50 / 50</b><small>images présentes dans le dépôt</small></div>
+      <div class="count"><b>19</b><small>01–19 : générés, originaux HD à retrouver</small></div>
+      <div class="count"><b>31</b><small>20–50 : générés, à valider (titres non validés)</small></div>
     </div>
     <div class="legend">
-      <span><i class="dot d-done"></i>Travaillé, original HD à retrouver</span>
-      <span><i class="dot d-todo"></i>À produire</span>
+      <span><i class="dot d-done"></i>Généré, original HD à retrouver</span>
+      <span><i class="dot d-gen"></i>Généré, à valider</span>
       <span><i>Italique</i> = titre proposé, non validé</span>
     </div>
     <div class="grid50" id="grid50"></div>
@@ -1494,7 +1654,7 @@ html{scroll-behavior:smooth}
 │   ├── INVENTAIRE_VISUELS.md     <span class="c">liste des 50 visuels</span>
 │   ├── VISUELS_MANQUANTS.md      <span class="c">plan de récupération</span>
 │   └── <span class="k">exports/</span>
-│       └── README.md             <span class="r">vide : accueillera SS-DROPSHIP_Visuel_XX.png</span>
+│       └── README.md             <span class="r">50 visuels PNG 1080 × 1920 (à valider)</span>
 ├── <span class="k">icons/</span>README.md              <span class="r">bogolan/ : 64 icônes 3D à valider</span>
 ├── <span class="k">illustrations/</span>README.md      <span class="r">vide : illustrations à importer</span>
 └── <span class="k">wireframes/</span>README.md         <span class="r">vide : schémas de parcours à déposer</span></pre>
@@ -1515,15 +1675,14 @@ html{scroll-behavior:smooth}
     toast.hidden=false;clearTimeout(timer);timer=setTimeout(function(){toast.hidden=true},2600);
   })});
 
-  var known={1:'Présentation générale « Achetez partout dans le monde »',2:'Création de compte + parrainage',19:'Statuts de commande'};
-  var proposed=['Colis attendus','Colis réceptionnés',"Détail d'un colis",'Photo du colis extérieur','Poids et volume',"Historique de l'entrepôt",'Choix du transporteur','Devis de livraison','Suivi international','Statut en douane','Réception pays de destination','Confirmation livraison','Liste fournisseurs','Fiche fournisseur','Recherche internationale',"Comparaison d'offres",'Négociation fournisseur','Favoris','Panier','Recharge Wallet','Moyens de paiement','Historique des transactions','Parrainage','Notifications','Messagerie et support','Profil et paramètres','Préférences langues','Tableau de bord Admin','Gestion des commandes Admin','Analytics et traçabilité',"Présentation de l'écosystème SS DROPSHIP"];
+  var V=[{"n": 1, "t": "Achetez partout dans le monde", "o": "Retrouvé", "f": "SS-DROPSHIP_Visuel_01_Achetez_partout_dans_le_monde_1080x1920.png"}, {"n": 2, "t": "Création de compte + parrainage", "o": "Retrouvé", "f": "SS-DROPSHIP_Visuel_02_Creation_de_compte_parrainage_1080x1920.png"}, {"n": 3, "t": "Vérification du compte", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_03_Verification_du_compte_1080x1920.png"}, {"n": 4, "t": "Connexion rapide et sûre", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_04_Connexion_rapide_et_sure_1080x1920.png"}, {"n": 5, "t": "Mot de passe oublié", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_05_Mot_de_passe_oublie_1080x1920.png"}, {"n": 6, "t": "L'accueil SS DROPSHIP", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_06_L_accueil_SS_DROPSHIP_1080x1920.png"}, {"n": 7, "t": "Recherche par nom, lien ou photo", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_07_Recherche_par_nom_lien_ou_photo_1080x1920.png"}, {"n": 8, "t": "Catégories et promotions", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_08_Categories_et_promotions_1080x1920.png"}, {"n": 9, "t": "Trois façons de commander", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_09_Trois_facons_de_commander_1080x1920.png"}, {"n": 10, "t": "Commande directe", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_10_Commande_directe_1080x1920.png"}, {"n": 11, "t": "Recherche de produit", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_11_Recherche_de_produit_1080x1920.png"}, {"n": 12, "t": "Suivi de votre demande", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_12_Suivi_de_votre_demande_1080x1920.png"}, {"n": 13, "t": "Un devis clair et détaillé", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_13_Un_devis_clair_et_detaille_1080x1920.png"}, {"n": 14, "t": "Validation et paiement", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_14_Validation_et_paiement_1080x1920.png"}, {"n": 15, "t": "Paiement confirmé", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_15_Paiement_confirme_1080x1920.png"}, {"n": 16, "t": "Mes commandes", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_16_Mes_commandes_1080x1920.png"}, {"n": 17, "t": "Factures et reçus", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_17_Factures_et_recus_1080x1920.png"}, {"n": 18, "t": "Avis et litiges", "o": "Proposé (session du 17/11)", "f": "SS-DROPSHIP_Visuel_18_Avis_et_litiges_1080x1920.png"}, {"n": 19, "t": "Statuts de commande", "o": "Retrouvé", "f": "SS-DROPSHIP_Visuel_19_Statuts_de_commande_1080x1920.png"}, {"n": 20, "t": "Colis attendus", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_20_Colis_attendus_1080x1920.png"}, {"n": 21, "t": "Colis réceptionnés", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_21_Colis_receptionnes_1080x1920.png"}, {"n": 22, "t": "Détail d'un colis", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_22_Detail_d_un_colis_1080x1920.png"}, {"n": 23, "t": "Photo du colis extérieur", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_23_Photo_du_colis_exterieur_1080x1920.png"}, {"n": 24, "t": "Poids et volume", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_24_Poids_et_volume_1080x1920.png"}, {"n": 25, "t": "Historique de l'entrepôt", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_25_Historique_de_l_entrepot_1080x1920.png"}, {"n": 26, "t": "Choix du transporteur", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_26_Choix_du_transporteur_1080x1920.png"}, {"n": 27, "t": "Devis de livraison", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_27_Devis_de_livraison_1080x1920.png"}, {"n": 28, "t": "Suivi international", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_28_Suivi_international_1080x1920.png"}, {"n": 29, "t": "Statut en douane", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_29_Statut_en_douane_1080x1920.png"}, {"n": 30, "t": "Réception dans le pays de destination", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_30_Reception_dans_le_pays_de_destination_1080x1920.png"}, {"n": 31, "t": "Confirmation de livraison", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_31_Confirmation_de_livraison_1080x1920.png"}, {"n": 32, "t": "Liste des fournisseurs", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_32_Liste_des_fournisseurs_1080x1920.png"}, {"n": 33, "t": "Fiche fournisseur", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_33_Fiche_fournisseur_1080x1920.png"}, {"n": 34, "t": "Recherche internationale", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_34_Recherche_internationale_1080x1920.png"}, {"n": 35, "t": "Comparaison d'offres", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_35_Comparaison_d_offres_1080x1920.png"}, {"n": 36, "t": "Négociation fournisseur", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_36_Negociation_fournisseur_1080x1920.png"}, {"n": 37, "t": "Mes favoris", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_37_Mes_favoris_1080x1920.png"}, {"n": 38, "t": "Mon panier", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_38_Mon_panier_1080x1920.png"}, {"n": 39, "t": "Recharge du wallet", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_39_Recharge_du_wallet_1080x1920.png"}, {"n": 40, "t": "Moyens de paiement", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_40_Moyens_de_paiement_1080x1920.png"}, {"n": 41, "t": "Historique des transactions", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_41_Historique_des_transactions_1080x1920.png"}, {"n": 42, "t": "Programme de parrainage", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_42_Programme_de_parrainage_1080x1920.png"}, {"n": 43, "t": "Notifications", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_43_Notifications_1080x1920.png"}, {"n": 44, "t": "Messagerie et support", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_44_Messagerie_et_support_1080x1920.png"}, {"n": 45, "t": "Profil et paramètres", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_45_Profil_et_parametres_1080x1920.png"}, {"n": 46, "t": "Préférences de langue", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_46_Preferences_de_langue_1080x1920.png"}, {"n": 47, "t": "Tableau de bord Admin", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_47_Tableau_de_bord_Admin_1080x1920.png"}, {"n": 48, "t": "Gestion des commandes Admin", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_48_Gestion_des_commandes_Admin_1080x1920.png"}, {"n": 49, "t": "Analytics et traçabilité", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_49_Analytics_et_tracabilite_1080x1920.png"}, {"n": 50, "t": "L'écosystème SS DROPSHIP", "o": "Proposition éditoriale non validée", "f": "SS-DROPSHIP_Visuel_50_L_ecosysteme_SS_DROPSHIP_1080x1920.png"}];
   var g=document.getElementById('grid50'),html='';
-  for(var i=1;i<=50;i++){
-    var done=i<=19,cls='v '+(done?'done':'proposed'),title,status;
-    if(done){title=known[i]||'Titre exact à retrouver';cls='v done';status='<i class="dot d-done"></i>Original HD à retrouver';}
-    else{title=proposed[i-20];status='<i class="dot d-todo"></i>À produire';}
-    html+='<div class="'+cls+'"><span class="n">'+(i<10?'0':'')+i+'</span><span class="t">'+title+'</span><span class="s">'+status+'</span></div>';
-  }
+  V.forEach(function(v){
+    var done=v.n<=19,cls='v '+(done?'done':'proposed');
+    var status=done?'<i class="dot d-done"></i>Généré · original HD à retrouver':'<i class="dot d-gen"></i>Généré · à valider';
+    var src='../mockups/exports/'+v.f;
+    html+='<a class="'+cls+'" href="'+src+'" target="_blank" rel="noopener" title="'+v.o+'"><img class="vimg" src="'+src+'" alt="Visuel '+v.n+' : '+v.t.replace(/"/g,'&quot;')+'" loading="lazy"><span class="n">'+(v.n<10?'0':'')+v.n+'</span><span class="t">'+v.t+'</span><span class="s">'+status+'</span></a>';
+  });
   g.innerHTML=html;
 })();
 </script>
@@ -1538,5 +1697,36 @@ html{scroll-behavior:smooth}
 })();
 </script>
 
+
+<script>
+/* Simulateur de l'écran 47 — copie de packages/ui/simulateur-fret.mjs (tarifs d'exemple, M-003). */
+(function(){
+  var T={express:{u:"kg",d:"4 à 7 jours",CI:13500,GH:14000,GN:14500},aerien:{u:"kg",d:"10 à 15 jours",CI:9800,GH:10200,GN:10500},maritime:{u:"m3",d:"45 à 60 jours",p2:1,CI:265000,GH:275000,GN:285000}};
+  var fmt=function(n){return n.toLocaleString("fr-FR").replace(/\u202f|\u00a0/g," ")+" FCFA"};
+  document.querySelectorAll("[data-sim]").forEach(function(root){
+    var st={mode:"express",pays:"CI",assurance:false};
+    function num(f){var v=parseFloat(root.querySelector('[data-f="'+f+'"]').value);return v>=0?v:0}
+    function calc(){
+      var t=T[st.mode],vol=num("longueurCm")*num("largeurCm")*num("hauteurCm"),q,lab;
+      if(t.u==="kg"){q=Math.ceil(Math.max(num("poidsKg"),vol/6000)/0.5)*0.5;lab=String(q).replace(".",",")+" kg"}
+      else{q=Math.round(Math.max(vol/1e6,0.1)*1000)/1000;lab=String(q).replace(".",",")+" m³"}
+      var fret=Math.round(q*t[st.pays]),ass=st.assurance?Math.round(num("valeurDeclaree")*0.02):0;
+      root.querySelector('[data-o="q"]').textContent=lab;
+      root.querySelector('[data-o="fret"]').textContent=fmt(fret);
+      root.querySelector('[data-o="ass"]').textContent=fmt(ass);
+      root.querySelector('[data-o="total"]').textContent=fmt(fret+ass);
+      root.querySelector('[data-o="delai"]').textContent="Délai : "+t.d+(t.p2?" · maritime en phase 2":"")+" · tarif d'exemple";
+    }
+    root.querySelectorAll("[data-g]").forEach(function(g){g.querySelectorAll("[data-v]").forEach(function(o){o.addEventListener("click",function(){
+      g.querySelectorAll("[data-v]").forEach(function(x){x.classList.toggle("on",x===o)});st[g.dataset.g]=o.dataset.v;calc();})})});
+    var tg=root.querySelector('.tgl[data-f="assurance"]');
+    function flip(e){if(e)e.preventDefault();st.assurance=!st.assurance;tg.classList.toggle("on",st.assurance);tg.setAttribute("aria-checked",st.assurance);calc()}
+    root.querySelector(".sim-ass").addEventListener("click",flip);
+    tg.addEventListener("keydown",function(e){if(e.key===" "||e.key==="Enter")flip(e)});
+    root.querySelectorAll("input").forEach(function(i){i.addEventListener("input",calc)});
+    calc();
+  });
+})();
+</script>
 </body>
 </html>
