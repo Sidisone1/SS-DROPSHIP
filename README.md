@@ -7,6 +7,7 @@
 ## Navigation du projet
 
 - [Cahier des charges consolidé](docs/requirements/CAHIER_DES_CHARGES.md)
+- **[Backlog du MVP : 82 user stories, sprints S0–S12](docs/requirements/BACKLOG_MVP.md)**
 - [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md)
 - [Décisions validées et points à arbitrer](docs/decisions/REGISTRE_DECISIONS.md)
 - [Phase 1 : arbitrages et choix du 23/11/2026 (lancement au Mali)](docs/decisions/ARBITRAGES_PHASE1.md)

@@ -40,3 +40,4 @@ Dernière consolidation : 23/11/2026.
 - M-007 : éventuelles limites légales/douanières, retours et prestations.
 - M-008 : statut technique du site ssdropship.com et des codes sources existants; non audités ici.
 - ~~M-009~~ : tranché par D-024.
+- H-01 à H-05 : hypothèses introduites par le backlog MVP du 23/11/2026 (paiement via wallet uniquement, paiement en deux temps, un entrepôt partenaire en Chine, retrait ou livraison locale à Bamako, récompenses utilisables sur les frais de service). Détail dans `docs/requirements/BACKLOG_MVP.md`.

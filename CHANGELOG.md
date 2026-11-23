@@ -108,3 +108,12 @@
   hybride), D-023 (parrainage : % des frais de service sur 12 mois), D-024 (stack TypeScript). M-001, M-002, M-009 levés.
 - Cahier des charges § 1, procédure et prompts alignés sur le lancement au Mali. Tests : 7 dans `docs/equipe/equipe.test.mjs`.
 - Aucune intégration de paiement n'est contractée ni testée ; impact sur D-019 à arbitrer (M-004).
+
+## 2026-11-23 — Phase 2 : backlog du MVP
+- Ajout de `docs/requirements/BACKLOG_MVP.md` : 82 user stories réparties en 12 épopées (socle, comptes et parrainage,
+  catalogue, trois modes de demande, devis, commandes, wallet, entrepôt carton fermé, transport, communication,
+  administration, qualité et lancement) et hors MVP ; priorités MoSCoW, sprints S0–S12, critères « Étant donné… quand…
+  alors… » ; machines à états (commande, paiement, colis) ; dépendances externes par sprint. Adapté au lancement au Mali.
+- Nouvelles hypothèses H-01 à H-05 tracées dans le backlog et le registre (à valider).
+- Ajout de `docs/requirements/backlog.test.mjs` (9 tests) : structure, parrainage, webhook, carton fermé, options V2, Mali.
+- Statut : **à valider**. Aucun code applicatif modifié.
