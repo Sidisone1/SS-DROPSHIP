@@ -1,6 +1,6 @@
 import {
   BadRequestException, ConflictException, Injectable, NotFoundException,
-  TooManyRequestsException, UnauthorizedException,
+  ServiceUnavailableException, TooManyRequestsException, UnauthorizedException,
 } from '@nestjs/common';
 import { validerInscription, type SaisieInscription, normaliserTelephoneMali } from '@ss-dropship/types';
 import { randomBytes } from 'node:crypto';
@@ -24,7 +24,10 @@ export class AuthService {
 
   async inscrire(saisie: SaisieInscription) {
     if (!saisie || typeof saisie.nom !== 'string' || typeof saisie.pays !== 'string' ||
-      typeof saisie.motDePasse !== 'string' || typeof saisie.motDePasseConfirmation !== 'string') {
+      typeof saisie.motDePasse !== 'string' || typeof saisie.motDePasseConfirmation !== 'string' ||
+      (saisie.telephone != null && typeof saisie.telephone !== 'string') ||
+      (saisie.email != null && typeof saisie.email !== 'string') ||
+      (saisie.codeParrainage != null && typeof saisie.codeParrainage !== 'string')) {
       throw new BadRequestException('Inscription invalide');
     }
     const validation = validerInscription(saisie);
@@ -51,7 +54,7 @@ export class AuthService {
     const destinataire = telephone ?? email;
     if (!destinataire) throw new BadRequestException('Contact manquant');
     if (!this.notification.estDisponible(canal)) {
-      throw new (await import('@nestjs/common')).ServiceUnavailableException('Canal de vérification indisponible');
+      throw new ServiceUnavailableException('Canal de vérification indisponible');
     }
     const reference = randomBytes(7).toString('hex').toUpperCase();
     // Unicité finale assurée par les contraintes en base ; transaction atomique.
@@ -124,6 +127,8 @@ export class AuthService {
   }
 
   async connecter(identifiant: string, motDePasse: string) {
+    if (typeof identifiant !== 'string' || typeof motDePasse !== 'string' ||
+      identifiant.length > 254 || motDePasse.length > 128) throw new UnauthorizedException('Identifiants incorrects');
     const texte = identifiant.trim().toLowerCase();
     const telephone = normaliserTelephoneMali(texte);
     const utilisateur = await this.prisma.utilisateur.findFirst({
