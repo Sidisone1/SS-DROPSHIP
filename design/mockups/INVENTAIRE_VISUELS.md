@@ -2,6 +2,12 @@
 
 **Mise à jour : 17/11/2026.** Les 50 visuels existent désormais dans le dépôt, dans `design/mockups/exports/`, en PNG 1080 × 1920. Ils ont été **générés à nouveau** (version 2 du 17/11/2026 : écrans et cartes avec les **icônes 3D Bogolan**, décision D-018 ; moyens de recharge selon D-019 ; frise bogolan sur les 50 visuels, version 4 du 18/11/2026) à partir du cahier des charges et du design system : ce ne sont **pas** les originaux HD des anciennes conversations.
 
+## Copies de consultation (22/11/2026)
+
+- **Artefact Claude « SS DROPSHIP Bogolan »** : section « Les 50 visuels » mise à jour avec les 50 PNG (accès privé au porteur du projet).
+- **Canva** : dossier « SS DROPSHIP — Visuels 01-50 (Bogolan, à valider) », 50 images importées depuis ce dépôt (1080 × 1920), lien : https://www.canva.com/folder/FAHbr85mJRM
+- La source de référence reste `design/mockups/exports/` ; une modification faite dans Canva doit être réexportée ici pour être tracée.
+
 ## Statut à lire avant usage
 
 - **01, 02, 19** : titre retrouvé dans les échanges ; nouvelle version générée. L'original HD reste à récupérer pour comparaison.
