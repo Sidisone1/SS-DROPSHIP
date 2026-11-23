@@ -12,8 +12,8 @@ function creerService(prisma: object, notification: object = { estDisponible: ()
   const audit = { journaliser: vi.fn(async () => {}) };
   return {
     service: new AuthService(
-      prisma as PrismaService,
-      notification as NotificationAuthService,
+      prisma as unknown as PrismaService,
+      notification as unknown as NotificationAuthService,
       audit as unknown as AuditService,
     ),
     audit,
@@ -88,7 +88,7 @@ describe('Sprint S1 — inscription, vérification, sessions et parrainage', () 
 
   it('ne crée de session que pour un compte actif, et conserve le hash du jeton', async () => {
     const hash = await hacherMotDePasse('SecretTest2026');
-    const create = vi.fn(async () => ({ id: 'sess-1', expireLe: new Date('2027-01-30') }));
+    const create = vi.fn(async (_data: unknown) => ({ id: 'sess-1', expireLe: new Date('2027-01-30') }));
     const prisma = {
       utilisateur: { findFirst: async () => ({
         id: 'user-1', etat: 'actif', roles: ['client'], motDePasseHash: hash,
