@@ -1,5 +1,6 @@
 import { type DynamicModule, Module } from '@nestjs/common';
 import { AuditModule } from './audit/audit.module.js';
+import { AuthModule } from './auth/auth.module.js';
 import { CONFIGURATION, type Configuration } from './config.js';
 import { PaysController } from './pays/pays.controller.js';
 import { PrismaModule } from './prisma/prisma.module.js';
@@ -11,7 +12,7 @@ export class AppModule {
     return {
       module: AppModule,
       global: true,
-      imports: [PrismaModule, AuditModule],
+      imports: [PrismaModule, AuditModule, AuthModule],
       controllers: [SanteController, PaysController],
       providers: [{ provide: CONFIGURATION, useValue: config }],
       exports: [CONFIGURATION],
