@@ -8,6 +8,8 @@ import type { PrismaService } from '../src/prisma/prisma.service.js';
 import type { NotificationAuthService } from '../src/auth/notification-auth.service.js';
 import type { AuditService } from '../src/audit/audit.service.js';
 
+vi.stubEnv('SS_OTP_PEPPER', 'test-only-otp-secret-not-for-production-32bytes');
+
 function creerService(prisma: object, notification: object = { estDisponible: () => true, envoyerCode: vi.fn() }) {
   const audit = { journaliser: vi.fn(async () => {}) };
   return {
