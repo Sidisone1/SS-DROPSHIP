@@ -67,5 +67,28 @@ Contrôle d'accès, authentification forte pour les administrateurs, vérificati
 ## 12. Critères d'acceptation MVP
 Un client peut s'inscrire avec code parrain, trouver ou demander un produit, obtenir une offre, payer, suivre une commande, recevoir un colis en entrepôt **non ouvert**, choisir un transporteur et obtenir une notification de livraison. Un administrateur peut piloter ces opérations avec trace d'audit, sans double paiement ni informations personnelles exposées.
 
-## 13. Points ouverts
+## 13. Extensions du 23/11/2026 (D-021)
+Ajoutées à la demande du propriétaire après comparaison avec sd-aircargo.com (fret Chine → Mali) et magnific.com (outils créatifs IA). Elles complètent l'existant (adresse entrepôt avec copie, colis attendus, poids/volume, assurance facultative au devis, notifications), sans le remplacer. Écrans 47 à 58 de `design/prototypes/ecrans-bogolan.html`.
+
+**Logistique**
+- Simulateur de fret public : mode (express, aérien, maritime en phase 2), pays (CI, GH, GN), poids réel ou volumétrique (L × l × h / 6 000), m³ pour le maritime, assurance optionnelle en % de la valeur déclarée. Barème d'exemple dans `packages/ui/simulateur-fret.mjs` tant que M-003 n'est pas arbitré.
+- Suivi public par numéro (format SSD-AAAA-xxxxx) sans connexion ; aucune donnée personnelle ni montant affiché.
+- Colis sans nom : recherche par numéro fournisseur (5 caractères min.), photo **extérieure** (D-010), réclamation avec preuve d'achat, validation par l'agent entrepôt, journal d'audit.
+- Articles interdits par mode, paramétrables par l'Admin et contrôlés dès la demande ; liste juridique finale à valider (M-007).
+- Points de retrait par pays (adresse, horaires, itinéraire) et livraison à domicile en option.
+- Paiement du fret maintenant (wallet, Mobile Money) ou au retrait (espèces ou Mobile Money au guichet) ; remise du colis seulement après encaissement enregistré, reçu par SMS (D-008).
+- Alertes SMS, WhatsApp, push et email au choix, par étape du transport (prestataire d'envoi à choisir).
+
+**Revente locale — SS Sugu**
+- Annonces de revente publiées par les clients pour les produits importés, depuis un colis livré (fiche préremplie), avec modération Admin (§6). Gratuité ou inclusion dans l'abonnement : M-010.
+
+**Outils IA**
+- Studio photo IA : fond blanc, netteté HD, visuel vertical TikTok/WhatsApp avec logo, texte d'annonce FR/EN. Le produit n'est jamais modifié. Fonctionne par crédits inclus dans l'offre (M-011).
+- Assistant d'achat IA : reçoit lien, photo ou description, propose une offre produit + fret et crée la demande ; un agent humain valide le devis (D-006).
+
+**Offres et comptes**
+- Offres Particulier, Business (multi-utilisateurs, rôles, crédits partagés, factures groupées) et Entreprise (volume, gestionnaire dédié).
+- API et connecteurs pour revendeurs (phase 3) ; programme partenaires (agents, transitaires, créateurs) en plus du parrainage (M-012).
+
+## 14. Points ouverts
 Monétisation exacte, frais et taux par pays, contrats fournisseurs/transitaires, disponibilité officielle des moyens de paiement, accès APIs logistiques, politique retours et couverture juridique multi-pays, niveau final de personnalisation navigation. Ne pas présenter ces choix comme finalisés.

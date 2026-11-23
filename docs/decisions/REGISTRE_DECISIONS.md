@@ -25,6 +25,7 @@ Dernière consolidation : 17/11/2026.
 | D-018 | Icônes 3D dans le style « Collection Bogolan » : objets en bleu, rouge, blanc, bleu nuit, avec une bande bogolan brun terre (#6B3E26); toujours aucun jaune (choix du propriétaire, 17/11/2026) | `design/icons/bogolan/`; le brun est réservé au motif bogolan et aux cartons, jamais en couleur de marque |
 | D-019 | Moyens de recharge à proposer : Mobile Money, Google Pay, Apple Pay, carte bancaire via Stripe (demande du propriétaire, 17/11/2026) | Écran « Recharger » de la maquette ; chaque moyen reste soumis à son intégration et à sa disponibilité dans le pays (aucun crédit sans confirmation, D-008) |
 | D-020 | Icônes « Glass » : chaque icône Bogolan 3D (D-018) est posée sur une tuile de verre givré rendue avec le composant Glass Icon d'OriginKit, au-dessus d'un motif bogolan bleu, brun et crème ; aucun jaune (demande du propriétaire, 22/11/2026) | `design/icons/bogolan/glass/` ; les 64 icônes `png/` d'origine restent la source de l'objet ; statut à valider |
+| D-021 | Ajout des fonctionnalités issues du benchmark sd-aircargo.com et magnific.com : simulateur de fret, suivi public, colis sans nom, articles interdits, points de retrait, paiement au retrait, alertes SMS/WhatsApp, revente SS Sugu, studio photo IA, assistant d'achat IA, offres Business/Entreprise/API (demande du propriétaire, 23/11/2026) | Cahier §13, écrans 47–58 ; barèmes et prix restent à arbitrer (M-003, M-009 à M-012) |
 
 ## À confirmer
 - M-001 : modèle économique final (abonnement, commissions, publicité, combinaison).
@@ -34,4 +35,8 @@ Dernière consolidation : 17/11/2026.
 - M-005 : UX exacte de navigation à 5 onglets.
 - M-006 : liste **exacte** des titres de visuels 19–50 issue des anciennes validations, si elle est disponible en archive.
 - M-007 : éventuelles limites légales/douanières, retours et prestations.
+- M-009 : taux et plafond de l'assurance colis (2 % de la valeur en exemple).
+- M-010 : SS Sugu gratuit pour les clients ou inclus dans l'abonnement ; règles de modération.
+- M-011 : fournisseur d'IA du studio photo et de l'assistant, prix du crédit et crédits inclus par offre.
+- M-012 : contenu et prix des offres Business/Entreprise, conditions de l'API et du programme partenaires.
 - M-008 : statut technique du site ssdropship.com et des codes sources existants; non audités ici.
