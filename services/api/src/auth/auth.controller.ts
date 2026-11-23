@@ -28,6 +28,12 @@ export class AuthController {
     return this.auth.verifierContact(corps?.utilisateurId, corps?.code);
   }
 
+  @Post('renvoyer-code')
+  @HttpCode(HttpStatus.OK)
+  async renvoyer(@Body() corps: { utilisateurId: string }) {
+    return this.auth.renvoyerCode(corps?.utilisateurId);
+  }
+
   @Post('connexion')
   @HttpCode(HttpStatus.OK)
   async connecter(@Body() corps: ConnexionDto) {
