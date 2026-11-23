@@ -35,3 +35,4 @@ Dernière consolidation : 17/11/2026.
 - M-006 : liste **exacte** des titres de visuels 19–50 issue des anciennes validations, si elle est disponible en archive.
 - M-007 : éventuelles limites légales/douanières, retours et prestations.
 - M-008 : statut technique du site ssdropship.com et des codes sources existants; non audités ici.
+- M-009 : stack technique de l'application. Proposition (23/11/2026) dans `docs/equipe/PROCEDURE_EQUIPE.md` § 6 : monorepo pnpm + Turborepo, TypeScript, Next.js (site et Admin), React Native Expo (mobile), NestJS + PostgreSQL, Redis + BullMQ, stockage S3. Rien n'est installé avant validation.

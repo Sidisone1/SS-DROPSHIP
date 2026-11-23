@@ -88,3 +88,14 @@
   interrupteurs, retour à l'écran précédent, barre d'onglets qui mène à la bonne partie, icônes agrandies au clic,
   message de confirmation à chaque action, accessible au clavier. Demande du propriétaire (commentaire sur la page).
 - Données fictives ; aucun paiement ni appel réseau simulé comme réel (AGENTS n° 8).
+
+## 2026-11-23 — Procédure d'équipe et prompts par rôle
+- Ajout de `docs/equipe/PROCEDURE_EQUIPE.md` : rôles transverses et métier (sourcing, entrepôt, logistique, paiements,
+  comptable), équipe minimale, matrice RACI, phases et portes de validation, Definition of Ready / Done, rituels,
+  plan de sprints S0–S12 du MVP, parcours critiques à tester, indicateurs, risques.
+- Ajout de `docs/equipe/PROMPTS_EQUIPE.md` : bloc commun avec les règles non négociables, prompt chef d'orchestre,
+  21 prompts de rôle et prompt de revue de conformité.
+- Ajout de `docs/equipe/equipe.test.mjs` (6 tests, `node --test docs/equipe/equipe.test.mjs`) : palette, absence de jaune,
+  parrainage, webhook, carton fermé, présence de chaque rôle et des sprints.
+- Registre : nouveau point ouvert M-009 (stack technique proposée, non installée). README : liens ajoutés.
+- Statut : **proposition à valider**. Aucun code applicatif modifié.

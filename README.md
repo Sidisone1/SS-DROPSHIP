@@ -19,6 +19,8 @@
 - [Maquettes des 33 écrans, version au trait (archive)](design/prototypes/ecrans.html)
 - [Premier prototype (archive)](design/prototypes/index.html)
 - [Plan de réalisation](docs/planning/ROADMAP.md)
+- **[Procédure de réalisation en équipe (rôles, RACI, portes, sprints S0–S12)](docs/equipe/PROCEDURE_EQUIPE.md)**
+- [Prompts de l'équipe : chef d'orchestre + 21 rôles](docs/equipe/PROMPTS_EQUIPE.md)
 - [Directives des agents IA](AGENTS.md)
 
 ## Décisions non négociables
