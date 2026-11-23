@@ -1,0 +1,10 @@
+node_modules/
+services/api/src/generated/
+.env
+.env.*
+!.env.example
+.turbo/
+.next/
+dist/
+.expo/
+*.tsbuildinfo

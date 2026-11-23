@@ -1,0 +1,81 @@
+// Textes de référence en français (US-SOC-05). Toute nouvelle clé est ajoutée ici d'abord.
+export const fr = {
+  'app.nom': 'SS DROPSHIP',
+  'app.slogan': 'Achetez en Chine, Turquie, Dubaï et Europe. Recevez au Mali.',
+
+  'onglets.accueil': 'Accueil',
+  'onglets.commandes': 'Commandes',
+  'onglets.entrepot': 'Entrepôt',
+  'onglets.wallet': 'Wallet',
+  'onglets.compte': 'Compte',
+  'chat.ouvrir': 'Discuter avec le support',
+
+  'accueil.recherche.placeholder': 'Nom du produit ou lien (Alibaba, 1688, Trendyol…)',
+  'accueil.modes.titre': 'Comment voulez-vous commander ?',
+  'accueil.modes.directe': 'Commande directe',
+  'accueil.modes.directe.detail': 'Vous avez le lien ou la référence du produit.',
+  'accueil.modes.recherche': 'Recherche de produit',
+  'accueil.modes.recherche.detail': 'Décrivez ou photographiez ce que vous cherchez.',
+  'accueil.modes.negociation': 'Recherche avec négociation',
+  'accueil.modes.negociation.detail': 'Un agent négocie le meilleur prix pour vous.',
+
+  'auth.inscription.titre': 'Créer un compte',
+  'auth.champ.nom': 'Nom complet',
+  'auth.champ.telephone': 'Téléphone',
+  'auth.champ.email': 'Email',
+  'auth.champ.pays': 'Pays',
+  'auth.champ.motDePasse': 'Mot de passe',
+  'auth.champ.confirmation': 'Confirmer le mot de passe',
+  'auth.champ.codeParrainage': 'Code de parrainage (facultatif)',
+  'auth.cgu': "J'accepte les conditions générales et la politique de confidentialité",
+  'auth.bouton.inscription': 'Créer mon compte',
+  'auth.connexion.titre': 'Se connecter',
+  'auth.bouton.connexion': 'Me connecter',
+  'auth.motDePasseOublie': 'Mot de passe oublié ?',
+  'auth.parrainage.invalide': 'Ce code de parrainage est invalide. Vous pouvez vous inscrire sans code.',
+
+  'compte.parrainage': 'Parrainage',
+  'compte.parrainage.monCode': 'Mon code de parrainage',
+  'compte.parrainage.copier': 'Copier',
+  'compte.parrainage.partager': 'Partager mon lien',
+  'compte.parrainage.regle':
+    'Recevez {taux} des frais de service des commandes livrées de vos filleuls pendant {duree} mois.',
+
+  'options.bientot': 'Bientôt disponible',
+
+  'wallet.solde': 'Solde',
+  'wallet.recompenses': 'Récompenses',
+  'wallet.recharger': 'Recharger',
+  'wallet.confirmationEnCours': 'Paiement en cours de confirmation',
+
+  'commande.etat.brouillon': 'Brouillon',
+  'commande.etat.devis_demande': 'Devis demandé',
+  'commande.etat.devis_propose': 'Devis proposé',
+  'commande.etat.devis_accepte': 'Devis accepté',
+  'commande.etat.devis_expire': 'Devis expiré',
+  'commande.etat.payee': 'Payée',
+  'commande.etat.achat_en_cours': 'Achat en cours',
+  'commande.etat.expediee_fournisseur': 'Expédiée par le fournisseur',
+  'commande.etat.recue_entrepot': "Reçue à l'entrepôt",
+  'commande.etat.en_attente_paiement_fret': 'Fret à payer',
+  'commande.etat.prete_a_expedier': 'Prête à expédier',
+  'commande.etat.remise_transporteur': 'Remise au transporteur',
+  'commande.etat.en_transit': 'En transit',
+  'commande.etat.en_douane': 'En douane',
+  'commande.etat.arrivee_pays': 'Arrivée dans le pays',
+  'commande.etat.disponible_retrait': 'Disponible au retrait',
+  'commande.etat.en_livraison_locale': 'En cours de livraison',
+  'commande.etat.livree': 'Livrée',
+  'commande.etat.annulee': 'Annulée',
+  'commande.etat.incident': 'Incident',
+  'commande.etat.litige': 'Litige',
+  'commande.etat.remboursee': 'Remboursée',
+
+  'admin.titre': 'Back-office SS DROPSHIP',
+  'admin.acces': 'Accès réservé au personnel habilité.',
+
+  'erreur.generique': 'Une erreur est survenue. Réessayez dans un instant.',
+  'erreur.reseau': 'Connexion impossible. Vérifiez votre réseau.',
+} as const;
+
+export type CleTraduction = keyof typeof fr;

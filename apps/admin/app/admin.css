@@ -1,0 +1,101 @@
+/* Back-office : couleurs uniquement via les variables des tokens. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--ss-police);
+  color: var(--ss-role-texte);
+  background: var(--ss-role-fondSecondaire);
+}
+h1,
+h2 {
+  color: var(--ss-nuit);
+}
+.carte {
+  background: var(--ss-blanc);
+  border-radius: var(--ss-rayon-m);
+  padding: var(--ss-espace-xl);
+  box-shadow: var(--ss-ombre-carte);
+}
+.note {
+  font-size: 13px;
+  color: var(--ss-role-texteSecondaire);
+}
+.connexion {
+  max-width: 420px;
+  margin: 10vh auto;
+  padding: 0 var(--ss-espace-l);
+}
+.formulaire {
+  display: grid;
+  gap: var(--ss-espace-l);
+}
+.formulaire label {
+  display: grid;
+  gap: var(--ss-espace-xs);
+  font-weight: 500;
+}
+.formulaire input {
+  font: inherit;
+  padding: var(--ss-espace-m);
+  border: 1px solid var(--ss-bordure);
+  border-radius: var(--ss-rayon-s);
+}
+.bouton {
+  font: inherit;
+  font-weight: 700;
+  border: 0;
+  border-radius: var(--ss-rayon-m);
+  padding: var(--ss-espace-m);
+  background: var(--ss-role-action);
+  color: var(--ss-role-texteSurAction);
+}
+.bouton:disabled {
+  opacity: 0.55;
+}
+.admin {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 100vh;
+}
+.menu {
+  background: var(--ss-role-enTete);
+  color: var(--ss-role-texteSurEnTete);
+  padding: var(--ss-espace-xl);
+  border-right: 6px solid var(--ss-brunBogolan);
+}
+.menu nav {
+  display: grid;
+  gap: var(--ss-espace-m);
+  margin-top: var(--ss-espace-xl);
+}
+.contenu {
+  padding: var(--ss-espace-xl);
+}
+.grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: var(--ss-espace-l);
+}
+.valeur {
+  font-size: 32px;
+  font-weight: 700;
+  margin: var(--ss-espace-s) 0;
+}
+@media (max-width: 720px) {
+  .admin {
+    grid-template-columns: 1fr;
+  }
+}
+
+.visuellement-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

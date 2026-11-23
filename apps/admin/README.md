@@ -1,5 +1,10 @@
-# Back-office SS DROPSHIP
+# Back-office SS DROPSHIP — `@ss-dropship/admin`
 
-Console de gestion des utilisateurs, fournisseurs, commandes, entrepôts, paiements, transitaires, litiges, statistiques et journal d'audit.
+Next.js 16, réservé au personnel habilité (en-tête `X-Robots-Tag: noindex`).
+- `/` : connexion avec champ de double authentification (activée en S1, ADR-004).
+- `/tableau-de-bord` : modules par épopée et rôles habilités (`app/modules.ts`), sans aucun chiffre inventé.
 
-Statut : emplacement préparé, contenu d'origine non disponible tant qu'il n'a pas été importé.
+```bash
+pnpm --filter @ss-dropship/admin dev    # http://localhost:3002
+pnpm --filter @ss-dropship/admin test   # 5 tests
+```

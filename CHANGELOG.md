@@ -88,3 +88,68 @@
   interrupteurs, retour à l'écran précédent, barre d'onglets qui mène à la bonne partie, icônes agrandies au clic,
   message de confirmation à chaque action, accessible au clavier. Demande du propriétaire (commentaire sur la page).
 - Données fictives ; aucun paiement ni appel réseau simulé comme réel (AGENTS n° 8).
+
+## 2026-11-23 — Procédure d'équipe et prompts par rôle
+- Ajout de `docs/equipe/PROCEDURE_EQUIPE.md` : rôles transverses et métier (sourcing, entrepôt, logistique, paiements,
+  comptable), équipe minimale, matrice RACI, phases et portes de validation, Definition of Ready / Done, rituels,
+  plan de sprints S0–S12 du MVP, parcours critiques à tester, indicateurs, risques.
+- Ajout de `docs/equipe/PROMPTS_EQUIPE.md` : bloc commun avec les règles non négociables, prompt chef d'orchestre,
+  21 prompts de rôle et prompt de revue de conformité.
+- Ajout de `docs/equipe/equipe.test.mjs` (6 tests, `node --test docs/equipe/equipe.test.mjs`) : palette, absence de jaune,
+  parrainage, webhook, carton fermé, présence de chaque rôle et des sprints.
+- Registre : nouveau point ouvert M-009 (stack technique proposée, non installée). README : liens ajoutés.
+- Statut : **proposition à valider**. Aucun code applicatif modifié.
+
+## 2026-11-23 — Phase 1 : arbitrages
+- Ajout de `docs/decisions/ARBITRAGES_PHASE1.md` : options, avantages, inconvénients et recommandation pour M-001 à M-009
+  et pour le pays de lancement ; vérification publique des prestataires (Stripe absent en direct en Côte d'Ivoire, au Ghana
+  et en Guinée ; Paystack en Côte d'Ivoire et au Ghana ; CinetPay en zone BCEAO ; Orange Money Web Payment au Mali).
+- Décisions du propriétaire enregistrées : D-021 (Mali en premier, puis Côte d'Ivoire, Guinée, Ghana), D-022 (modèle
+  hybride), D-023 (parrainage : % des frais de service sur 12 mois), D-024 (stack TypeScript). M-001, M-002, M-009 levés.
+- Cahier des charges § 1, procédure et prompts alignés sur le lancement au Mali. Tests : 7 dans `docs/equipe/equipe.test.mjs`.
+- Aucune intégration de paiement n'est contractée ni testée ; impact sur D-019 à arbitrer (M-004).
+
+## 2026-11-23 — Phase 2 : backlog du MVP
+- Ajout de `docs/requirements/BACKLOG_MVP.md` : 82 user stories réparties en 12 épopées (socle, comptes et parrainage,
+  catalogue, trois modes de demande, devis, commandes, wallet, entrepôt carton fermé, transport, communication,
+  administration, qualité et lancement) et hors MVP ; priorités MoSCoW, sprints S0–S12, critères « Étant donné… quand…
+  alors… » ; machines à états (commande, paiement, colis) ; dépendances externes par sprint. Adapté au lancement au Mali.
+- Nouvelles hypothèses H-01 à H-05 tracées dans le backlog et le registre (à valider).
+- Ajout de `docs/requirements/backlog.test.mjs` (9 tests) : structure, parrainage, webhook, carton fermé, options V2, Mali.
+- Statut : **à valider**. Aucun code applicatif modifié.
+
+## 2026-11-23 — Phase 4 : architecture
+- D-025 : hypothèses H-01 à H-05 validées par le propriétaire ; backlog MVP passé au statut « validé ».
+- `packages/types` : machines à états (commande, paiement, colis), calculs monétaires entiers (frais de service, conversion,
+  poids taxable, fret), récompense de parrainage (D-023), options V2 verrouillées, interfaces des prestataires.
+  22 tests (`node --test "packages/types/src/**/*.test.ts"`), dont la cohérence des états avec la base et l'API ; types vérifiés par `tsc` strict.
+- `services/api/prisma` : schéma v1 (42 tables, validé par Prisma 7.10.1), migration initiale, migration de protections
+  (ledger et audit en écriture seule, partie double, solde client non négatif, options V2 verrouillées, Mali seul pays ouvert),
+  10 tests sur PostgreSQL embarqué (PGlite).
+- `docs/architecture/openapi.yaml` : contrat d'API du MVP (comptes, parrainage, catalogue, demandes, commandes, wallet,
+  webhooks, entrepôt, transport, support, back-office), validé par Redocly sans avertissement.
+- ADR-001 à ADR-004 : stack, wallet et webhooks, prestataires, sécurité. `.gitignore` et `.env.example` ajoutés.
+- Aucune intégration externe réelle ; aucun code NestJS, web ou mobile (sprint S0).
+
+## 2026-11-23 — Sprint S0 (socle, sans hébergement)
+- Monorepo pnpm + Turborepo, lint Biome, TypeScript 5.9 strict, CI GitHub Actions (lint, typecheck, tests, build ;
+  aucun déploiement : hébergement reporté par le propriétaire). Dépendances figées sur des versions publiées depuis ≥ 2 semaines.
+- `packages/config` (pays, Mali seul ouvert, drapeaux V2 désactivés), `packages/i18n` (FR/EN avec repli),
+  `packages/ui/src/tokens.ts` (palette, rôles, contrastes WCAG testés ; blanc sur rouge limité au grand texte gras).
+- `services/api` : NestJS 12 compilé par SWC, Prisma 7 (adaptateur pg), routes `/v1/sante` et `/v1/pays`, journal d'audit
+  avec masquage des champs sensibles, filtre d'erreurs (transition interdite et option V2 → 409). Vérifié de bout en bout
+  contre un serveur PostgreSQL migré (PGlite). 10 tests vitest + 10 tests de base.
+- `apps/web` : Next.js 16, accueil (trois modes, catégories, chat flottant, frise bogolan, icônes 3D) et inscription en
+  aperçu (code de parrainage facultatif, Mali par défaut ; envoi activé en S1). Build de production et 3 tests.
+- Reprise : `docs/REPRISE_IA.md`, `CLAUDE.md`, `GEMINI.md`, ajout à `AGENTS.md` (règles 13 à 15, sans modifier les 12 premières).
+- Restent en S0 : back-office et application mobile ; environnements et observabilité après choix de l'hébergeur.
+
+## 2026-11-23 — Sprint S0 : back-office et application mobile
+- `apps/admin` : Next.js 16, connexion avec champ de double authentification (aperçu, activée en S1), tableau de bord des
+  modules par rôle sans chiffres inventés, `noindex`. Build et 5 tests.
+- `apps/mobile` : Expo 57 / React Native 0.86 / Expo Router, 5 onglets (Accueil, Commandes, Entrepôt, Wallet, Compte),
+  chat flottant, icônes Bogolan, prestations V2 « Bientôt disponible » non cliquables, parrainage dans le compte.
+  Export web Metro réussi, 6 tests ; versions de reanimated, worklets et metro-config figées sur celles d'Expo 57.
+- Typographie : espaces insécables avant « ? » dans les textes français.
+- Vérification complète : lint Biome OK ; `turbo run typecheck test build` 21/21 sans cache.
+- Captures du code réel : `docs/captures/S0/`. Reste en S0 : environnements et observabilité (hébergement à choisir).

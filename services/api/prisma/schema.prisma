@@ -1,0 +1,812 @@
+// SS DROPSHIP — schéma de données v1 (phase 4, ADR-001 à ADR-003).
+// Règles : ID opaques (cuid2), montants entiers en unité mineure (BigInt), devise à chaque montant,
+// ledger en partie double et en écriture seule, journal d'audit immuable, paramètres versionnés.
+// L'URL de connexion est fournie par l'environnement (prisma.config.ts), jamais dans ce fichier.
+
+generator client {
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── Référentiels ────────────────────────────────────────────────────────────
+
+/// Paramètres par pays (US-SOC-05). Le Mali est le pays de lancement (D-021).
+model Pays {
+  code            String        @id @db.Char(2) // ISO 3166-1 : ML, CI, GN, GH
+  nom             String
+  deviseParDefaut String        @db.Char(3)
+  indicatif       String // +223
+  langueParDefaut String        @db.VarChar(5)
+  ouvert          Boolean       @default(false)
+  moyensPaiement  Json // liste des moyens actifs, contrôlée par l'Admin
+  creeLe          DateTime      @default(now())
+  utilisateurs    Utilisateur[]
+  adresses        Adresse[]
+}
+
+// ─── Comptes, rôles, parrainage (E1) ─────────────────────────────────────────
+
+enum Role {
+  client
+  agent_achat
+  agent_entrepot
+  logistique
+  support
+  comptable
+  admin
+}
+
+enum EtatCompte {
+  a_verifier
+  actif
+  suspendu
+  supprime
+}
+
+model Utilisateur {
+  id             String     @id @default(cuid(2))
+  nom            String
+  telephone      String?    @unique // format E.164
+  email          String?    @unique
+  motDePasseHash String
+  paysCode       String     @db.Char(2)
+  pays           Pays       @relation(fields: [paysCode], references: [code])
+  langue         String     @default("fr") @db.VarChar(5)
+  etat           EtatCompte @default(a_verifier)
+  roles          Role[]     @default([client])
+  mfaActive      Boolean    @default(false)
+  cguAccepteesLe DateTime?
+  creeLe         DateTime   @default(now())
+  majLe          DateTime   @updatedAt
+  supprimeLe     DateTime?
+
+  codeParrainage     CodeParrainage?
+  parrainage         Parrainage?           @relation("filleul")
+  filleuls           Parrainage[]          @relation("parrain")
+  adresses           Adresse[]
+  sessions           Session[]
+  codesVerification  CodeVerification[]
+  favoris            Favori[]
+  panier             LignePanier[]
+  souhaits           Souhait[]
+  demandes           Demande[]             @relation("demandeClient")
+  demandesTraitees   Demande[]             @relation("demandeAgent")
+  commandes          Commande[]
+  comptesWallet      CompteWallet[]
+  tentativesPaiement TentativePaiement[]
+  notifications      NotificationEnvoyee[]
+  tickets            Ticket[]
+}
+
+model Session {
+  id            String      @id @default(cuid(2))
+  utilisateurId String
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  jetonHash     String      @unique // hash du jeton de rafraîchissement, jamais le jeton en clair
+  appareil      String?
+  creeLe        DateTime    @default(now())
+  expireLe      DateTime
+  revoqueLe     DateTime?
+
+  @@index([utilisateurId])
+}
+
+enum ObjetVerification {
+  telephone
+  email
+  mot_de_passe
+}
+
+model CodeVerification {
+  id            String            @id @default(cuid(2))
+  utilisateurId String
+  utilisateur   Utilisateur       @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  objet         ObjetVerification
+  codeHash      String
+  tentatives    Int               @default(0)
+  expireLe      DateTime
+  utiliseLe     DateTime?
+  creeLe        DateTime          @default(now())
+
+  @@index([utilisateurId, objet])
+}
+
+model CodeParrainage {
+  code          String      @id // code court lisible, ex. AMADOU7K
+  utilisateurId String      @unique
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  creeLe        DateTime    @default(now())
+}
+
+model Parrainage {
+  id          String                 @id @default(cuid(2))
+  parrainId   String
+  parrain     Utilisateur            @relation("parrain", fields: [parrainId], references: [id])
+  filleulId   String                 @unique // un filleul n'a qu'un parrain
+  filleul     Utilisateur            @relation("filleul", fields: [filleulId], references: [id])
+  codeUtilise String
+  creeLe      DateTime               @default(now())
+  recompenses RecompenseParrainage[]
+
+  @@index([parrainId])
+}
+
+enum EtatRecompense {
+  versee
+  en_revue
+  refusee
+  contrepassee
+}
+
+/// Récompense calculée sur une commande livrée du filleul (D-023, US-WAL-07).
+model RecompenseParrainage {
+  id            String             @id @default(cuid(2))
+  parrainageId  String
+  parrainage    Parrainage         @relation(fields: [parrainageId], references: [id])
+  commandeId    String             @unique // une seule récompense par commande
+  commande      Commande           @relation(fields: [commandeId], references: [id])
+  montant       BigInt
+  devise        String             @db.Char(3)
+  tauxPb        Int
+  etat          EtatRecompense
+  transactionId String?            @unique
+  transaction   TransactionLedger? @relation(fields: [transactionId], references: [id])
+  creeLe        DateTime           @default(now())
+}
+
+model Adresse {
+  id                    String      @id @default(cuid(2))
+  utilisateurId         String
+  utilisateur           Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  libelle               String // Maison, Boutique…
+  paysCode              String      @db.Char(2)
+  pays                  Pays        @relation(fields: [paysCode], references: [code])
+  ville                 String
+  quartier              String
+  repere                String?
+  telephoneDestinataire String
+  parDefaut             Boolean     @default(false)
+  creeLe                DateTime    @default(now())
+
+  @@index([utilisateurId])
+}
+
+// ─── Catalogue et fournisseurs (E2) ──────────────────────────────────────────
+
+enum EtatValidation {
+  a_valider
+  valide
+  masque
+}
+
+model Fournisseur {
+  id              String         @id @default(cuid(2))
+  nom             String
+  paysOrigine     String         @db.Char(2) // CN, TR, AE, FR…
+  ville           String?
+  categories      String[]
+  delaiMoyenJours Int?
+  etat            EtatValidation @default(a_valider)
+  /// Coordonnées internes : jamais exposées au client.
+  contactInterne  Json?
+  creeLe          DateTime       @default(now())
+  produits        Produit[]
+  offres          Offre[]
+}
+
+model Categorie {
+  id         String      @id @default(cuid(2))
+  slug       String      @unique
+  cleLibelle String // clé de traduction
+  ordre      Int         @default(0)
+  parentId   String?
+  parent     Categorie?  @relation("sousCategories", fields: [parentId], references: [id])
+  enfants    Categorie[] @relation("sousCategories")
+  produits   Produit[]
+}
+
+model Produit {
+  id            String         @id @default(cuid(2))
+  titre         String
+  description   String?
+  categorieId   String
+  categorie     Categorie      @relation(fields: [categorieId], references: [id])
+  fournisseurId String?
+  fournisseur   Fournisseur?   @relation(fields: [fournisseurId], references: [id])
+  /// Prix indicatif, toujours affiché comme tel (US-CAT-03).
+  prixIndicatif BigInt?
+  devise        String?        @db.Char(3)
+  variantes     Json?
+  medias        String[] // clés de stockage
+  misEnAvant    Boolean        @default(false)
+  etat          EtatValidation @default(a_valider)
+  creeLe        DateTime       @default(now())
+  majLe         DateTime       @updatedAt
+  favoris       Favori[]
+  panier        LignePanier[]
+  souhaits      Souhait[]
+
+  @@index([categorieId, etat])
+}
+
+model Favori {
+  utilisateurId String
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  produitId     String
+  produit       Produit     @relation(fields: [produitId], references: [id], onDelete: Cascade)
+  creeLe        DateTime    @default(now())
+
+  @@id([utilisateurId, produitId])
+}
+
+model LignePanier {
+  id            String      @id @default(cuid(2))
+  utilisateurId String
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  produitId     String
+  produit       Produit     @relation(fields: [produitId], references: [id])
+  variante      Json?
+  quantite      Int
+
+  @@unique([utilisateurId, produitId])
+}
+
+model Souhait {
+  utilisateurId String
+  utilisateur   Utilisateur @relation(fields: [utilisateurId], references: [id], onDelete: Cascade)
+  produitId     String
+  produit       Produit     @relation(fields: [produitId], references: [id], onDelete: Cascade)
+  creeLe        DateTime    @default(now())
+
+  @@id([utilisateurId, produitId])
+}
+
+// ─── Demandes, devis, commandes (E3–E5) ──────────────────────────────────────
+
+enum ModeDemande {
+  directe
+  recherche
+  negociation
+}
+
+model Demande {
+  id           String         @id @default(cuid(2))
+  reference    String         @unique // DEM-2027-000123
+  clientId     String
+  client       Utilisateur    @relation("demandeClient", fields: [clientId], references: [id])
+  agentId      String?
+  agent        Utilisateur?   @relation("demandeAgent", fields: [agentId], references: [id])
+  mode         ModeDemande
+  description  String
+  liens        String[]
+  quantite     Int
+  variante     String?
+  budgetCible  BigInt?
+  deviseBudget String?        @db.Char(3)
+  creeLe       DateTime       @default(now())
+  medias       MediaDemande[]
+  offres       Offre[]
+  commande     Commande?
+
+  @@index([agentId])
+  @@index([clientId, creeLe])
+}
+
+model MediaDemande {
+  id           String   @id @default(cuid(2))
+  demandeId    String
+  demande      Demande  @relation(fields: [demandeId], references: [id], onDelete: Cascade)
+  cleStockage  String
+  type         String // image/jpeg, video/mp4…
+  tailleOctets Int
+  creeLe       DateTime @default(now())
+}
+
+enum EtatOffre {
+  proposee
+  acceptee
+  close
+  expiree
+}
+
+/// Une offre (devis) figée : taux et frais sont historisés avec elle (US-DEV-04).
+model Offre {
+  id                    String       @id @default(cuid(2))
+  demandeId             String
+  demande               Demande      @relation(fields: [demandeId], references: [id])
+  version               Int          @default(1)
+  fournisseurId         String?
+  fournisseur           Fournisseur? @relation(fields: [fournisseurId], references: [id])
+  prixUnitaireOrigine   BigInt
+  deviseOrigine         String       @db.Char(3)
+  quantite              Int
+  tauxChangeMicro       BigInt // 1 unité majeure d'origine = tauxChangeMicro / 1e6 unités majeures de la devise client
+  margeChangePb         Int
+  montantProduit        BigInt // devise client
+  fraisService          BigInt
+  transportVersEntrepot BigInt
+  devise                String       @db.Char(3)
+  delaiJours            Int
+  valableJusquau        DateTime
+  etat                  EtatOffre    @default(proposee)
+  creeParId             String
+  creeLe                DateTime     @default(now())
+
+  @@index([demandeId, etat])
+}
+
+enum EtatCommande {
+  brouillon
+  devis_demande
+  devis_propose
+  devis_accepte
+  devis_expire
+  payee
+  achat_en_cours
+  expediee_fournisseur
+  recue_entrepot
+  en_attente_paiement_fret
+  prete_a_expedier
+  remise_transporteur
+  en_transit
+  en_douane
+  arrivee_pays
+  disponible_retrait
+  en_livraison_locale
+  livree
+  annulee
+  incident
+  litige
+  remboursee
+}
+
+model Commande {
+  id               String                @id @default(cuid(2))
+  reference        String                @unique // CMD-2027-000123
+  clientId         String
+  client           Utilisateur           @relation(fields: [clientId], references: [id])
+  demandeId        String                @unique
+  demande          Demande               @relation(fields: [demandeId], references: [id])
+  offreAccepteeId  String?               @unique
+  etat             EtatCommande          @default(devis_demande)
+  /// Totaux figés à l'acceptation du devis (paiement 1, H-02).
+  totalProduit     BigInt?
+  totalFrais       BigInt?
+  devise           String                @db.Char(3)
+  suiviFournisseur String?
+  creeLe           DateTime              @default(now())
+  majLe            DateTime              @updatedAt
+  evenements       EvenementCommande[]
+  factures         Facture[]
+  colis            Colis[]
+  expedition       Expedition?
+  recompense       RecompenseParrainage?
+  tickets          Ticket[]
+
+  @@index([clientId, etat])
+  @@index([etat])
+}
+
+/// Historique horodaté de chaque transition (machine à états de packages/types).
+model EvenementCommande {
+  id          String        @id @default(cuid(2))
+  commandeId  String
+  commande    Commande      @relation(fields: [commandeId], references: [id])
+  depuis      EtatCommande?
+  vers        EtatCommande
+  acteurId    String? // null = système
+  commentaire String?
+  creeLe      DateTime      @default(now())
+
+  @@index([commandeId, creeLe])
+}
+
+model Facture {
+  id          String   @id @default(cuid(2))
+  numero      String   @unique // FAC-2027-000123, séquence sans trou
+  commandeId  String
+  commande    Commande @relation(fields: [commandeId], references: [id])
+  objet       String // produit | fret | stockage | livraison_locale
+  montant     BigInt
+  devise      String   @db.Char(3)
+  cleStockage String // PDF
+  emiseLe     DateTime @default(now())
+}
+
+// ─── Wallet, ledger, paiements (E6, ADR-002) ─────────────────────────────────
+
+enum TypeCompte {
+  client_principal
+  client_recompenses
+  systeme_prestataire // fonds en transit chez un prestataire de paiement
+  systeme_revenus_frais
+  systeme_fournisseurs_a_payer
+  systeme_transport_a_payer
+  systeme_charge_parrainage
+}
+
+model CompteWallet {
+  id            String           @id @default(cuid(2))
+  type          TypeCompte
+  utilisateurId String? // null pour les comptes système
+  utilisateur   Utilisateur?     @relation(fields: [utilisateurId], references: [id])
+  devise        String           @db.Char(3)
+  /// Libellé interne d'un compte système, ex. « cinetpay_ML ».
+  code          String?          @unique
+  creeLe        DateTime         @default(now())
+  ecritures     EcritureLedger[]
+
+  @@unique([utilisateurId, type, devise])
+}
+
+enum TypeTransaction {
+  recharge
+  paiement_commande
+  paiement_fret
+  frais_stockage
+  livraison_locale
+  remboursement
+  recompense_parrainage
+  correction
+}
+
+/// Une transaction équilibrée : la somme de ses écritures vaut zéro (contrôlé par l'API et en base).
+model TransactionLedger {
+  id             String                @id @default(cuid(2))
+  type           TypeTransaction
+  /// Clé d'idempotence : une même opération ne peut être inscrite deux fois.
+  cleIdempotence String                @unique
+  commandeId     String?
+  tentativeId    String?               @unique
+  libelle        String
+  creeParId      String?
+  creeLe         DateTime              @default(now())
+  ecritures      EcritureLedger[]
+  tentative      TentativePaiement?    @relation(fields: [tentativeId], references: [id])
+  recompense     RecompenseParrainage?
+}
+
+/// Écriture en écriture seule : ni UPDATE ni DELETE (révoqués en base par migration).
+model EcritureLedger {
+  id            String            @id @default(cuid(2))
+  transactionId String
+  transaction   TransactionLedger @relation(fields: [transactionId], references: [id])
+  compteId      String
+  compte        CompteWallet      @relation(fields: [compteId], references: [id])
+  /// Positif = crédit du compte, négatif = débit. Unité mineure.
+  montant       BigInt
+  devise        String            @db.Char(3)
+  creeLe        DateTime          @default(now())
+
+  @@index([compteId, creeLe])
+}
+
+enum EtatPaiement {
+  creee
+  en_attente_prestataire
+  confirmee
+  echouee
+  expiree
+  anomalie
+}
+
+model TentativePaiement {
+  id                   String             @id @default(cuid(2))
+  utilisateurId        String
+  utilisateur          Utilisateur        @relation(fields: [utilisateurId], references: [id])
+  prestataire          String // code du PaymentProvider
+  moyen                String // orange_money, moov_money…
+  montant              BigInt
+  devise               String             @db.Char(3)
+  etat                 EtatPaiement       @default(creee)
+  referencePrestataire String?
+  expireLe             DateTime
+  creeLe               DateTime           @default(now())
+  majLe                DateTime           @updatedAt
+  transaction          TransactionLedger?
+  webhooks             EvenementWebhook[]
+
+  @@unique([prestataire, referencePrestataire])
+  @@index([etat, expireLe])
+}
+
+/// Chaque webhook reçu est conservé, valide ou non. L'unicité (prestataire, evenementId) bloque les rejeux.
+model EvenementWebhook {
+  id              String             @id @default(cuid(2))
+  prestataire     String
+  evenementId     String?
+  tentativeId     String?
+  tentative       TentativePaiement? @relation(fields: [tentativeId], references: [id])
+  signatureValide Boolean
+  raisonRejet     String?
+  corps           String // corps brut, sans donnée de carte
+  recuLe          DateTime           @default(now())
+  traiteLe        DateTime?
+
+  @@unique([prestataire, evenementId])
+}
+
+// ─── Entrepôt : carton fermé (E7) ────────────────────────────────────────────
+
+model Entrepot {
+  id    String  @id @default(cuid(2))
+  nom   String
+  pays  String  @db.Char(2) // CN au lancement (H-03)
+  ville String
+  actif Boolean @default(true)
+  colis Colis[]
+}
+
+enum EtatColis {
+  attendu
+  recu
+  mesure
+  anomalie
+  pret
+  expedie
+}
+
+/// Colis reçu SANS ouverture (D-010) : aucune donnée sur le contenu n'est saisie.
+model Colis {
+  id                     String                @id @default(cuid(2))
+  reference              String                @unique // COL-2027-000123
+  commandeId             String
+  commande               Commande              @relation(fields: [commandeId], references: [id])
+  entrepotId             String
+  entrepot               Entrepot              @relation(fields: [entrepotId], references: [id])
+  transporteurArrivee    String?
+  suiviArrivee           String?
+  etat                   EtatColis             @default(attendu)
+  recuLe                 DateTime?
+  recuParId              String?
+  poidsGrammes           Int?
+  longueurCm             Int?
+  largeurCm              Int?
+  hauteurCm              Int?
+  etatExterieur          String? // bon | abime | mouille | ouvert_a_reception
+  emplacement            String?
+  anomalie               String?
+  stockageGratuitJusquau DateTime?
+  photos                 PhotoColisExterieur[]
+  expeditionId           String?
+  expedition             Expedition?           @relation(fields: [expeditionId], references: [id])
+
+  @@index([entrepotId, etat])
+}
+
+model PhotoColisExterieur {
+  id          String   @id @default(cuid(2))
+  colisId     String
+  colis       Colis    @relation(fields: [colisId], references: [id])
+  cleStockage String
+  priseLe     DateTime @default(now())
+  priseParId  String
+}
+
+/// Prestations V2 (D-011) : présentes pour l'affichage, `disponible` reste false au MVP.
+model OptionService {
+  code       String  @id // inspection_qc, photos_contenu, video_contenu, regroupement, reconditionnement
+  cleLibelle String
+  disponible Boolean @default(false)
+}
+
+// ─── Transport et livraison (E8) ─────────────────────────────────────────────
+
+enum TypeTransporteur {
+  partenaire
+  transitaire_client
+  express
+}
+
+/// Répertoire réservé à l'Admin (D-013).
+model Transporteur {
+  id                 String           @id @default(cuid(2))
+  code               String           @unique
+  nom                String
+  type               TypeTransporteur
+  contactInterne     Json?
+  contratActif       Boolean          @default(false)
+  approuve           Boolean          @default(false) // transitaire client : approuvé par l'Admin (US-TRA-02)
+  proposeParClientId String?
+  creeLe             DateTime         @default(now())
+  grilles            GrilleFret[]
+  expeditions        Expedition[]
+}
+
+model GrilleFret {
+  id                   String       @id @default(cuid(2))
+  transporteurId       String
+  transporteur         Transporteur @relation(fields: [transporteurId], references: [id])
+  paysOrigine          String       @db.Char(2)
+  paysDestination      String       @db.Char(2)
+  mode                 String // aerien_groupage | express
+  prixParKg            BigInt
+  devise               String       @db.Char(3)
+  diviseurVolumetrique Int
+  pasGrammes           Int          @default(500)
+  delaiJoursMin        Int
+  delaiJoursMax        Int
+  valableDepuis        DateTime
+  valableJusquau       DateTime?
+}
+
+enum ModeRemise {
+  retrait_point
+  livraison_locale
+}
+
+model Expedition {
+  id                  String           @id @default(cuid(2))
+  commandeId          String           @unique
+  commande            Commande         @relation(fields: [commandeId], references: [id])
+  transporteurId      String
+  transporteur        Transporteur     @relation(fields: [transporteurId], references: [id])
+  grilleId            String?
+  poidsTaxableGrammes Int
+  prixFret            BigInt
+  devise              String           @db.Char(3)
+  numeroSuivi         String?
+  modeRemise          ModeRemise?
+  pointRetraitId      String?
+  pointRetrait        PointRetrait?    @relation(fields: [pointRetraitId], references: [id])
+  adresseLivraisonId  String?
+  codeRetraitHash     String? // code de retrait (US-TRA-05), stocké haché
+  livreeLe            DateTime?
+  livreeParId         String?
+  creeLe              DateTime         @default(now())
+  colis               Colis[]
+  evenements          EvenementSuivi[]
+}
+
+model EvenementSuivi {
+  id           String     @id @default(cuid(2))
+  expeditionId String
+  expedition   Expedition @relation(fields: [expeditionId], references: [id])
+  code         String // remise_transporteur | en_transit | en_douane | arrivee_pays | livree | incident
+  lieu         String?
+  detail       String?
+  source       String // manuel | api
+  date         DateTime
+  saisiParId   String?
+  creeLe       DateTime   @default(now())
+
+  @@index([expeditionId, date])
+}
+
+/// Point SS DROPSHIP de retrait à Bamako (H-04).
+model PointRetrait {
+  id          String       @id @default(cuid(2))
+  nom         String
+  pays        String       @db.Char(2)
+  ville       String
+  adresse     String
+  horaires    String
+  actif       Boolean      @default(true)
+  expeditions Expedition[]
+}
+
+// ─── Communication et support (E9) ───────────────────────────────────────────
+
+model NotificationEnvoyee {
+  id             String      @id @default(cuid(2))
+  utilisateurId  String
+  utilisateur    Utilisateur @relation(fields: [utilisateurId], references: [id])
+  canal          String
+  modele         String
+  cle            String      @unique // idempotence
+  lue            Boolean     @default(false)
+  referenceEnvoi String?
+  creeLe         DateTime    @default(now())
+
+  @@index([utilisateurId, lue])
+}
+
+enum EtatTicket {
+  ouvert
+  en_cours
+  attente_client
+  resolu
+  ferme
+}
+
+model Ticket {
+  id            String          @id @default(cuid(2))
+  reference     String          @unique
+  utilisateurId String
+  utilisateur   Utilisateur     @relation(fields: [utilisateurId], references: [id])
+  commandeId    String?
+  commande      Commande?       @relation(fields: [commandeId], references: [id])
+  categorie     String
+  priorite      Int             @default(2)
+  estLitige     Boolean         @default(false)
+  etat          EtatTicket      @default(ouvert)
+  assigneId     String?
+  creeLe        DateTime        @default(now())
+  messages      MessageTicket[]
+
+  @@index([etat, priorite])
+}
+
+model MessageTicket {
+  id       String   @id @default(cuid(2))
+  ticketId String
+  ticket   Ticket   @relation(fields: [ticketId], references: [id])
+  auteurId String
+  texte    String
+  pieces   String[]
+  interne  Boolean  @default(false) // note visible du support uniquement
+  creeLe   DateTime @default(now())
+}
+
+model ArticleFaq {
+  id       String  @id @default(cuid(2))
+  langue   String  @db.VarChar(5)
+  question String
+  reponse  String
+  ordre    Int     @default(0)
+  publie   Boolean @default(false)
+}
+
+// ─── Administration et audit (E10) ───────────────────────────────────────────
+
+/// Paramètre versionné : une modification crée une nouvelle ligne (US-ADM-02). Clés : frais.taux_pb.directe,
+/// frais.minimum, change.marge_pb, wallet.recharge_min, stockage.jours_gratuits, parrainage.taux_pb…
+model Parametre {
+  id            String   @id @default(cuid(2))
+  cle           String
+  paysCode      String?  @db.Char(2)
+  valeur        Json
+  valableDepuis DateTime @default(now())
+  modifieParId  String
+  creeLe        DateTime @default(now())
+
+  @@index([cle, paysCode, valableDepuis])
+}
+
+model TauxChange {
+  id            String   @id @default(cuid(2))
+  deviseSource  String   @db.Char(3)
+  deviseCible   String   @db.Char(3)
+  tauxMicro     BigInt
+  source        String // saisie_manuelle | fournisseur_de_taux
+  valableDepuis DateTime
+  saisiParId    String?
+  creeLe        DateTime @default(now())
+
+  @@index([deviseSource, deviseCible, valableDepuis])
+}
+
+/// Journal d'audit immuable (D-007, US-SOC-04).
+model JournalAudit {
+  id         String   @id @default(cuid(2))
+  acteurId   String? // null = système
+  roleActeur String?
+  action     String // commande.transition, parametre.modification, role.attribution…
+  objetType  String
+  objetId    String
+  avant      Json?
+  apres      Json?
+  ip         String?
+  creeLe     DateTime @default(now())
+
+  @@index([objetType, objetId, creeLe])
+  @@index([acteurId, creeLe])
+}
+
+model Contenu {
+  id      String    @id @default(cuid(2))
+  type    String // actualite | promotion | banniere
+  langue  String    @db.VarChar(5)
+  titre   String
+  corps   String?
+  media   String?
+  debutLe DateTime
+  finLe   DateTime?
+  publie  Boolean   @default(false)
+}

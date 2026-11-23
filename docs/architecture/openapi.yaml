@@ -1,0 +1,1303 @@
+openapi: 3.1.0
+info:
+  title: SS DROPSHIP — API du MVP
+  version: 0.1.0
+  summary: Contrat v1 des parcours du MVP (phase 4). Aucune implémentation n'est encore livrée.
+  description: |
+    Règles communes :
+    - Montants : entiers dans l'unité mineure de la devise (`valeur`), toujours accompagnés de `devise`.
+    - Identifiants opaques ; `reference` est l'identifiant lisible montré au client (CMD-2027-000123).
+    - Les requêtes qui créent ou débitent exigent l'en-tête `Idempotency-Key`.
+    - Erreurs au format `Erreur` ; une transition non prévue par la machine à états renvoie 409 `transition_interdite`.
+    - Le wallet n'est crédité que par le webhook signé du prestataire (D-008) : aucune route client ne crédite.
+  license:
+    name: Propriétaire — usage interne SS DROPSHIP
+    identifier: LicenseRef-Proprietary
+servers:
+  - url: https://api.staging.example.invalid/v1
+    description: Staging (adresse à définir au sprint S0)
+security:
+  - jeton: []
+tags:
+  - name: comptes
+    description: "Inscription, connexion, profil, adresses (E1)"
+  - name: parrainage
+    description: "Code et récompenses de parrainage (E1, D-023)"
+  - name: catalogue
+    description: "Catégories, produits, favoris, fournisseurs (E2)"
+  - name: demandes
+    description: "Les trois modes de demande et les devis (E3, E4)"
+  - name: commandes
+    description: "Paiement, suivi, annulation, factures (E5)"
+  - name: wallet
+    description: "Soldes, opérations, recharges (E6)"
+  - name: webhooks
+    description: "Notifications signées des prestataires : seule source de crédit (E6, D-008)"
+  - name: entrepot
+    description: "Colis en carton fermé et prestations V2 désactivées (E7)"
+  - name: transport
+    description: "Offres de transport, expédition, retrait (E8)"
+  - name: support
+    description: "Notifications et tickets (E9)"
+  - name: admin
+    description: "Back-office : rôles internes uniquement (E3–E10)"
+
+paths:
+  # ─── Comptes (E1) ──────────────────────────────────────────────────────────
+  /auth/inscription:
+    post:
+      tags: [comptes]
+      operationId: inscrire
+      summary: Créer un compte, avec code de parrainage facultatif (US-AUT-01)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Inscription' }
+      responses:
+        '201':
+          description: Compte créé à l'état « a_verifier » ; un code de vérification est envoyé.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ResultatInscription' }
+        '409': { $ref: '#/components/responses/Conflit' }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /auth/verification:
+    post:
+      tags: [comptes]
+      operationId: verifierContact
+      summary: Valider le code reçu par SMS ou email (US-AUT-02)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [utilisateurId, code]
+              properties:
+                utilisateurId: { type: string }
+                code: { type: string, pattern: '^[0-9]{6}$' }
+      responses:
+        '200': { description: "Contact vérifié, compte actif." }
+        '422': { $ref: '#/components/responses/Invalide' }
+        '429': { $ref: '#/components/responses/TropDeTentatives' }
+  /auth/connexion:
+    post:
+      tags: [comptes]
+      operationId: connecter
+      summary: Se connecter (US-AUT-03)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [identifiant, motDePasse]
+              properties:
+                identifiant: { type: string, description: Téléphone E.164 ou email. }
+                motDePasse: { type: string, format: password }
+                codeMfa: { type: string, description: Obligatoire pour les comptes administrateurs. }
+      responses:
+        '200':
+          description: Jetons d'accès et de rafraîchissement.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Jetons' }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '429': { $ref: '#/components/responses/TropDeTentatives' }
+  /auth/rafraichir:
+    post:
+      tags: [comptes]
+      operationId: rafraichir
+      summary: Renouveler le jeton d'accès
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [jetonRafraichissement]
+              properties:
+                jetonRafraichissement: { type: string }
+      responses:
+        '200':
+          description: Nouveaux jetons.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Jetons' }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+  /auth/mot-de-passe-oublie:
+    post:
+      tags: [comptes]
+      operationId: demanderReinitialisation
+      summary: Demander un code de réinitialisation (US-AUT-04)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [identifiant]
+              properties:
+                identifiant: { type: string }
+      responses:
+        '422': { $ref: '#/components/responses/Invalide' }
+        '202': { description: Réponse identique que le compte existe ou non (pas de divulgation). }
+  /auth/reinitialiser:
+    post:
+      tags: [comptes]
+      operationId: reinitialiserMotDePasse
+      summary: Définir un nouveau mot de passe ; ferme les autres sessions (US-AUT-04)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [identifiant, code, nouveauMotDePasse]
+              properties:
+                identifiant: { type: string }
+                code: { type: string }
+                nouveauMotDePasse: { type: string, format: password, minLength: 8 }
+      responses:
+        '204': { description: Mot de passe changé. }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /moi:
+    get:
+      tags: [comptes]
+      operationId: lireProfil
+      summary: Profil de l'utilisateur connecté
+      responses:
+        '200':
+          description: Profil.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Profil' }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+    patch:
+      tags: [comptes]
+      operationId: modifierProfil
+      summary: Modifier nom, langue, préférences (US-AUT-05)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nom: { type: string }
+                langue: { $ref: '#/components/schemas/Langue' }
+                preferencesNotification: { type: object, additionalProperties: { type: boolean } }
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Profil mis à jour.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Profil' }
+  /moi/adresses:
+    get:
+      tags: [comptes]
+      operationId: listerAdresses
+      summary: Adresses de livraison
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Liste.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Adresse' } }
+    post:
+      tags: [comptes]
+      operationId: ajouterAdresse
+      summary: Ajouter une adresse (US-AUT-05)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Adresse' }
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '201':
+          description: Adresse créée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Adresse' }
+
+  # ─── Parrainage (E1, D-023) ────────────────────────────────────────────────
+  /moi/parrainage:
+    get:
+      tags: [parrainage]
+      operationId: lireParrainage
+      summary: Mon code, mon lien de partage, mes filleuls et récompenses (US-AUT-06)
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Espace parrainage.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EspaceParrainage' }
+
+  # ─── Catalogue (E2) ────────────────────────────────────────────────────────
+  /categories:
+    get:
+      tags: [catalogue]
+      operationId: listerCategories
+      summary: Catégories non vides (US-CAT-01)
+      security: []
+      responses:
+        '404': { $ref: '#/components/responses/Introuvable' }
+        '200':
+          description: Catégories.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Categorie' } }
+  /produits:
+    get:
+      tags: [catalogue]
+      operationId: rechercherProduits
+      summary: Rechercher par nom, catégorie, prix (US-CAT-02)
+      security: []
+      parameters:
+        - { name: q, in: query, schema: { type: string } }
+        - { name: categorie, in: query, schema: { type: string } }
+        - { name: prixMax, in: query, schema: { type: integer, minimum: 0 } }
+        - $ref: '#/components/parameters/Curseur'
+      responses:
+        '404': { $ref: '#/components/responses/Introuvable' }
+        '200':
+          description: Page de résultats.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [elements]
+                properties:
+                  elements: { type: array, items: { $ref: '#/components/schemas/Produit' } }
+                  curseurSuivant: { type: [string, 'null'] }
+  /produits/{id}:
+    get:
+      tags: [catalogue]
+      operationId: lireProduit
+      summary: Fiche produit (US-CAT-03)
+      security: []
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '200':
+          description: Produit.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Produit' }
+        '404': { $ref: '#/components/responses/Introuvable' }
+  /moi/favoris/{id}:
+    put:
+      tags: [catalogue]
+      operationId: ajouterFavori
+      summary: Ajouter un produit aux favoris (US-CAT-04)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '204': { description: Ajouté (idempotent). }
+    delete:
+      tags: [catalogue]
+      operationId: retirerFavori
+      summary: Retirer des favoris
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '204': { description: Retiré. }
+  /fournisseurs:
+    get:
+      tags: [catalogue]
+      operationId: listerFournisseurs
+      summary: Fournisseurs validés uniquement (US-CAT-05)
+      security: []
+      parameters:
+        - { name: pays, in: query, schema: { type: string } }
+        - { name: categorie, in: query, schema: { type: string } }
+      responses:
+        '404': { $ref: '#/components/responses/Introuvable' }
+        '200':
+          description: Fournisseurs.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/FournisseurPublic' } }
+
+  # ─── Demandes et devis (E3, E4) ────────────────────────────────────────────
+  /demandes:
+    get:
+      tags: [demandes]
+      operationId: listerMesDemandes
+      summary: Mes demandes et leur état (US-DEM-04)
+      parameters: [{ $ref: '#/components/parameters/Curseur' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Demandes.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Demande' } }
+    post:
+      tags: [demandes]
+      operationId: creerDemande
+      summary: Créer une demande — directe, recherche ou négociation (US-DEM-01 à 03)
+      parameters: [{ $ref: '#/components/parameters/CleIdempotence' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NouvelleDemande' }
+      responses:
+        '201':
+          description: Demande créée (état « devis_demande »).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Demande' }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /demandes/medias:
+    post:
+      tags: [demandes]
+      operationId: preparerEnvoiMedia
+      summary: Obtenir une URL d'envoi temporaire pour une photo ou une vidéo (US-DEM-02)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type, tailleOctets]
+              properties:
+                type: { type: string, enum: [image/jpeg, image/png, image/webp, video/mp4] }
+                tailleOctets: { type: integer, minimum: 1 }
+      responses:
+        '201':
+          description: URL d'envoi signée, valable quelques minutes.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [cleStockage, urlEnvoi, expireLe]
+                properties:
+                  cleStockage: { type: string }
+                  urlEnvoi: { type: string, format: uri }
+                  expireLe: { type: string, format: date-time }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /demandes/{id}/offres:
+    get:
+      tags: [demandes]
+      operationId: listerOffres
+      summary: Offres proposées, pour comparaison (US-DEV-02)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Offres.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Offre' } }
+  /offres/{id}/acceptation:
+    post:
+      tags: [demandes]
+      operationId: accepterOffre
+      summary: Accepter une offre ; les autres sont closes (US-DEV-02)
+      parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/CleIdempotence' }]
+      responses:
+        '200':
+          description: Commande à l'état « devis_accepte ».
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '409': { $ref: '#/components/responses/Conflit' }
+        '410': { description: Offre expirée. }
+
+  # ─── Commandes (E5) ────────────────────────────────────────────────────────
+  /commandes:
+    get:
+      tags: [commandes]
+      operationId: listerMesCommandes
+      summary: Mes commandes
+      parameters:
+        - { name: etat, in: query, schema: { $ref: '#/components/schemas/EtatCommande' } }
+        - $ref: '#/components/parameters/Curseur'
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Commandes.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Commande' } }
+  /commandes/{id}:
+    get:
+      tags: [commandes]
+      operationId: lireCommande
+      summary: Détail et frise de suivi (US-CMD-03)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '200':
+          description: Commande avec ses événements.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '404': { $ref: '#/components/responses/Introuvable' }
+  /commandes/{id}/paiement:
+    post:
+      tags: [commandes]
+      operationId: payerCommande
+      summary: Payer depuis le wallet — produit, frais, transport jusqu'à l'entrepôt (US-CMD-02, H-01, H-02)
+      parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/CleIdempotence' }]
+      responses:
+        '200':
+          description: Débit inscrit au ledger ; commande « payee ».
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '402':
+          description: Solde insuffisant ; le montant manquant est indiqué.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SoldeInsuffisant' }
+        '409': { $ref: '#/components/responses/Conflit' }
+  /commandes/{id}/annulation:
+    post:
+      tags: [commandes]
+      operationId: annulerCommande
+      summary: Annuler avant le début de l'achat ; remboursement au wallet (US-CMD-06)
+      parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/CleIdempotence' }]
+      responses:
+        '200':
+          description: Commande annulée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '409': { $ref: '#/components/responses/Conflit' }
+  /commandes/{id}/factures:
+    get:
+      tags: [commandes]
+      operationId: listerFactures
+      summary: Factures et reçus PDF (US-CMD-05)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Factures avec URL de téléchargement temporaire.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [numero, objet, montant, url]
+                  properties:
+                    numero: { type: string }
+                    objet: { type: string, enum: [produit, fret, stockage, livraison_locale] }
+                    montant: { $ref: '#/components/schemas/Montant' }
+                    url: { type: string, format: uri }
+
+  # ─── Wallet (E6) ───────────────────────────────────────────────────────────
+  /wallet:
+    get:
+      tags: [wallet]
+      operationId: lireWallet
+      summary: Soldes principal et récompenses, calculés depuis le ledger (US-WAL-01)
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Soldes.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Wallet' }
+  /wallet/operations:
+    get:
+      tags: [wallet]
+      operationId: listerOperations
+      summary: Historique des écritures de mes comptes
+      parameters: [{ $ref: '#/components/parameters/Curseur' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Opérations.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Operation' } }
+  /wallet/moyens:
+    get:
+      tags: [wallet]
+      operationId: listerMoyensRecharge
+      summary: Moyens de recharge réellement actifs pour mon pays
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Moyens, limites et frais éventuels.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [moyen, minimum, maximum]
+                  properties:
+                    moyen: { $ref: '#/components/schemas/MoyenPaiement' }
+                    minimum: { $ref: '#/components/schemas/Montant' }
+                    maximum: { $ref: '#/components/schemas/Montant' }
+  /wallet/recharges:
+    post:
+      tags: [wallet]
+      operationId: creerRecharge
+      summary: Créer une tentative de recharge — ne crédite rien (US-WAL-02)
+      description: Renvoie l'URL du prestataire. Le crédit n'intervient qu'à la réception du webhook signé.
+      parameters: [{ $ref: '#/components/parameters/CleIdempotence' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [montant, moyen]
+              properties:
+                montant: { $ref: '#/components/schemas/Montant' }
+                moyen: { $ref: '#/components/schemas/MoyenPaiement' }
+                telephone: { type: string, description: Numéro Mobile Money (E.164). }
+      responses:
+        '201':
+          description: Tentative « en_attente_prestataire ».
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TentativePaiement' }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /wallet/recharges/{id}:
+    get:
+      tags: [wallet]
+      operationId: lireRecharge
+      summary: État d'une tentative (l'écran « Paiement en cours de confirmation » interroge cette route)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Tentative.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TentativePaiement' }
+
+  # ─── Webhooks (E6, ADR-002) ────────────────────────────────────────────────
+  /webhooks/paiements/{prestataire}:
+    post:
+      tags: [webhooks]
+      operationId: recevoirWebhookPaiement
+      summary: Notification du prestataire — seule source de crédit du wallet (US-WAL-03)
+      description: |
+        Corps brut conservé pour vérifier la signature. Réponse 200 dès que l'événement est enregistré
+        (même rejeté), pour éviter des renvois infinis ; le traitement est idempotent par (prestataire, evenementId).
+      security: []
+      parameters:
+        - name: prestataire
+          in: path
+          required: true
+          schema: { type: string, pattern: '^[a-z0-9_]+$' }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, description: Format propre au prestataire. }
+          application/x-www-form-urlencoded:
+            schema: { type: object }
+      responses:
+        '200': { description: "Événement enregistré (traité ou rejeté, voir le journal)." }
+        '404': { description: Prestataire inconnu ou inactif. }
+
+  # ─── Entrepôt (E7) ─────────────────────────────────────────────────────────
+  /colis:
+    get:
+      tags: [entrepot]
+      operationId: listerMesColis
+      summary: Mes colis par état, avec photos extérieures (US-ENT-04)
+      parameters:
+        - { name: etat, in: query, schema: { $ref: '#/components/schemas/EtatColis' } }
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Colis.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Colis' } }
+  /options-entrepot:
+    get:
+      tags: [entrepot]
+      operationId: listerOptionsEntrepot
+      summary: Prestations avancées, toutes « Bientôt disponible » au MVP (US-ENT-05)
+      security: []
+      responses:
+        '404': { $ref: '#/components/responses/Introuvable' }
+        '200':
+          description: Options et disponibilité (toujours false au MVP).
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [code, libelle, disponible]
+                  properties:
+                    code: { type: string }
+                    libelle: { type: string }
+                    disponible: { type: boolean, const: false }
+  /colis/{id}/options:
+    post:
+      tags: [entrepot]
+      operationId: commanderOptionEntrepot
+      summary: Refusé au MVP pour toute option (D-010, D-011)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [option]
+              properties:
+                option: { type: string }
+      responses:
+        '201': { description: "Réservé à la V2 : jamais renvoyé au MVP." }
+        '409':
+          description: Prestation non disponible au lancement (`option_indisponible`).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Erreur' }
+
+  # ─── Transport (E8) ────────────────────────────────────────────────────────
+  /commandes/{id}/offres-transport:
+    get:
+      tags: [transport]
+      operationId: listerOffresTransport
+      summary: Options vers la destination, prix calculé sur le poids taxable (US-TRA-01)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '200':
+          description: Offres avec contrat actif uniquement.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/OffreTransport' } }
+        '409': { $ref: '#/components/responses/Conflit' }
+  /commandes/{id}/expedition:
+    post:
+      tags: [transport]
+      operationId: choisirExpedition
+      summary: Choisir l'offre, le mode de remise et payer le fret depuis le wallet (US-TRA-01, 03, 05)
+      parameters: [{ $ref: '#/components/parameters/Id' }, { $ref: '#/components/parameters/CleIdempotence' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [offreTransportId, modeRemise]
+              properties:
+                offreTransportId: { type: string }
+                modeRemise: { type: string, enum: [retrait_point, livraison_locale] }
+                pointRetraitId: { type: string }
+                adresseId: { type: string }
+      responses:
+        '200':
+          description: Fret payé ; commande « prete_a_expedier ».
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '402':
+          description: Solde insuffisant.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/SoldeInsuffisant' }
+  /transitaires-personnels:
+    post:
+      tags: [transport]
+      operationId: proposerTransitaire
+      summary: Indiquer mon transitaire ; approbation Admin requise (US-TRA-02)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [nom, contact, adresseDepot]
+              properties:
+                nom: { type: string }
+                contact: { type: string }
+                adresseDepot: { type: string }
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '202': { description: En attente d'approbation. }
+  /points-retrait:
+    get:
+      tags: [transport]
+      operationId: listerPointsRetrait
+      summary: Points SS DROPSHIP de retrait (H-04)
+      security: []
+      parameters:
+        - { name: pays, in: query, schema: { type: string } }
+      responses:
+        '404': { $ref: '#/components/responses/Introuvable' }
+        '200':
+          description: Points actifs.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [id, nom, ville, adresse, horaires]
+                  properties:
+                    id: { type: string }
+                    nom: { type: string }
+                    ville: { type: string }
+                    adresse: { type: string }
+                    horaires: { type: string }
+
+  # ─── Support (E9) ──────────────────────────────────────────────────────────
+  /notifications:
+    get:
+      tags: [support]
+      operationId: listerNotifications
+      summary: Notifications dans l'application (US-COM-01)
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '200':
+          description: Notifications.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [id, modele, lue, creeLe]
+                  properties:
+                    id: { type: string }
+                    modele: { type: string }
+                    texte: { type: string }
+                    lue: { type: boolean }
+                    creeLe: { type: string, format: date-time }
+  /tickets:
+    post:
+      tags: [support]
+      operationId: ouvrirTicket
+      summary: Ouvrir un ticket depuis le chat flottant (US-COM-02)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message]
+              properties:
+                commandeId: { type: string }
+                categorie: { type: string }
+                message: { type: string, maxLength: 4000 }
+      responses:
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+        '201': { description: Ticket créé. }
+
+  # ─── Back-office (E3–E10) ──────────────────────────────────────────────────
+  /admin/demandes:
+    get:
+      tags: [admin]
+      operationId: fileDemandes
+      summary: File de travail des agents (US-DEM-05) — rôle agent_achat
+      parameters:
+        - { name: mode, in: query, schema: { $ref: '#/components/schemas/ModeDemande' } }
+        - { name: nonAttribuees, in: query, schema: { type: boolean } }
+      responses:
+        '200':
+          description: Demandes.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Demande' } }
+        '403': { $ref: '#/components/responses/Interdit' }
+  /admin/demandes/{id}/offres:
+    post:
+      tags: [admin]
+      operationId: proposerOffre
+      summary: Proposer une offre ; taux et frais figés depuis les paramètres (US-DEV-01, US-DEV-04)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/NouvelleOffre' }
+      responses:
+        '201':
+          description: Offre calculée et envoyée au client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Offre' }
+        '403': { $ref: '#/components/responses/Interdit' }
+  /admin/commandes/{id}/transitions:
+    post:
+      tags: [admin]
+      operationId: transitionnerCommande
+      summary: Changer l'état selon la machine à états, avec audit (US-CMD-04, US-TRA-04)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [vers]
+              properties:
+                vers: { $ref: '#/components/schemas/EtatCommande' }
+                commentaire: { type: string }
+                numeroSuivi: { type: string }
+      responses:
+        '200':
+          description: Transition effectuée.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Commande' }
+        '403': { $ref: '#/components/responses/Interdit' }
+        '409': { $ref: '#/components/responses/Conflit' }
+  /admin/colis/{id}/reception:
+    post:
+      tags: [admin]
+      operationId: receptionnerColis
+      summary: Réception d'un carton FERMÉ — aucune donnée de contenu acceptée (US-ENT-02)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/ReceptionColis' }
+      responses:
+        '200':
+          description: Colis reçu ; commande « recue_entrepot » ; client notifié.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Colis' }
+        '403': { $ref: '#/components/responses/Interdit' }
+        '422': { $ref: '#/components/responses/Invalide' }
+  /admin/parametres/{cle}:
+    put:
+      tags: [admin]
+      operationId: modifierParametre
+      summary: Nouvelle version d'un paramètre (frais, change, seuils, parrainage) ; s'applique aux nouveaux devis (US-ADM-02)
+      parameters:
+        - { name: cle, in: path, required: true, schema: { type: string } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [valeur]
+              properties:
+                pays: { type: string }
+                valeur: {}
+      responses:
+        '200': { description: Version créée et journalisée. }
+        '403': { $ref: '#/components/responses/Interdit' }
+  /admin/audit:
+    get:
+      tags: [admin]
+      operationId: consulterAudit
+      summary: Rechercher dans le journal d'audit (US-ADM-04)
+      parameters:
+        - { name: objetType, in: query, schema: { type: string } }
+        - { name: objetId, in: query, schema: { type: string } }
+        - { name: acteurId, in: query, schema: { type: string } }
+        - $ref: '#/components/parameters/Curseur'
+      responses:
+        '200':
+          description: Entrées d'audit.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [id, action, objetType, objetId, creeLe]
+                  properties:
+                    id: { type: string }
+                    acteurId: { type: [string, 'null'] }
+                    action: { type: string }
+                    objetType: { type: string }
+                    objetId: { type: string }
+                    avant: {}
+                    apres: {}
+                    creeLe: { type: string, format: date-time }
+        '403': { $ref: '#/components/responses/Interdit' }
+  /admin/rapprochement/{date}:
+    get:
+      tags: [admin]
+      operationId: lireRapprochement
+      summary: Écarts entre ledger et relevé du prestataire (US-WAL-06) — rôle comptable
+      parameters:
+        - { name: date, in: path, required: true, schema: { type: string, format: date } }
+      responses:
+        '200':
+          description: Rapport.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [date, ecarts]
+                properties:
+                  date: { type: string, format: date }
+                  ecarts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        tentativeId: { type: string }
+                        referencePrestataire: { type: string }
+                        montantLedger: { $ref: '#/components/schemas/Montant' }
+                        montantPrestataire: { $ref: '#/components/schemas/Montant' }
+        '403': { $ref: '#/components/responses/Interdit' }
+
+components:
+  securitySchemes:
+    jeton:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  parameters:
+    Id:
+      name: id
+      in: path
+      required: true
+      schema: { type: string }
+    Curseur:
+      name: curseur
+      in: query
+      schema: { type: string }
+    CleIdempotence:
+      name: Idempotency-Key
+      in: header
+      required: true
+      description: Identifiant unique généré par le client ; une requête rejouée renvoie le même résultat sans nouvel effet.
+      schema: { type: string, minLength: 16, maxLength: 128 }
+  responses:
+    NonAuthentifie:
+      description: Authentification requise ou invalide.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+    Interdit:
+      description: Rôle insuffisant ; tentative journalisée.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+    Introuvable:
+      description: Ressource introuvable.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+    Conflit:
+      description: Conflit d'état (transition interdite, doublon, offre déjà acceptée).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+    Invalide:
+      description: Données invalides.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+    TropDeTentatives:
+      description: Trop de tentatives ; réessayer plus tard.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Erreur' }
+  schemas:
+    Erreur:
+      type: object
+      required: [code, message]
+      properties:
+        code:
+          type: string
+          examples: [transition_interdite, option_indisponible, solde_insuffisant, code_parrainage_invalide]
+        message: { type: string, description: "Message traduit, destiné à l'utilisateur." }
+        details: { type: object }
+    Devise:
+      type: string
+      enum: [XOF, GNF, GHS, CNY, TRY, AED, EUR, USD]
+    Montant:
+      type: object
+      required: [valeur, devise]
+      properties:
+        valeur: { type: integer, description: Unité mineure de la devise (le FCFA n'a pas de décimales). }
+        devise: { $ref: '#/components/schemas/Devise' }
+    Langue:
+      type: string
+      enum: [fr, en, tr, es, zh]
+    MoyenPaiement:
+      type: string
+      enum: [orange_money, moov_money, mtn_momo, wave, carte, virement]
+    ModeDemande:
+      type: string
+      enum: [directe, recherche, negociation]
+    EtatCommande:
+      type: string
+      enum: [brouillon, devis_demande, devis_propose, devis_accepte, devis_expire, payee, achat_en_cours,
+        expediee_fournisseur, recue_entrepot, en_attente_paiement_fret, prete_a_expedier, remise_transporteur,
+        en_transit, en_douane, arrivee_pays, disponible_retrait, en_livraison_locale, livree, annulee, incident,
+        litige, remboursee]
+    EtatColis:
+      type: string
+      enum: [attendu, recu, mesure, anomalie, pret, expedie]
+    Inscription:
+      type: object
+      required: [nom, pays, motDePasse, motDePasseConfirmation, cguAcceptees]
+      properties:
+        nom: { type: string, minLength: 2 }
+        telephone: { type: string, description: "E.164, indicatif +223 proposé par défaut au Mali." }
+        email: { type: string, format: email }
+        pays: { type: string, enum: [ML, CI, GN, GH] }
+        motDePasse: { type: string, format: password, minLength: 8 }
+        motDePasseConfirmation: { type: string, format: password }
+        codeParrainage: { type: string, description: "Facultatif (D-005). Invalide → message, inscription possible sans code." }
+        cguAcceptees: { type: boolean, const: true }
+      anyOf:
+        - required: [telephone]
+        - required: [email]
+    ResultatInscription:
+      type: object
+      required: [utilisateurId, parrainageEnregistre]
+      properties:
+        utilisateurId: { type: string }
+        parrainageEnregistre: { type: boolean }
+        avertissement: { type: string, description: "Ex. « code de parrainage invalide, ignoré »." }
+    Jetons:
+      type: object
+      required: [jetonAcces, jetonRafraichissement, expireDans]
+      properties:
+        jetonAcces: { type: string }
+        jetonRafraichissement: { type: string }
+        expireDans: { type: integer, description: Secondes. }
+    Profil:
+      type: object
+      required: [id, nom, pays, langue, roles]
+      properties:
+        id: { type: string }
+        nom: { type: string }
+        telephone: { type: string }
+        email: { type: string }
+        pays: { type: string }
+        langue: { $ref: '#/components/schemas/Langue' }
+        roles: { type: array, items: { type: string } }
+    Adresse:
+      type: object
+      required: [libelle, pays, ville, quartier, telephoneDestinataire]
+      properties:
+        id: { type: string, readOnly: true }
+        libelle: { type: string }
+        pays: { type: string }
+        ville: { type: string }
+        quartier: { type: string }
+        repere: { type: string }
+        telephoneDestinataire: { type: string }
+        parDefaut: { type: boolean }
+    EspaceParrainage:
+      type: object
+      required: [code, lienPartage, nombreFilleuls, recompensesVersees, recompensesEnAttente, regle]
+      properties:
+        code: { type: string }
+        lienPartage: { type: string, format: uri }
+        nombreFilleuls: { type: integer }
+        recompensesVersees: { $ref: '#/components/schemas/Montant' }
+        recompensesEnAttente: { $ref: '#/components/schemas/Montant' }
+        regle:
+          type: object
+          description: Paramètres en vigueur (D-023), affichés au client.
+          properties:
+            tauxPb: { type: integer }
+            dureeMois: { type: integer }
+    Categorie:
+      type: object
+      required: [id, slug, libelle]
+      properties:
+        id: { type: string }
+        slug: { type: string }
+        libelle: { type: string }
+    Produit:
+      type: object
+      required: [id, titre, categorie, prixIndicatif]
+      properties:
+        id: { type: string }
+        titre: { type: string }
+        description: { type: string }
+        categorie: { type: string }
+        medias: { type: array, items: { type: string, format: uri } }
+        prixIndicatif:
+          oneOf:
+            - { $ref: '#/components/schemas/Montant' }
+            - { type: 'null' }
+        mentionPrix: { type: string, const: 'prix indicatif, confirmé par devis' }
+        origine: { type: string }
+        delaiEstimeJours: { type: integer }
+        fournisseur: { $ref: '#/components/schemas/FournisseurPublic' }
+    FournisseurPublic:
+      type: object
+      description: Vue client — sans coordonnées internes.
+      required: [id, nom, paysOrigine]
+      properties:
+        id: { type: string }
+        nom: { type: string }
+        paysOrigine: { type: string }
+        categories: { type: array, items: { type: string } }
+        delaiMoyenJours: { type: integer }
+    NouvelleDemande:
+      type: object
+      required: [mode, description, quantite]
+      properties:
+        mode: { $ref: '#/components/schemas/ModeDemande' }
+        description: { type: string, maxLength: 4000 }
+        liens: { type: array, items: { type: string, format: uri }, maxItems: 10 }
+        quantite: { type: integer, minimum: 1 }
+        variante: { type: string }
+        budgetCible: { $ref: '#/components/schemas/Montant' }
+        medias: { type: array, items: { type: string, description: cleStockage }, maxItems: 6 }
+    Demande:
+      type: object
+      required: [id, reference, mode, etat, creeLe]
+      properties:
+        id: { type: string }
+        reference: { type: string }
+        mode: { $ref: '#/components/schemas/ModeDemande' }
+        description: { type: string }
+        etat: { $ref: '#/components/schemas/EtatCommande' }
+        creeLe: { type: string, format: date-time }
+    NouvelleOffre:
+      type: object
+      required: [prixUnitaireOrigine, quantite, delaiJours, valableJusquau]
+      properties:
+        fournisseurId: { type: string }
+        prixUnitaireOrigine: { $ref: '#/components/schemas/Montant' }
+        quantite: { type: integer, minimum: 1 }
+        transportVersEntrepot: { $ref: '#/components/schemas/Montant' }
+        delaiJours: { type: integer, minimum: 1 }
+        valableJusquau: { type: string, format: date-time }
+    Offre:
+      type: object
+      required: [id, version, montantProduit, fraisService, transportVersEntrepot, total, delaiJours, valableJusquau, etat]
+      properties:
+        id: { type: string }
+        version: { type: integer }
+        fournisseur: { $ref: '#/components/schemas/FournisseurPublic' }
+        prixUnitaireOrigine: { $ref: '#/components/schemas/Montant' }
+        tauxChange: { type: string, description: "Taux appliqué, figé avec l'offre, ex. « 1 CNY = 87,21 FCFA »." }
+        montantProduit: { $ref: '#/components/schemas/Montant' }
+        fraisService: { $ref: '#/components/schemas/Montant' }
+        transportVersEntrepot: { $ref: '#/components/schemas/Montant' }
+        total: { $ref: '#/components/schemas/Montant' }
+        delaiJours: { type: integer }
+        valableJusquau: { type: string, format: date-time }
+        etat: { type: string, enum: [proposee, acceptee, close, expiree] }
+    EvenementCommande:
+      type: object
+      required: [vers, date]
+      properties:
+        depuis: { $ref: '#/components/schemas/EtatCommande' }
+        vers: { $ref: '#/components/schemas/EtatCommande' }
+        date: { type: string, format: date-time }
+        commentaire: { type: string }
+    Commande:
+      type: object
+      required: [id, reference, etat, devise, evenements]
+      properties:
+        id: { type: string }
+        reference: { type: string }
+        etat: { $ref: '#/components/schemas/EtatCommande' }
+        totalProduit: { $ref: '#/components/schemas/Montant' }
+        totalFrais: { $ref: '#/components/schemas/Montant' }
+        devise: { $ref: '#/components/schemas/Devise' }
+        suiviFournisseur: { type: string }
+        evenements: { type: array, items: { $ref: '#/components/schemas/EvenementCommande' } }
+        actionsPossibles:
+          type: array
+          description: Actions offertes au client dans l'état courant (payer, annuler, choisir_transport…).
+          items: { type: string }
+    SoldeInsuffisant:
+      type: object
+      required: [code, manquant]
+      properties:
+        code: { type: string, const: solde_insuffisant }
+        manquant: { $ref: '#/components/schemas/Montant' }
+    Wallet:
+      type: object
+      required: [principal, recompenses]
+      properties:
+        principal: { $ref: '#/components/schemas/Montant' }
+        recompenses:
+          allOf: [{ $ref: '#/components/schemas/Montant' }]
+          description: Utilisable sur les frais de service uniquement, non retirable au MVP (H-05).
+    Operation:
+      type: object
+      required: [id, type, montant, libelle, date]
+      properties:
+        id: { type: string }
+        type: { type: string, enum: [recharge, paiement_commande, paiement_fret, frais_stockage, livraison_locale, remboursement, recompense_parrainage, correction] }
+        compte: { type: string, enum: [principal, recompenses] }
+        montant: { $ref: '#/components/schemas/Montant' }
+        libelle: { type: string }
+        commandeReference: { type: string }
+        date: { type: string, format: date-time }
+    TentativePaiement:
+      type: object
+      required: [id, etat, montant, moyen]
+      properties:
+        id: { type: string }
+        etat: { type: string, enum: [creee, en_attente_prestataire, confirmee, echouee, expiree, anomalie] }
+        montant: { $ref: '#/components/schemas/Montant' }
+        moyen: { $ref: '#/components/schemas/MoyenPaiement' }
+        urlPaiement: { type: string, format: uri }
+        expireLe: { type: string, format: date-time }
+    Colis:
+      type: object
+      required: [id, reference, etat, commandeReference]
+      properties:
+        id: { type: string }
+        reference: { type: string }
+        commandeReference: { type: string }
+        etat: { $ref: '#/components/schemas/EtatColis' }
+        recuLe: { type: string, format: date-time }
+        poidsGrammes: { type: integer }
+        dimensionsCm:
+          type: object
+          properties:
+            longueur: { type: integer }
+            largeur: { type: integer }
+            hauteur: { type: integer }
+        etatExterieur: { type: string, enum: [bon, abime, mouille, ouvert_a_reception] }
+        photosExterieures: { type: array, items: { type: string, format: uri } }
+        stockageGratuitJusquau: { type: string, format: date-time }
+    ReceptionColis:
+      type: object
+      description: Carton fermé (D-010). additionalProperties false empêche toute saisie sur le contenu.
+      additionalProperties: false
+      required: [poidsGrammes, longueurCm, largeurCm, hauteurCm, etatExterieur, emplacement, photosExterieures]
+      properties:
+        transporteurArrivee: { type: string }
+        suiviArrivee: { type: string }
+        poidsGrammes: { type: integer, minimum: 1 }
+        longueurCm: { type: integer, minimum: 1 }
+        largeurCm: { type: integer, minimum: 1 }
+        hauteurCm: { type: integer, minimum: 1 }
+        etatExterieur: { type: string, enum: [bon, abime, mouille, ouvert_a_reception] }
+        emplacement: { type: string }
+        anomalie: { type: string }
+        photosExterieures: { type: array, minItems: 1, items: { type: string, description: cleStockage } }
+    OffreTransport:
+      type: object
+      required: [id, transporteur, mode, poidsTaxableGrammes, prix, delaiJoursMin, delaiJoursMax]
+      properties:
+        id: { type: string }
+        transporteur: { type: string, description: "Nom commercial, pas les coordonnées internes (D-013)." }
+        type: { type: string, enum: [partenaire, transitaire_client, express] }
+        mode: { type: string, enum: [aerien_groupage, express] }
+        poidsTaxableGrammes: { type: integer }
+        prix: { $ref: '#/components/schemas/Montant' }
+        delaiJoursMin: { type: integer }
+        delaiJoursMax: { type: integer }
+        droitsInclus: { type: boolean, description: Groupage « dédouané » ou droits à payer à l'arrivée (M-007). }

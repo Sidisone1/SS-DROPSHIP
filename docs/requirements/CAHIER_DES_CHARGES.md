@@ -4,7 +4,7 @@
 L'ancien nom de projet **Suppliers Market** a été remplacé par **SS DROPSHIP**.
 
 ## 1. Vision et marchés
-Plateforme d'agent d'achat internationale : le client trouve ou soumet un produit, SS DROPSHIP prend en charge le sourcing et/ou l'achat, suit la réception en entrepôt, gère le paiement, le contrôle autorisé, l'expédition et la livraison. Sources : Chine, Turquie, Dubaï, Europe. Marchés cibles prioritaires : Côte d'Ivoire, Ghana, Guinée, avec extension ultérieure.
+Plateforme d'agent d'achat internationale : le client trouve ou soumet un produit, SS DROPSHIP prend en charge le sourcing et/ou l'achat, suit la réception en entrepôt, gère le paiement, le contrôle autorisé, l'expédition et la livraison. Sources : Chine, Turquie, Dubaï, Europe. Marchés cibles prioritaires : Côte d'Ivoire, Ghana, Guinée, avec extension ultérieure. **Mise à jour du 23/11/2026 (D-021)** : lancement au **Mali**, puis Côte d'Ivoire, Guinée, Ghana.
 
 Produits : électronique, informatique, jeux vidéo, téléphones, équipements réseau et autres catégories administrables. L'application doit permettre de proposer des fournisseurs locaux et internationaux.
 

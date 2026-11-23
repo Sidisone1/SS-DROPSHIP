@@ -1,5 +1,6 @@
-# Configuration partagée
+# Configuration partagée — `@ss-dropship/config`
 
-Localisation langues, pays, devises, flags d'activation MVP/V2 et réglages d'intégrations hors secrets.
+Pays (Mali ouvert, puis Côte d'Ivoire, Guinée, Ghana — D-021), langues publiées (FR, EN), drapeaux d'activation :
+prestations V2 et abonnement « Pro » désactivés au MVP (D-011, D-022). Aucun secret ici.
 
-Statut : emplacement préparé, contenu d'origine non disponible tant qu'il n'a pas été importé.
+Tests : `pnpm --filter @ss-dropship/config test`.
