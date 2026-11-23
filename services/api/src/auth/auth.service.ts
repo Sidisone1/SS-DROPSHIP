@@ -33,6 +33,9 @@ export class AuthService {
     const validation = validerInscription(saisie);
     if (!validation.valide) throw new BadRequestException({ code: 'inscription_invalide', erreurs: validation.erreurs });
     const { nom, email, telephone, codeParrainage } = validation.champs;
+    // Un contact non vérifié ne doit pas être utilisable pour se connecter ni bloquer un autre client.
+    // Au MVP, une inscription n'utilise qu'un seul canal jusqu'à la vérification indépendante des deux.
+    if (email && telephone) throw new BadRequestException('Utilisez uniquement le téléphone ou l’e-mail pour l’inscription');
     const [compte, parrain] = await Promise.all([
       this.prisma.utilisateur.findFirst({
         where: { OR: [
