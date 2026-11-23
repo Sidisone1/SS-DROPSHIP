@@ -160,3 +160,9 @@
 - Ajout de `packages/types/src/inscription.test.ts` (9 cas automatisés) couvrant inscriptions valides, champs facultatifs et erreurs de validation.
 - **Limite :** pas de création de compte, d'API d'inscription, de SMS, de stockage de mot de passe ou de contrôle d'unicité ; le formulaire web reste désactivé. La validation du code parrain, l'anti-auto-parrainage et le contrôle du compte existant seront faits côté serveur lors de l'implémentation de S1.
 - Tests ajoutés au dépôt, mais **exécution CI non confirmée dans cette intervention**.
+
+## 2026-11-23 — Sprint S1 : sécurité des mots de passe
+- `services/api/src/auth/mots-de-passe.ts` : dérivation asynchrone scrypt avec sel aléatoire de 128 bits et paramètres bornés ; vérification avec `timingSafeEqual`, format d'empreinte versionné.
+- `services/api/test/mots-de-passe.test.ts` : 4 tests couvrant empreinte non réversible, sel aléatoire, secret erroné, entrées invalides et rejet des paramètres scrypt non conformes.
+- Aucune route publique n'a encore été ouverte ; l'inscription reste désactivée jusqu'à ce que la vérification de contact et les limites de tentatives soient intégrées.
+- Tests ajoutés à la suite Vitest existante, **exécution de la CI non confirmée**.
