@@ -166,3 +166,13 @@
 - `services/api/test/mots-de-passe.test.ts` : 4 tests couvrant empreinte non réversible, sel aléatoire, secret erroné, entrées invalides et rejet des paramètres scrypt non conformes.
 - Aucune route publique n'a encore été ouverte ; l'inscription reste désactivée jusqu'à ce que la vérification de contact et les limites de tentatives soient intégrées.
 - Tests ajoutés à la suite Vitest existante, **exécution de la CI non confirmée**.
+
+## 2026-11-23 — Sprint S1 : comptes, vérification, sessions et parrainage
+
+- API NestJS : `AuthModule`, `AuthController` et `AuthService` ajoutés ; persistance transactionnelle des comptes dans PostgreSQL/Prisma avec état `a_verifier`, mot de passe scrypt, code de parrainage propre à chaque compte et relation parrain-filleul atomique.
+- OTP : codes à six chiffres, empreinte HMAC-SHA256 avec secret serveur obligatoire `SS_OTP_PEPPER`, expiration 10 min, 5 tentatives maximum ; renvoi avec délai 60 s et invalidation des anciens codes.
+- Transport : `NotificationAuthService` relaie les SMS et e-mails via des passerelles HTTPS privées, paramétrées par environnement. Le service refuse explicitement l'activation sans secret ou sans prestataire ; aucun faux envoi.
+- Sessions : jetons opaques aléatoires, seule leur empreinte SHA256 est stockée dans la table `Session` ; expiration à sept jours, authentification Bearer, récupération du profil et révocation. Les comptes non vérifiés ou administrateurs sans MFA ne peuvent pas se connecter.
+- Parrainage : consultation du code et nombre de filleuls ; `ParrainageRecompenseService` prépare les récompenses éligibles à la livraison avec 5 % des frais de service et idempotence par commande, en état `en_revue`. AUCUN crédit wallet ni versement avant l'implémentation sécurisée du ledger.
+- Tests ajoutés : `auth-s1.test.ts`, `notification-auth.test.ts`, `parrainage-recompense.test.ts`. Documentation API et `.env.example` mis à jour.
+- Limites : fournisseur SMS/e-mail réel non configuré ; pas de MFA admin ni de limitation distribuée des connexions ; déclenchement automatique depuis le workflow commande S5 et règlement comptable S6 à intégrer ; alignement OpenAPI access/refresh restant à faire. **Compilation, lint et CI à confirmer**.
