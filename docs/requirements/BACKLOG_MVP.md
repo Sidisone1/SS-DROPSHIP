@@ -1,6 +1,6 @@
 # SS DROPSHIP — Backlog du MVP
 
-**Version : 23 novembre 2026 · Phase 2 de la [procédure](../equipe/PROCEDURE_EQUIPE.md) · Statut : à valider par le propriétaire.**
+**Version : 23 novembre 2026 · Phase 2 de la [procédure](../equipe/PROCEDURE_EQUIPE.md) · Statut : **validé** par le propriétaire le 23/11/2026 (porte de la phase 2, D-025).**
 Sources : [cahier des charges](CAHIER_DES_CHARGES.md), [registre des décisions](../decisions/REGISTRE_DECISIONS.md)
 (D-001 à D-024), [arbitrages de la phase 1](../decisions/ARBITRAGES_PHASE1.md).
 
@@ -14,7 +14,7 @@ Sources : [cahier des charges](CAHIER_DES_CHARGES.md), [registre des décisions]
   pour ouvrir ensuite la Côte d'Ivoire, la Guinée et le Ghana sans réécriture.
 - Montants : entiers en FCFA (pas de centimes) ; taux et frais lus dans les paramètres Admin (M-003), jamais en dur.
 
-## Hypothèses à valider (nouvelles, introduites par ce backlog)
+## Hypothèses (validées par D-025 le 23/11/2026)
 
 | ID | Hypothèse | Pourquoi | Si refusée |
 |---|---|---|---|

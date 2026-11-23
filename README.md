@@ -8,7 +8,7 @@
 
 - [Cahier des charges consolidé](docs/requirements/CAHIER_DES_CHARGES.md)
 - **[Backlog du MVP : 82 user stories, sprints S0–S12](docs/requirements/BACKLOG_MVP.md)**
-- [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md)
+- [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md) — avec ADR, contrat d'API et modèle de données (phase 4)
 - [Décisions validées et points à arbitrer](docs/decisions/REGISTRE_DECISIONS.md)
 - [Phase 1 : arbitrages et choix du 23/11/2026 (lancement au Mali)](docs/decisions/ARBITRAGES_PHASE1.md)
 - [Design system](design/branding/DESIGN_SYSTEM.md)
@@ -48,7 +48,8 @@ Les maquettes et images réalisées dans les anciennes conversations ne sont **p
 | Structure de fichiers | Initialisée |
 | Design system | Documenté |
 | Série de 50 visuels | 50 visuels générés (1080 × 1920), à valider ; originaux HD 01–19 à récupérer |
-| Code fonctionnel de l'application | Non livré dans cette consolidation |
+| Contrats partagés, schéma de base, contrat d'API | Livrés en phase 4 et testés (23/11/2026) |
+| Code fonctionnel de l'application | Non livré : commence au sprint S0 |
 
 Site de référence du projet : [ssdropship.com](https://ssdropship.com).
 ## Atelier de suivi des designs (20 novembre 2026)

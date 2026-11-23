@@ -45,3 +45,14 @@ Développement, test/staging et production séparés; CI/CD; tests automatisés;
 
 ## Principe MVP
 Les écrans et composants pourront anticiper des fonctions premium futures, **mais ne doivent pas permettre** de commander une inspection interne, un regroupement ou un reconditionnement tant que ces opérations ne sont pas réellement disponibles.
+
+## Phase 4 — architecture détaillée (23/11/2026)
+| Document | Contenu |
+|---|---|
+| [ADR-001](ADR-001-stack-et-monorepo.md) | Stack TypeScript et organisation du monorepo (D-024) |
+| [ADR-002](ADR-002-wallet-ledger-webhooks.md) | Wallet, ledger en partie double, traitement des webhooks, rapprochement |
+| [ADR-003](ADR-003-prestataires-externes.md) | Interfaces des prestataires, sandbox, conditions d'activation |
+| [ADR-004](ADR-004-securite-et-acces.md) | Authentification, rôles, MFA, protection des données |
+| [openapi.yaml](openapi.yaml) | Contrat d'API du MVP (OpenAPI 3.1, validé par Redocly) |
+| [schema.prisma](../../services/api/prisma/schema.prisma) | Modèle de données v1 (42 tables) et migrations testées sur PostgreSQL |
+| [packages/types](../../packages/types/README.md) | Machines à états, calculs monétaires, parrainage, interfaces : code partagé et testé |

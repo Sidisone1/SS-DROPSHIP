@@ -1,0 +1,16 @@
+{
+  "name": "@ss-dropship/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "API métier SS DROPSHIP (NestJS + PostgreSQL, D-024). Phase 4 : schéma, migrations et protections ; le code NestJS arrive au sprint S0.",
+  "type": "module",
+  "scripts": {
+    "prisma:validate": "prisma validate",
+    "test:db": "node --test prisma/protections.test.mjs"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "0.4.3",
+    "prisma": "7.10.1"
+  },
+  "engines": { "node": ">=22.18" }
+}

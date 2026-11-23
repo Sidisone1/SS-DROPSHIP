@@ -117,3 +117,16 @@
 - Nouvelles hypothèses H-01 à H-05 tracées dans le backlog et le registre (à valider).
 - Ajout de `docs/requirements/backlog.test.mjs` (9 tests) : structure, parrainage, webhook, carton fermé, options V2, Mali.
 - Statut : **à valider**. Aucun code applicatif modifié.
+
+## 2026-11-23 — Phase 4 : architecture
+- D-025 : hypothèses H-01 à H-05 validées par le propriétaire ; backlog MVP passé au statut « validé ».
+- `packages/types` : machines à états (commande, paiement, colis), calculs monétaires entiers (frais de service, conversion,
+  poids taxable, fret), récompense de parrainage (D-023), options V2 verrouillées, interfaces des prestataires.
+  22 tests (`node --test "packages/types/src/**/*.test.ts"`), dont la cohérence des états avec la base et l'API ; types vérifiés par `tsc` strict.
+- `services/api/prisma` : schéma v1 (42 tables, validé par Prisma 7.10.1), migration initiale, migration de protections
+  (ledger et audit en écriture seule, partie double, solde client non négatif, options V2 verrouillées, Mali seul pays ouvert),
+  10 tests sur PostgreSQL embarqué (PGlite).
+- `docs/architecture/openapi.yaml` : contrat d'API du MVP (comptes, parrainage, catalogue, demandes, commandes, wallet,
+  webhooks, entrepôt, transport, support, back-office), validé par Redocly sans avertissement.
+- ADR-001 à ADR-004 : stack, wallet et webhooks, prestataires, sécurité. `.gitignore` et `.env.example` ajoutés.
+- Aucune intégration externe réelle ; aucun code NestJS, web ou mobile (sprint S0).
