@@ -4,8 +4,10 @@
 // L'URL de connexion est fournie par l'environnement (prisma.config.ts), jamais dans ce fichier.
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider            = "prisma-client"
+  output              = "../src/generated/prisma"
+  moduleFormat        = "esm"
+  importFileExtension = "js"
 }
 
 datasource db {
