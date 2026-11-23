@@ -1,6 +1,8 @@
+import { Public } from '../auth/decorateurs.js';
 import { Controller, Get, Inject } from '@nestjs/common';
 import { CONFIGURATION, type Configuration } from '../config.js';
 
+@Public()
 @Controller('sante')
 export class SanteController {
   constructor(@Inject(CONFIGURATION) private readonly config: Configuration) {}

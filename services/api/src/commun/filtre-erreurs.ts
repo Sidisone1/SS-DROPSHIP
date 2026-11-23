@@ -1,5 +1,6 @@
 import { type ArgumentsHost, Catch, type ExceptionFilter, HttpException, HttpStatus, Logger } from '@nestjs/common';
 import { OptionIndisponible, TransitionInterdite } from '@ss-dropship/types';
+import { ErreurMetier } from './erreurs.js';
 
 export interface CorpsErreur {
   code: string;
@@ -9,6 +10,12 @@ export interface CorpsErreur {
 
 /** Traduit les erreurs métier des contrats partagés au format `Erreur` du contrat OpenAPI. */
 export function versReponse(erreur: unknown): { statut: number; corps: CorpsErreur } {
+  if (erreur instanceof ErreurMetier) {
+    return {
+      statut: erreur.statut,
+      corps: { code: erreur.code, message: erreur.message, ...(erreur.details ? { details: erreur.details } : {}) },
+    };
+  }
   if (erreur instanceof TransitionInterdite) {
     return {
       statut: HttpStatus.CONFLICT,

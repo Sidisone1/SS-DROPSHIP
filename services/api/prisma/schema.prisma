@@ -50,21 +50,25 @@ enum EtatCompte {
 }
 
 model Utilisateur {
-  id             String     @id @default(cuid(2))
-  nom            String
-  telephone      String?    @unique // format E.164
-  email          String?    @unique
-  motDePasseHash String
-  paysCode       String     @db.Char(2)
-  pays           Pays       @relation(fields: [paysCode], references: [code])
-  langue         String     @default("fr") @db.VarChar(5)
-  etat           EtatCompte @default(a_verifier)
-  roles          Role[]     @default([client])
-  mfaActive      Boolean    @default(false)
-  cguAccepteesLe DateTime?
-  creeLe         DateTime   @default(now())
-  majLe          DateTime   @updatedAt
-  supprimeLe     DateTime?
+  id                      String     @id @default(cuid(2))
+  nom                     String
+  telephone               String?    @unique // format E.164
+  email                   String?    @unique
+  motDePasseHash          String
+  paysCode                String     @db.Char(2)
+  pays                    Pays       @relation(fields: [paysCode], references: [code])
+  langue                  String     @default("fr") @db.VarChar(5)
+  etat                    EtatCompte @default(a_verifier)
+  roles                   Role[]     @default([client])
+  mfaActive               Boolean    @default(false)
+  /// Secret TOTP chiffré (AES-256-GCM, clé dérivée d'APP_SECRET) ; jamais en clair (ADR-004).
+  mfaSecretChiffre        String?
+  preferencesNotification Json?
+  derniereConnexionLe     DateTime?
+  cguAccepteesLe          DateTime?
+  creeLe                  DateTime   @default(now())
+  majLe                   DateTime   @updatedAt
+  supprimeLe              DateTime?
 
   codeParrainage     CodeParrainage?
   parrainage         Parrainage?           @relation("filleul")
@@ -110,6 +114,8 @@ model CodeVerification {
   objet         ObjetVerification
   codeHash      String
   tentatives    Int               @default(0)
+  /// Après 5 essais faux : plus aucun essai ni nouveau code avant cette date (US-AUT-02).
+  bloqueJusquau DateTime?
   expireLe      DateTime
   utiliseLe     DateTime?
   creeLe        DateTime          @default(now())
