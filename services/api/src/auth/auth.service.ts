@@ -94,6 +94,46 @@ export class AuthService {
     return { utilisateurId: utilisateur.id, etat: 'a_verifier' as const, canal };
   }
 
+  async renvoyerCode(utilisateurId: string) {
+    if (typeof utilisateurId !== 'string' || utilisateurId.length < 8) {
+      throw new BadRequestException('Identifiant invalide');
+    }
+    const compte = await this.prisma.utilisateur.findUnique({
+      where: { id: utilisateurId },
+      select: { id: true, etat: true, telephone: true, email: true },
+    });
+    if (!compte || compte.etat !== 'a_verifier') throw new BadRequestException('Compte non vérifiable');
+    const canal = compte.telephone ? 'sms' : 'email';
+    const destinataire = compte.telephone ?? compte.email;
+    if (!destinataire) throw new BadRequestException('Contact absent');
+    if (!this.notification.estDisponible(canal)) throw new ServiceUnavailableException('Canal indisponible');
+    const dernier = await this.prisma.codeVerification.findFirst({
+      where: { utilisateurId, objet: { in: ['email', 'telephone'] } },
+      orderBy: { creeLe: 'desc' },
+    });
+    if (dernier && Date.now() - dernier.creeLe.getTime() < 60_000) {
+      throw new TooManyRequestsException('Attendez avant de renvoyer un code');
+    }
+    if (dernier && dernier.tentatives >= 5 && Date.now() - dernier.creeLe.getTime() < 15 * 60_000) {
+      throw new TooManyRequestsException('Réessayez plus tard');
+    }
+    const code = nouveauCode();
+    await this.prisma.$transaction(async (tx) => {
+      await tx.codeVerification.updateMany({
+        where: { utilisateurId, utiliseLe: null },
+        data: { utiliseLe: new Date() },
+      });
+      await tx.codeVerification.create({
+        data: {
+          utilisateurId, objet: canal === 'sms' ? 'telephone' : 'email',
+          codeHash: empreinteCode(code), expireLe: new Date(Date.now() + DUREE_OTP_MS),
+        },
+      });
+    });
+    await this.notification.envoyerCode({ canal, destinataire, code, dureeMinutes: 10 });
+    return { canal, delaiSecondes: 60 };
+  }
+
   async verifierContact(utilisateurId: string, code: string) {
     if (typeof utilisateurId !== 'string' || typeof code !== 'string' || !/^[0-9]{6}$/.test(code)) {
       throw new BadRequestException('Code invalide');
