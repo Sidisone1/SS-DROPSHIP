@@ -4,3 +4,4 @@ export * from './montants.ts';
 export * from './parrainage.ts';
 export * from './options.ts';
 export type * from './prestataires.ts';
+export * from './inscription.ts';
