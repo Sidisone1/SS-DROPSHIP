@@ -23,6 +23,10 @@ export class AuthService {
   ) {}
 
   async inscrire(saisie: SaisieInscription) {
+    if (!saisie || typeof saisie.nom !== 'string' || typeof saisie.pays !== 'string' ||
+      typeof saisie.motDePasse !== 'string' || typeof saisie.motDePasseConfirmation !== 'string') {
+      throw new BadRequestException('Inscription invalide');
+    }
     const validation = validerInscription(saisie);
     if (!validation.valide) throw new BadRequestException({ code: 'inscription_invalide', erreurs: validation.erreurs });
     const { nom, email, telephone, codeParrainage } = validation.champs;
@@ -46,6 +50,9 @@ export class AuthService {
     const canal = telephone ? 'sms' : 'email';
     const destinataire = telephone ?? email;
     if (!destinataire) throw new BadRequestException('Contact manquant');
+    if (!this.notification.estDisponible(canal)) {
+      throw new (await import('@nestjs/common')).ServiceUnavailableException('Canal de vérification indisponible');
+    }
     const reference = randomBytes(7).toString('hex').toUpperCase();
     // Unicité finale assurée par les contraintes en base ; transaction atomique.
     let utilisateur: { id: string };
@@ -85,7 +92,9 @@ export class AuthService {
   }
 
   async verifierContact(utilisateurId: string, code: string) {
-    if (!/^[0-9]{6}$/.test(code)) throw new BadRequestException('Code invalide');
+    if (typeof utilisateurId !== 'string' || typeof code !== 'string' || !/^[0-9]{6}$/.test(code)) {
+      throw new BadRequestException('Code invalide');
+    }
     // La transaction sérialisable évite deux validations concurrentes et garde le compteur de tentatives en base.
     const etat = await this.prisma.$transaction(async (tx) => {
       const compte = await tx.utilisateur.findUnique({
