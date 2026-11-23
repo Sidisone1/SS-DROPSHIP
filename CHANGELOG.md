@@ -153,3 +153,10 @@
 - Typographie : espaces insécables avant « ? » dans les textes français.
 - Vérification complète : lint Biome OK ; `turbo run typecheck test build` 21/21 sans cache.
 - Captures du code réel : `docs/captures/S0/`. Reste en S0 : environnements et observabilité (hébergement à choisir).
+
+## 2026-11-23 — Sprint S1 : première brique d'inscription (US-AUT-01)
+- Ajout de `packages/types/src/inscription.ts` : validation réutilisable des champs d'inscription pour le Mali, normalisation du numéro +223 au format E.164, e-mail en minuscules, code de parrainage facultatif en majuscules, contrôle des mots de passe concordants et de l'acceptation des CGU.
+- Export de `validerInscription` et `normaliserTelephoneMali` depuis `@ss-dropship/types` pour les futures applications et l'API.
+- Ajout de `packages/types/src/inscription.test.ts` (9 cas automatisés) couvrant inscriptions valides, champs facultatifs et erreurs de validation.
+- **Limite :** pas de création de compte, d'API d'inscription, de SMS, de stockage de mot de passe ou de contrôle d'unicité ; le formulaire web reste désactivé. La validation du code parrain, l'anti-auto-parrainage et le contrôle du compte existant seront faits côté serveur lors de l'implémentation de S1.
+- Tests ajoutés au dépôt, mais **exécution CI non confirmée dans cette intervention**.
