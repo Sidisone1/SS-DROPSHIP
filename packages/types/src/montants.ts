@@ -94,9 +94,11 @@ export function fret(poidsTaxable: number, prixParKg: Montant, pasGrammes = 500)
 /** Formatage d'affichage, ex. 125000 XOF → « 125 000 FCFA ». */
 export function formater(m: Montant, locale = 'fr-FR'): string {
   const { decimales } = DEVISES[m.devise];
-  const nombre = (m.valeur / 10 ** decimales).toLocaleString(locale, {
-    minimumFractionDigits: decimales,
-    maximumFractionDigits: decimales,
-  }).replace(/ | /g, ' ');
+  const nombre = (m.valeur / 10 ** decimales)
+    .toLocaleString(locale, {
+      minimumFractionDigits: decimales,
+      maximumFractionDigits: decimales,
+    })
+    .replace(/ | /g, ' ');
   return `${nombre} ${m.devise === 'XOF' ? 'FCFA' : m.devise}`;
 }

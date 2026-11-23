@@ -1,0 +1,21 @@
+{
+  "name": "ss-dropship",
+  "private": true,
+  "description": "SS DROPSHIP — monorepo (D-024, ADR-001).",
+  "packageManager": "pnpm@10.28.0",
+  "engines": { "node": ">=22.18" },
+  "scripts": {
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "typecheck": "turbo run typecheck",
+    "lint": "biome check .",
+    "format": "biome format --write .",
+    "verifier": "pnpm lint && turbo run typecheck test build"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.6.6",
+    "@types/node": "22.20.5",
+    "turbo": "2.11.10",
+    "typescript": "5.9.3"
+  }
+}

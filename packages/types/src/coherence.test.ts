@@ -14,13 +14,19 @@ const protections = lire('../../../services/api/prisma/migrations/20261123000100
 function enumPrisma(nom: string): string[] {
   const bloc = prisma.match(new RegExp(`enum ${nom} \\{([^}]*)\\}`))?.[1];
   assert.ok(bloc, `enum Prisma ${nom} introuvable`);
-  return bloc.split('\n').map((l) => l.replace(/\/\/.*/, '').trim()).filter(Boolean);
+  return bloc
+    .split('\n')
+    .map((l) => l.replace(/\/\/.*/, '').trim())
+    .filter(Boolean);
 }
 
 function enumOpenApi(nom: string): string[] {
   const bloc = openapi.match(new RegExp(`\\n    ${nom}:\\n      type: string\\n      enum: \\[([^\\]]*)\\]`))?.[1];
   assert.ok(bloc, `schéma OpenAPI ${nom} introuvable`);
-  return bloc.split(',').map((s) => s.trim()).filter(Boolean);
+  return bloc
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
 }
 
 test('états de commande identiques : TypeScript = Prisma = OpenAPI', () => {
@@ -39,6 +45,10 @@ test('états de colis identiques : TypeScript = Prisma = OpenAPI', () => {
 
 test('les options V2 insérées en base sont celles des contrats, toutes indisponibles', () => {
   for (const code of Object.keys(OPTIONS_ENTREPOT)) {
-    assert.match(protections, new RegExp(`\\('${code}', 'options\\.${code}', false\\)`), `option ${code} absente de la migration`);
+    assert.match(
+      protections,
+      new RegExp(`\\('${code}', 'options\\.${code}', false\\)`),
+      `option ${code} absente de la migration`,
+    );
   }
 });

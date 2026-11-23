@@ -57,7 +57,11 @@ export interface PaymentProvider {
   verifierWebhook(requete: WebhookBrut): Promise<ResultatWebhook>;
   /** Interroge le prestataire (rapprochement, ou webhook manquant). */
   consulterStatut(referencePrestataire: string): Promise<'en_attente' | 'succes' | 'echec' | 'inconnu'>;
-  rembourser(args: { referencePrestataire: string; montant: Montant; motif: string }): Promise<{ referenceRemboursement: string }>;
+  rembourser(args: {
+    referencePrestataire: string;
+    montant: Montant;
+    motif: string;
+  }): Promise<{ referenceRemboursement: string }>;
 }
 
 // ─── Transport ───────────────────────────────────────────────────────────────

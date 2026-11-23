@@ -2,33 +2,62 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import {
-  ETATS_COMMANDE, transitionner, peutTransiter, transitionsPossibles, TransitionInterdite, paiementCreditable,
+  ETATS_COMMANDE,
+  transitionner,
+  peutTransiter,
+  transitionsPossibles,
+  TransitionInterdite,
+  paiementCreditable,
   ETATS_PAIEMENT,
-  montant, appliquerTaux, fraisDeService, convertir, poidsTaxableGrammes, fret, formater,
-  calculerRecompense, ajouterMois, PARRAINAGE_PAR_DEFAUT_XOF,
-  verifierOptionCommandable, OPTIONS_ENTREPOT, OptionIndisponible, LIBELLE_INDISPONIBLE,
+  montant,
+  appliquerTaux,
+  fraisDeService,
+  convertir,
+  poidsTaxableGrammes,
+  fret,
+  formater,
+  calculerRecompense,
+  ajouterMois,
+  PARRAINAGE_PAR_DEFAUT_XOF,
+  verifierOptionCommandable,
+  OPTIONS_ENTREPOT,
+  OptionIndisponible,
+  LIBELLE_INDISPONIBLE,
 } from './index.ts';
 
 // ─── Machines à états ───────────────────────────────────────────────────────
 
-test('parcours nominal d\'une commande jusqu\'à la livraison', () => {
+test("parcours nominal d'une commande jusqu'à la livraison", () => {
   const parcours = [
-    'brouillon', 'devis_demande', 'devis_propose', 'devis_accepte', 'payee', 'achat_en_cours',
-    'expediee_fournisseur', 'recue_entrepot', 'en_attente_paiement_fret', 'prete_a_expedier',
-    'remise_transporteur', 'en_transit', 'en_douane', 'arrivee_pays', 'disponible_retrait', 'livree',
+    'brouillon',
+    'devis_demande',
+    'devis_propose',
+    'devis_accepte',
+    'payee',
+    'achat_en_cours',
+    'expediee_fournisseur',
+    'recue_entrepot',
+    'en_attente_paiement_fret',
+    'prete_a_expedier',
+    'remise_transporteur',
+    'en_transit',
+    'en_douane',
+    'arrivee_pays',
+    'disponible_retrait',
+    'livree',
   ] as const;
   parcours.slice(1).forEach((vers, i) => {
     assert.equal(transitionner('commande', parcours[i] ?? 'brouillon', vers), vers);
   });
 });
 
-test('annulation possible avant l\'achat, refusée après (US-CMD-06)', () => {
+test("annulation possible avant l'achat, refusée après (US-CMD-06)", () => {
   assert.ok(peutTransiter('commande', 'payee', 'annulee'));
   assert.ok(!peutTransiter('commande', 'achat_en_cours', 'annulee'));
   assert.throws(() => transitionner('commande', 'achat_en_cours', 'annulee'), TransitionInterdite);
 });
 
-test('impossible de sauter des étapes ou de revenir d\'une livraison', () => {
+test("impossible de sauter des étapes ou de revenir d'une livraison", () => {
   assert.throws(() => transitionner('commande', 'devis_propose', 'payee'), TransitionInterdite);
   assert.throws(() => transitionner('commande', 'recue_entrepot', 'remise_transporteur'), TransitionInterdite);
   assert.deepEqual(transitionsPossibles('commande', 'livree'), ['litige']);
@@ -49,7 +78,7 @@ test('seul un paiement confirmé est créditable, et il est définitif (D-008)',
   assert.ok(peutTransiter('paiement', 'expiree', 'anomalie'));
 });
 
-test('un colis ne peut être expédié qu\'après réception et mesure', () => {
+test("un colis ne peut être expédié qu'après réception et mesure", () => {
   assert.throws(() => transitionner('colis', 'attendu', 'expedie'), TransitionInterdite);
   assert.equal(transitionner('colis', 'mesure', 'pret'), 'pret');
 });
@@ -61,14 +90,14 @@ test('les montants sont des entiers', () => {
   assert.deepEqual(montant(125_000, 'XOF'), { valeur: 125_000, devise: 'XOF' });
 });
 
-test('application d\'un taux en points de base, arrondi au plus proche', () => {
+test("application d'un taux en points de base, arrondi au plus proche", () => {
   assert.equal(appliquerTaux(100_000, 500), 5_000); // 5 %
   assert.equal(appliquerTaux(333, 500), 17); // 16,65 → 17
   assert.equal(appliquerTaux(330, 500), 17); // 16,5 → 17 (moitié vers le haut)
   assert.throws(() => appliquerTaux(-1, 500), RangeError);
 });
 
-test('frais de service : le minimum s\'applique sur les petites commandes (US-DEV-04)', () => {
+test("frais de service : le minimum s'applique sur les petites commandes (US-DEV-04)", () => {
   const minimum = montant(2_000, 'XOF');
   assert.equal(fraisDeService(montant(200_000, 'XOF'), 800, minimum).valeur, 16_000);
   assert.equal(fraisDeService(montant(10_000, 'XOF'), 800, minimum).valeur, 2_000);
@@ -84,7 +113,7 @@ test('conversion : yuan vers FCFA avec marge de change', () => {
   assert.equal(convertir(montant(10_000, 'EUR'), 'XOF', 655_957_000).valeur, 65_596);
 });
 
-test('poids taxable : le volumétrique l\'emporte pour un carton léger et volumineux', () => {
+test("poids taxable : le volumétrique l'emporte pour un carton léger et volumineux", () => {
   // 60×40×40 cm / 6000 = 16 kg volumétrique > 5 kg réel.
   assert.equal(poidsTaxableGrammes(5_000, { longueur: 60, largeur: 40, hauteur: 40 }, 6000), 16_000);
   assert.equal(poidsTaxableGrammes(20_000, { longueur: 60, largeur: 40, hauteur: 40 }, 6000), 20_000);
@@ -112,7 +141,9 @@ const base = {
   dejaVerseCeMois: montant(0, 'XOF'),
 };
 const livree = (date: string, frais = 20_000) => ({
-  etat: 'livree', fraisServicePayes: montant(frais, 'XOF'), dateLivraison: new Date(date),
+  etat: 'livree',
+  fraisServicePayes: montant(frais, 'XOF'),
+  dateLivraison: new Date(date),
 });
 
 test('récompense de 5 % des frais de service sur une commande livrée', () => {
@@ -123,14 +154,22 @@ test('récompense de 5 % des frais de service sur une commande livrée', () => {
 test('aucune récompense avant livraison, après 12 mois ou en auto-parrainage', () => {
   const nonLivree = { etat: 'payee', fraisServicePayes: montant(20_000, 'XOF'), dateLivraison: null };
   assert.equal(calculerRecompense({ ...base, commande: nonLivree }).statut, 'aucune');
-  assert.deepEqual(calculerRecompense({ ...base, commande: livree('2028-02-01T00:00:00Z') }),
-    { statut: 'aucune', raison: 'hors_delai' });
-  assert.deepEqual(calculerRecompense({ ...base, filleulId: 'usr_parrain', commande: livree('2027-03-10T00:00:00Z') }),
-    { statut: 'aucune', raison: 'auto_parrainage' });
+  assert.deepEqual(calculerRecompense({ ...base, commande: livree('2028-02-01T00:00:00Z') }), {
+    statut: 'aucune',
+    raison: 'hors_delai',
+  });
+  assert.deepEqual(
+    calculerRecompense({ ...base, filleulId: 'usr_parrain', commande: livree('2027-03-10T00:00:00Z') }),
+    { statut: 'aucune', raison: 'auto_parrainage' },
+  );
 });
 
 test('au-delà du plafond mensuel, la récompense passe en revue', () => {
-  const r = calculerRecompense({ ...base, dejaVerseCeMois: montant(49_500, 'XOF'), commande: livree('2027-03-10T00:00:00Z') });
+  const r = calculerRecompense({
+    ...base,
+    dejaVerseCeMois: montant(49_500, 'XOF'),
+    commande: livree('2027-03-10T00:00:00Z'),
+  });
   assert.equal(r.statut, 'en_revue');
 });
 
@@ -141,7 +180,7 @@ test('ajout de mois calendaires en fin de mois', () => {
 
 // ─── Options d'entrepôt (D-010, D-011) ──────────────────────────────────────
 
-test('aucune prestation avancée n\'est commandable au MVP', () => {
+test("aucune prestation avancée n'est commandable au MVP", () => {
   for (const option of Object.keys(OPTIONS_ENTREPOT)) {
     assert.throws(() => verifierOptionCommandable(option), OptionIndisponible);
   }

@@ -1,0 +1,13 @@
+{
+  "name": "@ss-dropship/i18n",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Traductions SS DROPSHIP (FR de référence, EN) avec repli sur le français.",
+  "type": "module",
+  "exports": { ".": "./src/index.ts" },
+  "scripts": {
+    "test": "node --test \"src/**/*.test.ts\"",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": { "typescript": "5.9.3", "@types/node": "22.20.5" }
+}

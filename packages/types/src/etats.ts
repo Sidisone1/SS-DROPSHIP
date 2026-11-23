@@ -30,9 +30,18 @@ export type EtatCommande = (typeof ETATS_COMMANDE)[number];
 
 /** États postérieurs au paiement, depuis lesquels un incident peut être ouvert. */
 const APRES_PAIEMENT: readonly EtatCommande[] = [
-  'payee', 'achat_en_cours', 'expediee_fournisseur', 'recue_entrepot', 'en_attente_paiement_fret',
-  'prete_a_expedier', 'remise_transporteur', 'en_transit', 'en_douane', 'arrivee_pays',
-  'disponible_retrait', 'en_livraison_locale',
+  'payee',
+  'achat_en_cours',
+  'expediee_fournisseur',
+  'recue_entrepot',
+  'en_attente_paiement_fret',
+  'prete_a_expedier',
+  'remise_transporteur',
+  'en_transit',
+  'en_douane',
+  'arrivee_pays',
+  'disponible_retrait',
+  'en_livraison_locale',
 ];
 
 const TRANSITIONS_COMMANDE: Readonly<Record<EtatCommande, readonly EtatCommande[]>> = {
@@ -63,7 +72,14 @@ const TRANSITIONS_COMMANDE: Readonly<Record<EtatCommande, readonly EtatCommande[
 };
 
 /** États d'une tentative de paiement (recharge du wallet). */
-export const ETATS_PAIEMENT = ['creee', 'en_attente_prestataire', 'confirmee', 'echouee', 'expiree', 'anomalie'] as const;
+export const ETATS_PAIEMENT = [
+  'creee',
+  'en_attente_prestataire',
+  'confirmee',
+  'echouee',
+  'expiree',
+  'anomalie',
+] as const;
 export type EtatPaiement = (typeof ETATS_PAIEMENT)[number];
 
 const TRANSITIONS_PAIEMENT: Readonly<Record<EtatPaiement, readonly EtatPaiement[]>> = {

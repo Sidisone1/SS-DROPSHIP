@@ -26,5 +26,5 @@ export class OptionIndisponible extends Error {
  */
 export function verifierOptionCommandable(option: string): asserts option is OptionEntrepot {
   const def = (OPTIONS_ENTREPOT as Record<string, { disponible: boolean } | undefined>)[option];
-  if (!def || !def.disponible) throw new OptionIndisponible(option);
+  if (!def?.disponible) throw new OptionIndisponible(option);
 }
