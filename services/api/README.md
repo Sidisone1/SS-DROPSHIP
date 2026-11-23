@@ -84,3 +84,5 @@ pnpm --filter @ss-dropship/api typecheck
 pnpm --filter @ss-dropship/api test
 pnpm turbo run lint typecheck test build
 ```
+
+**Sécurité S1 :** actuellement l'inscription accepte soit un numéro de téléphone, soit une adresse e-mail, mais pas les deux en même temps. Un second contact devra être ajouté puis vérifié indépendamment lors d'un sprint ultérieur. Les routes de création de compte ne sont pas encore raccordées au formulaire web public.
