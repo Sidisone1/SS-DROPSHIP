@@ -99,3 +99,12 @@
   parrainage, webhook, carton fermé, présence de chaque rôle et des sprints.
 - Registre : nouveau point ouvert M-009 (stack technique proposée, non installée). README : liens ajoutés.
 - Statut : **proposition à valider**. Aucun code applicatif modifié.
+
+## 2026-11-23 — Phase 1 : arbitrages
+- Ajout de `docs/decisions/ARBITRAGES_PHASE1.md` : options, avantages, inconvénients et recommandation pour M-001 à M-009
+  et pour le pays de lancement ; vérification publique des prestataires (Stripe absent en direct en Côte d'Ivoire, au Ghana
+  et en Guinée ; Paystack en Côte d'Ivoire et au Ghana ; CinetPay en zone BCEAO ; Orange Money Web Payment au Mali).
+- Décisions du propriétaire enregistrées : D-021 (Mali en premier, puis Côte d'Ivoire, Guinée, Ghana), D-022 (modèle
+  hybride), D-023 (parrainage : % des frais de service sur 12 mois), D-024 (stack TypeScript). M-001, M-002, M-009 levés.
+- Cahier des charges § 1, procédure et prompts alignés sur le lancement au Mali. Tests : 7 dans `docs/equipe/equipe.test.mjs`.
+- Aucune intégration de paiement n'est contractée ni testée ; impact sur D-019 à arbitrer (M-004).

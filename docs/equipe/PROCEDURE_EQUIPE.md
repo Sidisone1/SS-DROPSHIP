@@ -21,7 +21,7 @@ Les prompts prêts à l'emploi de chaque rôle sont dans [PROMPTS_EQUIPE.md](PRO
 | Pilotage | **Product Owner (PO)** — le propriétaire ou son délégué | Arbitre les points M-001 à M-009, valide chaque livrable, tient le backlog |
 | | **Chef de projet / Scrum Master** | Sprints, planning, risques, comptes rendus, suivi du registre des décisions |
 | | **Business Analyst** | Transforme le cahier des charges en user stories avec critères d'acceptation |
-| Design | **UX Researcher** | Entretiens clients CI / Ghana / Guinée, tests d'usabilité sur mobile d'entrée de gamme |
+| Design | **UX Researcher** | Entretiens clients au Mali d'abord, puis CI / Guinée / Ghana (D-021), tests d'usabilité sur mobile d'entrée de gamme |
 | | **UX Designer** | Parcours, arborescence des 5 onglets (M-005), wireframes |
 | | **UI Designer** | Design system, maquettes Bogolan (D-018, D-020), tokens de couleur sans jaune (D-003) |
 | | **Designer 3D / visuels** | Visuels 01–50, un par un (D-017), mise à jour de l'inventaire |
@@ -158,7 +158,7 @@ Cadence compatible avec la [roadmap](../planning/ROADMAP.md) (3 à 6 mois). L'or
 | **S3** | Demandes | Les **3 modes** (directe, recherche, négociation), envoi de liens, photos, vidéos | Une demande de chaque mode créée et suivie |
 | **S4** | Devis | Back-office sourcing : offres comparées, validité, frais de service, négociation | Le client reçoit et accepte un devis |
 | **S5** | Commandes | Panier, liste de souhaits, commande, facture et reçu PDF, statuts | Une commande passe de « devis » à « achat en cours » |
-| **S6** | Wallet | Ledger immuable, interface `PaymentProvider`, **un prestataire en sandbox**, webhook signé, idempotence | Crédit uniquement après webhook ; un webhook rejoué ne crédite pas deux fois |
+| **S6** | Wallet | Ledger immuable, interface `PaymentProvider`, **un prestataire Mobile Money du Mali en sandbox** (D-021), webhook signé, idempotence | Crédit uniquement après webhook ; un webhook rejoué ne crédite pas deux fois |
 | **S7** | Entrepôt | Colis attendus, réception d'un **carton fermé** : photos extérieures, poids, dimensions, emplacement, anomalies | L'agent entrepôt réceptionne un colis ; le client est notifié |
 | **S8** | Transport | Choix partenaire / transitaire personnel / express, calcul de frais, états de suivi | Le client choisit un transporteur et suit les états |
 | **S9** | Communication | Notifications push / email / SMS via interface, chat flottant, tickets, FAQ, langue EN | Un changement d'état déclenche une notification |
@@ -171,7 +171,7 @@ maritime LCL / FCL, AnKaTa (D-014), fidélité et statuts VIP.
 
 ---
 
-## 6. Stack technique proposée (à arbitrer : M-009)
+## 6. Stack technique (proposée au point M-009, validée par D-024 le 23/11/2026)
 
 | Couche | Proposition | Raison |
 |---|---|---|
@@ -185,7 +185,7 @@ maritime LCL / FCL, AnKaTa (D-014), fidélité et statuts VIP.
 | Observabilité | Sentry, journaux structurés, alertes | Exigence § 11 du cahier des charges |
 | Tests | Vitest / Jest, Playwright (web), Maestro (mobile) | Parcours critiques automatisés |
 
-Ces choix sont une **proposition** : rien n'est installé tant que le PO ne l'a pas validée (consigne AGENTS n° 12).
+Ce choix est validé (D-024). L'installation se fait au sprint S0, pas avant.
 
 ---
 

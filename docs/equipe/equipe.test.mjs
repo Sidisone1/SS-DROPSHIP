@@ -48,7 +48,16 @@ test('le plan de sprints couvre S0 à S12', () => {
   }
 });
 
-test('la stack reste une proposition liée au point ouvert M-009', () => {
+test('la stack est rattachée à sa décision D-024 (ancien point M-009)', () => {
   assert.match(procedure, /M-009/);
-  assert.match(procedure, /proposition/i);
+  assert.match(procedure, /D-024/);
+});
+
+test('le registre contient les décisions de la phase 1 (D-021 à D-024)', () => {
+  const registre = lire('../decisions/REGISTRE_DECISIONS.md');
+  for (const id of ['D-021', 'D-022', 'D-023', 'D-024']) {
+    assert.match(registre, new RegExp(`^\\| ${id} \\|`, 'm'), `décision ${id} absente`);
+  }
+  assert.match(registre, /Mali/);
+  assert.match(prompts, /Mali/);
 });
