@@ -1,0 +1,219 @@
+/* Styles de base du site SS DROPSHIP. Couleurs uniquement via les variables des tokens (packages/ui). */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: var(--ss-police);
+  color: var(--ss-role-texte);
+  background: var(--ss-role-fondSecondaire);
+  line-height: 1.5;
+}
+a {
+  color: var(--ss-role-action);
+}
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  color: var(--ss-nuit);
+}
+
+.en-tete {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ss-espace-l);
+  padding: var(--ss-espace-l) var(--ss-espace-l) calc(var(--ss-espace-l) + 8px);
+  background: var(--ss-role-enTete);
+  color: var(--ss-role-texteSurEnTete);
+}
+.logo {
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: var(--ss-blanc);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.logo span {
+  color: var(--ss-bleu);
+  background: var(--ss-blanc);
+  border-radius: var(--ss-rayon-s);
+  padding: 0 6px;
+}
+/* Frise bogolan (D-018) : brun terre et blanc, sous l'en-tête. */
+.frise-bogolan {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 8px;
+  background:
+    linear-gradient(135deg, var(--ss-blanc) 25%, transparent 25%) 0 0 / 12px 8px,
+    linear-gradient(225deg, var(--ss-blanc) 25%, transparent 25%) 0 0 / 12px 8px,
+    var(--ss-brunBogolan);
+}
+
+.conteneur {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: var(--ss-espace-xl) var(--ss-espace-l) 96px;
+}
+.conteneur.etroit {
+  max-width: 480px;
+}
+
+.hero h1 {
+  font-size: clamp(24px, 5vw, 36px);
+  margin: var(--ss-espace-l) 0;
+}
+.recherche {
+  display: flex;
+  align-items: center;
+  gap: var(--ss-espace-s);
+  background: var(--ss-blanc);
+  border: 1px solid var(--ss-bordure);
+  border-radius: var(--ss-rayon-pilule);
+  padding: var(--ss-espace-s) var(--ss-espace-l);
+  box-shadow: var(--ss-ombre-carte);
+}
+.recherche input {
+  flex: 1;
+  border: 0;
+  font: inherit;
+  font-size: 16px;
+  padding: var(--ss-espace-s) 0;
+  background: transparent;
+  color: var(--ss-role-texte);
+}
+.recherche input:focus {
+  outline: none;
+}
+.recherche:focus-within {
+  outline: 3px solid var(--ss-bleu);
+  outline-offset: 2px;
+}
+
+.grille-modes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--ss-espace-l);
+}
+.carte {
+  background: var(--ss-blanc);
+  border-radius: var(--ss-rayon-l);
+  padding: var(--ss-espace-xl);
+  box-shadow: var(--ss-ombre-carte);
+  border-top: 4px solid var(--ss-bleu);
+}
+.carte h3 {
+  margin: var(--ss-espace-s) 0 var(--ss-espace-xs);
+}
+.carte p {
+  margin: 0;
+  color: var(--ss-role-texteSecondaire);
+}
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ss-espace-m);
+  list-style: none;
+  padding: 0;
+  margin: var(--ss-espace-xxl) 0 0;
+}
+.categorie {
+  display: flex;
+  align-items: center;
+  gap: var(--ss-espace-s);
+  background: var(--ss-blanc);
+  border: 1px solid var(--ss-bordure);
+  border-radius: var(--ss-rayon-pilule);
+  padding: var(--ss-espace-xs) var(--ss-espace-l) var(--ss-espace-xs) var(--ss-espace-xs);
+  font-weight: 500;
+}
+
+.formulaire {
+  display: grid;
+  gap: var(--ss-espace-l);
+  background: var(--ss-blanc);
+  padding: var(--ss-espace-xl);
+  border-radius: var(--ss-rayon-l);
+  box-shadow: var(--ss-ombre-carte);
+}
+.formulaire label {
+  display: grid;
+  gap: var(--ss-espace-xs);
+  font-weight: 500;
+}
+.formulaire input,
+.formulaire select {
+  font: inherit;
+  font-size: 16px;
+  padding: var(--ss-espace-m);
+  border: 1px solid var(--ss-bordure);
+  border-radius: var(--ss-rayon-s);
+  color: var(--ss-role-texte);
+  background: var(--ss-blanc);
+}
+.formulaire input:focus,
+.formulaire select:focus {
+  outline: 3px solid var(--ss-bleu);
+  outline-offset: 1px;
+}
+.formulaire .case {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--ss-espace-s);
+  font-weight: 400;
+}
+.note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--ss-role-texteSecondaire);
+}
+
+.bouton {
+  display: inline-block;
+  font: inherit;
+  font-weight: 700;
+  border: 0;
+  border-radius: var(--ss-rayon-m);
+  padding: var(--ss-espace-m) var(--ss-espace-xl);
+  text-decoration: none;
+  cursor: pointer;
+}
+.bouton-principal {
+  background: var(--ss-role-action);
+  color: var(--ss-role-texteSurAction);
+}
+.bouton-principal:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.bouton-clair {
+  background: var(--ss-blanc);
+  color: var(--ss-nuit);
+}
+
+.chat-flottant {
+  position: fixed;
+  right: var(--ss-espace-l);
+  bottom: var(--ss-espace-l);
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--ss-blanc);
+  box-shadow: var(--ss-ombre-flottant);
+}
+.en-tete-actions .bouton {
+  padding: var(--ss-espace-s) var(--ss-espace-l);
+  font-size: 14px;
+  white-space: nowrap;
+}

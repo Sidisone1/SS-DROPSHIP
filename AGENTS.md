@@ -12,3 +12,8 @@
 10. Chaque changement doit être accompagné d'un commentaire de version et de tests pertinents. Ne pas inventer le statut d'intégrations tierces.
 11. Visuels 1 à 50 : mettre à jour design/mockups/INVENTAIRE_VISUELS.md avec statut réel (source HD présente, à récupérer, à générer, à valider).
 12. Préférer des décisions tracées plutôt que l'introduction de nouvelles hypothèses silencieuses.
+
+## État du projet et reprise (ajout du 23/11/2026)
+13. Avant de coder, lire **docs/REPRISE_IA.md** : état d'avancement, carte du dépôt, commandes, prochaines tâches.
+14. Les règles métier sont codées une seule fois dans `packages/types` ; les apps et l'API les importent.
+15. Vérifier avant tout commit : `pnpm lint && pnpm turbo run typecheck test build`.

@@ -1,6 +1,6 @@
 # API métier centrale
 
-NestJS + PostgreSQL (D-024). **Le code NestJS n'est pas encore écrit** : il commence au sprint S0.
+NestJS + PostgreSQL (D-024). Socle S0 livré : `/v1/sante`, `/v1/pays`, journal d'audit, filtre d'erreurs (voir CHANGELOG du 23/11/2026).
 
 ## Livré en phase 4 (23/11/2026)
 - `prisma/schema.prisma` : modèle de données v1 (42 tables), validé avec Prisma 7.10.1.
@@ -13,7 +13,7 @@ NestJS + PostgreSQL (D-024). **Le code NestJS n'est pas encore écrit** : il com
 ## Commandes
 ```bash
 cd services/api
-npm install                      # prisma, @electric-sql/pglite (versions figées)
+pnpm install                     # depuis la racine du dépôt
 npx prisma validate              # nécessite DATABASE_URL (voir .env.example)
 node --test prisma/protections.test.mjs
 ```

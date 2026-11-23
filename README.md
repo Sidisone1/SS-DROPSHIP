@@ -6,6 +6,8 @@
 
 ## Navigation du projet
 
+> **Vous reprenez le projet (humain ou IA) ?** Commencez par [docs/REPRISE_IA.md](docs/REPRISE_IA.md).
+
 - [Cahier des charges consolidé](docs/requirements/CAHIER_DES_CHARGES.md)
 - **[Backlog du MVP : 82 user stories, sprints S0–S12](docs/requirements/BACKLOG_MVP.md)**
 - [Architecture fonctionnelle et technique](docs/architecture/ARCHITECTURE.md) — avec ADR, contrat d'API et modèle de données (phase 4)

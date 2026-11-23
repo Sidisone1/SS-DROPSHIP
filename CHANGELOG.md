@@ -130,3 +130,16 @@
   webhooks, entrepôt, transport, support, back-office), validé par Redocly sans avertissement.
 - ADR-001 à ADR-004 : stack, wallet et webhooks, prestataires, sécurité. `.gitignore` et `.env.example` ajoutés.
 - Aucune intégration externe réelle ; aucun code NestJS, web ou mobile (sprint S0).
+
+## 2026-11-23 — Sprint S0 (socle, sans hébergement)
+- Monorepo pnpm + Turborepo, lint Biome, TypeScript 5.9 strict, CI GitHub Actions (lint, typecheck, tests, build ;
+  aucun déploiement : hébergement reporté par le propriétaire). Dépendances figées sur des versions publiées depuis ≥ 2 semaines.
+- `packages/config` (pays, Mali seul ouvert, drapeaux V2 désactivés), `packages/i18n` (FR/EN avec repli),
+  `packages/ui/src/tokens.ts` (palette, rôles, contrastes WCAG testés ; blanc sur rouge limité au grand texte gras).
+- `services/api` : NestJS 12 compilé par SWC, Prisma 7 (adaptateur pg), routes `/v1/sante` et `/v1/pays`, journal d'audit
+  avec masquage des champs sensibles, filtre d'erreurs (transition interdite et option V2 → 409). Vérifié de bout en bout
+  contre un serveur PostgreSQL migré (PGlite). 10 tests vitest + 10 tests de base.
+- `apps/web` : Next.js 16, accueil (trois modes, catégories, chat flottant, frise bogolan, icônes 3D) et inscription en
+  aperçu (code de parrainage facultatif, Mali par défaut ; envoi activé en S1). Build de production et 3 tests.
+- Reprise : `docs/REPRISE_IA.md`, `CLAUDE.md`, `GEMINI.md`, ajout à `AGENTS.md` (règles 13 à 15, sans modifier les 12 premières).
+- Restent en S0 : back-office et application mobile ; environnements et observabilité après choix de l'hébergeur.
