@@ -96,4 +96,6 @@
 - Ajout de `packages/ui/simulateur-fret.mjs` (calcul fret kg/m³, poids volumétrique, assurance, articles interdits) et de son test
   `packages/ui/simulateur-fret.test.mjs` (6 tests, `node --test packages/ui/simulateur-fret.test.mjs`). Barème d'**exemple** (M-003).
 - 12 PNG ajoutés dans `design/mockups/ecrans/` (écrans 47–58). Cahier des charges §13, décision D-021, points M-009 à M-012, roadmap.
+- Canva : 12 pages (47–58) ajoutées à la fin de la copie « SS DROPSHIP — 50 écrans mobiles Bogolan » (58 → 70 pages ; l'original n'est pas modifié).
+- Artifact « SS DROPSHIP Bogolan » : écrans 47–58 ajoutés à la version publiée ; artifacts rangés dans un dossier « SS DROPSHIP ».
 - Statut : **à valider**, données fictives. Aucun paiement, envoi de SMS ni appel d'IA réel (AGENTS n° 8 et 10). Les visuels 1–50 ne changent pas.
