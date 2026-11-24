@@ -253,7 +253,7 @@ h3 {
 .carte + .carte {
   margin-top: var(--ss-espace-l);
 }
-.code-parrainage {
+.carte .code-parrainage {
   font-size: 28px;
   font-weight: 800;
   letter-spacing: 2px;

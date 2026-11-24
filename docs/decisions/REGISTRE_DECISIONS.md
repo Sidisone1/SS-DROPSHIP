@@ -30,6 +30,7 @@ Dernière consolidation : 23/11/2026.
 | D-023 | Parrainage : **% des frais de service des commandes livrées du filleul pendant 12 mois** (5 % par défaut, paramétrable), versé après paiement confirmé par webhook, en solde « récompenses » non retirable au MVP, avec anti-fraude (23/11/2026) | Lève M-002 ; remplace la règle « 5 % des frais d'abonnement » |
 | D-024 | Stack **TypeScript de bout en bout** : monorepo pnpm + Turborepo, Next.js (site, Admin), React Native Expo (mobile), NestJS + PostgreSQL, Redis + BullMQ, stockage S3 (23/11/2026) | Lève M-009 ; sprint S0 peut démarrer |
 | D-025 | Hypothèses du backlog MVP **H-01 à H-05 validées** : paiements via le wallet uniquement ; paiement en deux temps (produit puis fret après pesée) ; un entrepôt partenaire en Chine au lancement ; retrait au point SS DROPSHIP ou livraison locale payante à Bamako ; récompenses de parrainage utilisables sur les frais de service (propriétaire, 23/11/2026) | Porte de la phase 2 franchie ; `BACKLOG_MVP.md` validé |
+| D-026 | Choix techniques du sprint S1 (comptes) : mots de passe Argon2id ; jeton d'accès de 15 min + jeton de rafraîchissement opaque de 30 jours, haché en base, renouvelé à chaque usage (réutilisation = toutes les sessions fermées) ; jetons dans des cookies httpOnly côté site ; back-office : cookies stricts de 12 h et **double authentification TOTP obligatoire pour tout rôle autre que client** ; codes à 6 chiffres valables 10 min, 5 essais puis blocage 15 min ; parrain accepté seulement si son compte est actif ; premier administrateur créé par script, jamais par inscription (24/11/2026) | ADR-004 appliqué ; `services/api/src/auth`, `apps/web/lib/session.ts`, `apps/admin` |
 
 ## À confirmer
 - ~~M-001~~ : tranché par D-022.
@@ -42,3 +43,4 @@ Dernière consolidation : 23/11/2026.
 - M-008 : statut technique du site ssdropship.com et des codes sources existants; non audités ici.
 - ~~M-009~~ : tranché par D-024.
 - ~~H-01 à H-05~~ : validées par D-025. Hypothèses introduites par le backlog MVP du 23/11/2026 (paiement via wallet uniquement, paiement en deux temps, un entrepôt partenaire en Chine, retrait ou livraison locale à Bamako, récompenses utilisables sur les frais de service). Détail dans `docs/requirements/BACKLOG_MVP.md`.
+- M-010 : fournisseur SMS (et email) au Mali pour les codes de vérification. En attendant, un prestataire de **test** (`sandbox_journal`) n'envoie rien et l'API refuse de démarrer avec lui en production : aucune inscription réelle n'est possible avant ce choix.

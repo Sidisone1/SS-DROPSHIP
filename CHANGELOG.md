@@ -153,3 +153,18 @@
 - Typographie : espaces insécables avant « ? » dans les textes français.
 - Vérification complète : lint Biome OK ; `turbo run typecheck test build` 21/21 sans cache.
 - Captures du code réel : `docs/captures/S0/`. Reste en S0 : environnements et observabilité (hébergement à choisir).
+
+## 2026-11-24 — Sprint S1 : comptes et parrainage
+- API : inscription avec code de parrainage facultatif (parrain actif uniquement), vérification par code (6 chiffres,
+  10 min, 5 essais puis blocage 15 min), renvoi, connexion par téléphone ou email, sessions renouvelées par rotation
+  avec détection de réutilisation, mot de passe oublié, profil, adresses, espace parrainage, export et suppression
+  (anonymisation) des données, rôles et suspension, double authentification TOTP obligatoire pour le personnel.
+  Garde globale qui refuse par défaut. Migration `20261124000000_comptes_s1`. Script `creer-admin`.
+- Notifications : prestataire de test `sandbox_journal` (aucun SMS réel ; refusé en production). Point ouvert M-010.
+- Site : inscription, vérification, connexion, mot de passe oublié, espace compte et parrainage (copie du code et du
+  lien), jetons en cookies httpOnly, en-tête « Mon compte » une fois connecté. Les champs restent saisis après une erreur.
+- Back-office : connexion avec code de double authentification, activation à la première connexion, tableau de bord
+  protégé et filtré par rôle.
+- Contrat OpenAPI complété ; nouveau test de cohérence routes ↔ contrat (il a révélé `/sante` et `/pays` non documentées).
+- Tests : 73 tests API (dont 21 de bout en bout sur PostgreSQL embarqué et 18 de sécurité, vecteurs RFC 6238), 10 tests
+  de base, parcours navigateur site et back-office (`tools/e2e/`). Décision D-026.
