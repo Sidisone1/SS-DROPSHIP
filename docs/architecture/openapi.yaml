@@ -44,6 +44,47 @@ tags:
 
 paths:
   # ─── Comptes (E1) ──────────────────────────────────────────────────────────
+  /sante:
+    get:
+      tags: [comptes]
+      operationId: lireSante
+      summary: Sonde de disponibilité (ne touche pas la base)
+      security: []
+      responses:
+        '200':
+          description: API disponible.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [statut, version]
+                properties:
+                  statut: { type: string, const: ok }
+                  version: { type: string }
+        '404': { $ref: '#/components/responses/Introuvable' }
+  /pays:
+    get:
+      tags: [comptes]
+      operationId: listerPays
+      summary: Pays ouverts à l'inscription (Mali au lancement, D-021)
+      security: []
+      responses:
+        '200':
+          description: Pays ouverts.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  required: [code, nom, devise, indicatif, langue]
+                  properties:
+                    code: { type: string }
+                    nom: { type: string }
+                    devise: { type: string }
+                    indicatif: { type: string }
+                    langue: { type: string }
+        '404': { $ref: '#/components/responses/Introuvable' }
   /auth/inscription:
     post:
       tags: [comptes]
@@ -130,6 +171,68 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Jetons' }
         '401': { $ref: '#/components/responses/NonAuthentifie' }
+  /auth/verification/renvoi:
+    post:
+      tags: [comptes]
+      operationId: renvoyerCode
+      summary: Renvoyer un code de vérification (1 par minute ; bloqué après 5 codes faux)
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [utilisateurId]
+              properties:
+                utilisateurId: { type: string }
+      responses:
+        '202': { description: Code renvoyé. }
+        '422': { $ref: '#/components/responses/Invalide' }
+        '429': { $ref: '#/components/responses/TropDeTentatives' }
+  /auth/deconnexion:
+    post:
+      tags: [comptes]
+      operationId: deconnecter
+      summary: Fermer la session courante
+      responses:
+        '204': { description: Session fermée. }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
+  /auth/mfa/activation:
+    post:
+      tags: [comptes]
+      operationId: preparerMfa
+      summary: Générer la clé de double authentification du personnel (stockée chiffrée, inactive avant confirmation)
+      responses:
+        '201':
+          description: Clé à saisir dans l'application d'authentification.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [secret, urlOtpauth]
+                properties:
+                  secret: { type: string }
+                  urlOtpauth: { type: string }
+        '403': { $ref: '#/components/responses/Interdit' }
+        '409': { $ref: '#/components/responses/Conflit' }
+  /auth/mfa/confirmation:
+    post:
+      tags: [comptes]
+      operationId: confirmerMfa
+      summary: Activer la double authentification avec un premier code ; ferme les sessions ouvertes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [code]
+              properties:
+                code: { type: string, pattern: '^[0-9]{6}$' }
+      responses:
+        '204': { description: Double authentification active ; reconnexion requise. }
+        '422': { $ref: '#/components/responses/Invalide' }
   /auth/mot-de-passe-oublie:
     post:
       tags: [comptes]
@@ -201,6 +304,22 @@ paths:
           content:
             application/json:
               schema: { $ref: '#/components/schemas/Profil' }
+    delete:
+      tags: [comptes]
+      operationId: supprimerCompte
+      summary: Supprimer mon compte (anonymisation ; les écritures financières sont conservées), mot de passe requis
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [motDePasse]
+              properties:
+                motDePasse: { type: string, format: password }
+      responses:
+        '204': { description: Compte supprimé. }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
   /moi/adresses:
     get:
       tags: [comptes]
@@ -231,6 +350,23 @@ paths:
               schema: { $ref: '#/components/schemas/Adresse' }
 
   # ─── Parrainage (E1, D-023) ────────────────────────────────────────────────
+  /moi/adresses/{id}:
+    delete:
+      tags: [comptes]
+      operationId: supprimerAdresse
+      summary: Supprimer une de mes adresses
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '204': { description: Adresse supprimée. }
+        '404': { $ref: '#/components/responses/Introuvable' }
+  /moi/export:
+    get:
+      tags: [comptes]
+      operationId: exporterDonnees
+      summary: Export de mes données personnelles, sans empreintes ni secrets (US-AUT-08)
+      responses:
+        '200': { description: Données du compte au format JSON. }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
   /moi/parrainage:
     get:
       tags: [parrainage]
@@ -801,6 +937,48 @@ paths:
         '201': { description: Ticket créé. }
 
   # ─── Back-office (E3–E10) ──────────────────────────────────────────────────
+  /admin/utilisateurs:
+    get:
+      tags: [admin]
+      operationId: rechercherUtilisateurs
+      summary: Rechercher des utilisateurs (rôle admin, double authentification active)
+      parameters:
+        - { name: q, in: query, schema: { type: string } }
+      responses:
+        '200': { description: 50 résultats au plus. }
+        '403': { $ref: '#/components/responses/Interdit' }
+  /admin/utilisateurs/{id}/roles:
+    put:
+      tags: [admin]
+      operationId: changerRoles
+      summary: Attribuer les rôles d'un utilisateur, avec audit (US-AUT-07)
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roles]
+              properties:
+                roles:
+                  type: array
+                  minItems: 1
+                  items: { type: string, enum: [client, agent_achat, agent_entrepot, logistique, support, comptable, admin] }
+      responses:
+        '200': { description: Rôles mis à jour. }
+        '403': { $ref: '#/components/responses/Interdit' }
+        '404': { $ref: '#/components/responses/Introuvable' }
+  /admin/utilisateurs/{id}/suspension:
+    post:
+      tags: [admin]
+      operationId: suspendreUtilisateur
+      summary: Suspendre un compte et fermer ses sessions
+      parameters: [{ $ref: '#/components/parameters/Id' }]
+      responses:
+        '204': { description: Compte suspendu. }
+        '403': { $ref: '#/components/responses/Interdit' }
+        '404': { $ref: '#/components/responses/Introuvable' }
   /admin/demandes:
     get:
       tags: [admin]
@@ -1067,6 +1245,7 @@ components:
       properties:
         utilisateurId: { type: string }
         parrainageEnregistre: { type: boolean }
+        canalVerification: { type: string, enum: [sms, email] }
         avertissement: { type: string, description: "Ex. « code de parrainage invalide, ignoré »." }
     Jetons:
       type: object
@@ -1075,6 +1254,10 @@ components:
         jetonAcces: { type: string }
         jetonRafraichissement: { type: string }
         expireDans: { type: integer, description: Secondes. }
+        portee:
+          type: string
+          enum: [complet, configuration_mfa]
+          description: "« configuration_mfa » : personnel sans double authentification, limité à son activation."
     Profil:
       type: object
       required: [id, nom, pays, langue, roles]

@@ -18,71 +18,38 @@ npx prisma validate              # nécessite DATABASE_URL (voir .env.example)
 node --test prisma/protections.test.mjs
 ```
 
-## Sprint S1 — Comptes et authentification (implémentation en cours)
+## Sprint S1 — Comptes et authentification (terminé, 24/11/2026)
 
-Routes NestJS disponibles dans le code (préfixe `/v1`) :
+Deux versions du sprint S1 ont été réalisées en parallèle puis réunies (décision D-027) : la base est la version
+complète (double authentification, site et back-office branchés, testée dans un navigateur), enrichie des apports de
+l'autre version : passerelle HTTPS réelle pour les codes, un seul contact à l'inscription, récompenses préparées à la
+livraison, validation partagée de l'inscription (`packages/types/src/inscription.ts`).
 
-| Route | Action | Précaution |
-|---|---|---|
-| `POST /auth/inscription` | Création utilisateur PostgreSQL + code de parrain + relation filleul (transaction Prisma) | État `a_verifier`, jamais actif avant OTP |
-| `POST /auth/verification` | Code SMS/e-mail à six chiffres | Expiration 10 min, maximum 5 tentatives |
-| `POST /auth/renvoyer-code` | Nouveau code | Délai 60 s ; l'ancien est invalidé |
-| `POST /auth/connexion` | Mot de passe sécurisé et session | Seulement compte actif et non administrateur |
-| `GET /auth/moi` | Profil depuis jeton Bearer opaque | Requête authentifiée |
-| `POST /auth/deconnexion` | Révocation de session | Jeton révoqué en base |
-| `GET /auth/parrainage` | Code et nombre de filleuls du compte | Ne révèle pas leurs identités |
+### Routes
+- `/v1/auth/*` : inscription, vérification, renvoi du code, connexion, rafraîchissement, déconnexion, mot de passe
+  oublié, réinitialisation, activation et confirmation de la double authentification.
+- `/v1/moi` : profil, adresses, parrainage, export, suppression. `/v1/admin/utilisateurs` : recherche, rôles, suspension.
+- Contrat complet : `docs/architecture/openapi.yaml` (le test `test/contrat.test.ts` vérifie qu'aucune route n'y manque).
 
-### Configuration requise avant tout essai réel
+### Configuration (voir `.env.example`)
+- `APP_SECRET` (≥ 32 caractères, obligatoire et unique en production) : clés dérivées pour les jetons, les empreintes
+  HMAC des codes (remplace `SS_OTP_PEPPER`) et le chiffrement des secrets de double authentification.
+- `NOTIFICATIONS=sandbox_journal` : prestataire de **test**, aucun envoi réel, refusé en production.
+- `NOTIFICATIONS=passerelle_https` + `SS_SMS_GATEWAY_URL` / `SS_SMS_GATEWAY_TOKEN` (et facultativement
+  `SS_EMAIL_GATEWAY_URL` / `SS_EMAIL_GATEWAY_TOKEN`) : passerelles HTTPS privées vers les prestataires. Contrat :
+  `POST` HTTPS, `Authorization: Bearer <jeton>`, corps `{ canal, destinataire, code, dureeMinutes }`, réponse 2xx
+  seulement après acceptation du message par le prestataire. Sans passerelle SMS valide, l'API refuse de démarrer ;
+  sans passerelle email, l'inscription par email répond 503 (aucun faux envoi).
 
-`SS_OTP_PEPPER` : secret aléatoire privé de 32 octets minimum pour l'empreinte HMAC des codes.
-`SS_SMS_GATEWAY_URL` et `SS_SMS_GATEWAY_TOKEN` : passerelle HTTPS pour les SMS.
-`SS_EMAIL_GATEWAY_URL` et `SS_EMAIL_GATEWAY_TOKEN` : passerelle HTTPS pour les e-mails.
+### Règles appliquées
+Argon2id ; codes à 6 chiffres, 10 min, 5 essais puis blocage 15 min ; un seul contact par inscription (le contact
+vérifié est le seul utilisable pour se connecter) ; parrain accepté seulement si son compte est actif, sinon compte
+créé sans parrain avec un avertissement ; sessions de 15 min renouvelées par rotation ; double authentification TOTP
+obligatoire pour tout rôle autre que client ; récompenses de parrainage préparées « en revue » après livraison, sans
+aucun crédit de wallet (`ParrainageRecompenseService`, appelé par le futur module commandes).
 
-Contrat de chaque passerelle : `POST` HTTPS avec `Authorization: Bearer <token>` et JSON
-`{ "canal": "sms|email", "destinataire": "...", "code": "123456", "dureeMinutes": 10 }`.
-Elle doit retourner un HTTP 2xx seulement si le fournisseur prend le message en charge.
-Un code n'est **jamais** renvoyé au client HTTP. Si une passerelle n'est pas configurée, l'inscription via
-le canal correspondant répond 503. Les deux canaux peuvent être configurés indépendamment.
-
-### Exemples
-
-```json
-{
-  "nom": "Client Exemple",
-  "pays": "ML",
-  "telephone": "76123456",
-  "email": null,
-  "motDePasse": "UnMotDePasseFort",
-  "motDePasseConfirmation": "UnMotDePasseFort",
-  "codeParrainage": null,
-  "cguAcceptees": true
-}
-```
-
-Pour vérifier : `POST /v1/auth/verification` avec `{ "utilisateurId": "<id>", "code": "<6 chiffres>" }`.
-Pour ouvrir une session : `POST /v1/auth/connexion` avec `{ "identifiant": "<email ou téléphone>", "motDePasse": "<secret>" }`.
-Réponse temporaire S1 : `{ "jetonSession": "<jeton opaque>", "expireLe": "<ISO8601>", "type": "Bearer" }`.
-Envoyer `Authorization: Bearer <jetonSession>` aux routes protégées. Le jeton n'est conservé en base que sous SHA-256.
-
-### Limites avant production
-
-- **Non déployé ni vérifié de bout en bout avec de vrais prestataires** dans cette intervention ; tests de code ajoutés mais exécution CI non confirmée.
-- L'envoi est paramétrable : il n'existe aucun contrat SMS/e-mail déjà activé.
-- Aucun accès administrateur n'est autorisé sans MFA ; celui-ci est à implémenter.
-- Protection anti-brute-force globale sur la connexion et anti-spam distribué : à compléter avant ouverture publique.
-- Les clients doivent conserver leur jeton dans un stockage sûr et ne jamais le mettre dans une URL.
-- Le schéma OpenAPI général antérieur utilise un couple access/refresh : **la route S1 délivre actuellement un jeton de session opaque**, contrat à harmoniser avant consommation par les applications.
-- Récompense parrain : relation créée à l'inscription, taux de 5 % et calcul déjà dans `packages/types`. **Pas de versement automatique ni de crédit wallet avant la livraison, la confirmation du paiement et l'intégration du ledger**.
-- Les sessions actives ne sont pas encore limitées par appareil ; gestion des appareils à prévoir.
-
-### Vérifications à lancer
-
+### Vérifications
 ```bash
-pnpm install
-pnpm --filter @ss-dropship/api prisma:generate
-pnpm --filter @ss-dropship/api typecheck
-pnpm --filter @ss-dropship/api test
-pnpm turbo run lint typecheck test build
+pnpm --filter @ss-dropship/api test   # 82 tests vitest + 10 tests de base (PGlite)
 ```
-
-**Sécurité S1 :** actuellement l'inscription accepte soit un numéro de téléphone, soit une adresse e-mail, mais pas les deux en même temps. Un second contact devra être ajouté puis vérifié indépendamment lors d'un sprint ultérieur. Les routes de création de compte ne sont pas encore raccordées au formulaire web public.
+Premier administrateur : `node dist/scripts/creer-admin.js` (`ADMIN_EMAIL`, `ADMIN_MOT_DE_PASSE`, `DATABASE_URL`).

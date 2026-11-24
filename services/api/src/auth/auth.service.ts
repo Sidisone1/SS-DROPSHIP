@@ -1,241 +1,273 @@
-import {
-  BadRequestException, ConflictException, Injectable, NotFoundException,
-  ServiceUnavailableException, TooManyRequestsException, UnauthorizedException,
-} from '@nestjs/common';
-import { validerInscription, type SaisieInscription, normaliserTelephoneMali } from '@ss-dropship/types';
-import { randomBytes } from 'node:crypto';
+import { HttpStatus, Inject, Injectable } from '@nestjs/common';
+import { configPays } from '@ss-dropship/config';
 import { AuditService } from '../audit/audit.service.js';
+import { conflit, ErreurMetier, interdit, invalide, nonAuthentifie } from '../commun/erreurs.js';
+import { canalIndisponible, NotificationsService } from '../notifications/notifications.service.js';
 import { PrismaService } from '../prisma/prisma.service.js';
-import { comparerCode, empreinteCode, empreinteJeton, nouveauCode, nouveauJeton } from './jetons.js';
-import { hacherMotDePasse, verifierMotDePasse } from './mots-de-passe.js';
-import { NotificationAuthService } from './notification-auth.service.js';
+import { chiffrer, dechiffrer } from '../securite/chiffrement.js';
+import {
+  genererCodeParrainage,
+  normaliserCodeParrainage,
+  normaliserEmail,
+  normaliserIdentifiant,
+  normaliserTelephone,
+} from '../securite/identite.js';
+import { hacherMotDePasse, verifierMotDePasse, verifierRobustesse } from '../securite/motdepasse.js';
+import { genererSecretTotp, urlOtpauth, verifierTotp } from '../securite/totp.js';
+import { CLES, type Cles } from './cles.js';
+import { CodesVerificationService } from './codes-verification.service.js';
+import { type Jetons, SessionsService } from './sessions.service.js';
 
-const DUREE_OTP_MS = 10 * 60_000;
-const DUREE_SESSION_MS = 7 * 24 * 60 * 60_000;
+export interface DonneesInscription {
+  nom: string;
+  telephone?: string | undefined;
+  email?: string | undefined;
+  pays: string;
+  motDePasse: string;
+  codeParrainage?: string | undefined;
+}
 
-/** Gestion des utilisateurs S1 : aucune récompense n'est créditée à l'inscription. */
+// Empreinte factice : la vérification d'un compte inexistant prend le même temps (pas de révélation d'existence).
+const EMPREINTE_FACTICE = hacherMotDePasse('compte-inexistant-0000');
+
+const estPersonnel = (roles: readonly string[]) => roles.some((r) => r !== 'client');
+
 @Injectable()
 export class AuthService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly notification: NotificationAuthService,
+    private readonly sessions: SessionsService,
+    private readonly codes: CodesVerificationService,
     private readonly audit: AuditService,
+    private readonly notifications: NotificationsService,
+    @Inject(CLES) private readonly cles: Cles,
   ) {}
 
-  async inscrire(saisie: SaisieInscription) {
-    if (!saisie || typeof saisie.nom !== 'string' || typeof saisie.pays !== 'string' ||
-      typeof saisie.motDePasse !== 'string' || typeof saisie.motDePasseConfirmation !== 'string' ||
-      (saisie.telephone != null && typeof saisie.telephone !== 'string') ||
-      (saisie.email != null && typeof saisie.email !== 'string') ||
-      (saisie.codeParrainage != null && typeof saisie.codeParrainage !== 'string')) {
-      throw new BadRequestException('Inscription invalide');
-    }
-    const validation = validerInscription(saisie);
-    if (!validation.valide) throw new BadRequestException({ code: 'inscription_invalide', erreurs: validation.erreurs });
-    const { nom, email, telephone, codeParrainage } = validation.champs;
-    // Un contact non vérifié ne doit pas être utilisable pour se connecter ni bloquer un autre client.
-    // Au MVP, une inscription n'utilise qu'un seul canal jusqu'à la vérification indépendante des deux.
-    if (email && telephone) throw new BadRequestException('Utilisez uniquement le téléphone ou l’e-mail pour l’inscription');
-    const [compte, parrain] = await Promise.all([
-      this.prisma.utilisateur.findFirst({
-        where: { OR: [
-          ...(email ? [{ email }] : []),
-          ...(telephone ? [{ telephone }] : []),
-        ] },
-        select: { id: true },
-      }),
-      codeParrainage ? this.prisma.codeParrainage.findUnique({
-        where: { code: codeParrainage }, select: { utilisateurId: true },
-      }) : Promise.resolve(null),
-    ]);
-    if (compte) throw new ConflictException('Ce contact est déjà utilisé');
-    if (codeParrainage && !parrain) throw new BadRequestException('Code de parrainage inconnu');
-
-    const motDePasseHash = await hacherMotDePasse(saisie.motDePasse);
-    const code = nouveauCode();
-    const canal = telephone ? 'sms' : 'email';
-    const destinataire = telephone ?? email;
-    if (!destinataire) throw new BadRequestException('Contact manquant');
-    if (!this.notification.estDisponible(canal)) {
-      throw new ServiceUnavailableException('Canal de vérification indisponible');
-    }
-    const reference = randomBytes(7).toString('hex').toUpperCase();
-    // Unicité finale assurée par les contraintes en base ; transaction atomique.
-    let utilisateur: { id: string };
+  /** US-AUT-01 : création du compte, code de parrainage personnel, lien avec le parrain si le code est valide. */
+  async inscrire(d: DonneesInscription) {
+    let pays: ReturnType<typeof configPays>;
     try {
-      utilisateur = await this.prisma.$transaction(async (tx) => {
-        const user = await tx.utilisateur.create({
-          data: {
-            nom, email, telephone, paysCode: 'ML', motDePasseHash,
-            etat: 'a_verifier', roles: ['client'], cguAccepteesLe: new Date(),
-          },
-          select: { id: true },
-        });
-        await tx.codeParrainage.create({ data: { utilisateurId: user.id, code: reference } });
-        if (parrain) await tx.parrainage.create({
-          data: { parrainId: parrain.utilisateurId, filleulId: user.id, codeUtilise: codeParrainage! },
-        });
-        await tx.codeVerification.create({
-          data: {
-            utilisateurId: user.id, objet: canal === 'sms' ? 'telephone' : 'email',
-            codeHash: empreinteCode(code), expireLe: new Date(Date.now() + DUREE_OTP_MS),
-          },
-        });
-        return user;
-      });
-    } catch (e) {
-      if (typeof e === 'object' && e !== null && 'code' in e && e.code === 'P2002') {
-        throw new ConflictException('Contact ou code déjà utilisé');
-      }
-      throw e;
+      pays = configPays(d.pays);
+    } catch {
+      throw invalide('Pays inconnu.', { champs: { pays: 'inconnu' } });
     }
-    await this.audit.journaliser({
-      acteurId: utilisateur.id, action: 'compte.inscription', objetType: 'utilisateur', objetId: utilisateur.id,
-    });
-    // En absence de prestataire, l'API répond 503 plutôt que prétendre que le code a été envoyé.
-    await this.notification.envoyerCode({ canal, destinataire, code, dureeMinutes: 10 });
-    return { utilisateurId: utilisateur.id, etat: 'a_verifier' as const, canal };
-  }
+    if (!pays.ouvert) throw invalide("Ce pays n'est pas encore ouvert.", { champs: { pays: 'ferme' } });
 
-  async renvoyerCode(utilisateurId: string) {
-    if (typeof utilisateurId !== 'string' || utilisateurId.length < 8) {
-      throw new BadRequestException('Identifiant invalide');
+    const telephone = d.telephone ? normaliserTelephone(d.telephone, pays.code) : null;
+    const email = d.email ? normaliserEmail(d.email) : null;
+    if (d.telephone && !telephone)
+      throw invalide('Numéro de téléphone invalide.', { champs: { telephone: 'invalide' } });
+    if (d.email && !email) throw invalide('Adresse email invalide.', { champs: { email: 'invalide' } });
+    if (!telephone && !email) throw invalide('Indiquez un téléphone ou un email.', { champs: { telephone: 'requis' } });
+    // Un seul contact au MVP : le contact vérifié est le seul utilisable pour se connecter (règle reprise de la
+    // version S1 publiée sur main, D-027) ; aucun contact non vérifié ne peut ouvrir une session ni bloquer un tiers.
+    if (telephone && email) {
+      throw invalide('Utilisez un téléphone ou un email, pas les deux.', { champs: { contact: 'un_seul' } });
     }
-    const compte = await this.prisma.utilisateur.findUnique({
-      where: { id: utilisateurId },
-      select: { id: true, etat: true, telephone: true, email: true },
+    if (!this.notifications.disponible(telephone ? 'sms' : 'email')) throw canalIndisponible();
+    const faiblesse = verifierRobustesse(d.motDePasse);
+    if (faiblesse) throw invalide(faiblesse, { champs: { motDePasse: 'faible' } });
+
+    const existe = await this.prisma.utilisateur.findFirst({
+      where: { OR: [...(telephone ? [{ telephone }] : []), ...(email ? [{ email }] : [])] },
+      select: { id: true },
     });
-    if (!compte || compte.etat !== 'a_verifier') throw new BadRequestException('Compte non vérifiable');
-    const canal = compte.telephone ? 'sms' : 'email';
-    const destinataire = compte.telephone ?? compte.email;
-    if (!destinataire) throw new BadRequestException('Contact absent');
-    if (!this.notification.estDisponible(canal)) throw new ServiceUnavailableException('Canal indisponible');
-    const dernier = await this.prisma.codeVerification.findFirst({
-      where: { utilisateurId, objet: { in: ['email', 'telephone'] } },
-      orderBy: { creeLe: 'desc' },
-    });
-    if (dernier && Date.now() - dernier.creeLe.getTime() < 60_000) {
-      throw new TooManyRequestsException('Attendez avant de renvoyer un code');
-    }
-    if (dernier && dernier.tentatives >= 5 && Date.now() - dernier.creeLe.getTime() < 15 * 60_000) {
-      throw new TooManyRequestsException('Réessayez plus tard');
-    }
-    const code = nouveauCode();
-    await this.prisma.$transaction(async (tx) => {
-      await tx.codeVerification.updateMany({
-        where: { utilisateurId, utiliseLe: null },
-        data: { utiliseLe: new Date() },
+    if (existe) throw conflit('compte_existant', 'Un compte existe déjà avec ce téléphone ou cet email.');
+
+    // Parrain : code existant, compte actif (anti-fraude D-023 ; un nouveau compte ne peut pas se parrainer lui-même).
+    let parrainId: string | null = null;
+    let avertissement: string | undefined;
+    if (d.codeParrainage?.trim()) {
+      const code = normaliserCodeParrainage(d.codeParrainage);
+      const trouve = await this.prisma.codeParrainage.findUnique({
+        where: { code },
+        select: { utilisateurId: true, utilisateur: { select: { etat: true } } },
       });
-      await tx.codeVerification.create({
+      if (trouve && trouve.utilisateur.etat === 'actif') parrainId = trouve.utilisateurId;
+      else avertissement = 'Ce code de parrainage est invalide. Votre compte a été créé sans parrain.';
+    }
+
+    const motDePasseHash = await hacherMotDePasse(d.motDePasse);
+    const utilisateur = await this.prisma.$transaction(async (tx) => {
+      const u = await tx.utilisateur.create({
         data: {
-          utilisateurId, objet: canal === 'sms' ? 'telephone' : 'email',
-          codeHash: empreinteCode(code), expireLe: new Date(Date.now() + DUREE_OTP_MS),
+          nom: d.nom.trim(),
+          telephone,
+          email,
+          motDePasseHash,
+          paysCode: pays.code,
+          langue: pays.langue,
+          cguAccepteesLe: new Date(),
         },
       });
+      let code = '';
+      for (let essai = 0; essai < 8 && !code; essai++) {
+        const candidat = genererCodeParrainage(d.nom);
+        if (!(await tx.codeParrainage.findUnique({ where: { code: candidat }, select: { code: true } })))
+          code = candidat;
+      }
+      await tx.codeParrainage.create({ data: { code, utilisateurId: u.id } });
+      if (parrainId) {
+        await tx.parrainage.create({
+          data: { parrainId, filleulId: u.id, codeUtilise: normaliserCodeParrainage(d.codeParrainage ?? '') },
+        });
+      }
+      // Comptes wallet ouverts sans aucune écriture : le crédit ne viendra que d'un webhook (D-008, sprint S6).
+      await tx.compteWallet.createMany({
+        data: [
+          { type: 'client_principal', utilisateurId: u.id, devise: pays.devise },
+          { type: 'client_recompenses', utilisateurId: u.id, devise: pays.devise },
+        ],
+      });
+      return u;
     });
-    await this.notification.envoyerCode({ canal, destinataire, code, dureeMinutes: 10 });
-    return { canal, delaiSecondes: 60 };
+
+    const canalVerification = await this.codes.emettre(utilisateur, telephone ? 'telephone' : 'email');
+    await this.audit.journaliser({
+      acteurId: utilisateur.id,
+      action: 'compte.creation',
+      objetType: 'Utilisateur',
+      objetId: utilisateur.id,
+      apres: { pays: pays.code, parrainage: Boolean(parrainId) },
+    });
+    return {
+      utilisateurId: utilisateur.id,
+      parrainageEnregistre: Boolean(parrainId),
+      canalVerification,
+      ...(avertissement ? { avertissement } : {}),
+    };
   }
 
-  async verifierContact(utilisateurId: string, code: string) {
-    if (typeof utilisateurId !== 'string' || typeof code !== 'string' || !/^[0-9]{6}$/.test(code)) {
-      throw new BadRequestException('Code invalide');
+  /** US-AUT-02 : validation du contact par le code reçu. */
+  async verifierContact(utilisateurId: string, code: string): Promise<void> {
+    const u = await this.prisma.utilisateur.findUnique({ where: { id: utilisateurId } });
+    if (u?.etat !== 'a_verifier') throw invalide('Aucune vérification en attente pour ce compte.');
+    await this.codes.consommer(u.id, u.telephone ? 'telephone' : 'email', code);
+    await this.prisma.utilisateur.update({ where: { id: u.id }, data: { etat: 'actif' } });
+    await this.audit.journaliser({
+      acteurId: u.id,
+      action: 'compte.verification',
+      objetType: 'Utilisateur',
+      objetId: u.id,
+    });
+  }
+
+  async renvoyerCode(utilisateurId: string): Promise<'sms' | 'email'> {
+    const u = await this.prisma.utilisateur.findUnique({ where: { id: utilisateurId } });
+    if (u?.etat !== 'a_verifier') throw invalide('Aucune vérification en attente pour ce compte.');
+    return this.codes.emettre(u, u.telephone ? 'telephone' : 'email');
+  }
+
+  /** US-AUT-03 : connexion ; double authentification obligatoire pour le personnel (ADR-004). */
+  async connecter(
+    identifiant: string,
+    motDePasse: string,
+    codeMfa: string | undefined,
+    appareil?: string,
+  ): Promise<Jetons> {
+    const critere = normaliserIdentifiant(identifiant);
+    const u = critere.telephone || critere.email ? await this.prisma.utilisateur.findFirst({ where: critere }) : null;
+    const valide = await verifierMotDePasse(u?.motDePasseHash ?? (await EMPREINTE_FACTICE), motDePasse);
+    if (!u || !valide) throw nonAuthentifie('identifiants_invalides', 'Identifiant ou mot de passe incorrect.');
+    if (u.etat === 'a_verifier') {
+      throw interdit('compte_non_verifie', 'Confirmez votre téléphone ou votre email pour continuer.', {
+        utilisateurId: u.id,
+      });
     }
-    // La transaction sérialisable évite deux validations concurrentes et garde le compteur de tentatives en base.
-    const etat = await this.prisma.$transaction(async (tx) => {
-      const compte = await tx.utilisateur.findUnique({
-        where: { id: utilisateurId }, select: { id: true, etat: true },
-      });
-      if (!compte || compte.etat !== 'a_verifier') throw new BadRequestException('Compte non vérifiable');
-      const dernier = await tx.codeVerification.findFirst({
-        where: { utilisateurId, utiliseLe: null, objet: { in: ['email', 'telephone'] } },
-        orderBy: { creeLe: 'desc' },
-      });
-      if (!dernier || dernier.expireLe.getTime() < Date.now()) throw new BadRequestException('Code expiré');
-      if (dernier.tentatives >= 5) throw new TooManyRequestsException('Trop de tentatives');
-      const correct = comparerCode(code, dernier.codeHash);
-      await tx.codeVerification.update({
-        where: { id: dernier.id },
-        data: { tentatives: { increment: 1 }, ...(correct ? { utiliseLe: new Date() } : {}) },
-      });
-      if (!correct) return 'invalide' as const;
-      await tx.utilisateur.update({ where: { id: utilisateurId }, data: { etat: 'actif' } });
-      return 'actif' as const;
-    }, { isolationLevel: 'Serializable' });
-    if (etat !== 'actif') throw new BadRequestException('Code incorrect');
-    await this.audit.journaliser({
-      acteurId: utilisateurId, action: 'compte.verification', objetType: 'utilisateur', objetId: utilisateurId,
-    });
-    return { etat };
-  }
+    if (u.etat !== 'actif') throw interdit('compte_inactif', 'Ce compte est suspendu ou fermé.');
 
-  async connecter(identifiant: string, motDePasse: string) {
-    if (typeof identifiant !== 'string' || typeof motDePasse !== 'string' ||
-      identifiant.length > 254 || motDePasse.length > 128) throw new UnauthorizedException('Identifiants incorrects');
-    const texte = identifiant.trim().toLowerCase();
-    const telephone = normaliserTelephoneMali(texte);
-    const utilisateur = await this.prisma.utilisateur.findFirst({
-      where: { OR: [
-        ...(telephone ? [{ telephone }] : []),
-        { email: texte },
-      ] },
-      select: { id: true, etat: true, roles: true, motDePasseHash: true },
-    });
-    if (!utilisateur || !(await verifierMotDePasse(motDePasse, utilisateur.motDePasseHash))) {
-      throw new UnauthorizedException('Identifiants incorrects');
+    const roles = u.roles as string[];
+    let portee: 'complet' | 'configuration_mfa' = 'complet';
+    if (estPersonnel(roles)) {
+      if (u.mfaActive && u.mfaSecretChiffre) {
+        if (!codeMfa) throw nonAuthentifie('mfa_requise', 'Saisissez le code de votre application d’authentification.');
+        if (!verifierTotp(codeMfa, dechiffrer(u.mfaSecretChiffre, this.cles.mfa))) {
+          throw nonAuthentifie('mfa_invalide', 'Code de double authentification incorrect.');
+        }
+      } else {
+        portee = 'configuration_mfa';
+      }
     }
-    if (utilisateur.etat !== 'actif') throw new UnauthorizedException('Compte non actif');
-    // Aucun compte administrateur sans MFA effectif. L'authentification MFA sera implémentée séparément.
-    if (utilisateur.roles.includes('admin')) throw new UnauthorizedException('Connexion administrateur indisponible sans MFA');
-    const jeton = nouveauJeton();
-    const session = await this.prisma.session.create({
-      data: {
-        utilisateurId: utilisateur.id, jetonHash: empreinteJeton(jeton),
-        expireLe: new Date(Date.now() + DUREE_SESSION_MS),
-      },
-      select: { id: true, expireLe: true },
+    const jetons = await this.sessions.ouvrir({ id: u.id, roles }, portee, appareil);
+    await this.prisma.utilisateur.update({ where: { id: u.id }, data: { derniereConnexionLe: new Date() } });
+    if (estPersonnel(roles)) {
+      await this.audit.journaliser({
+        acteurId: u.id,
+        roleActeur: roles.join(','),
+        action: 'session.connexion',
+        objetType: 'Utilisateur',
+        objetId: u.id,
+        apres: { portee },
+      });
+    }
+    return jetons;
+  }
+
+  /** US-AUT-04 : réponse identique que le compte existe ou non. */
+  async demanderReinitialisation(identifiant: string): Promise<void> {
+    const critere = normaliserIdentifiant(identifiant);
+    if (!critere.telephone && !critere.email) return;
+    const u = await this.prisma.utilisateur.findFirst({ where: { ...critere, etat: 'actif' } });
+    if (!u) return;
+    try {
+      await this.codes.emettre(u, 'mot_de_passe');
+    } catch {
+      // Blocage en cours : on ne le révèle pas.
+    }
+  }
+
+  async reinitialiser(identifiant: string, code: string, nouveauMotDePasse: string): Promise<void> {
+    const faiblesse = verifierRobustesse(nouveauMotDePasse);
+    if (faiblesse) throw invalide(faiblesse, { champs: { nouveauMotDePasse: 'faible' } });
+    const critere = normaliserIdentifiant(identifiant);
+    const u =
+      critere.telephone || critere.email
+        ? await this.prisma.utilisateur.findFirst({ where: { ...critere, etat: 'actif' } })
+        : null;
+    if (!u) throw new ErreurMetier(HttpStatus.UNPROCESSABLE_ENTITY, 'code_invalide', 'Code incorrect.');
+    await this.codes.consommer(u.id, 'mot_de_passe', code);
+    await this.prisma.utilisateur.update({
+      where: { id: u.id },
+      data: { motDePasseHash: await hacherMotDePasse(nouveauMotDePasse) },
     });
+    await this.sessions.fermerToutes(u.id);
     await this.audit.journaliser({
-      acteurId: utilisateur.id, action: 'session.creation', objetType: 'session', objetId: session.id,
+      acteurId: u.id,
+      action: 'compte.reinitialisation',
+      objetType: 'Utilisateur',
+      objetId: u.id,
     });
-    return { jetonSession: jeton, expireLe: session.expireLe.toISOString(), type: 'Bearer' as const };
   }
 
-  async session(jeton: string) {
-    if (!/^[A-Za-z0-9_-]{43}$/.test(jeton)) throw new UnauthorizedException();
-    const session = await this.prisma.session.findUnique({
-      where: { jetonHash: empreinteJeton(jeton) },
-      include: { utilisateur: { select: { id: true, nom: true, etat: true, roles: true } } },
+  /** Activation de la double authentification (personnel) : secret généré, stocké chiffré, non actif avant confirmation. */
+  async preparerMfa(utilisateurId: string) {
+    const u = await this.prisma.utilisateur.findUniqueOrThrow({ where: { id: utilisateurId } });
+    if (!estPersonnel(u.roles as string[])) throw interdit('reserve_au_personnel', 'Réservé au personnel.');
+    if (u.mfaActive) throw conflit('mfa_deja_active', 'La double authentification est déjà active.');
+    const secret = genererSecretTotp();
+    await this.prisma.utilisateur.update({
+      where: { id: u.id },
+      data: { mfaSecretChiffre: chiffrer(secret, this.cles.mfa) },
     });
-    if (!session || session.revoqueLe || session.expireLe.getTime() <= Date.now()
-      || session.utilisateur.etat !== 'actif') throw new UnauthorizedException();
-    return { id: session.id, utilisateur: session.utilisateur };
+    return { secret, urlOtpauth: urlOtpauth(secret, u.email ?? u.telephone ?? u.id) };
   }
 
-  async profil(jeton: string) {
-    const { utilisateur } = await this.session(jeton);
-    return utilisateur;
-  }
-
-  async deconnecter(jeton: string) {
-    const session = await this.session(jeton);
-    await this.prisma.session.updateMany({
-      where: { id: session.id, revoqueLe: null },
-      data: { revoqueLe: new Date() },
-    });
+  async confirmerMfa(utilisateurId: string, code: string): Promise<void> {
+    const u = await this.prisma.utilisateur.findUniqueOrThrow({ where: { id: utilisateurId } });
+    if (u.mfaActive) throw conflit('mfa_deja_active', 'La double authentification est déjà active.');
+    if (!u.mfaSecretChiffre) throw invalide('Lancez d’abord l’activation.');
+    if (!verifierTotp(code, dechiffrer(u.mfaSecretChiffre, this.cles.mfa))) {
+      throw new ErreurMetier(HttpStatus.UNPROCESSABLE_ENTITY, 'mfa_invalide', 'Code incorrect.');
+    }
+    await this.prisma.utilisateur.update({ where: { id: u.id }, data: { mfaActive: true } });
+    // Les sessions ouvertes sans double authentification sont fermées : reconnexion avec le code.
+    await this.sessions.fermerToutes(u.id);
     await this.audit.journaliser({
-      acteurId: session.utilisateur.id, action: 'session.revocation',
-      objetType: 'session', objetId: session.id,
+      acteurId: u.id,
+      roleActeur: (u.roles as string[]).join(','),
+      action: 'mfa.activation',
+      objetType: 'Utilisateur',
+      objetId: u.id,
     });
-    return { deconnecte: true };
-  }
-
-  async parrainage(jeton: string) {
-    const { utilisateur } = await this.session(jeton);
-    const code = await this.prisma.codeParrainage.findUnique({ where: { utilisateurId: utilisateur.id } });
-    if (!code) throw new NotFoundException('Code de parrainage indisponible');
-    const nombreFilleuls = await this.prisma.parrainage.count({ where: { parrainId: utilisateur.id } });
-    // Aucune récompense avant une commande effectivement livrée et réglée.
-    return { code: code.code, nombreFilleuls, recompenses: 'Non calculées avant livraison' };
   }
 }

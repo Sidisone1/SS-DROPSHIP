@@ -15,8 +15,15 @@ export interface SaisieInscription {
 }
 
 export type ChampInscription =
-  | 'nom' | 'pays' | 'telephone' | 'email' | 'contact'
-  | 'motDePasse' | 'motDePasseConfirmation' | 'codeParrainage' | 'cguAcceptees';
+  | 'nom'
+  | 'pays'
+  | 'telephone'
+  | 'email'
+  | 'contact'
+  | 'motDePasse'
+  | 'motDePasseConfirmation'
+  | 'codeParrainage'
+  | 'cguAcceptees';
 
 export interface ChampsNormalises {
   readonly nom: string;
@@ -33,9 +40,11 @@ export type ValidationInscription =
 /** Normalise un numéro malien vers E.164 (+223XXXXXXXX). */
 export function normaliserTelephoneMali(saisie: string): string | null {
   const nettoye = saisie.replace(/[\s.()-]/g, '');
-  const digits = nettoye.startsWith('+223') ? nettoye.slice(4)
-    : nettoye.startsWith('00223') ? nettoye.slice(5)
-    : nettoye;
+  const digits = nettoye.startsWith('+223')
+    ? nettoye.slice(4)
+    : nettoye.startsWith('00223')
+      ? nettoye.slice(5)
+      : nettoye;
   return /^\d{8}$/.test(digits) ? '+223' + digits : null;
 }
 

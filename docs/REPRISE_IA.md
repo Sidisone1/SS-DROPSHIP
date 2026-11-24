@@ -1,6 +1,6 @@
 # SS DROPSHIP — Document de reprise pour toute IA ou tout développeur
 
-**Mis à jour le 23/11/2026.** À lire en premier, avec [AGENTS.md](../AGENTS.md) (règles impératives).
+**Mis à jour le 24/11/2026.** À lire en premier, avec [AGENTS.md](../AGENTS.md) (règles impératives).
 Ce document dit **où en est le projet, comment le lancer, et quoi faire ensuite**, sans avoir besoin de l'historique
 des conversations.
 
@@ -21,16 +21,17 @@ Produits : site client, application mobile, back-office, API.
 | 3 — Validation des écrans | **À faire par le propriétaire** (46 écrans Bogolan dans `design/prototypes/`) |
 | 4 — Architecture | Fait : ADR-001 à 004, `openapi.yaml`, `schema.prisma`, `packages/types` |
 | Sprint S0 — socle | **Terminé sauf hébergement** (voir § 5), reporté par le propriétaire. Captures : `docs/captures/S0/` |
-| Sprints S1 à S12 | À faire |
+| Sprint S1 — comptes et parrainage | **Terminé** : API (US-AUT-01 à 08), site branché, back-office avec double authentification. Captures : `docs/captures/S1/`. Bloquant pour la production : fournisseur SMS (M-010) |
+| Sprints S2 à S12 | À faire (prochain : **S2 — catalogue**) |
 
 Aucune intégration externe réelle (paiement, SMS, transporteur) n'existe. Ne jamais prétendre le contraire.
 
 ## 3. Carte du dépôt
 ```text
-apps/web        Site client Next.js 16 (accueil, inscription en aperçu)            ✅ build + 3 tests
-apps/admin      Back-office Next.js (connexion MFA en aperçu, tableau de bord)    ✅ build + 5 tests
+apps/web        Site client Next.js 16 : accueil, inscription, code, connexion, compte  ✅ build + 6 tests
+apps/admin      Back-office Next.js : connexion + double authentification, tableau   ✅ build + 5 tests
 apps/mobile     Application Expo 57 / React Native 0.86, 5 onglets               ✅ export Metro + 6 tests
-services/api    API NestJS 12 + Prisma 7 + PostgreSQL                             ✅ santé, pays, audit ; 20 tests
+services/api    API NestJS 12 + Prisma 7 + PostgreSQL : comptes, parrainage, rôles  ✅ 82 tests + 10 base
 services/workers Tâches asynchrones (BullMQ)                                      ⏳ S6+
 packages/types  Machines à états, montants, parrainage, interfaces prestataires   ✅ 22 tests
 packages/config Pays (Mali ouvert), langues, drapeaux V2 désactivés               ✅ 5 tests
@@ -64,8 +65,23 @@ La CI GitHub Actions (`.github/workflows/ci.yml`) exécute lint, typecheck, test
 - [ ] US-SOC-02 Environnements : **bloqué** jusqu'au choix de l'hébergeur (décision du propriétaire)
 - [ ] US-SOC-07 Observabilité (Sentry) : après choix de l'hébergeur
 
-Ensuite : **S1 — comptes et parrainage** (US-AUT-01 à 08 du backlog) : inscription avec code de parrainage, vérification
+Fait au sprint S1 : **comptes et parrainage** (US-AUT-01 à 08 du backlog) : inscription avec code de parrainage, vérification
 par code (via `NotificationProvider` en sandbox tant qu'aucun fournisseur SMS n'est contracté), connexion, rôles, MFA admin.
+
+## 5 bis. Sprint S1 — ce qui existe
+- API : `/auth/*` (inscription, vérification, renvoi, connexion, rafraîchissement, déconnexion, mot de passe oublié,
+  double authentification), `/moi` (profil, adresses, parrainage, export, suppression), `/admin/utilisateurs` (rôles, suspension).
+- Garde globale : **toute route exige une session**, sauf celles marquées `@Public()` ; rôles via `@Roles(...)`.
+- Premier administrateur : `node services/api/dist/scripts/creer-admin.js` (variables `ADMIN_EMAIL`, `ADMIN_MOT_DE_PASSE`).
+- Variables d'environnement de l'API : `services/api/.env.example` (`APP_SECRET` obligatoire en production).
+- Codes de vérification : prestataire de test `sandbox_journal` (écrit le code dans le journal en développement,
+  refusé en production) ou `passerelle_https` (passerelles HTTPS réelles, voir `services/api/README.md`). Il manque le
+  contrat avec un prestataire SMS au Mali (M-010). **Un seul contact par inscription** (D-027).
+- Deux versions du S1 ont été réunies (D-027) : avant de coder, vérifier `git log origin/main` pour ne pas refaire en
+  parallèle un travail déjà publié par une autre IA.
+- Parcours navigateur : `tools/e2e/` (voir son README). Contrat : le test `services/api/test/contrat.test.ts` échoue
+  si une route n'est pas dans `openapi.yaml`.
+- Mobile : les écrans de connexion ne sont pas encore branchés (à faire avec S2 ou en complément de S1).
 
 ## 6. Règles techniques à respecter
 - **Règles métier** : toujours passer par `packages/types` (`transitionner`, `fraisDeService`, `calculerRecompense`,
@@ -90,7 +106,7 @@ D-024 stack TypeScript · D-025 paiement via wallet, en deux temps, un entrepôt
 ## 8. Points ouverts
 M-003 valeurs du barème · M-004 contrat Mobile Money au Mali et impact sur D-019 (Stripe absent en direct en Afrique de
 l'Ouest) · M-005 navigation (option A par défaut) · M-006 titres des visuels 19–50 · M-007 juridique et douane ·
-M-008 audit du site ssdropship.com · hébergement (à choisir).
+M-008 audit du site ssdropship.com · M-010 fournisseur SMS au Mali · hébergement (à choisir).
 
 ## 9. Prompts prêts à l'emploi
 [docs/equipe/PROMPTS_EQUIPE.md](equipe/PROMPTS_EQUIPE.md) : bloc commun + prompt par rôle (backend, frontend, mobile, QA…).

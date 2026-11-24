@@ -7,7 +7,12 @@ import { PrismaClient } from '../generated/prisma/client.js';
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleDestroy {
   constructor(@Inject(CONFIGURATION) config: Configuration) {
-    super({ adapter: new PrismaPg({ connectionString: config.DATABASE_URL }) });
+    super({
+      adapter: new PrismaPg({
+        connectionString: config.DATABASE_URL,
+        ...(config.DB_POOL_MAX ? { max: config.DB_POOL_MAX } : {}),
+      }),
+    });
   }
 
   async onModuleDestroy(): Promise<void> {

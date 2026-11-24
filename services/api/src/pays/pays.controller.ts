@@ -1,3 +1,4 @@
+import { Public } from '../auth/decorateurs.js';
 import { Controller, Get } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 
@@ -9,6 +10,7 @@ export interface PaysPublic {
   langue: string;
 }
 
+@Public()
 @Controller('pays')
 export class PaysController {
   constructor(private readonly prisma: PrismaService) {}

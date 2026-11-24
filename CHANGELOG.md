@@ -176,3 +176,28 @@
 - Parrainage : consultation du code et nombre de filleuls ; `ParrainageRecompenseService` prépare les récompenses éligibles à la livraison avec 5 % des frais de service et idempotence par commande, en état `en_revue`. AUCUN crédit wallet ni versement avant l'implémentation sécurisée du ledger.
 - Tests ajoutés : `auth-s1.test.ts`, `notification-auth.test.ts`, `parrainage-recompense.test.ts`. Documentation API et `.env.example` mis à jour.
 - Limites : fournisseur SMS/e-mail réel non configuré ; pas de MFA admin ni de limitation distribuée des connexions ; déclenchement automatique depuis le workflow commande S5 et règlement comptable S6 à intégrer ; alignement OpenAPI access/refresh restant à faire. **Compilation, lint et CI à confirmer**.
+## 2026-11-24 — Sprint S1 : comptes et parrainage
+- API : inscription avec code de parrainage facultatif (parrain actif uniquement), vérification par code (6 chiffres,
+  10 min, 5 essais puis blocage 15 min), renvoi, connexion par téléphone ou email, sessions renouvelées par rotation
+  avec détection de réutilisation, mot de passe oublié, profil, adresses, espace parrainage, export et suppression
+  (anonymisation) des données, rôles et suspension, double authentification TOTP obligatoire pour le personnel.
+  Garde globale qui refuse par défaut. Migration `20261124000000_comptes_s1`. Script `creer-admin`.
+- Notifications : prestataire de test `sandbox_journal` (aucun SMS réel ; refusé en production). Point ouvert M-010.
+- Site : inscription, vérification, connexion, mot de passe oublié, espace compte et parrainage (copie du code et du
+  lien), jetons en cookies httpOnly, en-tête « Mon compte » une fois connecté. Les champs restent saisis après une erreur.
+- Back-office : connexion avec code de double authentification, activation à la première connexion, tableau de bord
+  protégé et filtré par rôle.
+- Contrat OpenAPI complété ; nouveau test de cohérence routes ↔ contrat (il a révélé `/sante` et `/pays` non documentées).
+- Tests : 73 tests API (dont 21 de bout en bout sur PostgreSQL embarqué et 18 de sécurité, vecteurs RFC 6238), 10 tests
+  de base, parcours navigateur site et back-office (`tools/e2e/`). Décision D-026.
+
+## 2026-11-24 — Réunion des deux versions du sprint S1 (D-027)
+- Constat : une autre version du sprint S1 avait été publiée directement sur `main` en parallèle de la PR #14.
+- Base conservée : version complète de la PR #14. Apports intégrés de la version de `main` : prestataire
+  `PasserelleHttps` (SMS / email réels par passerelle HTTPS, aucun faux envoi, configuration refusée si invalide),
+  règle « un seul contact à l'inscription », `ParrainageRecompenseService` (récompense « en revue » après livraison,
+  sans crédit wallet), validation partagée `validerInscription` utilisée par le site.
+- Retirés car redondants : hachage scrypt, ancien `auth.module` / `auth.service`, `notification-auth.service`
+  (devenu `PasserelleHttps`), `SS_OTP_PEPPER` (remplacé par une clé dérivée d'`APP_SECRET`). Leurs cas de test ont été
+  repris (`test/passerelle-https.test.ts`, `test/parrainage-recompense.test.ts`, `packages/types/src/inscription.test.ts`).
+- Tests API : 82 (dont 21 de bout en bout sur PostgreSQL embarqué) + 10 tests de base.

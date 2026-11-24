@@ -1,16 +1,20 @@
 import { PAYS, PAYS_PAR_DEFAUT } from '@ss-dropship/config';
 import { traducteur } from '@ss-dropship/i18n';
+import Link from 'next/link';
 import { EnTete } from '../../composants/EnTete';
+import { Formulaire } from '../../composants/Formulaire';
+import { inscrire } from '../actions';
 
-/** Formulaire d'inscription (US-AUT-01). L'envoi vers l'API est branché au sprint S1. */
-export default function Inscription() {
+/** Inscription (US-AUT-01) : le code de parrainage est facultatif et prérempli par le lien partagé (D-005). */
+export default async function Inscription({ searchParams }: { searchParams: Promise<{ parrain?: string }> }) {
   const t = traducteur('fr');
+  const { parrain } = await searchParams;
   return (
     <>
       <EnTete t={t} />
       <main className="conteneur etroit">
         <h1>{t('auth.inscription.titre')}</h1>
-        <form className="formulaire" noValidate>
+        <Formulaire action={inscrire} bouton={t('auth.bouton.inscription')}>
           <label>
             {t('auth.champ.nom')}
             <input name="nom" autoComplete="name" required />
@@ -25,6 +29,7 @@ export default function Inscription() {
               ))}
             </select>
           </label>
+          <p className="note">Un seul contact : votre téléphone (recommandé) ou votre email.</p>
           <label>
             {t('auth.champ.telephone')}
             <input name="telephone" type="tel" autoComplete="tel" placeholder="+223 …" />
@@ -43,19 +48,16 @@ export default function Inscription() {
           </label>
           <label>
             {t('auth.champ.codeParrainage')}
-            <input name="codeParrainage" autoCapitalize="characters" />
+            <input name="codeParrainage" autoCapitalize="characters" defaultValue={parrain ?? ''} />
           </label>
           <label className="case">
             <input name="cguAcceptees" type="checkbox" required />
             {t('auth.cgu')}
           </label>
-          <button type="submit" className="bouton bouton-principal" disabled aria-describedby="note-s1">
-            {t('auth.bouton.inscription')}
-          </button>
-          <p id="note-s1" className="note">
-            Aperçu : l’envoi sera activé au sprint S1 (création de compte réelle).
-          </p>
-        </form>
+        </Formulaire>
+        <p className="note centre">
+          {t('auth.dejaUnCompte')} <Link href="/connexion">{t('auth.connexion.titre')}</Link>
+        </p>
       </main>
     </>
   );

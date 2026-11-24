@@ -2,6 +2,9 @@ import { readFileSync } from 'node:fs';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { describe, expect, it, vi } from 'vitest';
 
+// L'en-tête (composant serveur asynchrone, lit les cookies) est remplacé par un équivalent synchrone.
+vi.mock('../composants/EnTete', () => ({ EnTete: () => <header>SS DROPSHIP</header> }));
+
 vi.mock('next/link', () => ({
   default: ({ href, children, ...rest }: { href: string; children: unknown }) => (
     // biome-ignore lint/suspicious/noExplicitAny: maquette minimale de next/link pour le rendu serveur.
@@ -15,7 +18,7 @@ const { default: Accueil } = await import('../app/page');
 const { default: Inscription } = await import('../app/inscription/page');
 
 describe('site client', () => {
-  it("l'accueil présente les trois modes de commande (D-006) et le chat flottant", () => {
+  it("l'accueil présente les trois modes de commande (D-006) et le chat flottant", async () => {
     const html = renderToStaticMarkup(<Accueil />);
     expect(html).toContain('Commande directe');
     expect(html).toContain('Recherche de produit');
@@ -23,12 +26,17 @@ describe('site client', () => {
     expect(html).toContain('Discuter avec le support');
   });
 
-  it("l'inscription contient le code de parrainage facultatif (D-005) et le Mali par défaut (D-021)", () => {
-    const html = renderToStaticMarkup(<Inscription />);
+  it("l'inscription contient le code de parrainage facultatif (D-005) et le Mali par défaut (D-021)", async () => {
+    const html = renderToStaticMarkup(await Inscription({ searchParams: Promise.resolve({}) }));
     expect(html).toContain('Code de parrainage (facultatif)');
     expect(html).toContain('name="codeParrainage"');
     expect(html).toMatch(/<option value="ML" selected="">Mali<\/option>/);
     expect(html).not.toContain('Ghana'); // pays fermé au lancement
+  });
+
+  it('le lien de parrainage partagé préremplit le code', async () => {
+    const html = renderToStaticMarkup(await Inscription({ searchParams: Promise.resolve({ parrain: 'AWA7KQ' }) }));
+    expect(html).toMatch(/name="codeParrainage"[^>]*value="AWA7KQ"/);
   });
 
   it('la feuille de style n’utilise que les variables de la charte, aucune couleur codée en dur', () => {

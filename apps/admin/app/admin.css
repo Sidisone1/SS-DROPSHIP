@@ -99,3 +99,32 @@ h2 {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+.alerte {
+  padding: var(--ss-espace-m);
+  border-left: 4px solid var(--ss-rouge);
+  background: var(--ss-surface);
+  font-weight: 700;
+  margin: 0;
+}
+.info {
+  padding: var(--ss-espace-m);
+  border-left: 4px solid var(--ss-bleu);
+  background: var(--ss-blanc);
+}
+.secret {
+  font-family: ui-monospace, monospace;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  word-break: break-all;
+}
+.note-menu {
+  margin-top: var(--ss-espace-xl);
+  font-size: 13px;
+}
+.lien-bouton {
+  background: none;
+  border: 0;
+  color: var(--ss-role-action);
+  text-decoration: underline;
+}

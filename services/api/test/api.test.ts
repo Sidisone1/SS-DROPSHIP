@@ -5,6 +5,7 @@ import { OptionIndisponible, TransitionInterdite, transitionner, verifierOptionC
 import request from 'supertest';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import { AppModule } from '../src/app.module.js';
+import { Public } from '../src/auth/decorateurs.js';
 import { configurer } from '../src/application.js';
 import { versReponse } from '../src/commun/filtre-erreurs.js';
 import { lireConfiguration } from '../src/config.js';
@@ -13,6 +14,7 @@ import { PrismaService } from '../src/prisma/prisma.service.js';
 const config = lireConfiguration({ NODE_ENV: 'test', DATABASE_URL: 'postgresql://test:test@localhost:5432/test' });
 
 /** Contrôleur de test : déclenche les erreurs métier pour vérifier le filtre global. */
+@Public()
 @Controller('essai')
 class EssaiController {
   @Get('transition')

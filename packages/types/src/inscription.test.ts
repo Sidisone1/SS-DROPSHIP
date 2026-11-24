@@ -26,7 +26,8 @@ test('US-AUT-01 : normalise les champs et ne retourne aucun secret', () => {
   assert.deepEqual(resultat, {
     valide: true,
     champs: {
-      nom: 'Aminata Traoré', pays: 'ML',
+      nom: 'Aminata Traoré',
+      pays: 'ML',
       telephone: '+22376123456',
       email: 'aminata@example.com',
       codeParrainage: 'AMINA7K',

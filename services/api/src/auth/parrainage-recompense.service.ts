@@ -14,9 +14,9 @@ import { PrismaService } from '../prisma/prisma.service.js';
 export class ParrainageRecompenseService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async preparerApresLivraison(commandeId: string): Promise<
-    { statut: 'non_eligible' | 'deja_preparee' | 'en_revue'; recompenseId?: string }
-  > {
+  async preparerApresLivraison(
+    commandeId: string,
+  ): Promise<{ statut: 'non_eligible' | 'deja_preparee' | 'en_revue'; recompenseId?: string }> {
     if (!commandeId || typeof commandeId !== 'string') return { statut: 'non_eligible' };
     const commande = await this.prisma.commande.findUnique({
       where: { id: commandeId },
@@ -26,7 +26,8 @@ export class ParrainageRecompenseService {
       return { statut: 'non_eligible' };
     }
     const deja = await this.prisma.recompenseParrainage.findUnique({
-      where: { commandeId }, select: { id: true },
+      where: { commandeId },
+      select: { id: true },
     });
     if (deja) return { statut: 'deja_preparee', recompenseId: deja.id };
     const [parrainage, offre, livraison] = await Promise.all([
@@ -39,12 +40,20 @@ export class ParrainageRecompenseService {
         select: { fraisService: true, devise: true },
       }),
       this.prisma.evenementCommande.findFirst({
-        where: { commandeId, vers: 'livree' }, orderBy: { creeLe: 'desc' }, select: { creeLe: true },
+        where: { commandeId, vers: 'livree' },
+        orderBy: { creeLe: 'desc' },
+        select: { creeLe: true },
       }),
     ]);
-    if (!parrainage || !offre || !livraison || offre.devise !== commande.devise ||
-      offre.devise !== 'XOF' || offre.fraisService < 0n ||
-      offre.fraisService > BigInt(Number.MAX_SAFE_INTEGER)) {
+    if (
+      !parrainage ||
+      !offre ||
+      !livraison ||
+      offre.devise !== commande.devise ||
+      offre.devise !== 'XOF' ||
+      offre.fraisService < 0n ||
+      offre.fraisService > BigInt(Number.MAX_SAFE_INTEGER)
+    ) {
       return { statut: 'non_eligible' };
     }
     const resultat = calculerRecompense({
@@ -64,9 +73,12 @@ export class ParrainageRecompenseService {
     try {
       const recompense = await this.prisma.recompenseParrainage.create({
         data: {
-          parrainageId: parrainage.id, commandeId,
-          montant: BigInt(resultat.montant.valeur), devise: resultat.montant.devise,
-          tauxPb: PARRAINAGE_PAR_DEFAUT_XOF.tauxPb, etat: 'en_revue',
+          parrainageId: parrainage.id,
+          commandeId,
+          montant: BigInt(resultat.montant.valeur),
+          devise: resultat.montant.devise,
+          tauxPb: PARRAINAGE_PAR_DEFAUT_XOF.tauxPb,
+          etat: 'en_revue',
         },
         select: { id: true },
       });
