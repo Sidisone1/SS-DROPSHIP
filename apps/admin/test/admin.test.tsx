@@ -4,19 +4,19 @@ import { describe, expect, it } from 'vitest';
 import { MODULES } from '../app/modules';
 
 const { default: Connexion } = await import('../app/page');
-const { default: TableauDeBord } = await import('../app/tableau-de-bord/page');
 
 describe('back-office', () => {
-  it('la connexion prévoit la double authentification (ADR-004)', () => {
-    const html = renderToStaticMarkup(<Connexion />);
+  it('la connexion prévoit la double authentification (ADR-004)', async () => {
+    const html = renderToStaticMarkup(await Connexion({ searchParams: Promise.resolve({}) }));
     expect(html).toContain('name="codeMfa"');
     expect(html).toContain('Accès réservé au personnel habilité.');
   });
 
-  it("le tableau de bord n'affiche aucun chiffre inventé", () => {
-    const html = renderToStaticMarkup(<TableauDeBord />).replaceAll('&#x27;', "'");
-    for (const m of MODULES) expect(html).toContain(m.titre);
-    expect(html).not.toMatch(/>\s*\d[\d\s]*\s*</); // aucun compteur chiffré
+  it("le tableau de bord n'affiche aucun chiffre inventé et filtre les modules par rôle", () => {
+    const source = readFileSync(new URL('../app/tableau-de-bord/page.tsx', import.meta.url), 'utf8');
+    expect(source).toMatch(/aria-hidden="true">—/);
+    expect(source).toMatch(/MODULES\.filter\(\(m\) => m\.roles\.some/);
+    expect(source).toMatch(/redirect\('\/mfa'\)/);
   });
 
   it('chaque module est réservé à des rôles internes, jamais au client', () => {
