@@ -1,6 +1,7 @@
 'use server';
 
 import { redirect } from 'next/navigation';
+import { validerInscription } from '@ss-dropship/types';
 import { appelerApi, type ErreurApi } from '../lib/api';
 import { type EtatFormulaire, etatDepuisErreur, texte } from '../lib/formulaire';
 import { effacerJetons, enregistrerJetons, lireJetons } from '../lib/session';
@@ -13,6 +14,26 @@ interface Jetons {
 
 /** US-AUT-01 */
 export async function inscrire(_: EtatFormulaire, f: FormData): Promise<EtatFormulaire> {
+  // Validation partagée (packages/types, même règles que le mobile) avant l'appel à l'API.
+  const verification = validerInscription({
+    nom: texte(f, 'nom'),
+    pays: texte(f, 'pays'),
+    telephone: texte(f, 'telephone') || null,
+    email: texte(f, 'email') || null,
+    motDePasse: String(f.get('motDePasse') ?? ''),
+    motDePasseConfirmation: String(f.get('motDePasseConfirmation') ?? ''),
+    codeParrainage: texte(f, 'codeParrainage') || null,
+    cguAcceptees: f.get('cguAcceptees') === 'on',
+  });
+  if (!verification.valide) {
+    return {
+      message: Object.values(verification.erreurs).join(' '),
+      champs: verification.erreurs as Record<string, string>,
+    };
+  }
+  if (texte(f, 'telephone') && texte(f, 'email')) {
+    return { message: 'Indiquez un téléphone ou un email, pas les deux.', champs: { contact: 'un_seul' } };
+  }
   const r = await appelerApi<{ utilisateurId: string; canalVerification: string; avertissement?: string } & ErreurApi>(
     '/auth/inscription',
     {

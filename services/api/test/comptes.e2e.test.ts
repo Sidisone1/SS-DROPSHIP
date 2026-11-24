@@ -176,7 +176,8 @@ describe('connexion, sessions, compte (US-AUT-03 à 06)', () => {
   const auth = () => ({ Authorization: `Bearer ${jetons.jetonAcces}` });
 
   beforeAll(async () => {
-    await creerCompteActif({ nom: 'Salif Coulibaly', telephone: '70000010', email: 'salif@exemple.ml' });
+    await creerCompteActif({ nom: 'Salif Coulibaly', telephone: '70000010' });
+    await creerCompteActif({ nom: 'Mariam', telephone: undefined, email: 'mariam@exemple.ml' });
   });
 
   it('mauvais mot de passe et compte inconnu donnent la même réponse', async () => {
@@ -186,9 +187,9 @@ describe('connexion, sessions, compte (US-AUT-03 à 06)', () => {
   });
 
   it('connexion par téléphone ou email, profil, rôles', async () => {
-    jetons = (await connecter('salif@exemple.ml').expect(200)).body;
-    expect(jetons).toMatchObject({ expireDans: 900, portee: 'complet' });
+    expect((await connecter('mariam@exemple.ml').expect(200)).body.portee).toBe('complet');
     jetons = (await connecter('+223 70 00 00 10').expect(200)).body;
+    expect(jetons).toMatchObject({ expireDans: 900, portee: 'complet' });
     const moi = await http.get('/v1/moi').set(auth()).expect(200);
     expect(moi.body).toMatchObject({ nom: 'Salif Coulibaly', pays: 'ML', roles: ['client'] });
     expect(moi.body).not.toHaveProperty('motDePasseHash');
@@ -382,7 +383,7 @@ describe('personnel : double authentification obligatoire et rôles (US-AUT-07, 
 
 describe('données personnelles (US-AUT-08) et journal d audit', () => {
   it('export sans secrets ; suppression par anonymisation, connexion ensuite impossible', async () => {
-    await creerCompteActif({ nom: 'Oumar Diallo', telephone: '70000030', email: 'oumar@exemple.ml' });
+    await creerCompteActif({ nom: 'Oumar Diallo', telephone: '70000030' });
     const j = (await connecter('70000030').expect(200)).body;
     const auth = { Authorization: `Bearer ${j.jetonAcces}` };
     const exp = (await http.get('/v1/moi/export').set(auth).expect(200)).body;

@@ -136,6 +136,9 @@ importers:
       '@ss-dropship/i18n':
         specifier: workspace:*
         version: link:../../packages/i18n
+      '@ss-dropship/types':
+        specifier: workspace:*
+        version: link:../../packages/types
       '@ss-dropship/ui':
         specifier: workspace:*
         version: link:../../packages/ui

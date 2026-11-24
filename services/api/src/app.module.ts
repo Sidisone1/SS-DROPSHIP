@@ -8,6 +8,7 @@ import { CLES, creerCles } from './auth/cles.js';
 import { CodesVerificationService } from './auth/codes-verification.service.js';
 import { GardeAuth } from './auth/garde-auth.js';
 import { LimitesService } from './auth/limites.service.js';
+import { ParrainageRecompenseService } from './auth/parrainage-recompense.service.js';
 import { SessionsService } from './auth/sessions.service.js';
 import { ComptesController } from './comptes/comptes.controller.js';
 import { ComptesService } from './comptes/comptes.service.js';
@@ -35,8 +36,10 @@ export class AppModule {
         CodesVerificationService,
         AuthService,
         ComptesService,
+        // Préparation des récompenses après livraison (sans crédit wallet) : appelée par le module commandes (S5).
+        ParrainageRecompenseService,
       ],
-      exports: [CONFIGURATION, CLES],
+      exports: [CONFIGURATION, CLES, ParrainageRecompenseService],
     };
   }
 }

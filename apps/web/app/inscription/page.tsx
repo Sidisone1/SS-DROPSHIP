@@ -29,6 +29,7 @@ export default async function Inscription({ searchParams }: { searchParams: Prom
               ))}
             </select>
           </label>
+          <p className="note">Un seul contact : votre téléphone (recommandé) ou votre email.</p>
           <label>
             {t('auth.champ.telephone')}
             <input name="telephone" type="tel" autoComplete="tel" placeholder="+223 …" />

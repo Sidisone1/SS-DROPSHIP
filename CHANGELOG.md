@@ -154,6 +154,28 @@
 - Vérification complète : lint Biome OK ; `turbo run typecheck test build` 21/21 sans cache.
 - Captures du code réel : `docs/captures/S0/`. Reste en S0 : environnements et observabilité (hébergement à choisir).
 
+## 2026-11-23 — Sprint S1 : première brique d'inscription (US-AUT-01)
+- Ajout de `packages/types/src/inscription.ts` : validation réutilisable des champs d'inscription pour le Mali, normalisation du numéro +223 au format E.164, e-mail en minuscules, code de parrainage facultatif en majuscules, contrôle des mots de passe concordants et de l'acceptation des CGU.
+- Export de `validerInscription` et `normaliserTelephoneMali` depuis `@ss-dropship/types` pour les futures applications et l'API.
+- Ajout de `packages/types/src/inscription.test.ts` (9 cas automatisés) couvrant inscriptions valides, champs facultatifs et erreurs de validation.
+- **Limite :** pas de création de compte, d'API d'inscription, de SMS, de stockage de mot de passe ou de contrôle d'unicité ; le formulaire web reste désactivé. La validation du code parrain, l'anti-auto-parrainage et le contrôle du compte existant seront faits côté serveur lors de l'implémentation de S1.
+- Tests ajoutés au dépôt, mais **exécution CI non confirmée dans cette intervention**.
+
+## 2026-11-23 — Sprint S1 : sécurité des mots de passe
+- `services/api/src/auth/mots-de-passe.ts` : dérivation asynchrone scrypt avec sel aléatoire de 128 bits et paramètres bornés ; vérification avec `timingSafeEqual`, format d'empreinte versionné.
+- `services/api/test/mots-de-passe.test.ts` : 4 tests couvrant empreinte non réversible, sel aléatoire, secret erroné, entrées invalides et rejet des paramètres scrypt non conformes.
+- Aucune route publique n'a encore été ouverte ; l'inscription reste désactivée jusqu'à ce que la vérification de contact et les limites de tentatives soient intégrées.
+- Tests ajoutés à la suite Vitest existante, **exécution de la CI non confirmée**.
+
+## 2026-11-23 — Sprint S1 : comptes, vérification, sessions et parrainage
+
+- API NestJS : `AuthModule`, `AuthController` et `AuthService` ajoutés ; persistance transactionnelle des comptes dans PostgreSQL/Prisma avec état `a_verifier`, mot de passe scrypt, code de parrainage propre à chaque compte et relation parrain-filleul atomique.
+- OTP : codes à six chiffres, empreinte HMAC-SHA256 avec secret serveur obligatoire `SS_OTP_PEPPER`, expiration 10 min, 5 tentatives maximum ; renvoi avec délai 60 s et invalidation des anciens codes.
+- Transport : `NotificationAuthService` relaie les SMS et e-mails via des passerelles HTTPS privées, paramétrées par environnement. Le service refuse explicitement l'activation sans secret ou sans prestataire ; aucun faux envoi.
+- Sessions : jetons opaques aléatoires, seule leur empreinte SHA256 est stockée dans la table `Session` ; expiration à sept jours, authentification Bearer, récupération du profil et révocation. Les comptes non vérifiés ou administrateurs sans MFA ne peuvent pas se connecter.
+- Parrainage : consultation du code et nombre de filleuls ; `ParrainageRecompenseService` prépare les récompenses éligibles à la livraison avec 5 % des frais de service et idempotence par commande, en état `en_revue`. AUCUN crédit wallet ni versement avant l'implémentation sécurisée du ledger.
+- Tests ajoutés : `auth-s1.test.ts`, `notification-auth.test.ts`, `parrainage-recompense.test.ts`. Documentation API et `.env.example` mis à jour.
+- Limites : fournisseur SMS/e-mail réel non configuré ; pas de MFA admin ni de limitation distribuée des connexions ; déclenchement automatique depuis le workflow commande S5 et règlement comptable S6 à intégrer ; alignement OpenAPI access/refresh restant à faire. **Compilation, lint et CI à confirmer**.
 ## 2026-11-24 — Sprint S1 : comptes et parrainage
 - API : inscription avec code de parrainage facultatif (parrain actif uniquement), vérification par code (6 chiffres,
   10 min, 5 essais puis blocage 15 min), renvoi, connexion par téléphone ou email, sessions renouvelées par rotation
@@ -168,3 +190,14 @@
 - Contrat OpenAPI complété ; nouveau test de cohérence routes ↔ contrat (il a révélé `/sante` et `/pays` non documentées).
 - Tests : 73 tests API (dont 21 de bout en bout sur PostgreSQL embarqué et 18 de sécurité, vecteurs RFC 6238), 10 tests
   de base, parcours navigateur site et back-office (`tools/e2e/`). Décision D-026.
+
+## 2026-11-24 — Réunion des deux versions du sprint S1 (D-027)
+- Constat : une autre version du sprint S1 avait été publiée directement sur `main` en parallèle de la PR #14.
+- Base conservée : version complète de la PR #14. Apports intégrés de la version de `main` : prestataire
+  `PasserelleHttps` (SMS / email réels par passerelle HTTPS, aucun faux envoi, configuration refusée si invalide),
+  règle « un seul contact à l'inscription », `ParrainageRecompenseService` (récompense « en revue » après livraison,
+  sans crédit wallet), validation partagée `validerInscription` utilisée par le site.
+- Retirés car redondants : hachage scrypt, ancien `auth.module` / `auth.service`, `notification-auth.service`
+  (devenu `PasserelleHttps`), `SS_OTP_PEPPER` (remplacé par une clé dérivée d'`APP_SECRET`). Leurs cas de test ont été
+  repris (`test/passerelle-https.test.ts`, `test/parrainage-recompense.test.ts`, `packages/types/src/inscription.test.ts`).
+- Tests API : 82 (dont 21 de bout en bout sur PostgreSQL embarqué) + 10 tests de base.

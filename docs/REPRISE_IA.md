@@ -31,7 +31,7 @@ Aucune intégration externe réelle (paiement, SMS, transporteur) n'existe. Ne j
 apps/web        Site client Next.js 16 : accueil, inscription, code, connexion, compte  ✅ build + 6 tests
 apps/admin      Back-office Next.js : connexion + double authentification, tableau   ✅ build + 5 tests
 apps/mobile     Application Expo 57 / React Native 0.86, 5 onglets               ✅ export Metro + 6 tests
-services/api    API NestJS 12 + Prisma 7 + PostgreSQL : comptes, parrainage, rôles  ✅ 73 tests + 10 base
+services/api    API NestJS 12 + Prisma 7 + PostgreSQL : comptes, parrainage, rôles  ✅ 82 tests + 10 base
 services/workers Tâches asynchrones (BullMQ)                                      ⏳ S6+
 packages/types  Machines à états, montants, parrainage, interfaces prestataires   ✅ 22 tests
 packages/config Pays (Mali ouvert), langues, drapeaux V2 désactivés               ✅ 5 tests
@@ -74,8 +74,11 @@ par code (via `NotificationProvider` en sandbox tant qu'aucun fournisseur SMS n'
 - Garde globale : **toute route exige une session**, sauf celles marquées `@Public()` ; rôles via `@Roles(...)`.
 - Premier administrateur : `node services/api/dist/scripts/creer-admin.js` (variables `ADMIN_EMAIL`, `ADMIN_MOT_DE_PASSE`).
 - Variables d'environnement de l'API : `services/api/.env.example` (`APP_SECRET` obligatoire en production).
-- Codes de vérification : prestataire de test `sandbox_journal` (écrit le code dans le journal en développement) ;
-  l'API refuse de démarrer avec lui en production (M-010).
+- Codes de vérification : prestataire de test `sandbox_journal` (écrit le code dans le journal en développement,
+  refusé en production) ou `passerelle_https` (passerelles HTTPS réelles, voir `services/api/README.md`). Il manque le
+  contrat avec un prestataire SMS au Mali (M-010). **Un seul contact par inscription** (D-027).
+- Deux versions du S1 ont été réunies (D-027) : avant de coder, vérifier `git log origin/main` pour ne pas refaire en
+  parallèle un travail déjà publié par une autre IA.
 - Parcours navigateur : `tools/e2e/` (voir son README). Contrat : le test `services/api/test/contrat.test.ts` échoue
   si une route n'est pas dans `openapi.yaml`.
 - Mobile : les écrans de connexion ne sont pas encore branchés (à faire avec S2 ou en complément de S1).

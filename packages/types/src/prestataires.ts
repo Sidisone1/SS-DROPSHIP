@@ -102,6 +102,8 @@ export type CanalNotification = 'in_app' | 'push' | 'sms' | 'email' | 'whatsapp'
 
 export interface Notification {
   readonly destinataireId: string;
+  /** Téléphone (E.164) ou email, requis par les prestataires qui envoient réellement (SMS, email). */
+  readonly contact?: string;
   readonly canal: CanalNotification;
   /** Clé de traduction du modèle, ex. « commande.recue_entrepot ». */
   readonly modele: string;

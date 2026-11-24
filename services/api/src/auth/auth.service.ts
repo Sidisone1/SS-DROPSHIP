@@ -2,6 +2,7 @@ import { HttpStatus, Inject, Injectable } from '@nestjs/common';
 import { configPays } from '@ss-dropship/config';
 import { AuditService } from '../audit/audit.service.js';
 import { conflit, ErreurMetier, interdit, invalide, nonAuthentifie } from '../commun/erreurs.js';
+import { canalIndisponible, NotificationsService } from '../notifications/notifications.service.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { chiffrer, dechiffrer } from '../securite/chiffrement.js';
 import {
@@ -38,6 +39,7 @@ export class AuthService {
     private readonly sessions: SessionsService,
     private readonly codes: CodesVerificationService,
     private readonly audit: AuditService,
+    private readonly notifications: NotificationsService,
     @Inject(CLES) private readonly cles: Cles,
   ) {}
 
@@ -57,6 +59,12 @@ export class AuthService {
       throw invalide('Numéro de téléphone invalide.', { champs: { telephone: 'invalide' } });
     if (d.email && !email) throw invalide('Adresse email invalide.', { champs: { email: 'invalide' } });
     if (!telephone && !email) throw invalide('Indiquez un téléphone ou un email.', { champs: { telephone: 'requis' } });
+    // Un seul contact au MVP : le contact vérifié est le seul utilisable pour se connecter (règle reprise de la
+    // version S1 publiée sur main, D-027) ; aucun contact non vérifié ne peut ouvrir une session ni bloquer un tiers.
+    if (telephone && email) {
+      throw invalide('Utilisez un téléphone ou un email, pas les deux.', { champs: { contact: 'un_seul' } });
+    }
+    if (!this.notifications.disponible(telephone ? 'sms' : 'email')) throw canalIndisponible();
     const faiblesse = verifierRobustesse(d.motDePasse);
     if (faiblesse) throw invalide(faiblesse, { champs: { motDePasse: 'faible' } });
 
