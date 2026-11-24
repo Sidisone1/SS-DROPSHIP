@@ -23,12 +23,17 @@ describe('site client', () => {
     expect(html).toContain('Discuter avec le support');
   });
 
-  it("l'inscription contient le code de parrainage facultatif (D-005) et le Mali par défaut (D-021)", () => {
-    const html = renderToStaticMarkup(<Inscription />);
+  it("l'inscription contient le code de parrainage facultatif (D-005) et le Mali par défaut (D-021)", async () => {
+    const html = renderToStaticMarkup(await Inscription({ searchParams: Promise.resolve({}) }));
     expect(html).toContain('Code de parrainage (facultatif)');
     expect(html).toContain('name="codeParrainage"');
     expect(html).toMatch(/<option value="ML" selected="">Mali<\/option>/);
     expect(html).not.toContain('Ghana'); // pays fermé au lancement
+  });
+
+  it('le lien de parrainage partagé préremplit le code', async () => {
+    const html = renderToStaticMarkup(await Inscription({ searchParams: Promise.resolve({ parrain: 'AWA7KQ' }) }));
+    expect(html).toMatch(/name="codeParrainage"[^>]*value="AWA7KQ"/);
   });
 
   it('la feuille de style n’utilise que les variables de la charte, aucune couleur codée en dur', () => {

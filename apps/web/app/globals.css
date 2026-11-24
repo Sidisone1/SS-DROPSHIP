@@ -217,3 +217,60 @@ h3 {
   font-size: 14px;
   white-space: nowrap;
 }
+.alerte {
+  margin: 0;
+  padding: var(--ss-espace-m);
+  border-left: 4px solid var(--ss-rouge);
+  background: var(--ss-surface);
+  font-weight: 700;
+}
+.info {
+  margin: 0;
+  padding: var(--ss-espace-m);
+  border-left: 4px solid var(--ss-bleu);
+  background: var(--ss-surface);
+}
+.lien-bouton {
+  background: none;
+  border: 0;
+  font: inherit;
+  color: var(--ss-role-action);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.centre {
+  text-align: center;
+}
+.ligne {
+  display: flex;
+  align-items: center;
+  gap: var(--ss-espace-m);
+  flex-wrap: wrap;
+}
+.bordure {
+  border: 1px solid var(--ss-bordure);
+}
+.carte + .carte {
+  margin-top: var(--ss-espace-l);
+}
+.code-parrainage {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--ss-bleu);
+  margin: 0 0 var(--ss-espace-m);
+}
+.chiffres {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--ss-espace-m);
+  margin: var(--ss-espace-l) 0 0;
+}
+.chiffres dt {
+  font-size: 13px;
+  color: var(--ss-role-texteSecondaire);
+}
+.chiffres dd {
+  margin: 0;
+  font-weight: 700;
+}
