@@ -15,7 +15,13 @@ function exposerProduit(p: {
   variantes: unknown;
   misEnAvant: boolean;
   categorie: { id: string; slug: string; cleLibelle: string };
-  fournisseur: { id: string; nom: string; paysOrigine: string; categories: string[]; delaiMoyenJours: number | null } | null;
+  fournisseur: {
+    id: string;
+    nom: string;
+    paysOrigine: string;
+    categories: string[];
+    delaiMoyenJours: number | null;
+  } | null;
 }) {
   return {
     id: p.id,
@@ -24,10 +30,7 @@ function exposerProduit(p: {
     categorie: { id: p.categorie.id, slug: p.categorie.slug, libelle: p.categorie.cleLibelle },
     medias: p.medias,
     variantes: p.variantes,
-    prixIndicatif:
-      p.prixIndicatif === null || !p.devise
-        ? null
-        : { valeur: Number(p.prixIndicatif), devise: p.devise },
+    prixIndicatif: p.prixIndicatif === null || !p.devise ? null : { valeur: Number(p.prixIndicatif), devise: p.devise },
     mentionPrix: MENTION_PRIX,
     origine: p.fournisseur?.paysOrigine ?? '',
     delaiEstimeJours: p.fournisseur?.delaiMoyenJours ?? null,
@@ -81,7 +84,7 @@ export class CatalogueController {
     };
     const min = prix(prixMin);
     const max = prix(prixMax);
-    const produits = await this.prisma.produit.findMany({
+    if (min !== undefined && max !== undefined && min > max) {\n      throw invalide('Le prix minimum ne peut pas dépasser le maximum.');\n    }\n    const produits = await this.prisma.produit.findMany({
       where: {
         etat: 'valide',
         fournisseur: { etat: 'valide' },
