@@ -93,7 +93,7 @@ export class CatalogueController {
         fournisseur: { etat: 'valide' },
         ...(categorie ? { categorie: { slug: categorie } } : {}),
         ...(q?.trim() ? { titre: { contains: q.trim(), mode: 'insensitive' } } : {}),
-        ...((min !== undefined || max !== undefined)
+        ...(min !== undefined || max !== undefined
           ? {
               prixIndicatif: {
                 not: null,
