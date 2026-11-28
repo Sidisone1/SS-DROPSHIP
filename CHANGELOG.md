@@ -1,5 +1,13 @@
 # Historique des mises à jour
 
+## 2026-11-28 — Benchmark concurrentiel et API lecture catalogue
+- Ajout de `docs/market-research/COMPETITORS_AND_PRODUCT_GAPS.md` : comparaison de Sugargoo, CSSBuy, HooBuy, Superbuy, OrientDig et AllChinaBuy; acteurs émergents signalés séparément; écarts MVP/V2 et priorités, sans reprendre leurs tarifs comme promesses locales.
+- Mise à jour de `docs/REPRISE_IA.md` avec l'état de la PR, les dépendances réelles et la feuille de route pour faire évoluer SS DROPSHIP en plateforme complète.
+- API NestJS : ajout des routes de lecture catégories, produits filtrés, fiche produit et fournisseurs validés; ajout de la liste des favoris avec stockage persistant et ajout/retrait idempotents.
+- Les produits non publiés, les fournisseurs non validés et les prix indicatifs inconnus ne sont pas exposés comme offres achetables; chaque fiche affiche la mention de confirmation par devis.
+- Alignement OpenAPI : filtre prix minimum et route de liste des favoris documentés. Les fonctions de commande, devis, paiements, retours, fret et entrepôt restent à implémenter ou à connecter aux partenaires réels.
+
+
 ## 2026-11-28 — Sprint S2 : noyau de règles catalogue
 - Ajout de contrats et règles partagés pour la visibilité, les catégories non vides, la recherche insensible aux accents, les filtres de prix indicatif XOF, les liens produit autorisés et les favoris.
 - Un produit n'est visible que s'il est publié, dans une catégorie active et associé à un fournisseur validé.
