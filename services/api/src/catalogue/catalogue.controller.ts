@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, HttpCode, Param, Put, Query } from '@nestjs/common';
-import { Roles, Utilisateur, type UtilisateurConnecte, Public } from '../auth/decorateurs.js';
-import { introuvable } from '../commun/erreurs.js';
+import { Public, Roles, Utilisateur, type UtilisateurConnecte } from '../auth/decorateurs.js';
+import { introuvable, invalide } from '../commun/erreurs.js';
 import { PrismaService } from '../prisma/prisma.service.js';
 
 const MENTION_PRIX = 'Prix indicatif, confirmé par devis';
@@ -88,7 +88,7 @@ export class CatalogueController {
         ...((min !== undefined || max !== undefined)
           ? {
               prixIndicatif: {
-                ...(min !== undefined ? { gte: min } : {}),
+                not: null,\n                ...(min !== undefined ? { gte: min } : {}),
                 ...(max !== undefined ? { lte: max } : {}),
               },
             }
