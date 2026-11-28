@@ -138,10 +138,7 @@ test('exclut du filtre prix les produits sans prix indicatif', () => {
 });
 
 test('rejette les prix incohérents', () => {
-  assert.throws(
-    () => rechercherCatalogue(produits, fournisseurs, categories, { prixMinXof: 10.5 }),
-    RangeError,
-  );
+  assert.throws(() => rechercherCatalogue(produits, fournisseurs, categories, { prixMinXof: 10.5 }), RangeError);
   assert.throws(
     () => rechercherCatalogue(produits, fournisseurs, categories, { prixMinXof: 2, prixMaxXof: 1 }),
     RangeError,
@@ -152,10 +149,7 @@ test('autorise les domaines prévus en HTTPS et refuse les autres', () => {
   assert.equal(validerLienProduit('https://www.alibaba.com/item/123').hostname, 'www.alibaba.com');
   assert.equal(validerLienProduit('https://detail.1688.com/offer/123').hostname, 'detail.1688.com');
   assert.throws(() => validerLienProduit('http://alibaba.com/item/1'), TypeError);
-  assert.throws(
-    () => validerLienProduit('https://alibaba.com.evil.example/item/1'),
-    TypeError,
-  );
+  assert.throws(() => validerLienProduit('https://alibaba.com.evil.example/item/1'), TypeError);
 });
 
 test('ajoute et retire un favori sans muter la liste source', () => {
