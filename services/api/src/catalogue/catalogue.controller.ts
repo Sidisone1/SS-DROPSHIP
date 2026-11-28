@@ -74,7 +74,9 @@ export class CatalogueController {
   ) {
     const prix = (valeur: string | undefined) => {
       if (valeur === undefined) return undefined;
-      if (!/^\d+$/.test(valeur) || !Number.isSafeInteger(Number(valeur))) return -1n;
+      if (!/^\d+$/.test(valeur) || !Number.isSafeInteger(Number(valeur))) {
+        throw invalide('Le filtre de prix doit être un entier positif.');
+      }
       return BigInt(valeur);
     };
     const min = prix(prixMin);
@@ -88,7 +90,8 @@ export class CatalogueController {
         ...((min !== undefined || max !== undefined)
           ? {
               prixIndicatif: {
-                not: null,\n                ...(min !== undefined ? { gte: min } : {}),
+                not: null,
+                ...(min !== undefined ? { gte: min } : {}),
                 ...(max !== undefined ? { lte: max } : {}),
               },
             }
@@ -127,4 +130,37 @@ export class CatalogueController {
     });
   }
 
+  @Roles('client')
+  @Get('moi/favoris')
+  async listerFavoris(@Utilisateur() utilisateur: UtilisateurConnecte) {
+    const favoris = await this.prisma.favori.findMany({
+      where: { utilisateurId: utilisateur.id, produit: { etat: 'valide', fournisseur: { etat: 'valide' } } },
+      include: { produit: { include: relationsVisibles } },
+      orderBy: { creeLe: 'desc' },
+    });
+    return favoris.map(({ produit }) => exposerProduit(produit));
+  }
+
+  @Roles('client')
+  @Put('moi/favoris/:id')
+  @HttpCode(204)
+  async ajouterFavori(@Param('id') produitId: string, @Utilisateur() utilisateur: UtilisateurConnecte) {
+    const produit = await this.prisma.produit.findFirst({
+      where: { id: produitId, etat: 'valide', fournisseur: { etat: 'valide' } },
+      select: { id: true },
+    });
+    if (!produit) throw introuvable('Produit introuvable.');
+    await this.prisma.favori.upsert({
+      where: { utilisateurId_produitId: { utilisateurId: utilisateur.id, produitId } },
+      create: { utilisateurId: utilisateur.id, produitId },
+      update: {},
+    });
+  }
+
+  @Roles('client')
+  @Delete('moi/favoris/:id')
+  @HttpCode(204)
+  async retirerFavori(@Param('id') produitId: string, @Utilisateur() utilisateur: UtilisateurConnecte) {
+    await this.prisma.favori.deleteMany({ where: { utilisateurId: utilisateur.id, produitId } });
+  }
 }
