@@ -12,6 +12,7 @@ import { ParrainageRecompenseService } from './auth/parrainage-recompense.servic
 import { SessionsService } from './auth/sessions.service.js';
 import { ComptesController } from './comptes/comptes.controller.js';
 import { ComptesService } from './comptes/comptes.service.js';
+import { CatalogueController } from './catalogue/catalogue.controller.js';
 import { CONFIGURATION, type Configuration } from './config.js';
 import { NotificationsModule } from './notifications/notifications.module.js';
 import { PaysController } from './pays/pays.controller.js';
@@ -25,7 +26,14 @@ export class AppModule {
       module: AppModule,
       global: true,
       imports: [PrismaModule, AuditModule, NotificationsModule],
-      controllers: [SanteController, PaysController, AuthController, ComptesController, UtilisateursAdminController],
+      controllers: [
+        SanteController,
+        PaysController,
+        AuthController,
+        ComptesController,
+        UtilisateursAdminController,
+        CatalogueController,
+      ],
       providers: [
         { provide: CONFIGURATION, useValue: config },
         { provide: CLES, useValue: creerCles(config) },
