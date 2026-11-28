@@ -87,11 +87,7 @@ export function rechercherCatalogue(
       throw new RangeError('Le prix doit être un entier XOF positif.');
     }
   }
-  if (
-    filtres.prixMinXof !== undefined &&
-    filtres.prixMaxXof !== undefined &&
-    filtres.prixMinXof > filtres.prixMaxXof
-  ) {
+  if (filtres.prixMinXof !== undefined && filtres.prixMaxXof !== undefined && filtres.prixMinXof > filtres.prixMaxXof) {
     throw new RangeError('Le prix minimum ne peut pas dépasser le prix maximum.');
   }
 
@@ -129,9 +125,7 @@ export function validerLienProduit(valeur: string): URL {
 
   const hote = url.hostname.toLowerCase().replace(/^www\./, '');
   const domainesAutorises = ['alibaba.com', '1688.com', 'trendyol.com'];
-  const domaineAutorise = domainesAutorises.some(
-    (domaine) => hote === domaine || hote.endsWith(`.${domaine}`),
-  );
+  const domaineAutorise = domainesAutorises.some((domaine) => hote === domaine || hote.endsWith(`.${domaine}`));
   if (url.protocol !== 'https:' || !domaineAutorise) {
     throw new TypeError('Le lien doit provenir d’Alibaba, 1688 ou Trendyol et utiliser HTTPS.');
   }
@@ -141,9 +135,7 @@ export function validerLienProduit(valeur: string): URL {
 /** Bascule un ID favori localement ; la synchronisation relève des apps et de l'API. */
 export function basculerFavori(favoris: readonly string[], produitId: string): string[] {
   if (!produitId.trim()) throw new TypeError('Identifiant de produit requis.');
-  return favoris.includes(produitId)
-    ? favoris.filter((id) => id !== produitId)
-    : [...favoris, produitId];
+  return favoris.includes(produitId) ? favoris.filter((id) => id !== produitId) : [...favoris, produitId];
 }
 
 export const MENTION_PRIX_INDICATIF = 'Prix indicatif, confirmé par devis';
