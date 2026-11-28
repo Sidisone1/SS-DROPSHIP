@@ -403,6 +403,7 @@ paths:
       parameters:
         - { name: q, in: query, schema: { type: string } }
         - { name: categorie, in: query, schema: { type: string } }
+        - { name: prixMin, in: query, schema: { type: integer, minimum: 0 } }
         - { name: prixMax, in: query, schema: { type: integer, minimum: 0 } }
         - $ref: '#/components/parameters/Curseur'
       responses:
@@ -431,6 +432,18 @@ paths:
             application/json:
               schema: { $ref: '#/components/schemas/Produit' }
         '404': { $ref: '#/components/responses/Introuvable' }
+  /moi/favoris:
+    get:
+      tags: [catalogue]
+      operationId: listerFavoris
+      summary: Mes produits favoris publiés
+      responses:
+        '200':
+          description: Favoris.
+          content:
+            application/json:
+              schema: { type: array, items: { $ref: '#/components/schemas/Produit' } }
+        '401': { $ref: '#/components/responses/NonAuthentifie' }
   /moi/favoris/{id}:
     put:
       tags: [catalogue]
