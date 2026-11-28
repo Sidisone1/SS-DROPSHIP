@@ -26,7 +26,14 @@ export class AppModule {
       module: AppModule,
       global: true,
       imports: [PrismaModule, AuditModule, NotificationsModule],
-      controllers: [SanteController, PaysController, AuthController, ComptesController, UtilisateursAdminController, CatalogueController],
+      controllers: [
+        SanteController,
+        PaysController,
+        AuthController,
+        ComptesController,
+        UtilisateursAdminController,
+        CatalogueController,
+      ],
       providers: [
         { provide: CONFIGURATION, useValue: config },
         { provide: CLES, useValue: creerCles(config) },
