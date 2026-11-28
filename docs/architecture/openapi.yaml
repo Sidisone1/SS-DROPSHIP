@@ -1323,7 +1323,7 @@ components:
         id: { type: string }
         titre: { type: string }
         description: { type: string }
-        categorie: { type: string }
+        categorie: { $ref: '#/components/schemas/Categorie' }
         medias: { type: array, items: { type: string, format: uri } }
         prixIndicatif:
           oneOf:
