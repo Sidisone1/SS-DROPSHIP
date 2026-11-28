@@ -84,7 +84,10 @@ export class CatalogueController {
     };
     const min = prix(prixMin);
     const max = prix(prixMax);
-    if (min !== undefined && max !== undefined && min > max) {\n      throw invalide('Le prix minimum ne peut pas dépasser le maximum.');\n    }\n    const produits = await this.prisma.produit.findMany({
+    if (min !== undefined && max !== undefined && min > max) {
+      throw invalide('Le prix minimum ne peut pas dépasser le maximum.');
+    }
+    const produits = await this.prisma.produit.findMany({
       where: {
         etat: 'valide',
         fournisseur: { etat: 'valide' },
